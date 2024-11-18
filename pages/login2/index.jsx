@@ -34,7 +34,7 @@ const Login2 = () => {
 
     try {
       const response = await axios.post(
-        'https://api.resumeintellect.com/api/user/auth/login',
+        'https://api.novajobs.us/api/user/auth/login',
         formData,
       );
 

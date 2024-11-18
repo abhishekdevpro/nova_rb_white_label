@@ -39,7 +39,7 @@
 
 //       try {
 //         const token = localStorage.getItem("token");
-//         const userProfileResponse = await axios.get('https://api.resumeintellect.com/api/user/user-profile', {
+//         const userProfileResponse = await axios.get('https://api.novajobs.us/api/user/user-profile', {
 //           headers: { Authorization: token },
 //         });
 
@@ -74,7 +74,7 @@
 //   useEffect(() => {
 //     const token = localStorage.getItem('token');
 //     if (token) {
-//       axios.get('https://api.resumeintellect.com/api/user/resume-list', {
+//       axios.get('https://api.novajobs.us/api/user/resume-list', {
 //         headers: { Authorization: token }
 //       })
 //       .then(response => {
@@ -95,7 +95,7 @@
 //     const token = localStorage.getItem('token');
 
 //     if (token) {
-//       axios.post('https://api.resumeintellect.com/api/user/file-based-ai', {
+//       axios.post('https://api.novajobs.us/api/user/file-based-ai', {
 //         keyword: 'Rate this resume content in percentage ? and checklist of scope improvements in manner of content and informations',
 //         file_location: resume.file_path || "/etc/dean_ai_resume/users/resume_uploads/majid[15_0]-1723818329.pdf",
 //       }, {
@@ -153,7 +153,7 @@
 //           <div className="space-y-4 mb-6 md:mb-0 md:mr-6 md:pr-6 w-full">
 //             <div className="flex flex-col md:flex-row md:items-center md:space-x-4">
 //               <img
-//                 src={`https://api.resumeintellect.com/${formData.photo}` || "https://www.kindpng.com/picc/m/252-2524695_dummy-profile-image-jpg-hd-png-download.png"}
+//                 src={`https://api.novajobs.us/${formData.photo}` || "https://www.kindpng.com/picc/m/252-2524695_dummy-profile-image-jpg-hd-png-download.png"}
 //                 alt="Please Upload Profile Photo"
 //                 className="w-20 h-20 rounded-full mb-4 md:mb-0"
 //               />
@@ -281,7 +281,7 @@ const ProfilePage = () => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem("token");
-        const userProfileResponse = await axios.get('https://api.resumeintellect.com/api/user/user-profile', {
+        const userProfileResponse = await axios.get('https://api.novajobs.us/api/user/user-profile', {
           headers: { Authorization: token },
         });
 
@@ -322,7 +322,7 @@ const ProfilePage = () => {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const response = await axios.get('https://api.resumeintellect.com/api/user/resume-list', {
+        const response = await axios.get('https://api.novajobs.us/api/user/resume-list', {
           headers: { Authorization: token }
         });
         const resumes = response.data.resumelist;
@@ -352,7 +352,7 @@ const ProfilePage = () => {
 
     try {
       const response = await axios.post(
-        "https://api.resumeintellect.com/api/user/file-based-ai",
+        "https://api.novajobs.us/api/user/file-based-ai",
         {
           keyword:
             "Rate this resume content in percentage ? and checklist of scope improvements in manner of content and informations",
@@ -419,7 +419,7 @@ const ProfilePage = () => {
       setUploadStatus('Uploading...');
 
       const response = await axios.post(
-        'https://api.resumeintellect.com/api/user/resume-upload',
+        'https://api.novajobs.us/api/user/resume-upload',
         formData,
         {
           headers: {
@@ -475,7 +475,7 @@ const ProfilePage = () => {
               <div className="flex flex-col md:flex-row md:items-center md:space-x-4 p-5 ">
                 <img
                   src={
-                    `https://api.resumeintellect.com/${formData.photo}` ||
+                    `https://api.novajobs.us/${formData.photo}` ||
                     "https://www.kindpng.com/picc/m/252-2524695_dummy-profile-image-jpg-hd-png-download.png"
                   }
                   alt="Please Upload Profile Photo"

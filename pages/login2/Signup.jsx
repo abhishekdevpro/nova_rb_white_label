@@ -48,7 +48,7 @@ function Signup() {
   
     try {
       const response = await axios.post(
-        "https://api.resumeintellect.com/api/user/auth/signup",
+        "https://api.novajobs.us/api/user/auth/signup",
         body,
         {
           headers: {

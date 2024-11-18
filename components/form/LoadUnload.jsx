@@ -50,7 +50,7 @@
 //     setLoading(true);
 //     setShowLoadingAnimation(true);
 //     try {
-//       const response = await axios.post("https://api.resumeintellect.com/api/user/resume-upload", formData, {
+//       const response = await axios.post("https://api.novajobs.us/api/user/resume-upload", formData, {
 //         headers: {
 //           "Content-Type": "multipart/form-data",
 //           Authorization: token,
@@ -91,7 +91,7 @@
 //     setShowLoadingAnimation(true);
 //     try {
 //       const response = await axios.post(
-//         "https://api.resumeintellect.com/api/user/resume-create",
+//         "https://api.novajobs.us/api/user/resume-create",
 //         {},
 //         { headers: { Authorization: token } }
 //       );
@@ -247,7 +247,7 @@ const LoadUnload = () => {
     setShowLoadingAnimation(true);
     try {
       const response = await axios.post(
-        "https://api.resumeintellect.com/api/user/resume-upload",
+        "https://api.novajobs.us/api/user/resume-upload",
         formData,
         {
           headers: {
@@ -296,7 +296,7 @@ const LoadUnload = () => {
     setShowLoadingAnimation(true);
     try {
       const response = await axios.post(
-        "https://api.resumeintellect.com/api/user/resume-create",
+        "https://api.novajobs.us/api/user/resume-create",
         {},
         { headers: { Authorization: token } }
       );

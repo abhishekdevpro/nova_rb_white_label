@@ -42,7 +42,7 @@ function Changepassword() {
 
     axios({
       method: "PUT",
-      url: "https://api.resumeintellect.com/api/user/change-password",
+      url: "https://api.novajobs.us/api/user/change-password",
       headers: {
         Authorization: token,
         "Content-type": "application/json",

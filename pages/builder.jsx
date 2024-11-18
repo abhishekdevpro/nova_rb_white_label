@@ -67,7 +67,7 @@ export default function Builder({ onClose }) {
         const token = localStorage.getItem("token");
         try {
           const response = await axios.get(
-            `https://api.resumeintellect.com/api/user/resume-list/${id}`,
+            `https://api.novajobs.us/api/user/resume-list/${id}`,
             {
               headers: { Authorization: token },
             }
@@ -116,7 +116,7 @@ export default function Builder({ onClose }) {
 
     axios
       .post(
-        "https://api.resumeintellect.com/api/user/paypal/create-payment",
+        "https://api.novajobs.us/api/user/paypal/create-payment",
         payload,
         {
           headers: { "Content-Type": "application/json" }, // Use JSON content type
@@ -289,7 +289,7 @@ export default function Builder({ onClose }) {
         return;
       }
 
-      const url = `https://api.resumeintellect.com/api/user/resume-update/${id}`;
+      const url = `https://api.novajobs.us/api/user/resume-update/${id}`;
       const response = await axios.put(url, templateData, {
         headers: {
           "Content-Type": "application/json",

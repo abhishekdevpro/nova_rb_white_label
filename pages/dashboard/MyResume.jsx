@@ -26,7 +26,7 @@ const MyResume = () => {
     const token = localStorage.getItem("token");
     if (token) {
       axios
-        .get("https://api.resumeintellect.com/api/user/resume-list", {
+        .get("https://api.novajobs.us/api/user/resume-list", {
           headers: { Authorization: token },
         })
         .then((response) => {
@@ -51,7 +51,7 @@ const MyResume = () => {
       setIsLoading(true);
       axios
         .post(
-          "https://api.resumeintellect.com/api/user/file-based-ai",
+          "https://api.novajobs.us/api/user/file-based-ai",
           {
             keyword:
               "Rate this resume content in percentage ? and checklist of scope improvements in manner of content and informations",
@@ -89,7 +89,7 @@ const MyResume = () => {
       setIsLoading(true);
       axios
         .post(
-          "https://api.resumeintellect.com/api/user/file-based-ai",
+          "https://api.novajobs.us/api/user/file-based-ai",
           {
             keyword:
               "Rate this resume content in percentage ? and checklist of scope improvements in manner of content and informations",
@@ -127,7 +127,7 @@ const MyResume = () => {
     if (token) {
       try {
         await axios.delete(
-          `https://api.resumeintellect.com/api/user/resume-list/${deleteresumeid}`,
+          `https://api.novajobs.us/api/user/resume-list/${deleteresumeid}`,
           {
             headers: { Authorization: token },
           }
@@ -159,7 +159,7 @@ const MyResume = () => {
 
     try {
       const response = await axios.get(
-        `https://api.resumeintellect.com/api/user/resume-list/${resumeId}`,
+        `https://api.novajobs.us/api/user/resume-list/${resumeId}`,
         {
           headers: { Authorization: token },
         }

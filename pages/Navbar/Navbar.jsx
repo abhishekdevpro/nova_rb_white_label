@@ -12,9 +12,22 @@ const Navbar = () => {
   const [isApiSuccess, setIsApiSuccess] = useState(false);
   
   const router = useRouter();
+  
+  useEffect(() => {
+    // Destructure tokenbyurl from router.query
+    const tokenFromUrl = router.query.tokenbyurl;
+
+    // If there's a token in the URL, store it in localStorage
+    if (tokenFromUrl) {
+      localStorage.setItem('token', tokenFromUrl);
+    }
+
+    // Check if the user is logged in based on localStorage token
+   
+  }, [router.query]); 
 
   useEffect(() => {
-    const token = localStorage.getItem('token'); // Access localStorage here
+  const token= localStorage.getItem('token'); // Access localStorage here
 
     if (token) {
       setIsLoggedIn(true);
@@ -22,9 +35,10 @@ const Navbar = () => {
       // Check API success
       const checkApiSuccess = async () => {
         try {
-          const response = await fetch('https://api.resumeintellect.com/api/user/user-profile', {
+          //
+          const response = await fetch('https://api.novajobs.us/api/user/user-profile', {
             headers: {
-              'Authorization': `Bearer ${token}`,
+              'Authorization': `${token}`,
             },
           });
           if (response.ok) {
