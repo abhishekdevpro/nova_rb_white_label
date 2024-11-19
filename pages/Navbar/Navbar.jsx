@@ -86,9 +86,14 @@ const Navbar = () => {
           </div>
           <div className="hidden md:flex justify-center items-center space-x-4">
 
-            <Link href="/navbarcontent" className="text-black px-3 py-2 rounded-md text-lg font-semibold hover:bg-slate-900 hover:text-white ">AI Resume Builder</Link>
-            <Link href="/" className="text-black px-3 py-2 rounded-md text-lg font-semibold hover:bg-slate-900 hover:text-white">Resources</Link>
-            <Link href="/" className="text-black px-3 py-2 rounded-md text-lg font-semibold hover:bg-slate-900 hover:text-white">About Us</Link>
+            <Link href="/dashboard/aibuilder" className="text-black px-3 py-2 rounded-md text-lg font-semibold hover:bg-slate-900 hover:text-white ">AI Resume Builder</Link>
+            {/* <Link href="/" className="text-black px-3 py-2 rounded-md text-lg font-semibold hover:bg-slate-900 hover:text-white">Resources</Link> */}
+            <Link href="/dashboard/resumelist" className="text-black px-3 py-2 rounded-md text-lg font-semibold hover:bg-slate-900 hover:text-white">My Resumes</Link>
+            {/* <Link href="/" className="text-black px-3 py-2 rounded-md text-lg font-semibold hover:bg-slate-900 hover:text-white">About Us</Link> */}
+            <Link href="/" className="text-black px-3 py-2 rounded-md text-lg font-semibold hover:bg-slate-900 hover:text-white"  
+             onClick={() => {
+              handleLogout();
+            }}>Log out</Link>
             {/* <Link href="/adminlogin" className="text-black px-3 py-2 rounded-md text-lg font-semibold">
               <span className="mr-2">🛡️</span>
               <span>Admin</span>

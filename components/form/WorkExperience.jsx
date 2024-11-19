@@ -1,34 +1,24 @@
+
 import React, { useContext, useState } from "react";
 import FormButton from "./FormButton";
 import { ResumeContext } from "../../pages/builder";
-import "react-quill/dist/quill.snow.css";
-import dynamic from "next/dynamic";
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
-
-const quillModules = {
-  toolbar: [
-    [{ header: [1, 2, false] }],
-    ["bold", "italic", "underline"],
-    [{ list: "ordered" }, { list: "bullet" }],
-    [{ align: [] }],
-  ],
-};
+import axios from 'axios';
 
 const WorkExperience = () => {
   const { resumeData, setResumeData } = useContext(ResumeContext);
 
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
+  const token = localStorage.getItem("token")
 
-  const handleWorkExperience = (value, index, fieldName) => {
-    // console.log("fix for key achivement>>>", value, index, fieldName);
+  const handleWorkExperience = (e, index) => {
     const newWorkExperience = [...resumeData.workExperience];
-    newWorkExperience[index][fieldName] = value;
+    newWorkExperience[index][e.target.name] = e.target.value;
     setResumeData({ ...resumeData, workExperience: newWorkExperience });
   };
- 
+
   const addWorkExperience = () => {
     setResumeData({
       ...resumeData,
@@ -53,51 +43,35 @@ const WorkExperience = () => {
     setResumeData({ ...resumeData, workExperience: newWorkExperience });
   };
 
-  const handleSearchChange = async (e) => {
-    const value = e.target.value;
-    setSearchValue(value);
-    if (e.key === "Enter" && value.length > 2) {
-      setIsLoading(true);
-      try {
-        const genAI = new GoogleGenerativeAI(
-          process.env.REACT_APP_GOOGLE_GENAI_API_KEY
-        );
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-        const result = await model.generateContent(value);
-        const response = result.response;
-        const responsibilities = response
-          .text()
-          .split("\n")
-          .filter((line) => line.trim() !== "");
-        setSearchResults(responsibilities);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    } else {
-      setSearchResults([]);
+  const handleAIAssist = async (index) => {
+    setIsLoading(true);
+    try {
+      const response = await axios.post('https://api.novajobs.us/api/user/ai-resume-profexp-data', {
+        key: "professional_experience",
+        keyword: "Genrate professional summary and Checklist of professional experience in manner of content and information",
+        content: resumeData.workExperience[index].position,
+      },{
+        headers:{
+          Authorization:token
+        }
+      });
+      
+      handleDescriptionChange(response.data.data.resume_analysis.professional_summary, index);
+      handleResponsibilitiesChange(response.data.data.resume_analysis.responsibilities, index);
+
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleDescriptionChange = (value, index) => {
-    handleWorkExperience({ target: { name: "description", value } }, index);
+    handleWorkExperience({ target: { name: 'description', value } }, index);
   };
 
-  const handleSearchResultSelect = (result, index) => {
-    const currentDescription =
-      resumeData.workExperience[index].description || "";
-    const newDescription = currentDescription
-      ? `${currentDescription}\n${result}`
-      : result;
-    handleDescriptionChange(newDescription, index);
-    setSearchValue("");
-    setSearchResults([]);
-  };
-
-  const handleAssistClick = (e, index) => {
-    e.preventDefault();
-    handleSearchChange({ target: { value: searchValue }, key: "Enter" });
+  const handleResponsibilitiesChange = (responsibilities, index) => {
+    handleWorkExperience({ target: { name: 'keyAchievements', value: responsibilities.join('\n') } }, index);
   };
 
   return (
@@ -112,9 +86,7 @@ const WorkExperience = () => {
             name="company"
             className="w-full other-input border-black border"
             value={workExperience.company}
-            onChange={(e) =>
-              handleWorkExperience(e.target.value, index, "company")
-            }
+            onChange={(e) => handleWorkExperience(e, index)}
           />
           <label className="mt-2">Job Title</label>
           <input
@@ -123,9 +95,7 @@ const WorkExperience = () => {
             name="position"
             className="w-full other-input border-black border"
             value={workExperience.position}
-            onChange={(e) =>
-              handleWorkExperience(e.target.value, index, "position")
-            }
+            onChange={(e) => handleWorkExperience(e, index)}
           />
           <div className="flex-wrap-gap-2">
             <input
@@ -134,7 +104,7 @@ const WorkExperience = () => {
               name="startYear"
               className="other-input border-black border"
               value={workExperience.startYear}
-              onChange={(e) => handleWorkExperience(e, index, "startYear")}
+              onChange={(e) => handleWorkExperience(e, index)}
             />
             <input
               type="date"
@@ -142,7 +112,7 @@ const WorkExperience = () => {
               name="endYear"
               className="other-input border-black border"
               value={workExperience.endYear}
-              onChange={(e) => handleWorkExperience(e, index, "endYear")}
+              onChange={(e) => handleWorkExperience(e, index)}
             />
           </div>
           <div className="flex justify-between mb-2">
@@ -150,49 +120,30 @@ const WorkExperience = () => {
             <button
               type="button"
               className="border bg-black text-white px-3 rounded-3xl"
-              onClick={(e) => handleAssistClick(e, index)}
+              onClick={() => handleAIAssist(index)}
+              disabled={isLoading}
             >
-              + AI Assist
+              {isLoading ? 'Loading...' : '+ AI Assist'}
             </button>
           </div>
-          <div className="max-w-[23rem]">
-            <ReactQuill
-              modules={quillModules}
-              placeholder="Description"
-              name="description"
-              className="w-full other-input border-black border h-50"
-              value={workExperience.description}
-              maxLength="250"
-              onChange={(e) => handleWorkExperience(e, index, "description")}
-            />
-          </div>
-
+          <textarea
+            type="text"
+            placeholder="Description"
+            name="description"
+            className="w-full other-input border-black border h-32"
+            value={workExperience.description}
+            maxLength="250"
+            onChange={(e) => handleWorkExperience(e, index)}
+          />
           <label className="mt-2">Key Achievements</label>
-          <div className="max-w-[23rem]">
-            <ReactQuill
-              modules={quillModules}
-              placeholder="Key Achievements"
-              name="keyAchievements"
-              className="w-full other-input border-black border h-50"
-              value={workExperience.keyAchievements}
-              onChange={(e) =>
-                handleWorkExperience(e, index, "keyAchievements")
-              }
-            />
-          </div>
-
-          {searchResults.length > 0 && (
-            <ul className="search-results-list">
-              {searchResults.map((result, idx) => (
-                <li
-                  key={idx}
-                  onClick={() => handleSearchResultSelect(result, index)}
-                >
-                  {result}
-                </li>
-              ))}
-            </ul>
-          )}
+          <textarea
+            type="text"
+            placeholder="Key Achievements"
+            name="keyAchievements"
+            className="w-full other-input border-black border h-40"
+            value={workExperience.keyAchievements}
+            onChange={(e) => handleWorkExperience(e, index)}
+          />
         </div>
       ))}
       <FormButton

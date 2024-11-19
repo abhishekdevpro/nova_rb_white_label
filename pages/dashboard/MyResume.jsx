@@ -4,6 +4,8 @@ import React, { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from 'react-toastify';
 import { ResumeContext } from "../../pages/builder";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const MyResume = () => {
   const { setResumeData } = useContext(ResumeContext);
@@ -194,7 +196,8 @@ const MyResume = () => {
     }
   };
 
-  return (
+  return (<>
+    <ToastContainer />
     <div className="container mx-auto p-4 text-center h-3/4">
       <div className="overflow-x-auto">
         <table className="min-w-full bg-dark text-black rounded-md">
@@ -317,16 +320,28 @@ const MyResume = () => {
           <div className="bg-white p-4 rounded shadow-lg w-80">
             <h2 className="text-lg font-bold">AI Suggestions</h2>
             <ul>
-              {modalSuggestions.map((suggestion, index) => (
-                <li key={index}>{suggestion}</li>
-              ))}
+            {modalSuggestions.map((suggestion, index) => (
+    <li key={index}>
+      <span className="font-bold">{index + 1}.</span> {suggestion}
+    </li>
+  ))}
             </ul>
-            <button
-              onClick={() => setIsAIModalOpen(false)}
-              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
-            >
+            <button onClick={() => setIsAIModalOpen(false)} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
               Close
             </button>
+            <button
+    onClick={() => {
+      // const suggestionsText = modalSuggestions.join("\n"); // Combine suggestions into one string
+      navigator.clipboard.writeText(modalSuggestions) // Copy to clipboard
+        .then(() => toast.success("Text copied successfully")
+                  
+    )
+    .catch((err) => toast.error("Failed to copy: ", err));
+    }}
+    className="bg-green-500 text-white m-2 px-4 py-2 rounded"
+  >
+    Copy
+  </button>
           </div>
         </div>
       )}
@@ -356,7 +371,8 @@ const MyResume = () => {
         </div>
       )}
     </div>
-  );
+    </>
+    );
 };
 
 export default MyResume;

@@ -45,7 +45,16 @@ const Sidebar = ({ onClose }) => {
           </Link>
         </li>
 
-          
+        <li>
+          <Link
+            href="/dashboard/resumelist"
+            className={getLinkClassName("/dashboard/resumelist")}
+            onClick={onClose} // Close sidebar on link click
+          >
+            <span className="mr-2">📑</span>
+            <span>My Resumes</span>
+          </Link>
+        </li>
         <li>
           <Link
             href="/"
