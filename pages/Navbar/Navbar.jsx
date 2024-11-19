@@ -20,6 +20,7 @@ const Navbar = () => {
     // If there's a token in the URL, store it in localStorage
     if (tokenFromUrl) {
       localStorage.setItem('token', tokenFromUrl);
+      setIsLoggedIn(true)
     }
 
     // Check if the user is logged in based on localStorage token
@@ -28,8 +29,8 @@ const Navbar = () => {
 
   useEffect(() => {
   const token= localStorage.getItem('token'); // Access localStorage here
-
-    if (token) {
+  if (token) {
+      console.log(token)
       setIsLoggedIn(true);
       
       // Check API success
