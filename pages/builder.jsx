@@ -241,7 +241,7 @@ export default function Builder({ onClose }) {
     // await saveResumeAPI(resumeData);
     console.log("Resume saved!");
   };
-  console.log(">>>>>ResumeData", resumeData);
+  // console.log(">>>>>ResumeData", resumeData);
   const handleFinish = async () => {
     if (!resumeData) return;
 
