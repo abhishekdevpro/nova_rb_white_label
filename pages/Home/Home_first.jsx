@@ -67,12 +67,14 @@ function Home_first() {
                                 Resume Score, Enhanced Resume & much more. Now Apply for a Job with confidence with our all in one solution under one roof.
                             </div>
                             <div className='flex flex-wrap gap-4 justify-center md:justify-start'>
-                                <Link href={isAuthenticated?"/dashboard":"/signup"}>
+                                {/* <Link href={isAuthenticated?"/dashboard":"/signup"}> */}
+                                <Link href={"/dashboard/aibuilder"}>
                                     <button className='px-6 py-2 text-lg rounded-full font-bold bg-blue-700 text-white hover:shadow-2xl hover:shadow-slate-500'>
                                         Free to join or Sign Up!
                                     </button>
                                 </Link>
-                                <Link href={isAuthenticated?"/dashboard":"/login2"}>
+                                {/* <Link href={isAuthenticated?"/dashboard":"/login2"}> */}
+                                <Link href={"/dashboard/aibuilder"}>
                                     <button className='text-black text-lg px-6 py-2 rounded-full font-bold bg-white hover:shadow-2xl hover:shadow-slate-500'>
                                         Build your Resume
                                     </button>
