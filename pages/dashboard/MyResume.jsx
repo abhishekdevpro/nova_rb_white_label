@@ -260,17 +260,17 @@ const MyResume = () => {
                   </td>
                   <td className="py-2 px-4">
                     <div className="flex space-x-2">
-                      <button className="text-black">
+                      <button className="text-black" title="Upload">
                         <i className="fas fa-upload">📤</i>
                       </button>
                       <button
-                        className="text-black"
+                        className="text-black" title="Edit"
                         onClick={() => handleEditResume(resume.id)}
                       >
                         <i className="fas fa-edit">🖍</i>
                       </button>
                       <button
-                        className="text-black"
+                        className="text-black" title="Delete"
                         onClick={() => handleopenDeleteModal(resume.id)}
                       >
                         <i className="fas fa-trash">🗑️</i>
