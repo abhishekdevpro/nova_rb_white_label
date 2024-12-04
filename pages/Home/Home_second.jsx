@@ -17,30 +17,30 @@ function Home_second() {
     e.preventDefault();
     const amount = 269;
 
-    const payload = {
-      amount,
-      ResumeId: "9CN06189KH259320999",
-      Name: name,
-      Email: email,
-      Phone: phone,
-    };
+    // const payload = {
+    //   amount,
+    //   ResumeId: "9CN06189KH259320999",
+    //   Name: name,
+    //   Email: email,
+    //   Phone: phone,
+    // };
 
-    axios
-      .post(
-        "https://api.resumeintellect.com/api/user/paypal/create-payment",
-        payload,
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      )
-      .then((response) => {
-        const data = response.data;
-        if (data && data.data) {
-          // Redirect to the PayPal URL provided in the response
-          window.location.href = data.data;
-        }
-      })
-      .catch((error) => console.error("Payment Error:", error));
+    // axios
+    //   .post(
+    //     "https://api.resumeintellect.com/api/user/paypal/create-payment",
+    //     payload,
+    //     {
+    //       headers: { "Content-Type": "application/json" },
+    //     }
+    //   )
+    //   .then((response) => {
+    //     const data = response.data;
+    //     if (data && data.data) {
+    //       // Redirect to the PayPal URL provided in the response
+    //       window.location.href = data.data;
+    //     }
+    //   })
+    //   .catch((error) => console.error("Payment Error:", error));
 
     handleCloseModal(); // Close the modal after submitting the form
   };
@@ -58,30 +58,30 @@ function Home_second() {
     e.preventDefault();
     const amount = 349;
 
-    const payload = {
-      amount,
-      ResumeId: "9CN06189KH259320999",
-      Name: name1,
-      Email: email1,
-      Phone: phone1,
-    };
+    // const payload = {
+    //   amount,
+    //   ResumeId: "9CN06189KH259320999",
+    //   Name: name1,
+    //   Email: email1,
+    //   Phone: phone1,
+    // };
 
-    axios
-      .post(
-        "https://api.resumeintellect.com/api/user/paypal/create-payment",
-        payload,
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      )
-      .then((response) => {
-        const data = response.data;
-        if (data && data.data) {
-          // Redirect to the PayPal URL provided in the response
-          window.location.href = data.data;
-        }
-      })
-      .catch((error) => console.error("Payment Error:", error));
+    // axios
+    //   .post(
+    //     "https://api.resumeintellect.com/api/user/paypal/create-payment",
+    //     payload,
+    //     {
+    //       headers: { "Content-Type": "application/json" },
+    //     }
+    //   )
+    //   .then((response) => {
+    //     const data = response.data;
+    //     if (data && data.data) {
+    //       // Redirect to the PayPal URL provided in the response
+    //       window.location.href = data.data;
+    //     }
+    //   })
+    //   .catch((error) => console.error("Payment Error:", error));
 
     handleCloseModal1(); // Close the modal after submitting the form
   };
