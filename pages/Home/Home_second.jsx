@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import React from "react";
 import Home_third from "./Home_third";
-
+import Link from "next/link";
 function Home_second() {
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState("");
@@ -17,30 +17,30 @@ function Home_second() {
     e.preventDefault();
     const amount = 269;
 
-    const payload = {
-      amount,
-      ResumeId: "9CN06189KH259320999",
-      Name: name,
-      Email: email,
-      Phone: phone,
-    };
+    // const payload = {
+    //   amount,
+    //   ResumeId: "9CN06189KH259320999",
+    //   Name: name,
+    //   Email: email,
+    //   Phone: phone,
+    // };
 
-    axios
-      .post(
-        "https://api.resumeintellect.com/api/user/paypal/create-payment",
-        payload,
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      )
-      .then((response) => {
-        const data = response.data;
-        if (data && data.data) {
-          // Redirect to the PayPal URL provided in the response
-          window.location.href = data.data;
-        }
-      })
-      .catch((error) => console.error("Payment Error:", error));
+    // axios
+    //   .post(
+    //     "https://api.resumeintellect.com/api/user/paypal/create-payment",
+    //     payload,
+    //     {
+    //       headers: { "Content-Type": "application/json" },
+    //     }
+    //   )
+    //   .then((response) => {
+    //     const data = response.data;
+    //     if (data && data.data) {
+    //       // Redirect to the PayPal URL provided in the response
+    //       window.location.href = data.data;
+    //     }
+    //   })
+    //   .catch((error) => console.error("Payment Error:", error));
 
     handleCloseModal(); // Close the modal after submitting the form
   };
@@ -58,30 +58,30 @@ function Home_second() {
     e.preventDefault();
     const amount = 349;
 
-    const payload = {
-      amount,
-      ResumeId: "9CN06189KH259320999",
-      Name: name1,
-      Email: email1,
-      Phone: phone1,
-    };
+    // const payload = {
+    //   amount,
+    //   ResumeId: "9CN06189KH259320999",
+    //   Name: name1,
+    //   Email: email1,
+    //   Phone: phone1,
+    // };
 
-    axios
-      .post(
-        "https://api.resumeintellect.com/api/user/paypal/create-payment",
-        payload,
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      )
-      .then((response) => {
-        const data = response.data;
-        if (data && data.data) {
-          // Redirect to the PayPal URL provided in the response
-          window.location.href = data.data;
-        }
-      })
-      .catch((error) => console.error("Payment Error:", error));
+    // axios
+    //   .post(
+    //     "https://api.resumeintellect.com/api/user/paypal/create-payment",
+    //     payload,
+    //     {
+    //       headers: { "Content-Type": "application/json" },
+    //     }
+    //   )
+    //   .then((response) => {
+    //     const data = response.data;
+    //     if (data && data.data) {
+    //       // Redirect to the PayPal URL provided in the response
+    //       window.location.href = data.data;
+    //     }
+    //   })
+    //   .catch((error) => console.error("Payment Error:", error));
 
     handleCloseModal1(); // Close the modal after submitting the form
   };
@@ -194,12 +194,12 @@ function Home_second() {
                   <li className="flex items-center space-x-3">{/* Icon */}</li>
                   <li className="flex items-center space-x-3">{/* Icon */}</li>
                 </ul>
-                <a
-                  href="/dashboard/ai-resume-builder"
+                <Link
+                  href="/dashboard/aibuilder"
                   className="text-white border bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900"
                 >
                   Get started
-                </a>
+                </Link>
               </div>
               {/* Pricing Card */}
               <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-white bg-gray-800 rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
