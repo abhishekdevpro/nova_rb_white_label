@@ -15,7 +15,7 @@ function Home_second() {
 
   const handlePayment = (e) => {
     e.preventDefault();
-    const amount = 269;
+    const amount = 19;
 
     // const payload = {
     //   amount,
@@ -56,7 +56,7 @@ function Home_second() {
 
   const handlePayment1 = (e) => {
     e.preventDefault();
-    const amount = 349;
+    const amount = 29;
 
     // const payload = {
     //   amount,
@@ -210,7 +210,7 @@ function Home_second() {
                   Built by expert resume writers
                 </p>
                 <div className="flex justify-center items-baseline my-8">
-                  <span className="mr-2 text-5xl font-extrabold">$269</span>
+                  <span className="mr-2 text-5xl font-extrabold">$19</span>
                   <span className="text-white dark:text-white">/Resume</span>
                 </div>
                 {/* List */}
@@ -370,7 +370,7 @@ function Home_second() {
                         <input
                           type="number"
                           className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
-                          value={"269"}
+                          value={"19"}
                           readOnly
                         />
                       </div>
@@ -441,7 +441,7 @@ function Home_second() {
                         <input
                           type="number"
                           className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
-                          value={"349"}
+                          value={"29"}
                           readOnly
                         />
                       </div>
@@ -477,7 +477,7 @@ function Home_second() {
                   Built by expert resume writers
                 </p>
                 <div className="flex justify-center items-baseline my-8">
-                  <span className="mr-2 text-5xl font-extrabold">$349</span>
+                  <span className="mr-2 text-5xl font-extrabold">$29</span>
                   <span className="text-white dark:text-white">/Resume</span>
                 </div>
                 {/* List */}
@@ -513,7 +513,7 @@ function Home_second() {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span>Receive resume in pdf and docs</span>
+                    <span>Receive resume in pdf</span>
                   </li>
 
                   <li className="flex items-center space-x-3">
