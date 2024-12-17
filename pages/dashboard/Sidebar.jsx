@@ -28,7 +28,7 @@ const Sidebar = ({ onClose }) => {
             onClick={onClose} // Close sidebar on link click
           >
             <span className="mr-10 ">🖥️</span>
-            <span>Dashboard</span>
+            <span>Back to Dashboard</span>
           </Link>
         </li>
         <li></li>
