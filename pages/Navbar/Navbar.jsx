@@ -37,7 +37,7 @@ const Navbar = () => {
       const checkApiSuccess = async () => {
         try {
           //
-          const response = await fetch('https://api.novajobs.us/api/user/user-profile', {
+          const response = await fetch('https://api.novajobs.us/api/jobseeker/user-profile', {
             headers: {
               'Authorization': `${token}`,
             },
