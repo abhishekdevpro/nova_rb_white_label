@@ -32,7 +32,7 @@ const ProfileForm = () => {
         const token = localStorage.getItem("token");
         
         // Fetch user profile
-        const userProfileResponse = await axios.get('https://api.novajobs.us/api/user/user-profile', {
+        const userProfileResponse = await axios.get('https://api.novajobs.us/api/jobseeker/user-profile', {
           headers: {
             Authorization: token,
           },
@@ -191,7 +191,7 @@ const ProfileForm = () => {
     }
 
     try {
-      const response = await axios.patch('https://api.novajobs.us/api/user/user-profile', formDataToSend, {
+      const response = await axios.patch('https://api.novajobs.us/api/jobseeker/user-profile', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: token,

@@ -14,9 +14,12 @@ import "slick-carousel/slick/slick.css"; // Slick Carousel base styles
 import "slick-carousel/slick/slick-theme.css"; // Slick Carousel theme styles
 
 // Import react-hot-toast's Toaster
-import { Toaster } from "react-hot-toast";
+
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { ResumeProvider } from "../components/context/ResumeContext";
+import { ToastContainer } from "react-toastify";
+import { Toaster } from "react-hot-toast";
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
@@ -32,10 +35,15 @@ export default function App({ Component, pageProps }) {
   }, [router.pathname]);
   return (
     <>
-      <Component {...pageProps} />
-      {/* Render the Toaster component at the bottom of your app */}
+    
+     
+      <ResumeProvider>
+            <Component {...pageProps} />
+      {/* <ToastContainer position="top-right" autoClose={3000} pauseOnHover />   */}
       <Toaster />
+      </ResumeProvider>
     </>
+    
   );
 }
 
