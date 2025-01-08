@@ -1,6 +1,6 @@
 // // import React, { useContext } from "react";
 // // import { ResumeContext } from "../context/ResumeContext";
-// // // import { ResumeContext } from "../../pages/builder";
+// // // import { ResumeContext } from "../context/ResumeContext";
 
 // // const Skills = ({ title, skills, color }) => {
 // //   const { resumeData, setResumeData} = useContext(ResumeContext);

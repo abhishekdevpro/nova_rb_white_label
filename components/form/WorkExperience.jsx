@@ -1,7 +1,7 @@
 
 import React, { useContext, useState } from "react";
 import FormButton from "./FormButton";
-// import { ResumeContext } from "../../pages/builder";
+// import { ResumeContext } from "../context/ResumeContext";
 import axios from 'axios';
 import { ResumeContext } from "../context/ResumeContext";
 

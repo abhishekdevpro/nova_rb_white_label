@@ -1,7 +1,7 @@
 import { ResumeContext } from "../context/ResumeContext";
 import FormButton from "./FormButton";
 import React, { useContext, useState } from "react";
-// import { ResumeContext } from "../../pages/builder";
+// import { ResumeContext } from "../context/ResumeContext";
 
 const Projects = () => {
   const { resumeData, setResumeData } = useContext(ResumeContext);
@@ -244,7 +244,7 @@ export default Projects;
 // import React, { useContext } from "react";
 // import ReactQuill from "react-quill";
 // import "react-quill/dist/quill.snow.css";
-// import { ResumeContext } from "../../pages/builder";
+// import { ResumeContext } from "../context/ResumeContext";
 // import { Plus, Minus, Link as LinkIcon } from "lucide-react";
 
 // const Projects = () => {

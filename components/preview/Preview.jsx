@@ -21,7 +21,7 @@ import {
 import { CgWebsite } from "react-icons/cg";
 
 import React, { useContext, useState, useEffect, forwardRef } from "react";
-// import { ResumeContext } from "../../pages/builder";
+// import { ResumeContext } from "../context/ResumeContext";
 import { ResumeContext } from "../../components/context/ResumeContext";
 import dynamic from "next/dynamic";
 import { HighlightMenu } from "react-highlight-menu";
