@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import Image from 'next/image'; // Ensure correct import
-import { ResumeContext } from "./builder";
+import { ResumeContext } from "../components/context/ResumeContext";
 import GoogleDrive from '../public/assets/google-drive.png';
 import drag from '../public/assets/drag.png';
 
