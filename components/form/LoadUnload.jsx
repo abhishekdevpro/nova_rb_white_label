@@ -3,7 +3,7 @@ import { FaCloudUploadAlt, FaArrowLeft } from "react-icons/fa";
 import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-// import { ResumeContext } from "../../pages/builder";
+// import { ResumeContext } from "../context/ResumeContext";
 import { toast } from "react-toastify";
 import DefaultResumeData from "../utility/DefaultResumeData";
 import { ResumeContext } from "../context/ResumeContext";

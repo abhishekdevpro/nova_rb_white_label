@@ -1,7 +1,7 @@
 
 
 // import React, { useContext, useRef } from "react";
-// // import { ResumeContext } from "../../pages/builder";
+// // import { ResumeContext } from "../context/ResumeContext";
 // import { HighlightMenu } from "react-highlight-menu";
 // import Image from "next/image";
 // import Link from "next/link";

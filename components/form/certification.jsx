@@ -1,7 +1,7 @@
 
 
 import React, { useContext, useState } from "react";
-// import { ResumeContext } from "../../pages/builder";
+// import { ResumeContext } from "../context/ResumeContext";
 import { Plus, X, Award } from "lucide-react";
 import { ResumeContext } from "../context/ResumeContext";
 
