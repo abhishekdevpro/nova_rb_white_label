@@ -21,7 +21,7 @@ import TemplateSelector from "../components/preview/TemplateSelector";
 
 import { useRouter } from "next/router";
 import Sidebar from "./dashboard/Sidebar";
-import toast from 'react-hot-toast';
+import toast from 'react-toastify';
 import LoaderButton from "../components/utility/LoaderButton";
 import useLoader from "../hooks/useLoader";
 

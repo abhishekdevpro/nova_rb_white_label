@@ -3,7 +3,7 @@ import Image from 'next/image';
 import logo from '../Footer/logo.jpg';
 import { useState } from 'react';
 import axios from 'axios';
-import toast from 'react-hot-toast';
+import toast from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import Link from 'next/link'; // Import Link from next/link
 

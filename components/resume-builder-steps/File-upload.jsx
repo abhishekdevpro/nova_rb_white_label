@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { useState, useCallback, useContext } from 'react';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
-import { toast } from 'react-hot-toast';
+import { toast } from 'react-toastify';
 import Image from 'next/image';
 import { Upload, File } from 'lucide-react'; // Replaced SVG with lucide-react icons
 import drive from "../../public/assets/google-drive.png";

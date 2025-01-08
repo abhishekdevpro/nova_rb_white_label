@@ -4,7 +4,7 @@ import { FaUpload, FaFileAlt } from 'react-icons/fa';
 
 import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
-import { toast } from 'react-hot-toast';
+import { toast } from 'react-toastify';
 import DefaultResumeData from '../utility/DefaultResumeData';
 import { ResumeContext } from '../context/ResumeContext';
 
