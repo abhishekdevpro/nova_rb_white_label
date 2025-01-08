@@ -16,10 +16,10 @@ import "slick-carousel/slick/slick-theme.css"; // Slick Carousel theme styles
 // Import react-hot-toast's Toaster
 
 import { useEffect } from "react";
-import { useRouter } from "next/router";
-import { ResumeProvider } from "../components/context/ResumeContext";
+import { useRouter } from "next/router";//userimport { ResumeProvider } from "../components/context/ResumeContext";
 import { ToastContainer } from "react-toastify";
 import { Toaster } from "react-hot-toast";
+import { ResumeProvider } from "../components/context/ResumeContext";
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
