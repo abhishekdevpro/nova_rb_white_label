@@ -35,7 +35,7 @@ const ProfilePage = () => {
   //   const fetchData = async () => {
   //     try {
   //       const token = localStorage.getItem("token");
-  //       const userProfileResponse = await axios.get('https://api.novajobs.us/api/user/user-profile', {
+  //       const userProfileResponse = await axios.get('https://api.novajobs.us/api/jobseeker/user-profile', {
   //         headers: { Authorization: token },
   //       });
 

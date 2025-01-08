@@ -167,7 +167,7 @@ const Navbar = () => {
               </div>
             ) : (
               <>
-                <Link
+                {/* <Link
                   href="/login2"
                   className="text-black px-4 py-2 text-md font-semibold border-2 rounded-xl"
                 >
@@ -178,7 +178,7 @@ const Navbar = () => {
                   className="text-black px-4 py-2 text-md font-semibold border-2 rounded-xl"
                 >
                   Sign up
-                </Link>
+                </Link> */}
               </>
             )}
           </div>
@@ -249,7 +249,7 @@ const Navbar = () => {
                 </Link>
               ) : (
                 <>
-                  <Link
+                  {/* <Link
                     href="/login2"
                     className="text-black block px-3 py-2 rounded-md text-base font-semibold"
                     onClick={handleLinkClick}
@@ -262,7 +262,7 @@ const Navbar = () => {
                     onClick={handleLinkClick}
                   >
                     Sign up
-                  </Link>
+                  </Link> */}
                 </>
               )}
             </div>
