@@ -23,7 +23,7 @@ const Sidebar = ({ onClose }) => {
       <ul className="space-y-2 mt-4">
         <li>
           <Link
-            href="https://api.novajobs.us/user/jobs-profile"
+            href="https://novajobs.us/user/jobs-profile"
             className="flex items-center p-2 bg-indigo-100 border-b-2 border-slate-900 font-semibold text-black"
             onClick={onClose} // Close sidebar on link click
           >

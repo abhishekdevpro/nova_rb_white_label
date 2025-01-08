@@ -104,7 +104,7 @@ const Navbar = () => {
               My Resumes
             </Link>
             {/* <Link href="/" className="text-black px-3 py-2 rounded-md text-lg font-semibold hover:bg-slate-900 hover:text-white">About Us</Link> */}
-            <Link
+            {/* <Link
               href="/"
               className="text-black px-3 py-2 rounded-md text-lg font-semibold hover:bg-slate-900 hover:text-white"
               onClick={() => {
@@ -112,7 +112,7 @@ const Navbar = () => {
               }}
             >
               Log out
-            </Link>
+            </Link> */}
             {/* <Link href="/adminlogin" className="text-black px-3 py-2 rounded-md text-lg font-semibold">
               <span className="mr-2">🛡️</span>
               <span>Admin</span>
@@ -153,7 +153,7 @@ const Navbar = () => {
                     >
                       Profile
                     </Link>
-                    <button
+                    {/* <button
                       onClick={() => {
                         handleLogout();
                         setIsDropdownOpen(false);
@@ -161,7 +161,7 @@ const Navbar = () => {
                       className="block w-full text-left px-4 py-2 hover:bg-gray-200 hover:text-black"
                     >
                       Logout
-                    </button>
+                    </button> */}
                   </div>
                 )}
               </div>
@@ -236,7 +236,7 @@ const Navbar = () => {
                 Blog
               </Link>
 
-              {isLoggedIn ? (
+              {/* {isLoggedIn ? (
                 <Link
                   href="/"
                   className="text-black block px-3 py-2 rounded-md text-base font-semibold"
@@ -249,7 +249,7 @@ const Navbar = () => {
                 </Link>
               ) : (
                 <>
-                  {/* <Link
+                  <Link
                     href="/login2"
                     className="text-black block px-3 py-2 rounded-md text-base font-semibold"
                     onClick={handleLinkClick}
@@ -262,9 +262,9 @@ const Navbar = () => {
                     onClick={handleLinkClick}
                   >
                     Sign up
-                  </Link> */}
+                  </Link>
                 </>
-              )}
+              )} */}
             </div>
           </div>
         )}
