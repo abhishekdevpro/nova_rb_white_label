@@ -1,5 +1,6 @@
 
 import axios from "axios";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -89,7 +90,16 @@ export default function SuccessPage() {
         <p className="my-5" style={{ fontSize: "40px" }}>
           💵 Your Payment is Successful!
         </p>
+       
+        <Link  href ="/dashboard">
+        <button
 
+              className="bg-yellow-500 text-black px-4 py-2 rounded-lg bottom-btns"
+              // style={{ padding: "10px 20px", fontSize: "16px" }}
+            >
+              Back to Dashboard
+            </button>
+            </Link>
         {/* Display loader only when download is in progress */}
         {loading && (
           <div>

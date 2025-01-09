@@ -17,11 +17,11 @@ import Certification from "../components/form/certification";
 import ColorPickers from "./ColorPickers";
 import Preview from "../components/preview/Preview";
 import TemplateSelector from "../components/preview/TemplateSelector";
-
+import toast from "react-hot-toast";
 
 import { useRouter } from "next/router";
 import Sidebar from "./dashboard/Sidebar";
-import toast from 'react-toastify';
+
 import LoaderButton from "../components/utility/LoaderButton";
 import useLoader from "../hooks/useLoader";
 
@@ -293,22 +293,30 @@ export default function MobileBuilder() {
         }
       );
   
-      // Check for PDF file path
-      const filePath = pdfResponse.data.data?.file_path;
-      if (!filePath) {
-        throw new Error("PDF file path not received");
+      if (pdfResponse.status === 200) {
+        toast.success("PDF generated successfully!");
+        // Call the payment process function
+        initiateCheckout();
+      } else {
+        throw new Error("Failed to generate PDF.");
       }
+    } catch (error) {
+      console.error("Error during PDF generation:", error);
+      toast.error(
+        error.response?.data?.message || "Failed to generate PDF."
+      );
+    }
+  };
   
-      // Construct download URL
-      const downloadUrl = `https://api.novajobs.us${filePath}`;
-      toast.success("PDF generated successfully!");
-  
-      // Step 2: Checkout API Call
+  const initiateCheckout = async () => {
+    try {
+      // Ensure resumeId is a valid integer
       const parsedResumeId = parseInt(resumeId, 10);
       if (isNaN(parsedResumeId)) {
         throw new Error("Invalid resume ID; unable to convert to an integer.");
       }
   
+      // Step 2: Checkout API Call
       const checkoutResponse = await axios.post(
         "https://api.novajobs.us/api/user/payment/checkout",
         {
@@ -330,15 +338,10 @@ export default function MobileBuilder() {
       } else {
         throw new Error("No redirect URL found in checkout response.");
       }
-  
-      // Optionally, open the PDF in a new tab
-      window.open(downloadUrl, "_blank");
-      toast.success("PDF opened in a new tab!");
     } catch (error) {
-      console.error("Error during process:", error);
+      console.error("Error during checkout:", error);
       toast.error(
-        error.response?.data?.message ||
-          "Failed to complete the PDF generation or checkout process."
+        error.response?.data?.message || "Failed to initiate the payment process."
       );
     }
   };
