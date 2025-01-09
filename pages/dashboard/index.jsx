@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+// import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import ProfilePage from './Profile';
 import { FaBars } from 'react-icons/fa'; // Import hamburger icon
@@ -36,7 +36,7 @@ const DashboardLayout = () => {
 
         {/* Content area */}
         <div className="flex-1 w-full max-w-8xl p-4 overflow-auto">
-          <Outlet />
+          {/* <Outlet /> */}
         </div>
       </div>
     </div>
