@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import logo from '../Navbar/logo.jpg';
-import Image from 'next/image';
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import logo from "../Navbar/logo.jpg";
+import Image from "next/image";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,38 +10,40 @@ const Navbar = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isApiSuccess, setIsApiSuccess] = useState(false);
-  
+
   const router = useRouter();
-  
+
   useEffect(() => {
     // Destructure tokenbyurl from router.query
     const tokenFromUrl = router.query.tokenbyurl;
 
     // If there's a token in the URL, store it in localStorage
     if (tokenFromUrl) {
-      localStorage.setItem('token', tokenFromUrl);
-      setIsLoggedIn(true)
+      localStorage.setItem("token", tokenFromUrl);
+      setIsLoggedIn(true);
     }
 
     // Check if the user is logged in based on localStorage token
-   
-  }, [router.query]); 
+  }, [router.query]);
 
   useEffect(() => {
-  const token= localStorage.getItem('token'); // Access localStorage here
-  if (token) {
-      console.log(token)
+    const token = localStorage.getItem("token"); // Access localStorage here
+    if (token) {
+      console.log(token);
       setIsLoggedIn(true);
-      
+
       // Check API success
       const checkApiSuccess = async () => {
         try {
           //
-          const response = await fetch('https://api.novajobs.us/api/jobseeker/user-profile', {
-            headers: {
-              'Authorization': `${token}`,
-            },
-          });
+          const response = await fetch(
+            "https://api.novajobs.us/api/jobseeker/user-profile",
+            {
+              headers: {
+                Authorization: `${token}`,
+              },
+            }
+          );
           if (response.ok) {
             setIsApiSuccess(true);
           } else {
@@ -67,9 +69,9 @@ const Navbar = () => {
   const handleMouseLeave = () => setIsHovering(false);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     setIsLoggedIn(false);
-    router.push('/');
+    router.push("/");
   };
 
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
@@ -208,33 +210,40 @@ const Navbar = () => {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
               <Link
-                href="/"
+                href="/dashboard/aibuilder"
                 className="text-black block px-3 py-2 rounded-md text-base font-semibold "
                 onClick={handleLinkClick}
               >
                 AI Resume Builder
               </Link>
               <Link
-                href="/"
+                href="/dashboard/resumelist"
                 className="text-black block px-3 py-2 rounded-md text-base font-semibold"
                 onClick={handleLinkClick}
               >
-                Resources
+                My Resume
               </Link>
               <Link
+                href="#phone"
+                className="text-black block px-3 py-2 rounded-md text-base font-semibold"
+                onClick={handleLinkClick}
+              >
+                Contact Us
+              </Link>
+              {/* <Link
                 href="/"
                 className="text-black block px-3 py-2 rounded-md text-base font-semibold"
                 onClick={handleLinkClick}
               >
                 About Us
-              </Link>
-              <Link
+              </Link> */}
+              {/* <Link
                 href="/"
                 className="text-black block px-3 py-2 rounded-md text-base font-semibold"
                 onClick={handleLinkClick}
               >
                 Blog
-              </Link>
+              </Link> */}
 
               {/* {isLoggedIn ? (
                 <Link
