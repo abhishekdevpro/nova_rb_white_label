@@ -81,7 +81,7 @@ const Template3 = () => {
           layout="row" // or "row"
           contactClass=""
           socialMediaClass=""
-          className=" gap-4"
+          className="items-start justify-start"
         />
       </header>
 

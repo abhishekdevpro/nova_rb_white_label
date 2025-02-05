@@ -1,6 +1,6 @@
 // // import React, { useContext } from "react";
 // // import { ResumeContext } from "../context/ResumeContext";
-// // // import { ResumeContext } from "../context/ResumeContext";
+// // // import { ResumeContext } from "../../pages/builder";
 
 // // const Skills = ({ title, skills, color }) => {
 // //   const { resumeData, setResumeData} = useContext(ResumeContext);
@@ -131,7 +131,7 @@ import { ResumeContext } from "../context/ResumeContext";
 
 const Skills = ({ title, skills, color = "black", layout }) => {
   const { resumeData, setResumeData, backgroundColorss } = useContext(ResumeContext);
-   console.log(backgroundColorss,"backgroundColorss");
+  //  console.log(backgroundColorss,"backgroundColorss");
   const handleTitleChange = (e) => {
     const newSkills = [...resumeData.skills];
     const skillType = newSkills.find((skillType) => skillType.title === title);

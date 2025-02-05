@@ -3,6 +3,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 import DateRange from "../utility/DateRange";
 import Link from "next/link"; 
+import DateRangeExperience from "../utility/DateRangeExperience";
 const DragDropContext = dynamic(
   () => import("react-beautiful-dnd").then((mod) => mod.DragDropContext),
   { ssr: false }
@@ -52,7 +53,7 @@ const ProjectsSection = ({ resumeData, headerColor }) => {
                 >
                   <div className="flex flex-row justify-between space-y-1">
                     <p className="content i-bold">{item.name}</p>
-                    <DateRange
+                    <DateRangeExperience
                       startYear={item.startYear}
                       endYear={item.endYear}
                       id={`projects-start-end-date`}

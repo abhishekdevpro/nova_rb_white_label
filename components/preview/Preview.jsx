@@ -21,7 +21,7 @@ import {
 import { CgWebsite } from "react-icons/cg";
 
 import React, { useContext, useState, useEffect, forwardRef } from "react";
-// import { ResumeContext } from "../context/ResumeContext";
+// import { ResumeContext } from "../../pages/builder";
 import { ResumeContext } from "../../components/context/ResumeContext";
 import dynamic from "next/dynamic";
 import { HighlightMenu } from "react-highlight-menu";
@@ -371,10 +371,12 @@ const Preview = forwardRef(({ selectedTemplate }, ref) => {
     if (source.droppableId.includes("WORK_EXPERIENCE_KEY_ACHIEVEMENT")) {
       const newWorkExperience = [...resumeData.workExperience];
       const workExperienceIndex = parseInt(source.droppableId.split("-")[1]);
-      const keyAchievements = newWorkExperience[workExperienceIndex].keyAchievements.split("\n");
+      const keyAchievements =
+        newWorkExperience[workExperienceIndex].keyAchievements.split("\n");
       const [removed] = keyAchievements.splice(source.index, 1);
       keyAchievements.splice(destination.index, 0, removed);
-      newWorkExperience[workExperienceIndex].keyAchievements = keyAchievements.join("\n");
+      newWorkExperience[workExperienceIndex].keyAchievements =
+        keyAchievements.join("\n");
       setResumeData({ ...resumeData, workExperience: newWorkExperience });
     }
 
@@ -395,7 +397,8 @@ const Preview = forwardRef(({ selectedTemplate }, ref) => {
     if (source.droppableId.includes("PROJECTS_KEY_ACHIEVEMENT")) {
       const newProjects = [...resumeData.projects];
       const projectIndex = parseInt(source.droppableId.split("-")[1]);
-      const keyAchievements = newProjects[projectIndex].keyAchievements.split("\n");
+      const keyAchievements =
+        newProjects[projectIndex].keyAchievements.split("\n");
       const [removed] = keyAchievements.splice(source.index, 1);
       keyAchievements.splice(destination.index, 0, removed);
       newProjects[projectIndex].keyAchievements = keyAchievements.join("\n");
@@ -434,93 +437,93 @@ const Preview = forwardRef(({ selectedTemplate }, ref) => {
   // useKeyboardShortcut("u", true, toggleUnderline);
 
   return (
-  
-      <A4PageWrapper>
-        <div ref={ref}className="preview" style={{ fontFamily: selectedFont }}>
-          <HighlightMenu
-            styles={{
-              borderColor: "",
-              backgroundColor: "#c5c9c9",
-              boxShadow: "0px 5px 5px 0px rgba(0, 0, 0, 0.15)",
-              zIndex: 10,
-              borderRadius: "5px",
-              padding: "3px",
-            }}
-            target="body"
-            menu={() => (
-              <>
-                <MenuButton
-                  title="Bold (Ctrl+B)"
-                  icon={<FaBold />}
-                  onClick={toggleBold}
-                />
-                <MenuButton
-                  title="Italic (Ctrl+I)"
-                  icon={<FaItalic />}
-                  onClick={toggleItalic}
-                />
-                <MenuButton
-                  title="Underline (Ctrl+U)"
-                  icon={<FaUnderline />}
-                  onClick={toggleUnderline}
-                />
-                <MenuButton
-                  title="Increase Font Size"
-                  icon={<FaPlus />}
-                  onClick={() => changeFontSize(4)}
-                />
-                <MenuButton
-                  title="Decrease Font Size"
-                  icon={<FaMinus />}
-                  onClick={() => changeFontSize(2)}
-                />
-                <MenuButton
-                  title="Align Left"
-                  icon={<FaAlignLeft />}
-                  onClick={() => alignText("Left")}
-                />
-                <MenuButton
-                  title="Align Center"
-                  icon={<FaAlignCenter />}
-                  onClick={() => alignText("Center")}
-                />
-                <MenuButton
-                  title="Align Right"
-                  icon={<FaAlignRight />}
-                  onClick={() => alignText("Right")}
-                />
-                <MenuButton
-                  title="Add Link"
-                  icon={<FaLink />}
-                  onClick={toggleLink}
-                />
-                <MenuButton
-                  title="Check Grammar"
-                  icon={<FaSpellCheck />}
-                  onClick={checkGrammar}
-                />
-              </>
-            )}
-          />
-          <DragDropContext onDragEnd={onDragEnd}>
-            {templates[selectedTemplate]}
-          </DragDropContext>
-        </div>
-      </A4PageWrapper>
-   
+    <A4PageWrapper>
+      <div ref={ref} className="preview" style={{ fontFamily: selectedFont }}>
+        <HighlightMenu
+          styles={{
+            borderColor: "",
+            backgroundColor: "#c5c9c9",
+            boxShadow: "0px 5px 5px 0px rgba(0, 0, 0, 0.15)",
+            zIndex: 10,
+            borderRadius: "5px",
+            padding: "3px",
+          }}
+          target="body"
+          menu={() => (
+            <>
+              <MenuButton
+                title="Bold (Ctrl+B)"
+                icon={<FaBold />}
+                onClick={toggleBold}
+              />
+              <MenuButton
+                title="Italic (Ctrl+I)"
+                icon={<FaItalic />}
+                onClick={toggleItalic}
+              />
+              <MenuButton
+                title="Underline (Ctrl+U)"
+                icon={<FaUnderline />}
+                onClick={toggleUnderline}
+              />
+              <MenuButton
+                title="Increase Font Size"
+                icon={<FaPlus />}
+                onClick={() => changeFontSize(4)}
+              />
+              <MenuButton
+                title="Decrease Font Size"
+                icon={<FaMinus />}
+                onClick={() => changeFontSize(2)}
+              />
+              <MenuButton
+                title="Align Left"
+                icon={<FaAlignLeft />}
+                onClick={() => alignText("Left")}
+              />
+              <MenuButton
+                title="Align Center"
+                icon={<FaAlignCenter />}
+                onClick={() => alignText("Center")}
+              />
+              <MenuButton
+                title="Align Right"
+                icon={<FaAlignRight />}
+                onClick={() => alignText("Right")}
+              />
+              <MenuButton
+                title="Add Link"
+                icon={<FaLink />}
+                onClick={toggleLink}
+              />
+              <MenuButton
+                title="Check Grammar"
+                icon={<FaSpellCheck />}
+                onClick={checkGrammar}
+              />
+            </>
+          )}
+        />
+        <DragDropContext onDragEnd={onDragEnd}>
+          {templates[selectedTemplate]}
+        </DragDropContext>
+      </div>
+    </A4PageWrapper>
   );
 });
 
-Preview.displayName = "Preview"
+Preview.displayName = "Preview";
 
 const A4PageWrapper = ({ children }) => {
   const alertA4Size = () => {
     const preview = document.querySelector(".preview");
     if (preview) {
       const previewHeight = preview.offsetHeight;
-      console.log(previewHeight);
+      // console.log(previewHeight);
       if (previewHeight > 1122) {
-        alert("A4 size exceeded");
+        alert(
+          "Resume now in multipage format. Please adjust the content accordingly."
+        );
       }
     } else {
       console.error("Element with class 'preview' not found.");
@@ -528,9 +531,10 @@ const A4PageWrapper = ({ children }) => {
   };
 
   return (
-    <div className="m-3 a4-wrapper mx-auto   overflow-hidden "
-  
-    onLoad={alertA4Size}>
+    <div
+      className="m-3 a4-wrapper mx-auto   overflow-hidden "
+      onLoad={alertA4Size}
+    >
       {children}
     </div>
   );

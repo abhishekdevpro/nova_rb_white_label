@@ -1265,20 +1265,342 @@ export default function WebBuilder() {
   }, []);
   // console.log(resumeData,"");
 
+  // return (
+  //   <>
+  //     <Meta
+  //       title="NovaJobs.US - AI Resume Builder"
+  //       description="ATSResume is a cutting-edge resume builder that helps job seekers create a professional, ATS-friendly resume in minutes..."
+  //       keywords="ATS-friendly, Resume optimization..."
+  //     />
+
+  //     <div className="min-h-screen bg-gray-50">
+       
+
+  //       {!isFinished ? (
+  //         <div className="min-h-screen bg-gray-50 flex flex-col">
+  //           <div className="w-full bg-gray-200 p-4 shadow-sm">
+  //             <div className="hidden md:flex flex-col lg:flex-row items-center justify-between gap-4">
+  //               <div className="flex w-full lg:w-auto gap-4">
+  //                 <button
+  //                   type="button"
+  //                   onClick={handlePrevious}
+  //                   disabled={currentSection === 0}
+  //                   className="w-40 h-10 rounded-lg bg-blue-950 text-white font-medium transition hover:bg-blue-900 disabled:opacity-50 disabled:cursor-not-allowed"
+  //                 >
+  //                   Previous
+  //                 </button>
+  //                 <button
+  //                   type="button"
+  //                   onClick={handleNext}
+  //                   className="w-40 h-10 rounded-lg bg-yellow-500 text-black font-medium transition hover:bg-yellow-400"
+  //                 >
+  //                   {currentSection === sections.length - 1 ? "Finish" : "Next"}
+  //                 </button>
+  //               </div>
+
+  //               <div className="hidden lg:flex items-center gap-4">
+  //                 <select
+  //                   value={selectedFont}
+  //                   onChange={handleFontChange}
+  //                   className="w-40 h-10 rounded-lg border border-blue-800 px-4 font-bold text-blue-800 bg-white focus:ring-2 focus:ring-blue-800"
+  //                 >
+  //                   <option value="Ubuntu">Ubuntu</option>
+  //                   <option value="Calibri">Calibri</option>
+  //                   <option value="Georgia">Georgia</option>
+  //                   <option value="Roboto">Roboto</option>
+  //                   <option value="Poppins">Poppins</option>
+  //                 </select>
+
+  //                 <div className="flex items-center gap-4">
+  //                   {/* <ColorPicker
+  //                     selectedColor={headerColor}
+  //                     onChange={setHeaderColor}
+  //                   /> */}
+  //                   <ColorPickers
+  //                     selectmultiplecolor={backgroundColorss}
+  //                     onChange={setBgColor}
+  //                   />
+  //                   <TemplateSelector
+  //                     selectedTemplate={selectedTemplate}
+  //                     setSelectedTemplate={setSelectedTemplate}
+  //                   />
+  //                 </div>
+  //               </div>
+  //             </div>
+  //           </div>
+
+  //           <div className="sticky top-0 z-10 w-full bg-white shadow-sm">
+  //             <div className="hidden md:flex justify-center items-center p-4">
+  //               <nav className="bg-gray-100 rounded-lg p-2">
+  //                 <div className="flex items-center">
+  //                   <button
+  //                     onClick={() => prevSection()}
+  //                     className="p-2 hover:bg-gray-200 rounded-lg "
+  //                     disabled={currentSection === 0}
+  //                   >
+  //                     {/* Chevron Left Icon Here */}
+  //                   </button>
+
+  //                   <div className="flex-1 overflow-x-auto scrollbar-hide ">
+  //                     <ul className="flex flex-row gap-3 items-center py-2 px-4  ">
+  //                       {sections.map((section, index) => (
+  //                         <li
+  //                           key={index}
+  //                           className={`px-4 py-2 cursor-pointer transition rounded-lg border-2 ${
+  //                             currentSection === index
+  //                               ? "border-blue-800 font-semibold bg-blue-950 text-white"
+  //                               : "border-blue-800 bg-white text-blue-800 hover:bg-blue-50"
+  //                           }`}
+  //                           onClick={() => handleSectionClick(index)}
+  //                         >
+  //                           {section.label}
+  //                         </li>
+  //                       ))}
+  //                     </ul>
+  //                   </div>
+
+  //                   <button
+  //                     onClick={() => nextSection()}
+  //                     className="p-2 hover:bg-gray-200 rounded-lg "
+  //                     disabled={currentSection === sections.length - 1}
+  //                   >
+  //                     {/* Chevron Right Icon Here */}
+  //                   </button>
+  //                 </div>
+  //               </nav>
+  //             </div>
+  //           </div>
+
+  //           <div className="flex flex-col md:flex-row flex-grow ">
+            
+
+             
+
+  //             {/* <aside
+  //               className={`fixed md:static left-0 top-0 h-full z-10 transform 
+                                
+  //                               md:translate-x-0 transition-transform duration-300 ease-in-out 
+  //                               w-64 bg-gray-100 border-r`}
+  //             >
+  //               <div className="sticky top-20 p-4 overflow-y-auto h-full">
+  //                 <div className="mt-12 md:mt-0">
+  //                   <Sidebar />
+  //                 </div>
+  //               </div>
+  //             </aside> */}
+
+  //             <main className="flex-1 max-w-2xl mx-auto md:p-4">
+  //               <form>{sections[currentSection].component}</form>
+  //             </main>
+
+  //             <aside className="  w-1/2 min-h-screen border-l bg-gray-50">
+  //               <div className="sticky top-20 p-4">
+                 
+  //                   <Preview ref={templateRef} selectedTemplate={selectedTemplate} />
+                 
+  //               </div>
+  //             </aside>
+  //           </div>
+
+  //         </div>
+  //       ) : (
+  //         <div className=" flex flex-col">
+            
+
+  //           <div className="hidden md:flex w-screen px-8 py-4 justify-between items-center bg-white shadow">
+  //             <div className="flex gap-4">
+  //               <select
+  //                 value={selectedFont}
+  //                 onChange={handleFontChange}
+  //                 className="px-4 py-2 border rounded-lg"
+  //               >
+  //                 <option value="Ubuntu">Ubuntu</option>
+  //                 <option value="Calibri">Calibri</option>
+  //                 <option value="Georgia">Georgia</option>
+  //                 <option value="Roboto">Roboto</option>
+  //                 <option value="Poppins">Poppins</option>
+  //               </select>
+  //               {/* <ColorPicker
+  //                 selectedColor={headerColor}
+  //                 onChange={setHeaderColor}
+  //               /> */}
+  //               <ColorPickers
+  //                 selectmultiplecolor={backgroundColorss}
+  //                 onChange={setBgColor}
+  //               />
+  //               <TemplateSelector
+  //                 selectedTemplate={selectedTemplate}
+  //                 setSelectedTemplate={setSelectedTemplate}
+  //               />
+  //             </div>
+  //             <div className="flex gap-4">
+  //               <button
+  //                 onClick={handleFinish}
+  //                 className="bg-blue-950 text-white px-6 py-2 rounded-lg"
+  //               >
+  //                 Save Resume
+  //               </button>
+  //               <button
+  //                 onClick={downloadAsPDF}
+  //                 className="bg-yellow-500 text-black px-6 py-2 rounded-lg"
+  //               >
+  //                 Pay & Download
+  //               </button>
+  //               {showModal && (
+  //                 <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+  //                   <div className=" w-full max-w-4xl bg-white rounded-lg shadow-lg ">
+  //                     <div className="flex justify-between items-center p-2">
+  //                       <Image src={logo} alt="logo" className="h-10 w-auto" />
+  //                       <button
+  //                         className=" text-gray-600 hover:text-gray-800 z-20"
+  //                         onClick={handleCloseModal}
+  //                       >
+  //                         <svg
+  //                           xmlns="http://www.w3.org/2000/svg"
+  //                           fill="none"
+  //                           viewBox="0 0 24 24"
+  //                           strokeWidth="2"
+  //                           stroke="currentColor"
+  //                           className="w-6 h-6"
+  //                         >
+  //                           <path
+  //                             strokeLinecap="round"
+  //                             strokeLinejoin="round"
+  //                             d="M6 18L18 6M6 6l12 12"
+  //                           />
+  //                         </svg>
+  //                       </button>
+  //                     </div>
+  //                     <div className="flex flex-col md:flex-row">
+  //                       <div className="md:w-1/2 w-full p-4  ">
+  //                         <div className="w-[400px] h-[400px]">
+  //                           <Image
+  //                             src={resumeImg}
+  //                             alt="resumeimg"
+  //                             className="w- full h-full rounded-l-lg"
+  //                           />
+  //                         </div>
+  //                       </div>
+
+  //                       <div className="md:w-1/2 w-full p-4 ">
+  //                         <div className="text-center mb-6">
+  //                           <h2 className="text-2xl font-bold text-gray-900">
+  //                             $49
+  //                           </h2>
+  //                           <p className="text-sm text-gray-500">
+  //                             Total Amount
+  //                           </p>
+  //                         </div>
+
+  //                         <form>
+  //                           <div className="mb-4">
+  //                             <label className="block text-gray-800 mb-2">
+  //                               👨🏻‍💼 Name
+  //                             </label>
+  //                             <input
+  //                               type="text"
+  //                               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+  //                               value={`${formData.first_name} ${formData.last_name}`.trim()}
+  //                               name="full name"
+  //                               required
+  //                               disabled
+  //                             />
+  //                           </div>
+  //                           <div className="mb-4">
+  //                             <label className="block text-gray-800 mb-2">
+  //                               📧 Email
+  //                             </label>
+  //                             <input
+  //                               type="email"
+  //                               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+  //                               value={formData.email}
+  //                               required
+  //                               name="email"
+  //                               disabled
+  //                             />
+  //                           </div>
+  //                           <div className="mb-4">
+  //                             <label className="block text-gray-800 mb-2">
+  //                               ☎️ Phone
+  //                             </label>
+  //                             <input
+  //                               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+  //                               required
+  //                               disabled
+  //                               type="number"
+  //                               name="phone"
+  //                               value={formData.phone}
+  //                             />
+  //                           </div>
+
+  //                           <div className="flex justify-center mt-6">
+  //                             <button
+  //                               onClick={downloadAsPDF}
+                                
+  //                               type="submit"
+  //                               className="w-full bg-yellow-400 text-blue-800 font-bold  rounded-[50px] hover:bg-yellow-500 transition duration-200"
+  //                             >
+  //                               <Image
+  //                                 src={paypal}
+  //                                 alt="paypal"
+  //                                 className="h-10 w-auto m-auto"
+  //                               />
+  //                             </button>
+  //                           </div>
+  //                           <div className="flex justify-center mt-6">
+  //                             <button className="w-full bg-black text-white font-bold  rounded-[50px] transition duration-200  ">
+  //                               <Image
+  //                                 src={applepay}
+  //                                 alt="apple pay"
+  //                                 className=" w-auto m-auto h-10"
+  //                               />
+  //                             </button>
+  //                           </div>
+  //                           <div className="flex justify-center mt-6 ">
+  //                             <Image
+  //                               src={poweredbypaypal}
+  //                               alt="poweredbypaypal"
+  //                               className="h-10 w-auto"
+  //                             />
+  //                           </div>
+  //                         </form>
+  //                       </div>
+  //                     </div>
+  //                   </div>
+  //                 </div>
+  //               )}
+  //               <button
+  //                 onClick={handleBackToEditor}
+  //                 className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors"
+  //               >
+  //                 Back to Dashboard
+  //               </button>
+  //             </div>
+  //           </div>
+
+  //           <div className="z-10">
+            
+  //               <Preview ref={templateRef} selectedTemplate={selectedTemplate} />
+            
+  //           </div>
+  //         </div>
+  //       )}
+  //     </div>
+  //   </>
+  // );
+
   return (
     <>
       <Meta
-        title="NovaJobs.US - AI Resume Builder"
+        title="Resume Intellect - AI Resume Builder"
         description="ATSResume is a cutting-edge resume builder that helps job seekers create a professional, ATS-friendly resume in minutes..."
         keywords="ATS-friendly, Resume optimization..."
       />
 
-      <div className="min-h-screen bg-gray-50">
-       
-
+      <div className="min-h-screen bg-gray-50 ">
         {!isFinished ? (
           <div className="min-h-screen bg-gray-50 flex flex-col">
-            <div className="w-full bg-gray-200 p-4 shadow-sm">
+            <div className="w-full bg-gray-200 p-4 shadow-sm ">
               <div className="hidden md:flex flex-col lg:flex-row items-center justify-between gap-4">
                 <div className="flex w-full lg:w-auto gap-4">
                   <button
@@ -1312,10 +1634,6 @@ export default function WebBuilder() {
                   </select>
 
                   <div className="flex items-center gap-4">
-                    {/* <ColorPicker
-                      selectedColor={headerColor}
-                      onChange={setHeaderColor}
-                    /> */}
                     <ColorPickers
                       selectmultiplecolor={backgroundColorss}
                       onChange={setBgColor}
@@ -1371,42 +1689,35 @@ export default function WebBuilder() {
               </div>
             </div>
 
-            <div className="flex flex-col md:flex-row flex-grow ">
-            
-
-             
-
-              <aside
+            <div className="w-screen flex flex-col md:flex-row flex-grow  ">
+              {/* <aside
                 className={`fixed md:static left-0 top-0 h-full z-10 transform 
-                                
                                 md:translate-x-0 transition-transform duration-300 ease-in-out 
                                 w-64 bg-gray-100 border-r`}
               >
-                <div className="sticky top-20 p-4 overflow-y-auto h-full">
+                <div className="sticky top-20 px-2 py-4 overflow-y-auto h-full">
                   <div className="mt-12 md:mt-0">
                     <Sidebar />
                   </div>
                 </div>
-              </aside>
+              </aside> */}
 
-              <main className="flex-1 max-w-2xl mx-auto md:p-4">
+              <main className="w-[40%] mx-auto md:p-4">
                 <form>{sections[currentSection].component}</form>
               </main>
 
-              <aside className="  w-1/2 min-h-screen border-l bg-gray-50">
+              <aside className="w-[60%] min-h-screen border-l bg-gray-50">
                 <div className="sticky top-20 p-4">
-                 
-                    <Preview ref={templateRef} selectedTemplate={selectedTemplate} />
-                 
+                  <Preview
+                    ref={templateRef}
+                    selectedTemplate={selectedTemplate}
+                  />
                 </div>
               </aside>
             </div>
-
           </div>
         ) : (
-          <div className=" flex flex-col">
-            
-
+          <div className="flex flex-col">
             <div className="hidden md:flex w-screen px-8 py-4 justify-between items-center bg-white shadow">
               <div className="flex gap-4">
                 <select
@@ -1420,10 +1731,6 @@ export default function WebBuilder() {
                   <option value="Roboto">Roboto</option>
                   <option value="Poppins">Poppins</option>
                 </select>
-                {/* <ColorPicker
-                  selectedColor={headerColor}
-                  onChange={setHeaderColor}
-                /> */}
                 <ColorPickers
                   selectmultiplecolor={backgroundColorss}
                   onChange={setBgColor}
@@ -1442,11 +1749,12 @@ export default function WebBuilder() {
                 </button>
                 <button
                   onClick={downloadAsPDF}
+                  // onClick={handleShowModal}
                   className="bg-yellow-500 text-black px-6 py-2 rounded-lg"
                 >
                   Pay & Download
                 </button>
-                {showModal && (
+                {/* {showModal && (
                   <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
                     <div className=" w-full max-w-4xl bg-white rounded-lg shadow-lg ">
                       <div className="flex justify-between items-center p-2">
@@ -1536,7 +1844,6 @@ export default function WebBuilder() {
                             <div className="flex justify-center mt-6">
                               <button
                                 onClick={downloadAsPDF}
-                                
                                 type="submit"
                                 className="w-full bg-yellow-400 text-blue-800 font-bold  rounded-[50px] hover:bg-yellow-500 transition duration-200"
                               >
@@ -1568,7 +1875,8 @@ export default function WebBuilder() {
                       </div>
                     </div>
                   </div>
-                )}
+                )} */}
+                {/* <PayAndDownload resumeId={resumeId} token={token} PayerID={PayerID} userId={userId}/> */}
                 <button
                   onClick={handleBackToEditor}
                   className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors"
@@ -1579,9 +1887,7 @@ export default function WebBuilder() {
             </div>
 
             <div className="z-10">
-            
-                <Preview ref={templateRef} selectedTemplate={selectedTemplate} />
-            
+              <Preview ref={templateRef} selectedTemplate={selectedTemplate} />
             </div>
           </div>
         )}
