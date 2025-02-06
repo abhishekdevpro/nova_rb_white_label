@@ -292,6 +292,7 @@ import logo from "../Navbar/logo.jpg";
 import Image from "next/image";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { FileText, Home, LogIn, LogOut, Mail, User, X } from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -576,14 +577,14 @@ const Navbar = () => {
         </div>
 
         {/* Mobile menu - Slide over */}
-        <div
+        {/* <div
           className={`fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 ease-in-out md:hidden ${
             isMenuOpen ? "opacity-100 z-50" : "opacity-0 pointer-events-none"
           }`}
           onClick={handleMenuClick}
         >
           <div
-            className={`fixed inset-y-0 right-0 max-w-xs w-[80%] bg-black shadow-xl transform transition-transform duration-300 ease-in-out ${
+            className={`fixed inset-y-0 right-0 max-w-xs w-[80%] bg-white shadow-xl transform transition-transform duration-300 ease-in-out ${
               isMenuOpen ? "translate-x-0" : "translate-x-full"
             }`}
             onClick={(e) => e.stopPropagation()}
@@ -594,50 +595,10 @@ const Navbar = () => {
                 onClick={handleMenuClick}
                 className="text-black hover:text-gray-300"
               >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
+               <X className="w-6 h-6" />
               </button>
             </div>
             <div className="px-4 py-6 space-y-6">
-              <Link
-                href="/navbarcontent"
-                className="block text-black text-lg font-semibold hover:text-gray-300"
-                onClick={handleLinkClick}
-              >
-                AI Resume Builder
-              </Link>
-              <Link
-                href="https://blog.resumeintellect.com/"
-                className="block text-black text-lg font-semibold hover:text-gray-300"
-                onClick={handleLinkClick}
-              >
-                Resources
-              </Link>
-              <Link
-                href="/footers/Aboutus"
-                className="block text-black text-lg font-semibold hover:text-gray-300"
-                onClick={handleLinkClick}
-              >
-                About Us
-              </Link>
-              <Link
-                href="#phone"
-                className="block text-black text-lg font-semibold hover:text-gray-300"
-                onClick={handleLinkClick}
-              >
-                📞 Contact us
-              </Link>
 
               {isLoggedIn ? (
                 <>
@@ -666,7 +627,7 @@ const Navbar = () => {
                     className="block text-black text-lg font-semibold hover:text-gray-300"
                   >
                     My Jobs
-                  </Link> */}
+                  </Link>
                   <Link
                     href="/dashboard/page"
                     className="block text-black text-lg font-semibold hover:text-gray-300"
@@ -699,15 +660,86 @@ const Navbar = () => {
                     onClick={handleLinkClick}
                   >
                     Sign up
-                  </Link> */}
+                  </Link> 
                 </div>
               )}
             </div>
           </div>
-        </div>
+        </div> */}
+         <div
+     className={`fixed inset-0 bg-black/60 backdrop-blur-sm transition-all duration-300 md:hidden ${
+       isMenuOpen ? "opacity-100 z-50" : "opacity-0 pointer-events-none"
+     }`}
+     onClick={handleMenuClick}
+   >
+     <div
+       className={`fixed inset-y-0 right-0 w-[280px] bg-white/95 shadow-2xl transform transition-all duration-300 ease-out ${
+         isMenuOpen ? "translate-x-0" : "translate-x-full"
+       }`}
+       onClick={(e) => e.stopPropagation()}
+     >
+       <div className="flex items-center justify-between p-5 border-b">
+         <h2 className="text-xl font-bold text-gray-800">Menu</h2>
+         <button
+           onClick={handleMenuClick}
+           className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+         >
+           <X className="w-5 h-5 text-gray-600" />
+         </button>
+       </div>
+
+       <nav className="p-5 space-y-2">
+         {isLoggedIn ? (
+           <>
+             <MenuLink href="/dashboard" icon={<Home />} onClick={handleLinkClick}>
+               Dashboard
+             </MenuLink>
+             
+             <MenuLink href="/dashboard/resumelist" icon={<FileText />}>
+               My Resumes
+             </MenuLink>
+             
+             <MenuLink href="/dashboard/cvletterlist" icon={<Mail />}>
+               Cover Letter
+             </MenuLink>
+             
+             <MenuLink href="/dashboard/page" icon={<User />} onClick={handleLinkClick}>
+               Profile
+             </MenuLink>
+             
+             <button
+               onClick={() => {
+                 handleLogout();
+                 handleLinkClick();
+               }}
+               className="flex items-center w-full p-3 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors group"
+             >
+               <LogOut className="w-5 h-5 mr-3 group-hover:text-blue-600" />
+               <span className="font-medium group-hover:text-blue-600">Logout</span>
+             </button>
+           </>
+         ) : (
+           <MenuLink href="https://novajobs.us/user/login" icon={<LogIn />} onClick={handleLinkClick}>
+             Log in
+           </MenuLink>
+         )}
+       </nav>
+     </div>
+   </div>
       </div>
     </nav>
   );
 };
+
+const MenuLink = ({ href, children, icon, onClick }) => (
+  <Link
+    href={href}
+    className="flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors group"
+    onClick={onClick}
+  >
+    <span className="w-5 h-5 mr-3 group-hover:text-blue-600">{icon}</span>
+    <span className="font-medium group-hover:text-blue-600">{children}</span>
+  </Link>
+ );
 
 export default Navbar;

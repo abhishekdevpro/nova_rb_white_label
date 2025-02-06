@@ -3,8 +3,7 @@ import Image from 'next/image';
 import logo from '../Footer/logo.jpg';
 import { useState } from 'react';
 import axios from 'axios';
-import toast from 'react-toastify';
-import { ToastContainer } from 'react-toastify';
+import {toast} from 'react-toastify';
 import Link from 'next/link'; // Import Link from next/link
 
 const Footer = () => {
@@ -37,7 +36,6 @@ const Footer = () => {
 
     return (
       <>
-      <ToastContainer />
         <footer className="bg-stone-50 text-black py-8" id='footerbg'>
             <div className="container mx-auto flex flex-col gap-7 justify-between px-6">
               <div className='flex flex-wrap justify-between px-2 md:px-[65px]'>
