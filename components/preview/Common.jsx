@@ -104,32 +104,66 @@ TextWrapper.defaultProps = {
   className: "",
 };
 
+// const SummaryWrapper = ({ summary, headerColor = "black", editable = true, className = "" }) => {
+//  const {backgroundColorss}= useContext(ResumeContext)
+//   return (
+//     summary && summary.length > 0 && (
+//       <div className={`mb-1 ${className}`}>
+//         <h2
+//           style={{
+//             color: `${headerColor == "black" ? `${backgroundColorss}` : headerColor}`,
+//             borderBottom: `2px solid ${headerColor == "black" ? `${backgroundColorss}` : headerColor}`,
+//           }}
+//           className="text-lg font-bold mb-1 "
+//         >
+//           Summary
+//         </h2>
+//         <p
+//         style={{color:headerColor}}
+//           className="break-words hover:outline-dashed hover:scale-105 hover:outline-2 hover:outline-gray-400"
+//           // contentEditable={editable}
+//           // suppressContentEditableWarning={true}
+//         >
+//           {summary}
+//         </p>
+//       </div>
+//     )
+//   );
+// };
 const SummaryWrapper = ({ summary, headerColor = "black", editable = true, className = "" }) => {
- const {backgroundColorss}= useContext(ResumeContext)
-  return (
-    summary && summary.length > 0 && (
-      <div className={`mb-1 ${className}`}>
-        <h2
-          style={{
-            color: `${headerColor == "black" ? `${backgroundColorss}` : headerColor}`,
-            borderBottom: `2px solid ${headerColor == "black" ? `${backgroundColorss}` : headerColor}`,
-          }}
-          className="text-lg font-bold mb-1 "
-        >
-          Summary
-        </h2>
-        <p
-        style={{color:headerColor}}
-          className="break-words hover:outline-dashed hover:scale-105 hover:outline-2 hover:outline-gray-400"
-          contentEditable={editable}
-          suppressContentEditableWarning={true}
-        >
-          {summary}
-        </p>
-      </div>
-    )
-  );
-};
+  const {backgroundColorss}= useContext(ResumeContext)
+   return (
+     summary && summary.length > 0 && (
+       <div className={`mb-1 ${className}`}>
+         <h2
+           style={{
+             color: `${headerColor == "black" ? `${backgroundColorss}` : headerColor}`,
+             borderBottom: `2px solid ${headerColor == "black" ? `${backgroundColorss}` : headerColor}`,
+           }}
+           className="text-lg font-bold mb-1 "
+         >
+           Summary
+         </h2>
+         {/* <p
+         style={{color:headerColor}}
+           className="break-words hover:outline-dashed hover:scale-105 hover:outline-2 hover:outline-gray-400"
+           contentEditable={editable}
+           suppressContentEditableWarning={true}
+         >
+           {summary}
+         </p> */}
+         <p
+   style={{ color: headerColor }}
+   className="break-words hover:outline-dashed hover:scale-105 hover:outline-2 hover:outline-gray-400"
+   contentEditable={editable}
+   suppressContentEditableWarning={true}
+   dangerouslySetInnerHTML={{ __html: summary }}
+ ></p>
+ 
+       </div>
+     )
+   );
+ };
 
 SummaryWrapper.propTypes = {
   summary: PropTypes.string,

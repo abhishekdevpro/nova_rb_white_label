@@ -1,53 +1,57 @@
-// import '/styles/globals.css'
-
-// // In your component or _app.js
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
-
-// export default function App({ Component, pageProps }) {
-//   return <Component {...pageProps} />
-// }
-
-// _app.js in Next.js
-import "/styles/globals.css"; // Your global styles
-import "slick-carousel/slick/slick.css"; // Slick Carousel base styles
-import "slick-carousel/slick/slick-theme.css"; // Slick Carousel theme styles
-
-// Import react-hot-toast's Toaster
-
-import { useEffect } from "react";
-import { useRouter } from "next/router";//userimport { ResumeProvider } from "../components/context/ResumeContext";
+import "/styles/globals.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { ToastContainer } from "react-toastify";
-import { Toaster } from "react-hot-toast";
+import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 import { ResumeProvider } from "../components/context/ResumeContext";
+import { CoverLetterProvider } from "../components/context/CoverLetterContext";
+import axios from "axios";
+
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     const isDashboardRoute = router.pathname.startsWith("/dashboard");
+    const isAdminRoute = router.pathname.startsWith("/admin");
 
+    // Redirect if no token is found
     if (isDashboardRoute && !token) {
-      // Save the attempted route
-      localStorage.setItem("redirectAfterLogin", router.pathname);
-      router.push("/login2"); // Redirect to login if accessing a dashboard route without a token
+      router.push("/login");
     }
+
+    if (isAdminRoute && !token) {
+      router.push("/adminlogin");
+    }
+
+    // Set up Axios interceptor to catch 401 responses
+    const interceptor = axios.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        if (error.response && error.response.status === 401) {
+          localStorage.removeItem("token"); // Clear token
+          router.push("/login"); // Redirect to login
+        }
+        return Promise.reject(error);
+      }
+    );
+
+    return () => {
+      axios.interceptors.response.eject(interceptor);
+      console.log("i am called");
+    };
   }, [router.pathname]);
+
   return (
     <>
-    
-     
-      <ResumeProvider>
-            <Component {...pageProps} />
-      {/* <ToastContainer position="top-right" autoClose={3000} pauseOnHover />   */}
-      <Toaster />
-      </ResumeProvider>
+      <CoverLetterProvider>
+        <ResumeProvider>
+          <Component {...pageProps} />
+          <ToastContainer position="top-right" autoClose={3000} pauseOnHover />
+        </ResumeProvider>
+      </CoverLetterProvider>
     </>
-    
   );
 }
-
-
-
-
- 

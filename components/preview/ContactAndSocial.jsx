@@ -157,8 +157,9 @@
 // };
 
 // export default ContactAndSocialMedia;
-import React from "react";
+import React, { useContext } from "react";
 import { MdPhone, MdEmail, MdLocationOn } from "react-icons/md";
+import { ResumeContext } from "../context/ResumeContext";
 
 const ContactAndSocialMedia = ({
   title, // Title prop
@@ -172,20 +173,26 @@ const ContactAndSocialMedia = ({
   textColor = "text-black", // Default text color
   className=""
 }) => {
-  console.log(socialMediaData,"LLLL");
-  return (
+  // console.log(socialMediaData,"LLLL");
+  const {backgroundColorss} =  useContext(ResumeContext)
+  // console.log(backgroundColorss,"backgroundColorss");
+  {backgroundColorss?textColor:textColor="text-black"}
+
+
+  // console.log(textColor,"textColor");
+
+    return (
     <div
     className={`flex ${
               layout === "row"
                 ? "flex-row items-center flex-wrap gap-2"
-                : "flex-col gap-2"
-            }${className}`}
+                : "flex-col gap-2 "
+            } ${" "} ${className}`}
     >
       {/* Title */}
       {title && (
         <h3 
-       
-        className={`text-xl font-bold mb-2 text-white border-b-2 border-white  `}>
+        className={`text-xl font-bold mb-2 border-b-2 ${textColor=="text-black"?"border-black":"border-white"} ${textColor}`}>
           {title}
         </h3>
       )}
@@ -200,18 +207,19 @@ const ContactAndSocialMedia = ({
             </div>
           )}
           {contactData.emaildata && (
-            <div className={`flex items-center gap-2 ${contactClass}`}>
+            <div className={`flex items-center  gap-2 ${contactClass}`}>
               <span className={`${textColor}`}>{<MdEmail />}</span>
-              <span className={`${textColor}`}>{contactData.emaildata}</span>
+              <span className={`${textColor} flex flex-wrap`}>{contactData.emaildata}</span>
             </div>
           )}
           {contactData.addressdata && (
             <div className={`flex items-center gap-2 ${contactClass}`}>
               <span className={`${textColor}`}>{<MdLocationOn />}</span>
-              <span className={`${textColor}`}>
-                {contactData.addressdata.length > addressCharacterLimit
+              <span className={`${textColor} flex flex-wrap`}>
+                {contactData.addressdata}
+                {/* {contactData.addressdata.length > addressCharacterLimit
                   ? `${contactData.addressdata.slice(0, addressCharacterLimit)}...`
-                  : contactData.addressdata}
+                  : contactData.addressdata} */}
               </span>
             </div>
           )}
