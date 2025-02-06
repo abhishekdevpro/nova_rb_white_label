@@ -19,11 +19,11 @@ export default function App({ Component, pageProps }) {
 
     // Redirect if no token is found
     if (isDashboardRoute && !token) {
-      router.push("/login");
+      router.push("https://novajobs.us/");
     }
 
     if (isAdminRoute && !token) {
-      router.push("/adminlogin");
+      router.push("https://novajobs.us/");
     }
 
     // Set up Axios interceptor to catch 401 responses
@@ -32,7 +32,7 @@ export default function App({ Component, pageProps }) {
       (error) => {
         if (error.response && error.response.status === 401) {
           localStorage.removeItem("token"); // Clear token
-          router.push("/login"); // Redirect to login
+          router.push("https://novajobs.us"); // Redirect to login
         }
         return Promise.reject(error);
       }
@@ -40,7 +40,7 @@ export default function App({ Component, pageProps }) {
 
     return () => {
       axios.interceptors.response.eject(interceptor);
-      console.log("i am called");
+      // console.log("i am called");
     };
   }, [router.pathname]);
 

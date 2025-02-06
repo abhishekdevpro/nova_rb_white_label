@@ -669,6 +669,7 @@ import paypal from "./builderImages/paypal.png";
 import logo from "./builderImages/logo.jpg";
 import applepay from "./builderImages/apple-pay.png";
 import { ResumeContext } from "../components/context/ResumeContext";
+import { parse } from "path";
 
 const Print = dynamic(() => import("../components/utility/WinPrint"), {
   ssr: false,
@@ -722,6 +723,7 @@ export default function WebBuilder() {
           if (response.data.status === 'success') {
             const { data } = response.data;
             const parsedData = JSON.parse(data.ai_resume_parse_data);
+            console.log(parsedData,"Dtata");
             
             // Update state with fetched data
             setResumeData(parsedData.templateData);
