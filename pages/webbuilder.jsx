@@ -420,7 +420,6 @@
 //                 ☰
 //               </button>
 
-            
 //               <Sidebar />
 //             </div>
 //             <div>
@@ -629,8 +628,6 @@
 //   );
 // }
 
-
-
 // export { ResumeContext };
 
 import React, { useState, useRef, useEffect, useContext } from "react";
@@ -661,7 +658,7 @@ import toast from "react-hot-toast";
 import LoaderButton from "../components/utility/LoaderButton";
 import useLoader from "../hooks/useLoader";
 import Modal from "./adminlogin/Modal";
-import { Menu, X } from 'lucide-react';
+import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import resumeImg from "./builderImages/GraphicDesignerResume.jpg";
 import poweredbypaypal from "./builderImages/poweredbypaypal.png";
@@ -697,7 +694,16 @@ export default function WebBuilder() {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [userId, setUserId] = useState(0);
   const templateRef = useRef(null);
-  const {resumeData ,setResumeData, setHeaderColor,setBgColor,setSelectedFont,selectedFont,backgroundColorss,headerColor} = useContext(ResumeContext)
+  const {
+    resumeData,
+    setResumeData,
+    setHeaderColor,
+    setBgColor,
+    setSelectedFont,
+    selectedFont,
+    backgroundColorss,
+    headerColor,
+  } = useContext(ResumeContext);
 
   useEffect(() => {
     setUserId(localStorage.getItem("user_id"));
@@ -710,34 +716,44 @@ export default function WebBuilder() {
   useEffect(() => {
     const fetchResumeData = async () => {
       const { id } = router.query;
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
 
       if (id && token) {
         try {
-          const response = await axios.get(`https://api.novajobs.us/api/user/resume-list/${id}`, {
-            headers: {
-              Authorization: token,
-            },
-          });
+          const response = await axios.get(
+            `https://api.novajobs.us/api/user/resume-list/${id}`,
+            {
+              headers: {
+                Authorization: token,
+              },
+            }
+          );
 
-          if (response.data.status === 'success') {
+          if (response.data.status === "success") {
             const { data } = response.data;
             const parsedData = JSON.parse(data.ai_resume_parse_data);
-            console.log(parsedData,"Dtata");
-            
+            console.log(parsedData, "Dtata");
+
             // Update state with fetched data
             setResumeData(parsedData.templateData);
-            
+
             // Set background color and template
             if (parsedData.templateData.templateDetails) {
-              setBgColor(parsedData.templateData.templateDetails.backgroundColor || '');
-              setHeaderColor(parsedData.templateData.templateDetails.backgroundColor );
-              setSelectedTemplate(parsedData.templateData.templateDetails.templateId || 'template1');
+              setBgColor(
+                parsedData.templateData.templateDetails.backgroundColor || ""
+              );
+              setHeaderColor(
+                parsedData.templateData.templateDetails.backgroundColor
+              );
+              setSelectedTemplate(
+                parsedData.templateData.templateDetails.templateId ||
+                  "template1"
+              );
             }
           }
         } catch (error) {
-          console.error('Error fetching resume data:', error);
-          toast.error('Failed to fetch resume data');
+          console.error("Error fetching resume data:", error);
+          toast.error("Failed to fetch resume data");
         }
       }
     };
@@ -758,7 +774,8 @@ export default function WebBuilder() {
       // const storedResumeData = localStorage.getItem("resumeData");
 
       if (storedIsFinished) setIsFinished(JSON.parse(storedIsFinished));
-      if (storedTemplate && !selectedTemplate) setSelectedTemplate(storedTemplate);
+      if (storedTemplate && !selectedTemplate)
+        setSelectedTemplate(storedTemplate);
       if (storedFont) setSelectedFont(storedFont);
       if (storedBgColor && !backgroundColorss) setBgColor(storedBgColor);
       if (storedCurrentSection)
@@ -895,10 +912,12 @@ export default function WebBuilder() {
   }, []);
 
   const handlePrevious = () => {
+    handleFinish();
     setCurrentSection((prev) => Math.max(prev - 1, 0));
   };
 
   const handleSectionClick = (index) => {
+    handleFinish();
     setCurrentSection(index);
     setIsMobileMenuOpen(false);
   };
@@ -908,12 +927,14 @@ export default function WebBuilder() {
   };
 
   const nextSection = () => {
+    handleFinish();
     if (currentSection < sections.length - 1) {
       handleSectionClick(currentSection + 1);
     }
   };
 
   const prevSection = () => {
+    handleFinish();
     if (currentSection > 0) {
       handleSectionClick(currentSection - 1);
     }
@@ -934,19 +955,16 @@ export default function WebBuilder() {
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
 
-
- 
-
   // const downloadAsPDF = async () => {
   //   if (!templateRef.current) {
   //     toast.error("Template reference not found");
   //     return;
   //   }
-  
+
   //   try {
   //     // Get the HTML content from the template
   //     const htmlContent = templateRef.current.innerHTML;
-  
+
   //     // Generate the full HTML for the PDF
   //     const fullContent = `
   //       <style>
@@ -954,7 +972,7 @@ export default function WebBuilder() {
   //       </style>
   //       ${htmlContent}
   //     `;
-  
+
   //     // API call to generate the PDF
   //     const response = await axios.post(
   //       'https://api.novajobs.us/api/user/generate-pdf1',
@@ -966,19 +984,19 @@ export default function WebBuilder() {
   //         },
   //       }
   //     );
-  
+
   //     // Check if the file path was returned
   //     const filePath = response.data.data?.file_path;
   //     if (!filePath) {
   //       throw new Error('PDF file path not received');
   //     }
-  
+
   //     // Construct the URL
   //     const downloadUrl = `https://api.novajobs.us${filePath}`;
-  
+
   //     // Open the URL in a new tab
   //     window.open(downloadUrl, '_blank');
-  
+
   //     toast.success('PDF generated and opened in a new tab!');
   //   } catch (error) {
   //     console.error('PDF generation error:', error);
@@ -987,21 +1005,18 @@ export default function WebBuilder() {
   //     );
   //   }
   // };
- 
-  
-  
-  
-  
+
   const downloadAsPDF = async () => {
+    handleFinish();
     if (!templateRef.current) {
       toast.error("Template reference not found");
       return;
     }
-  
+
     try {
       // Step 1: Generate PDF
       const htmlContent = templateRef.current.innerHTML;
-  
+
       // Full HTML content with Tailwind styles
       const fullContent = `
         <style>
@@ -1009,7 +1024,7 @@ export default function WebBuilder() {
         </style>
         ${htmlContent}
       `;
-  
+
       // API call to generate PDF
       const pdfResponse = await axios.post(
         "https://api.novajobs.us/api/user/generate-pdf1",
@@ -1021,7 +1036,7 @@ export default function WebBuilder() {
           },
         }
       );
-  
+
       if (pdfResponse.status === 200) {
         toast.success("PDF generated successfully!");
         // Call the payment process function
@@ -1031,12 +1046,10 @@ export default function WebBuilder() {
       }
     } catch (error) {
       console.error("Error during PDF generation:", error);
-      toast.error(
-        error.response?.data?.message || "Failed to generate PDF."
-      );
+      toast.error(error.response?.data?.message || "Failed to generate PDF.");
     }
   };
-  
+
   const initiateCheckout = async () => {
     try {
       // Ensure resumeId is a valid integer
@@ -1044,7 +1057,7 @@ export default function WebBuilder() {
       if (isNaN(parsedResumeId)) {
         throw new Error("Invalid resume ID; unable to convert to an integer.");
       }
-  
+
       // Step 2: Checkout API Call
       const checkoutResponse = await axios.post(
         "https://api.novajobs.us/api/user/payment/checkout",
@@ -1058,7 +1071,7 @@ export default function WebBuilder() {
           },
         }
       );
-  
+
       // Check for successful response
       const redirectUrl = checkoutResponse.data.data; // Adjust the key if necessary
       if (redirectUrl) {
@@ -1070,12 +1083,12 @@ export default function WebBuilder() {
     } catch (error) {
       console.error("Error during checkout:", error);
       toast.error(
-        error.response?.data?.message || "Failed to initiate the payment process."
+        error.response?.data?.message ||
+          "Failed to initiate the payment process."
       );
     }
   };
-  
-  
+
   useEffect(() => {
     if (PayerID) {
       verifyPayment();
@@ -1128,7 +1141,7 @@ export default function WebBuilder() {
       templateData: {
         name: resumeData.name || "",
         position: resumeData.position || "",
-        contactInformation: resumeData.contact || "",
+        contactInformation: resumeData.contactInformation || "",
         email: resumeData.email || "",
         address: resumeData.address || "",
         profilePicture: resumeData.profilePicture || "",
@@ -1144,6 +1157,7 @@ export default function WebBuilder() {
             degree: edu.degree || "",
             startYear: edu.startYear || "",
             endYear: edu.endYear || "",
+            location: edu.location || "",
           })) || [],
         workExperience:
           resumeData.workExperience?.map((exp) => ({
@@ -1155,6 +1169,7 @@ export default function WebBuilder() {
               : [exp.keyAchievements || ""],
             startYear: exp.startYear || "",
             endYear: exp.endYear || "",
+            location: exp.location || "",
           })) || [],
         projects:
           resumeData.projects?.map((project) => ({
@@ -1214,10 +1229,6 @@ export default function WebBuilder() {
     });
   };
 
-  
-
- 
-
   const handleBackToEditor = () => {
     // localStorage.setItem("tempResumeData", JSON.stringify(resumeData));
     localStorage.setItem("tempHeaderColor", headerColor);
@@ -1276,7 +1287,6 @@ export default function WebBuilder() {
   //     />
 
   //     <div className="min-h-screen bg-gray-50">
-       
 
   //       {!isFinished ? (
   //         <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -1374,14 +1384,11 @@ export default function WebBuilder() {
   //           </div>
 
   //           <div className="flex flex-col md:flex-row flex-grow ">
-            
-
-             
 
   //             {/* <aside
-  //               className={`fixed md:static left-0 top-0 h-full z-10 transform 
-                                
-  //                               md:translate-x-0 transition-transform duration-300 ease-in-out 
+  //               className={`fixed md:static left-0 top-0 h-full z-10 transform
+
+  //                               md:translate-x-0 transition-transform duration-300 ease-in-out
   //                               w-64 bg-gray-100 border-r`}
   //             >
   //               <div className="sticky top-20 p-4 overflow-y-auto h-full">
@@ -1397,9 +1404,9 @@ export default function WebBuilder() {
 
   //             <aside className="  w-1/2 min-h-screen border-l bg-gray-50">
   //               <div className="sticky top-20 p-4">
-                 
+
   //                   <Preview ref={templateRef} selectedTemplate={selectedTemplate} />
-                 
+
   //               </div>
   //             </aside>
   //           </div>
@@ -1407,7 +1414,6 @@ export default function WebBuilder() {
   //         </div>
   //       ) : (
   //         <div className=" flex flex-col">
-            
 
   //           <div className="hidden md:flex w-screen px-8 py-4 justify-between items-center bg-white shadow">
   //             <div className="flex gap-4">
@@ -1538,7 +1544,7 @@ export default function WebBuilder() {
   //                           <div className="flex justify-center mt-6">
   //                             <button
   //                               onClick={downloadAsPDF}
-                                
+
   //                               type="submit"
   //                               className="w-full bg-yellow-400 text-blue-800 font-bold  rounded-[50px] hover:bg-yellow-500 transition duration-200"
   //                             >
@@ -1581,9 +1587,9 @@ export default function WebBuilder() {
   //           </div>
 
   //           <div className="z-10">
-            
+
   //               <Preview ref={templateRef} selectedTemplate={selectedTemplate} />
-            
+
   //           </div>
   //         </div>
   //       )}
@@ -1594,7 +1600,7 @@ export default function WebBuilder() {
   return (
     <>
       <Meta
-        title="Resume Intellect - AI Resume Builder"
+        title="NovaJobs Us - AI Resume Builder"
         description="ATSResume is a cutting-edge resume builder that helps job seekers create a professional, ATS-friendly resume in minutes..."
         keywords="ATS-friendly, Resume optimization..."
       />
@@ -1897,6 +1903,3 @@ export default function WebBuilder() {
     </>
   );
 }
-
-
-
