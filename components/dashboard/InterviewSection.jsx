@@ -39,16 +39,19 @@ const InterviewSection = () => {
             <MessageCircle />
           </div>
           <div>
-            <h3 className="text-lg font-semibold">Clear Your Interview</h3>
+            <h3 className="text-lg font-semibold">
+              Advance Your Career with UltraAura
+            </h3>
             <p className="text-gray-600 max-w-md">
-              Gain insights from our expert-written resources and receive weekly
-              updates straight to your inbox.
+              Enhance your resume with expert-built tools on NovaJobs and
+              sharpen your skills with UltraAura’s top-tier learning resources.
+              Stay ahead with weekly insights delivered straight to your inbox.
             </p>
           </div>
         </div>
-        <Link href={`https://blog.resumeintellect.com/`}>
+        <Link href={`https://ultraaura.education/`}>
           <button className="w-full sm:w-auto px-6 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 whitespace-nowrap">
-            Visit Resources
+            Get Started
           </button>
         </Link>
       </div>
