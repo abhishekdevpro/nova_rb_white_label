@@ -1,4 +1,3 @@
-
 // import React, { useState } from 'react';
 // // import { Outlet } from 'react-router-dom';
 // import Sidebar from './Sidebar';
@@ -132,7 +131,7 @@ export default function DashboardPage() {
         {/* Create New Resume Button */}
         <button
           onClick={handleCreateResume}
-          className="flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium shadow-md w-full md:w-auto"
+          className="flex  items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium shadow-md w-full md:w-auto"
         >
           <Plus className="w-5 h-5 mr-2" />
           Create New Resume
@@ -141,7 +140,7 @@ export default function DashboardPage() {
         {/* Create New Cover Letter Button */}
         <button
           onClick={handleCreateCoverLetter}
-          className="flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium shadow-md w-full md:w-auto"
+          className="flex items-center px-6 py-3 justify-center bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium shadow-md w-full md:w-auto"
         >
           <Plus className="w-5 h-5 mr-2" />
           Create New Cover Letter
@@ -150,7 +149,7 @@ export default function DashboardPage() {
         {/* My Profile Dashboard Button */}
         <button
           onClick={handleMyDashboard}
-          className="flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium shadow-md w-full md:w-auto"
+          className="flex items-center px-6 py-3 justify-center bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium shadow-md w-full md:w-auto"
         >
           My Profile Dashboard
         </button>

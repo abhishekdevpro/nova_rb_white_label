@@ -195,7 +195,7 @@ function Home_second() {
                   <li className="flex items-center space-x-3">{/* Icon */}</li>
                 </ul>
                 <Link
-                  href="/dashboard/aibuilder"
+                  href="/dashboard"
                   className="text-white border bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900"
                 >
                   Get started

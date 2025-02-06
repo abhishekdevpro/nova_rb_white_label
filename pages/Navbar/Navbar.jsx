@@ -284,7 +284,6 @@
 
 // export default Navbar;
 
-
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -415,7 +414,11 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0 flex items-center">
             <Link href="/">
-              <img src="https://novajobs.us/static/media/NovaUS.649f79957e5090a75022.png" alt="logo" className="h-10 w-40" />
+              <img
+                src="https://novajobs.us/static/media/NovaUS.649f79957e5090a75022.png"
+                alt="logo"
+                className="h-10 w-40"
+              />
             </Link>
           </div>
           <div className="hidden md:flex justify-center items-center space-x-4">
@@ -431,7 +434,7 @@ const Navbar = () => {
                   href="/dashboard/resumelist"
                   className="text-black px-3 py-2 rounded-md text-lg font-semibold"
                 >
-                  My Resumes 
+                  My Resumes
                 </Link>
                 <Link
                   href="/dashboard/cvletterlist"
@@ -455,12 +458,7 @@ const Navbar = () => {
             >
               AI Resume Builder
             </Link> */}
-            {/* <Link
-              href="https://blog.resumeintellect.com/"
-              className="text-black px-3 py-2 rounded-md text-lg font-semibold"
-            >
-              Resources
-            </Link> */}
+
             {/* <Link
               href="/footers/Aboutus"
               className="text-black px-3 py-2 rounded-md text-lg font-semibold"
@@ -666,66 +664,80 @@ const Navbar = () => {
             </div>
           </div>
         </div> */}
-         <div
-     className={`fixed inset-0 bg-black/60 backdrop-blur-sm transition-all duration-300 md:hidden ${
-       isMenuOpen ? "opacity-100 z-50" : "opacity-0 pointer-events-none"
-     }`}
-     onClick={handleMenuClick}
-   >
-     <div
-       className={`fixed inset-y-0 right-0 w-[280px] bg-white/95 shadow-2xl transform transition-all duration-300 ease-out ${
-         isMenuOpen ? "translate-x-0" : "translate-x-full"
-       }`}
-       onClick={(e) => e.stopPropagation()}
-     >
-       <div className="flex items-center justify-between p-5 border-b">
-         <h2 className="text-xl font-bold text-gray-800">Menu</h2>
-         <button
-           onClick={handleMenuClick}
-           className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
-         >
-           <X className="w-5 h-5 text-gray-600" />
-         </button>
-       </div>
+        <div
+          className={`fixed inset-0 bg-black/60 backdrop-blur-sm transition-all duration-300 md:hidden ${
+            isMenuOpen ? "opacity-100 z-50" : "opacity-0 pointer-events-none"
+          }`}
+          onClick={handleMenuClick}
+        >
+          <div
+            className={`fixed inset-y-0 right-0 w-[280px] bg-white/95 shadow-2xl transform transition-all duration-300 ease-out ${
+              isMenuOpen ? "translate-x-0" : "translate-x-full"
+            }`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between p-5 border-b">
+              <h2 className="text-xl font-bold text-gray-800">Menu</h2>
+              <button
+                onClick={handleMenuClick}
+                className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              >
+                <X className="w-5 h-5 text-gray-600" />
+              </button>
+            </div>
 
-       <nav className="p-5 space-y-2">
-         {isLoggedIn ? (
-           <>
-             <MenuLink href="/dashboard" icon={<Home />} onClick={handleLinkClick}>
-               Dashboard
-             </MenuLink>
-             
-             <MenuLink href="/dashboard/resumelist" icon={<FileText />}>
-               My Resumes
-             </MenuLink>
-             
-             <MenuLink href="/dashboard/cvletterlist" icon={<Mail />}>
-               Cover Letter
-             </MenuLink>
-             
-             <MenuLink href="/dashboard/page" icon={<User />} onClick={handleLinkClick}>
-               Profile
-             </MenuLink>
-             
-             <button
-               onClick={() => {
-                 handleLogout();
-                 handleLinkClick();
-               }}
-               className="flex items-center w-full p-3 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors group"
-             >
-               <LogOut className="w-5 h-5 mr-3 group-hover:text-blue-600" />
-               <span className="font-medium group-hover:text-blue-600">Logout</span>
-             </button>
-           </>
-         ) : (
-           <MenuLink href="https://novajobs.us/user/login" icon={<LogIn />} onClick={handleLinkClick}>
-             Log in
-           </MenuLink>
-         )}
-       </nav>
-     </div>
-   </div>
+            <nav className="p-5 space-y-2">
+              {isLoggedIn ? (
+                <>
+                  <MenuLink
+                    href="/dashboard"
+                    icon={<Home />}
+                    onClick={handleLinkClick}
+                  >
+                    Dashboard
+                  </MenuLink>
+
+                  <MenuLink href="/dashboard/resumelist" icon={<FileText />}>
+                    My Resumes
+                  </MenuLink>
+
+                  <MenuLink href="/dashboard/cvletterlist" icon={<Mail />}>
+                    Cover Letter
+                  </MenuLink>
+
+                  <MenuLink
+                    href="/dashboard/page"
+                    icon={<User />}
+                    onClick={handleLinkClick}
+                  >
+                    Profile
+                  </MenuLink>
+
+                  <button
+                    onClick={() => {
+                      handleLogout();
+                      handleLinkClick();
+                    }}
+                    className="flex items-center w-full p-3 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors group"
+                  >
+                    <LogOut className="w-5 h-5 mr-3 group-hover:text-blue-600" />
+                    <span className="font-medium group-hover:text-blue-600">
+                      Logout
+                    </span>
+                  </button>
+                </>
+              ) : (
+                <MenuLink
+                  href="https://novajobs.us/user/login"
+                  icon={<LogIn />}
+                  onClick={handleLinkClick}
+                >
+                  Log in
+                </MenuLink>
+              )}
+            </nav>
+          </div>
+        </div>
       </div>
     </nav>
   );
@@ -740,6 +752,6 @@ const MenuLink = ({ href, children, icon, onClick }) => (
     <span className="w-5 h-5 mr-3 group-hover:text-blue-600">{icon}</span>
     <span className="font-medium group-hover:text-blue-600">{children}</span>
   </Link>
- );
+);
 
 export default Navbar;
