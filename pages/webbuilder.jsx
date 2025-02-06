@@ -1149,6 +1149,7 @@ export default function WebBuilder() {
           resumeData.socialMedia?.map((media) => ({
             socialMedia: media.platform || "",
             link: media.link || "",
+            socialMedia: media.socialMedia || "",
           })) || [],
         summary: resumeData.summary || "",
         education:
