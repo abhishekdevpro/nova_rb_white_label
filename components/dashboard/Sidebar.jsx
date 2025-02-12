@@ -323,16 +323,18 @@ const Sidebar = ({ score, resumeId }) => {
 
         {/* Action Buttons */}
         <div className="flex gap-4 mb-6">
-          <button
-            onClick={handleEdit}
-            disabled={!resumeId} // Disable button if resumeId is null
-            className={` cursor-pointer flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 ${
-              !resumeId ? "opacity-50 cursor-not-allowed" : ""
-            }`}
+          <Link
+            href={resumeId ? `/dashboard/aibuilder/${resumeId}` : "#"}
+            className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-lg 
+      ${
+        resumeId
+          ? "hover:bg-gray-50"
+          : "opacity-50 cursor-not-allowed pointer-events-none"
+      }`}
           >
             <Edit />
             Edit
-          </button>
+          </Link>
           {/* <button
             onClick={handleDownload}
             disabled={!resumeId}
