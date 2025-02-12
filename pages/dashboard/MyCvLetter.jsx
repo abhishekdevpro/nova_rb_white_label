@@ -20,7 +20,7 @@ const MyCvLetter = () => {
     const token = localStorage.getItem("token");
     if (token) {
       axios
-        .get("https://api.novajobs.us/api/user/coverletter", {
+        .get("https://apiwl.novajobs.us/api/user/coverletter", {
           headers: { Authorization: token },
         })
         .then((response) => {
@@ -42,7 +42,7 @@ const MyCvLetter = () => {
   };
   const handleDownload = async (coverletterId) => {
     setcoverletterId(coverletterId);
-    const apiUrl = `https://api.novajobs.us/api/user/download-coverletter/${coverletterId}`;
+    const apiUrl = `https://apiwl.novajobs.us/api/user/download-coverletter/${coverletterId}`;
 
     try {
       const token = localStorage.getItem("token");
@@ -74,7 +74,7 @@ const MyCvLetter = () => {
     if (token) {
       try {
         await axios.delete(
-          `https://api.novajobs.us/api/user/coverletter/${deletecoverletterId}`,
+          `https://apiwl.novajobs.us/api/user/coverletter/${deletecoverletterId}`,
           {
             headers: { Authorization: token },
           }
@@ -103,7 +103,7 @@ const MyCvLetter = () => {
     if (token && currentCoverLetter) {
       axios
         .put(
-          `https://api.novajobs.us/api/user/coverletter-details/${currentCoverLetter.id}`,
+          `https://apiwl.novajobs.us/api/user/coverletter-details/${currentCoverLetter.id}`,
           { cover_letter_title: newCoverLetterTitle },
           { headers: { Authorization: token } }
         )

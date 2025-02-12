@@ -7,7 +7,7 @@ function Skillhistory() {
   useEffect(() => {
     const token = localStorage.getItem('token');
 
-    axios.get('https://api.novajobs.us/api/user/skill-assessment-history', {
+    axios.get('https://apiwl.novajobs.us/api/user/skill-assessment-history', {
       headers: {
         Authorization: token
       }

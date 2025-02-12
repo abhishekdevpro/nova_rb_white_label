@@ -9,7 +9,7 @@ function Subscriberslist1() {
   useEffect(() => {
     const token = localStorage.getItem('token');
 
-    axios.get('https://api.novajobs.us/api/admin/subscribes', {
+    axios.get('https://apiwl.novajobs.us/api/admin/subscribes', {
       headers: {
         Authorization: token,
       },
@@ -31,7 +31,7 @@ function Subscriberslist1() {
 
     try {
       await axios.post(
-        'https://api.novajobs.us/api/user/user-subscribe',
+        'https://apiwl.novajobs.us/api/user/user-subscribe',
         { email },  // Sending email in the body
         {
           headers: {

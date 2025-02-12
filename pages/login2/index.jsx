@@ -34,7 +34,7 @@ const Login2 = () => {
 
     try {
       const response = await axios.post(
-        'https://api.novajobs.us/api/user/auth/login',
+        'https://apiwl.novajobs.us/api/user/auth/login',
         formData,
       );
 
@@ -65,7 +65,7 @@ router.push("/dashboard/page");
       <div className="flex justify-center items-center h-screen w-full">
         <div className="p-8 rounded-xl shadow-lg shadow-slate-700 w-full max-w-lg bg-white">
           <div className="flex justify-center mb-6">
-          <Image src="https://api.novajobs.us/static/media/NovaUS.649f79957e5090a75022.png" alt="logo"  width={150} height={50} />
+          <Image src="https://apiwl.novajobs.us/static/media/NovaUS.649f79957e5090a75022.png" alt="logo"  width={150} height={50} />
             {/* <Image src={logo} className="w-40 h-10" alt="Logo" /> */}
           </div>
           <div className="text-2xl text-black text-center font-bold mb-4">

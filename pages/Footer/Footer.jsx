@@ -16,7 +16,7 @@ const Footer = () => {
     // Sending raw JSON data in the POST request
     axios
       .post(
-        "https://api.novajobs.us/api/user/user-subscribe",
+        "https://apiwl.novajobs.us/api/user/user-subscribe",
         JSON.stringify({ email }), // Sending email in raw JSON
         {
           headers: {
@@ -43,7 +43,7 @@ const Footer = () => {
           <div className="flex flex-wrap justify-between px-2 md:px-[65px]">
             <div className="md:w-auto mb-6 md:mb-0">
               <Image
-                src="https://api.novajobs.us/static/media/NovaUS.649f79957e5090a75022.png"
+                src="https://apiwl.novajobs.us/static/media/NovaUS.649f79957e5090a75022.png"
                 alt="logo"
                 width={150}
                 height={50}

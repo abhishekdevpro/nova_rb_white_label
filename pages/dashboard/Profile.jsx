@@ -35,7 +35,7 @@ const ProfilePage = () => {
   //   const fetchData = async () => {
   //     try {
   //       const token = localStorage.getItem("token");
-  //       const userProfileResponse = await axios.get('https://api.novajobs.us/api/jobseeker/user-profile', {
+  //       const userProfileResponse = await axios.get('https://apiwl.novajobs.us/api/jobseeker/user-profile', {
   //         headers: { Authorization: token },
   //       });
 
@@ -76,7 +76,7 @@ const ProfilePage = () => {
   //   const token = localStorage.getItem('token');
   //   if (token) {
   //     try {
-  //       const response = await axios.get('https://api.novajobs.us/api/user/resume-list', {
+  //       const response = await axios.get('https://apiwl.novajobs.us/api/user/resume-list', {
   //         headers: { Authorization: token }
   //       });
   //       const resumes = response.data.resumelist;
@@ -106,7 +106,7 @@ const ProfilePage = () => {
 
   //   try {
   //     const response = await axios.post(
-  //       "https://api.novajobs.us/api/user/file-based-ai",
+  //       "https://apiwl.novajobs.us/api/user/file-based-ai",
   //       {
   //         keyword:
   //           "Rate this resume content in percentage ? and checklist of scope improvements in manner of content and informations",
@@ -173,7 +173,7 @@ const ProfilePage = () => {
   //     setUploadStatus('Uploading...');
 
   //     const response = await axios.post(
-  //       'https://api.novajobs.us/api/user/resume-upload',
+  //       'https://apiwl.novajobs.us/api/user/resume-upload',
   //       formData,
   //       {
   //         headers: {
@@ -229,7 +229,7 @@ const ProfilePage = () => {
               <div className="flex flex-col md:flex-row md:items-center md:space-x-4 p-5 ">
                 <img
                   src={
-                    `https://api.novajobs.us/${formData.photo}` ||
+                    `https://apiwl.novajobs.us/${formData.photo}` ||
                     "https://www.kindpng.com/picc/m/252-2524695_dummy-profile-image-jpg-hd-png-download.png"
                   }
                   alt="Please Upload Profile Photo"

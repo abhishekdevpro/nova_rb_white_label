@@ -46,7 +46,7 @@ const Skill = ({ title }) => {
     try {
       const token = localStorage.getItem("token")
       const response = await axios.get(
-        `https://api.novajobs.us/api/user/skills-names?skill_keyword=${encodeURIComponent(query)}`,
+        `https://apiwl.novajobs.us/api/user/skills-names?skill_keyword=${encodeURIComponent(query)}`,
         {
           headers: {
             Authorization: token,
@@ -188,7 +188,7 @@ const Skill = ({ title }) => {
       }
 
       const response = await axios.post(
-        "https://api.novajobs.us/api/user/ai-skills-data",
+        "https://apiwl.novajobs.us/api/user/ai-skills-data",
         {
           key: "skills",
           keyword: title,

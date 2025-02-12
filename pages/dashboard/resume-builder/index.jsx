@@ -18,7 +18,7 @@ export default function Home() {
       const token = localStorage.getItem('token')
 
       const response = await axios.post(
-        'https://api.novajobs.us/api/user/resume-create',
+        'https://apiwl.novajobs.us/api/user/resume-create',
         {},
         {
           headers: {

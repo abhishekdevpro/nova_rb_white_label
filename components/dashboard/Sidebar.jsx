@@ -39,7 +39,7 @@
 //     if (token) {
 //       try {
 //         const response = await axios.get(
-//           `https://api.novajobs.us/api/user/resume-list/${resumeId}`,
+//           `https://apiwl.novajobs.us/api/user/resume-list/${resumeId}`,
 //           {
 //             headers: {
 //               Authorization: token,
@@ -74,7 +74,7 @@
 //   }, [resumeId]);
 
 //   const handleDownload = async () => {
-//     const apiUrl = `https://api.novajobs.us/api/user/download-resume/${resumeId}`;
+//     const apiUrl = `https://apiwl.novajobs.us/api/user/download-resume/${resumeId}`;
 
 //     try {
 //       const token = localStorage.getItem("token");
@@ -226,7 +226,7 @@ const Sidebar = ({ score, resumeId }) => {
     if (token) {
       try {
         const response = await axios.get(
-          `https://api.novajobs.us/api/user/resume-list/${resumeId}`, // Fetch for specific resumeId
+          `https://apiwl.novajobs.us/api/user/resume-list/${resumeId}`, // Fetch for specific resumeId
           {
             headers: {
               Authorization: token,
@@ -261,7 +261,7 @@ const Sidebar = ({ score, resumeId }) => {
   }, [resumeId]); // Trigger API call whenever `resumeId` changes
 
   const handleDownload = async () => {
-    const apiUrl = `https://api.novajobs.us/api/user/download-resume/${resumeId}`;
+    const apiUrl = `https://apiwl.novajobs.us/api/user/download-resume/${resumeId}`;
 
     try {
       const token = localStorage.getItem("token");

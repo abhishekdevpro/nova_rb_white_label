@@ -55,7 +55,7 @@ function CoverLetterBuilder() {
       if (id && token) {
         try {
           const response = await axios.get(
-            `https://api.novajobs.us/api/user/coverletter/${id}`,
+            `https://apiwl.novajobs.us/api/user/coverletter/${id}`,
             {
               headers: {
                 Authorization: token,
@@ -159,7 +159,7 @@ function CoverLetterBuilder() {
       }
 
       const response = await axios.put(
-        `https://api.novajobs.us/api/user/coverletter/${coverletterId}`,
+        `https://apiwl.novajobs.us/api/user/coverletter/${coverletterId}`,
 
         { ...coverletterInfo, cover_letter_html: coverletterHtml },
         {
@@ -200,7 +200,7 @@ function CoverLetterBuilder() {
       `;
 
       // const response = await axios.post(
-      //   "https://api.novajobs.us/api/user/generate-pdf1",
+      //   "https://apiwl.novajobs.us/api/user/generate-pdf1",
       //   { html: fullContent },
       //   {
       //     headers: {
@@ -221,7 +221,7 @@ function CoverLetterBuilder() {
   const downloadPDF = async () => {
     try {
       const response = await axios.get(
-        `https://api.novajobs.us/api/user/download-coverletter/${coverletterId}`,
+        `https://apiwl.novajobs.us/api/user/download-coverletter/${coverletterId}`,
 
         {
           headers: {

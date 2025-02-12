@@ -48,7 +48,7 @@ export default function FileUploadStep({ onNext, onBack, onChange, value }) {
       }
 
       const response = await axios.post(
-        `https://api.novajobs.us/api/user/resume-upload/${id}`, 
+        `https://apiwl.novajobs.us/api/user/resume-upload/${id}`, 
         formData, 
         {
           headers: {

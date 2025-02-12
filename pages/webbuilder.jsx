@@ -67,7 +67,7 @@
 //         const token = localStorage.getItem("token");
 //         try {
 //           const response = await axios.get(
-//             `https://api.novajobs.us/api/user/resume-list/${id}`,
+//             `https://apiwl.novajobs.us/api/user/resume-list/${id}`,
 //             {
 //               headers: { Authorization: token },
 //             }
@@ -116,7 +116,7 @@
 
 //     axios
 //       .post(
-//         "https://api.novajobs.us/api/user/paypal/create-payment",
+//         "https://apiwl.novajobs.us/api/user/paypal/create-payment",
 //         payload,
 //         {
 //           headers: { "Content-Type": "application/json" }, // Use JSON content type
@@ -289,7 +289,7 @@
 //         return;
 //       }
 
-//       const url = `https://api.novajobs.us/api/user/resume-update/${id}`;
+//       const url = `https://apiwl.novajobs.us/api/user/resume-update/${id}`;
 //       const response = await axios.put(url, templateData, {
 //         headers: {
 //           "Content-Type": "application/json",
@@ -721,7 +721,7 @@ export default function WebBuilder() {
       if (id && token) {
         try {
           const response = await axios.get(
-            `https://api.novajobs.us/api/user/resume-list/${id}`,
+            `https://apiwl.novajobs.us/api/user/resume-list/${id}`,
             {
               headers: {
                 Authorization: token,
@@ -975,7 +975,7 @@ export default function WebBuilder() {
 
   //     // API call to generate the PDF
   //     const response = await axios.post(
-  //       'https://api.novajobs.us/api/user/generate-pdf1',
+  //       'https://apiwl.novajobs.us/api/user/generate-pdf1',
   //       { html: fullContent },
   //       {
   //         headers: {
@@ -992,7 +992,7 @@ export default function WebBuilder() {
   //     }
 
   //     // Construct the URL
-  //     const downloadUrl = `https://api.novajobs.us${filePath}`;
+  //     const downloadUrl = `https://apiwl.novajobs.us${filePath}`;
 
   //     // Open the URL in a new tab
   //     window.open(downloadUrl, '_blank');
@@ -1027,7 +1027,7 @@ export default function WebBuilder() {
 
       // API call to generate PDF
       const pdfResponse = await axios.post(
-        "https://api.novajobs.us/api/user/generate-pdf1",
+        "https://apiwl.novajobs.us/api/user/generate-pdf1",
         { html: fullContent },
         {
           headers: {
@@ -1060,7 +1060,7 @@ export default function WebBuilder() {
 
       // Step 2: Checkout API Call
       const checkoutResponse = await axios.post(
-        "https://api.novajobs.us/api/user/payment/checkout",
+        "https://apiwl.novajobs.us/api/user/payment/checkout",
         {
           plan_id: 1,
           resume_id: parsedResumeId, // Use integer here
@@ -1102,7 +1102,7 @@ export default function WebBuilder() {
 
       if (orderId && token && PayerID) {
         const response = await axios.get(
-          `https://api.novajobs.us/api/user/paypal/verify-order?orderid=${orderId}`,
+          `https://apiwl.novajobs.us/api/user/paypal/verify-order?orderid=${orderId}`,
           {
             headers: {
               Authorization: token,
@@ -1208,7 +1208,7 @@ export default function WebBuilder() {
           return;
         }
 
-        const url = `https://api.novajobs.us/api/user/resume-update/${id}`;
+        const url = `https://apiwl.novajobs.us/api/user/resume-update/${id}`;
         const response = await axios.put(url, templateData, {
           headers: {
             "Content-Type": "application/json",
@@ -1252,7 +1252,7 @@ export default function WebBuilder() {
         const token = localStorage.getItem("token");
 
         const userProfileResponse = await axios.get(
-          "https://api.novajobs.us/api/jobseeker/user-profile",
+          "https://apiwl.novajobs.us/api/jobseeker/user-profile",
           {
             headers: {
               Authorization: token,

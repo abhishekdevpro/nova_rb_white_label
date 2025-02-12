@@ -37,7 +37,7 @@
 //         try {
 //           //
 //           const response = await fetch(
-//             "https://api.novajobs.us/api/jobseeker/user-profile",
+//             "https://apiwl.novajobs.us/api/jobseeker/user-profile",
 //             {
 //               headers: {
 //                 Authorization: `${token}`,
@@ -334,7 +334,7 @@ const Navbar = () => {
       const checkApiSuccess = async () => {
         try {
           const response = await axios.get(
-            "https://api.novajobs.us/api/jobseeker/user-profile",
+            "https://apiwl.novajobs.us/api/jobseeker/user-profile",
             {
               headers: {
                 Authorization: token,
@@ -384,7 +384,7 @@ const Navbar = () => {
 
     try {
       await axios.post(
-        "https://api.novajobs.us/api/user/auth/logout",
+        "https://apiwl.novajobs.us/api/user/auth/logout",
         { token },
         {
           headers: {
@@ -482,7 +482,7 @@ const Navbar = () => {
                   <img
                     src={
                       photo
-                        ? `https://api.novajobs.us${photo}`
+                        ? `https://apiwl.novajobs.us${photo}`
                         : "https://img.freepik.com/premium-vector/businessman-avatar-illustration-cartoon-user-portrait-user-profile-icon_118339-4382.jpg"
                     }
                     alt="User"

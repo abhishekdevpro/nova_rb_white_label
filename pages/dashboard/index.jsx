@@ -71,7 +71,7 @@ export default function DashboardPage() {
       setLoading(true);
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `https://api.novajobs.us/api/user/resume-list/0?resume_default=true`,
+        `https://apiwl.novajobs.us/api/user/resume-list/0?resume_default=true`,
         {
           headers: {
             Authorization: token,

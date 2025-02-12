@@ -14,7 +14,7 @@ const Index = () => {
     if (orderId) {
       const verifyOrder = async () => {
         try {
-          const response = await fetch(`https://api.novajobs.us/api/user/paypal/verify-order?orderid=${orderId}`);
+          const response = await fetch(`https://apiwl.novajobs.us/api/user/paypal/verify-order?orderid=${orderId}`);
           if (!response.ok) {
             throw new Error("Payment Failed: Try again");
           }

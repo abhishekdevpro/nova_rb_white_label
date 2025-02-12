@@ -11,7 +11,7 @@ const MyResume1 = () => {
     const token = localStorage.getItem('token');
 
     // Fetch all user data
-    axios.get('https://api.novajobs.us/api/admin/users', {
+    axios.get('https://apiwl.novajobs.us/api/admin/users', {
       headers: {
         Authorization: token,
       },

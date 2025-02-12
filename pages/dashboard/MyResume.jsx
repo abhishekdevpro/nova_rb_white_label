@@ -17,7 +17,7 @@ const MyResume = () => {
   const [currentResume, setCurrentResume] = useState(null);
   const router = useRouter();
   const [isChecked, setIsChecked] = useState(false);
-  const BASE_URL = "https://api.novajobs.us";
+  const BASE_URL = "https://apiwl.novajobs.us";
   const handleToggle = () => {
     setIsChecked(!isChecked);
   };

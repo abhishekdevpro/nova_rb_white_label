@@ -23,7 +23,7 @@ const Skills = () => {
     }
 
     try {
-      const response = await axios.get('https://api.novajobs.us/api/user/user-skills', {
+      const response = await axios.get('https://apiwl.novajobs.us/api/user/user-skills', {
         headers: {
           Authorization: token,
         },

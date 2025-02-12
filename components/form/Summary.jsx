@@ -43,7 +43,7 @@ const Summary = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "https://api.novajobs.us/api/user/ai-resume-summery-data",
+        "https://apiwl.novajobs.us/api/user/ai-resume-summery-data",
         {
           key: "resumesummery",
           keyword: `professional summary in manner of description - ${Date.now()}`,

@@ -41,7 +41,7 @@ function Changepassword() {
 
     axios({
       method: "PUT",
-      url: "https://api.novajobs.us/api/user/change-password",
+      url: "https://apiwl.novajobs.us/api/user/change-password",
       headers: {
         Authorization: token,
         "Content-type": "application/json",

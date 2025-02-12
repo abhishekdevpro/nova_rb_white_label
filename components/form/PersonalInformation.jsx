@@ -144,7 +144,7 @@
 //     setIsLoading((prev) => ({ ...prev, jobTitle: true }));
 //     try {
 //       const response = await fetch(
-//         `https://api.novajobs.us/api/user/job-title?job_title_keyword=${encodeURIComponent(keyword)}`
+//         `https://apiwl.novajobs.us/api/user/job-title?job_title_keyword=${encodeURIComponent(keyword)}`
 //       );
 //       if (response.ok) {
 //         const data = await response.json();
@@ -167,7 +167,7 @@
 //     setIsLoading((prev) => ({ ...prev, location: true }));
 //     try {
 //       const response = await fetch(
-//         `https://api.novajobs.us/api/user/locations?locations=${encodeURIComponent(keyword)}`
+//         `https://apiwl.novajobs.us/api/user/locations?locations=${encodeURIComponent(keyword)}`
 //       );
 //       if (response.ok) {
 //         const data = await response.json();
@@ -293,7 +293,7 @@ const PersonalInformation = () => {
     setIsLoading((prev) => ({ ...prev, jobTitle: true }));
     try {
       const response = await fetch(
-        `https://api.novajobs.us/api/user/job-title?job_title_keyword=${encodeURIComponent(keyword)}`
+        `https://apiwl.novajobs.us/api/user/job-title?job_title_keyword=${encodeURIComponent(keyword)}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -316,7 +316,7 @@ const PersonalInformation = () => {
     setIsLoading((prev) => ({ ...prev, location: true }));
     try {
       const response = await fetch(
-        `https://api.novajobs.us/api/user/locations?locations=${encodeURIComponent(keyword)}`
+        `https://apiwl.novajobs.us/api/user/locations?locations=${encodeURIComponent(keyword)}`
       );
       if (response.ok) {
         const data = await response.json();

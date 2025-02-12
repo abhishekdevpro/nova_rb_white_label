@@ -48,7 +48,7 @@ function Signup() {
   
     try {
       const response = await axios.post(
-        "https://api.novajobs.us/api/user/auth/signup",
+        "https://apiwl.novajobs.us/api/user/auth/signup",
         body,
         {
           headers: {
@@ -91,7 +91,7 @@ function Signup() {
       <div className="p-8 rounded-xl shadow-lg shadow-slate-700 w-full max-w-lg m-5">
         <div className="flex justify-center mb-4">
           {/* <Image src={logo} className="w-40 h-10" alt="Logo" /> */}
-          <Image src="https://api.novajobs.us/static/media/NovaUS.649f79957e5090a75022.png" alt="logo"  width={150} height={50} />
+          <Image src="https://apiwl.novajobs.us/static/media/NovaUS.649f79957e5090a75022.png" alt="logo"  width={150} height={50} />
         </div>
         <div className="text-2xl text-black text-center font-bold">
           Create an Account

@@ -37,7 +37,7 @@
 //     setIsLoading(true);
 //     try {
 //       const response = await fetch(
-//         `https://api.novajobs.us/api/user/university-lists?university_keyword=${encodeURIComponent(keyword)}`
+//         `https://apiwl.novajobs.us/api/user/university-lists?university_keyword=${encodeURIComponent(keyword)}`
 //       );
 //       if (response.ok) {
 //         const data = await response.json();
@@ -128,7 +128,7 @@
 //     setIsLoading((prev) => ({ ...prev, location: true }));
 //     try {
 //       const response = await fetch(
-//         `https://api.novajobs.us/api/user/locations?locations=${encodeURIComponent(keyword)}`
+//         `https://apiwl.novajobs.us/api/user/locations?locations=${encodeURIComponent(keyword)}`
 //       );
 //       if (response.ok) {
 //         const data = await response.json();
@@ -404,7 +404,7 @@ const Education = () => {
     setIsLoading((prev) => ({ ...prev, university: true }));
     try {
       const response = await fetch(
-        `https://api.novajobs.us/api/user/university-lists?university_keyword=${encodeURIComponent(
+        `https://apiwl.novajobs.us/api/user/university-lists?university_keyword=${encodeURIComponent(
           keyword
         )}`
       );
@@ -428,7 +428,7 @@ const Education = () => {
     setIsLoading((prev) => ({ ...prev, location: true }));
     try {
       const response = await fetch(
-        `https://api.novajobs.us/api/user/locations?locations=${encodeURIComponent(
+        `https://apiwl.novajobs.us/api/user/locations?locations=${encodeURIComponent(
           keyword
         )}`
       );

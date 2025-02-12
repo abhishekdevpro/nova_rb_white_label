@@ -42,7 +42,7 @@ export default function SuccessPage() {
 
     try {
       // Construct the URL with transactionId and resumeId as part of the path
-      const response = await axios.get(`https://api.novajobs.us/api/user/download-file/${transactionId}/${resumeId}`, {
+      const response = await axios.get(`https://apiwl.novajobs.us/api/user/download-file/${transactionId}/${resumeId}`, {
         headers: {
           Authorization: token, // Include the authorization token
         },

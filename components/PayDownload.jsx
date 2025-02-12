@@ -37,7 +37,7 @@ const PayAndDownload = ({ resumeId, token, PayerID }) => {
 
       // API call to generate the PDF
       await axios.post(
-        "https://api.novajobs.us/api/user/generate-pdf1",
+        "https://apiwl.novajobs.us/api/user/generate-pdf1",
         { html: fullContent },
         {
           headers: {
@@ -77,7 +77,7 @@ const PayAndDownload = ({ resumeId, token, PayerID }) => {
       };
 
       const response = await axios.post(
-        "https://api.novajobs.us/api/user/paypal/create-payment",
+        "https://apiwl.novajobs.us/api/user/paypal/create-payment",
         payload,
         {
           headers: {
@@ -114,7 +114,7 @@ const PayAndDownload = ({ resumeId, token, PayerID }) => {
 
       if (orderId && token && PayerID) {
         const response = await axios.get(
-          `https://api.novajobs.us/api/user/paypal/verify-order?orderid=${orderId}`,
+          `https://apiwl.novajobs.us/api/user/paypal/verify-order?orderid=${orderId}`,
           {
             headers: {
               Authorization: token,
@@ -148,7 +148,7 @@ const PayAndDownload = ({ resumeId, token, PayerID }) => {
       setIsLoading(true);
 
       const response = await axios.get(
-        `https://api.novajobs.us/api/user/download-file/${orderId}/${resumeId}`,
+        `https://apiwl.novajobs.us/api/user/download-file/${orderId}/${resumeId}`,
         {
           headers: {
             Authorization: token,

@@ -122,7 +122,7 @@ const FAQ = () => {
 
     try {
       const response = await fetch(
-        "https://api.novajobs.us/api/user/contact-us",
+        "https://apiwl.novajobs.us/api/user/contact-us",
         {
           method: "POST",
           headers: {

@@ -27,7 +27,7 @@ function Home_second() {
 
     // axios
     //   .post(
-    //     "https://api.novajobs.us/api/user/paypal/create-payment",
+    //     "https://apiwl.novajobs.us/api/user/paypal/create-payment",
     //     payload,
     //     {
     //       headers: { "Content-Type": "application/json" },
@@ -68,7 +68,7 @@ function Home_second() {
 
     // axios
     //   .post(
-    //     "https://api.novajobs.us/api/user/paypal/create-payment",
+    //     "https://apiwl.novajobs.us/api/user/paypal/create-payment",
     //     payload,
     //     {
     //       headers: { "Content-Type": "application/json" },

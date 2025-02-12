@@ -47,7 +47,7 @@
 //     setIsLoading(prev => ({ ...prev, location: true }));
 //     try {
 //       const response = await fetch(
-//         `https://api.novajobs.us/api/user/locations?locations=${encodeURIComponent(keyword)}`
+//         `https://apiwl.novajobs.us/api/user/locations?locations=${encodeURIComponent(keyword)}`
 //       );
 //       if (response.ok) {
 //         const data = await response.json();
@@ -107,7 +107,7 @@
 //     setError("");
 //     try {
 //       const response = await axios.post(
-//         "https://api.novajobs.us/api/user/ai-resume-profexp-data",
+//         "https://apiwl.novajobs.us/api/user/ai-resume-profexp-data",
 //         {
 //           key: "professional_experience",
 //           keyword: "Generate professional summary and Checklist of professional experience in manner of content and information",
@@ -205,7 +205,7 @@
 //       setIsLoading(true);
 //       try {
 //         const response = await axios.post(
-//           "https://api.novajobs.us/api/user/ai-resume-profexp-data",
+//           "https://apiwl.novajobs.us/api/user/ai-resume-profexp-data",
 //           {
 //             key: "professional_experience",
 //             keyword: value,
@@ -780,7 +780,7 @@ const WorkExperience = () => {
     setIsLoading((prev) => ({ ...prev, location: true }));
     try {
       const response = await fetch(
-        `https://api.novajobs.us/api/user/locations?locations=${encodeURIComponent(
+        `https://apiwl.novajobs.us/api/user/locations?locations=${encodeURIComponent(
           keyword
         )}`
       );
@@ -804,7 +804,7 @@ const WorkExperience = () => {
 
     try {
       const response = await axios.get(
-        `https://api.novajobs.us/api/user/job-title?job_title_keyword=${encodeURIComponent(
+        `https://apiwl.novajobs.us/api/user/job-title?job_title_keyword=${encodeURIComponent(
           keyword
         )}`
       );
@@ -825,7 +825,7 @@ const WorkExperience = () => {
 
     try {
       const response = await axios.get(
-        `https://api.novajobs.us/api/user/compnay-list?company_keyword=${encodeURIComponent(
+        `https://apiwl.novajobs.us/api/user/compnay-list?company_keyword=${encodeURIComponent(
           keyword
         )}`
       );
@@ -871,7 +871,7 @@ const WorkExperience = () => {
     setError("");
     try {
       const response = await axios.post(
-        "https://api.novajobs.us/api/user/ai-resume-profexp-data",
+        "https://apiwl.novajobs.us/api/user/ai-resume-profexp-data",
         {
           key: "professional_experience",
           keyword:
@@ -981,7 +981,7 @@ const WorkExperience = () => {
       setIsLoading(true);
       try {
         const response = await axios.post(
-          "https://api.novajobs.us/api/user/ai-resume-profexp-data",
+          "https://apiwl.novajobs.us/api/user/ai-resume-profexp-data",
           {
             key: "professional_experience",
             keyword: value,

@@ -35,7 +35,7 @@ function AdminLogin() {
 
     try {
       const response = await axios.post(
-        'https://api.novajobs.us/api/admin/auth/login2',
+        'https://apiwl.novajobs.us/api/admin/auth/login2',
         formData,
       );
 
@@ -60,7 +60,7 @@ function AdminLogin() {
         <div className="p-8 rounded-xl shadow-lg shadow-slate-700 w-full max-w-lg bg-gray-600">
           <div className="flex justify-center mb-6">
             {/* <Image src={logo} className=" " alt="Logo" /> */}
-            <Image src="https://api.novajobs.us/static/media/NovaUS.649f79957e5090a75022.png" alt="logo"  width={150} height={50} />
+            <Image src="https://apiwl.novajobs.us/static/media/NovaUS.649f79957e5090a75022.png" alt="logo"  width={150} height={50} />
           </div>
           <div className="text-3xl text-white text-center font-bold mb-9">
           🛡️ Admin Login

@@ -154,7 +154,7 @@ const CVSelector = ({ onNext, onBack, onChange, value }) => {
         }
 
         const response = await axios.get(
-          `https://api.novajobs.us/api/user/coverletter/${coverletterId}`,
+          `https://apiwl.novajobs.us/api/user/coverletter/${coverletterId}`,
           {
             headers: {
               Authorization: token,
@@ -249,7 +249,7 @@ const CVSelector = ({ onNext, onBack, onChange, value }) => {
       }
 
       const response = await axios.put(
-        `https://api.novajobs.us/api/user/coverletter/${coverletterId}`,
+        `https://apiwl.novajobs.us/api/user/coverletter/${coverletterId}`,
         coverletterInfo,
         {
           headers: {

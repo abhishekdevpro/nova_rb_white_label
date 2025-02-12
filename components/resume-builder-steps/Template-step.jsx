@@ -119,7 +119,7 @@
 //         }
 
 //         const response = await axios.get(
-//           `https://api.novajobs.us/api/user/resume-list/${resumeId}`,
+//           `https://apiwl.novajobs.us/api/user/resume-list/${resumeId}`,
 //           {
 //             headers: {
 //               Authorization: token
@@ -221,7 +221,7 @@
 //       }
 
 //       const response = await axios.put(
-//         `https://api.novajobs.us/api/user/resume-update/${resumeId}`,
+//         `https://apiwl.novajobs.us/api/user/resume-update/${resumeId}`,
 //         templateData,
 //         {
 //           headers: {
@@ -500,7 +500,7 @@ const TemplateStep = ({ onNext, onBack, onChange, value }) => {
         }
 
         const response = await axios.get(
-          `https://api.novajobs.us/api/user/resume-list/${resumeId}`,
+          `https://apiwl.novajobs.us/api/user/resume-list/${resumeId}`,
           {
             headers: {
               Authorization: token
@@ -625,7 +625,7 @@ const TemplateStep = ({ onNext, onBack, onChange, value }) => {
       }
 
       const response = await axios.put(
-        `https://api.novajobs.us/api/user/resume-update/${resumeId}`,
+        `https://apiwl.novajobs.us/api/user/resume-update/${resumeId}`,
         templateData,
         {
           headers: {

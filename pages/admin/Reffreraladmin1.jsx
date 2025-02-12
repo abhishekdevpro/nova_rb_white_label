@@ -7,7 +7,7 @@ function Reffreraladmin1() {
   useEffect(() => {
     const token = localStorage.getItem('token');
 
-    axios.get('https://api.novajobs.us/api/admin/referral-admin', {
+    axios.get('https://apiwl.novajobs.us/api/admin/referral-admin', {
       headers: {
         Authorization: token
       }
