@@ -1,9 +1,13 @@
 import React from "react";
+import Navbar from "../Navbar/Navbar";
 
 
 function TermsandConditions() {
-    return ( <div className="m-10 mx-40 p-5  shadow-2xl">
-  {/* <h1 className="text-3xl font-semibold my-4 underline "> Terms and Conditions</h1>  
+    return ( 
+      <>
+      <Navbar />
+       <div className="m-10 mx-40 p-5  shadow-2xl">
+  <h1 className="text-3xl font-semibold my-4 underline "> Terms and Conditions</h1>  
 
   <h1 className="text-lg font-semibold my-2 mt-5 "></h1>
 Welcome to Novajobs.US
@@ -67,9 +71,11 @@ If you have any questions or concerns about these terms and conditions, please c
 Email [career@Novajobs.US.ca](mailto:career@Novajobs.US.ca)  
 ---
 
-These terms and conditions are designed to ensure a clear understanding of our services and the responsibilities of both Novajobs.US and our clients. If you need any additional details or specific clauses included, please let me know! */}
+These terms and conditions are designed to ensure a clear understanding of our services and the responsibilities of both Novajobs.US and our clients. If you need any additional details or specific clauses included, please let me know! 
 
-    </div> );
+    </div>
+      </>
+     );
 }
 
 export default TermsandConditions;
