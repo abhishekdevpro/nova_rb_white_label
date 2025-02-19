@@ -9,7 +9,7 @@ const ResumeUploadForm = ({ isOpen, onClose }) => {
   const [files, setFiles] = useState([]);
   const [referenceFiles, setReferenceFiles] = useState([]);
   const [isLoginOpen, setLoginOpen] = useState(false);
-  const token = localStorage.getItem("token")
+//   const token = localStorage.getItem("token")
   const router = useRouter()
   const {
     register,
