@@ -1,8 +1,12 @@
 import React from "react";
+import Navbar from "../Navbar/Navbar";
 
 
 function PrivacyPolicy() {
-    return ( <div className="m-10 mx-40 p-5  shadow-2xl">
+    return (
+     <>
+     <Navbar />
+       <div className="m-10 mx-40 p-5  shadow-2xl">
   <h1 className="text-4xl font-semibold my-4 underline ">Privacy Policy</h1>  
   
   <h1 className="text-lg font-semibold my-2 mt-5 ">Introduction</h1>  
@@ -80,7 +84,9 @@ If you have any questions or concerns about this Privacy Policy or our data prac
 
 Email [career@Novajobs.US.ca](mailto:career@Novajobs.US.ca)  
 
-    </div> );
+    </div>
+     </>   
+    );
 }
 
 export default PrivacyPolicy;

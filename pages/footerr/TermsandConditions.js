@@ -1,14 +1,18 @@
 import React from "react";
+import Navbar from "../Navbar/Navbar";
 
 
 function TermsandConditions() {
-    return ( <div className="m-10 mx-40 p-5  shadow-2xl">
-  {/* <h1 className="text-3xl font-semibold my-4 underline "> Terms and Conditions</h1>  
+    return ( 
+      <>
+      <Navbar />
+       <div className="m-10 mx-40 p-5  shadow-2xl">
+  <h1 className="text-3xl font-semibold my-4 underline "> Terms and Conditions</h1>  
 
   <h1 className="text-lg font-semibold my-2 mt-5 "></h1>
 Welcome to Novajobs.US
 
-These terms and conditions outline the rules and regulations for the use of Novajobs.US's website and services. By accessing this website and using our services, you accept these terms and conditions in full. If you disagree with any part of these terms and conditions, please do not use our website or services.
+These terms and conditions outline the rules and regulations for the use of Novajobs.US website and services. By accessing this website and using our services, you accept these terms and conditions in full. If you disagree with any part of these terms and conditions, please do not use our website or services.
 
 <h1 className="text-lg font-semibold my-2 mt-5 ">1. Definitions</h1>
 
@@ -47,8 +51,8 @@ These terms and conditions outline the rules and regulations for the use of Nova
 
 <h1 className="text-lg font-semibold my-2 mt-5 ">7. Disclaimer of Warranties</h1>
 
-- Our services are provided on an "as is" and "as available" basis. Novajobs.US makes no warranties, express or implied, regarding the accuracy, reliability, or completeness of our services.
-- We do not warrant that our services will meet clients' expectations or that any errors or defects will be corrected.
+- Our services are provided on an as is and as available basis. Novajobs.US makes no warranties, express or implied, regarding the accuracy, reliability, or completeness of our services.
+- We do not warrant that our services will meet clients expectations or that any errors or defects will be corrected.
 
 <h1 className="text-lg font-semibold my-2 mt-5 ">8. Changes to Terms and Conditions</h1>
 
@@ -67,9 +71,11 @@ If you have any questions or concerns about these terms and conditions, please c
 Email [career@Novajobs.US.ca](mailto:career@Novajobs.US.ca)  
 ---
 
-These terms and conditions are designed to ensure a clear understanding of our services and the responsibilities of both Novajobs.US and our clients. If you need any additional details or specific clauses included, please let me know! */}
+These terms and conditions are designed to ensure a clear understanding of our services and the responsibilities of both Novajobs.US and our clients. If you need any additional details or specific clauses included, please let me know! 
 
-    </div> );
+    </div>
+      </>
+     );
 }
 
 export default TermsandConditions;
