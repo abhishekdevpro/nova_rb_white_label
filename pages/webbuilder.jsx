@@ -680,6 +680,7 @@ export default function WebBuilder() {
   // const [headerColor, setHeaderColor] = useState("");
   // const [backgroundColorss, setBgColor] = useState("");
   const [selectedTemplate, setSelectedTemplate] = useState("template1");
+  const [selectedPdfType, setSelectedPdfType] = useState('1'); 
   const [isFinished, setIsFinished] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -1027,8 +1028,10 @@ export default function WebBuilder() {
 
       // API call to generate PDF
       const pdfResponse = await axios.post(
-        "https://apiwl.novajobs.us/api/user/generate-pdf1",
-        { html: fullContent },
+        "https://apiwl.novajobs.us/api/user/generate-pdf-py",
+        { html: fullContent,
+          pdf_type:selectedPdfType
+         },
         {
           headers: {
             "Content-Type": "application/json",
@@ -1650,6 +1653,8 @@ export default function WebBuilder() {
                     <TemplateSelector
                       selectedTemplate={selectedTemplate}
                       setSelectedTemplate={setSelectedTemplate}
+                      setSelectedPdfType={setSelectedPdfType}
+                  selectedPdfType={selectedPdfType}
                     />
                   </div>
                 </div>
@@ -1747,6 +1752,8 @@ export default function WebBuilder() {
                 <TemplateSelector
                   selectedTemplate={selectedTemplate}
                   setSelectedTemplate={setSelectedTemplate}
+                  setSelectedPdfType={setSelectedPdfType}
+                  selectedPdfType={selectedPdfType}
                 />
               </div>
               <div className="flex gap-4">

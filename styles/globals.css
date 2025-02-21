@@ -59,7 +59,7 @@
   }
 
   .input-title {
-    @apply text-[1rem] text-white font-semibold;
+    @apply text-[1rem] text-black font-semibold;
   }
 
   .f-col {
