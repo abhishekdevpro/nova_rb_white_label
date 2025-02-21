@@ -275,7 +275,7 @@
 //     setLoading(true);
 //     setShowLoadingAnimation(true);
 //     try {
-//       const response = await axios.post("https://apiwl.novajobs.us/api/user/resume-upload", formData, {
+//       const response = await axios.post("https://apiwl.novajobs.us/api/jobseeker/resume-upload", formData, {
 //         headers: {
 //           "Content-Type": "multipart/form-data",
 //           Authorization: token,
@@ -316,7 +316,7 @@
 //     setShowLoadingAnimation(true);
 //     try {
 //       const response = await axios.post(
-//         "https://apiwl.novajobs.us/api/user/resume-create",
+//         "https://apiwl.novajobs.us/api/jobseeker/resume-create",
 //         {},
 //         { headers: { Authorization: token } }
 //       );
@@ -507,7 +507,7 @@ const ResumeEnhancementModal = ({
     setIsEnhancing(true);
     try {
       const response = await axios.post(
-        'https://apiwl.novajobs.us/api/user/resume-improved',
+        'https://apiwl.novajobs.us/api/jobseeker/resume-improved',
         {
           keyword: 'resume improved',
           file_location: fileLocation
@@ -773,7 +773,7 @@ const LoadUnload = () => {
     setLoading(true);
     setShowLoadingAnimation(true);
     try {
-      const response = await axios.post("https://apiwl.novajobs.us/api/user/resume-upload", formData, {
+      const response = await axios.post("https://apiwl.novajobs.us/api/jobseeker/resume-upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: token,
@@ -820,7 +820,7 @@ const LoadUnload = () => {
     setShowLoadingAnimation(true);
     try {
       const response = await axios.post(
-        "https://apiwl.novajobs.us/api/user/resume-create",
+        "https://apiwl.novajobs.us/api/jobseeker/resume-create",
         {},
         { headers: { Authorization: token } }
       );
