@@ -111,7 +111,7 @@ const Projects = () => {
 
   //   try {
   //     const response = await axios.post(
-  //       "https://apiwl.novajobs.us/api/jobseeker/ai-resume-project-summery-data",
+  //       "https://apiwl.novajobs.us/api/user/ai-resume-project-summery-data",
   //       {
   //         key: "professional_experience",
   //         keyword:
@@ -152,7 +152,7 @@ const Projects = () => {
 
     try {
       const response = await axios.post(
-        "https://apiwl.novajobs.us/api/jobseeker/ai-resume-project-key-data",
+        "https://apiwl.novajobs.us/api/user/ai-resume-project-key-data",
         {
           key: "professional_experience",
           keyword:
@@ -240,7 +240,7 @@ const Projects = () => {
       }
 
       const response = await fetch(
-        "https://apiwl.novajobs.us/api/jobseeker/ai-prosummery",
+        "https://apiwl.novajobs.us/api/user/ai-prosummery",
         {
           method: "POST",
           headers: {
@@ -317,7 +317,7 @@ const Projects = () => {
 
     try {
       const response = await axios.post(
-        "https://apiwl.novajobs.us/api/jobseeker/ai-resume-project-summery-data",
+        "https://apiwl.novajobs.us/api/user/ai-resume-project-summery-data",
         {
           key: "professional_experience",
           keyword:

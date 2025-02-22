@@ -104,7 +104,7 @@ const WorkExperience = () => {
     setIsLoading((prev) => ({ ...prev, location: true }));
     try {
       const response = await fetch(
-        `https://apiwl.novajobs.us/api/jobseeker/locations?locations=${encodeURIComponent(
+        `https://apiwl.novajobs.us/api/user/locations?locations=${encodeURIComponent(
           keyword
         )}`
       );
@@ -149,7 +149,7 @@ const WorkExperience = () => {
 
     try {
       const response = await axios.get(
-        `https://apiwl.novajobs.us/api/jobseeker/compnay-list?company_keyword=${encodeURIComponent(
+        `https://apiwl.novajobs.us/api/user/compnay-list?company_keyword=${encodeURIComponent(
           keyword
         )}`
       );
@@ -200,7 +200,7 @@ const WorkExperience = () => {
 
     try {
       const response = await axios.post(
-        "https://apiwl.novajobs.us/api/jobseeker/ai-resume-profexp-summery-data",
+        "https://apiwl.novajobs.us/api/user/ai-resume-profexp-summery-data",
         {
           key: "professional_experience",
           keyword:
@@ -243,7 +243,7 @@ const WorkExperience = () => {
 
     try {
       const response = await axios.post(
-        "https://apiwl.novajobs.us/api/jobseeker/ai-resume-profexp-key-data",
+        "https://apiwl.novajobs.us/api/user/ai-resume-profexp-key-data",
         {
           key: "professional_experience",
           keyword:
@@ -355,7 +355,7 @@ const WorkExperience = () => {
       setIsLoading(true);
       try {
         const response = await axios.post(
-          "https://apiwl.novajobs.us/api/jobseeker/ai-resume-profexp-data",
+          "https://apiwl.novajobs.us/api/user/ai-resume-profexp-data",
           {
             key: "professional_experience",
             keyword: value,
@@ -414,7 +414,7 @@ const WorkExperience = () => {
       }
 
       const response = await fetch(
-        "https://apiwl.novajobs.us/api/jobseeker/ai-expsummery",
+        "https://apiwl.novajobs.us/api/user/ai-expsummery",
         {
           method: "POST",
           headers: {

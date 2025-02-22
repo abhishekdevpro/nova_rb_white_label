@@ -36,7 +36,7 @@
 //   //   setIsLoading((prev) => ({ ...prev, jobTitle: true }));
 //   //   try {
 //   //     const response = await fetch(
-//   //       `https://apiwl.novajobs.us/api/jobseeker/job-title?job_title_keyword=${encodeURIComponent(
+//   //       `https://apiwl.novajobs.us/api/user/job-title?job_title_keyword=${encodeURIComponent(
 //   //         keyword
 //   //       )}`
 //   //     );
@@ -61,7 +61,7 @@
 //   //   setIsLoading((prev) => ({ ...prev, location: true }));
 //   //   try {
 //   //     const response = await fetch(
-//   //       `https://apiwl.novajobs.us/api/jobseeker/locations?locations=${encodeURIComponent(
+//   //       `https://apiwl.novajobs.us/api/user/locations?locations=${encodeURIComponent(
 //   //         keyword
 //   //       )}`
 //   //     );
@@ -150,7 +150,7 @@
 // //     try {
 // //       const endpoint = field === "name" ? "/ai-username" : "/ai-jobtitle";
 // //       const response = await fetch(
-// //         `https://apiwl.novajobs.us/api/jobseeker${endpoint}`,
+// //         `https://apiwl.novajobs.us/api/user${endpoint}`,
 // //         {
 // //           method: "POST",
 // //           headers: {
@@ -361,7 +361,7 @@
 // //     setIsLoading((prev) => ({ ...prev, jobTitle: true }));
 // //     try {
 // //       const response = await fetch(
-// //         `https://apiwl.novajobs.us/api/jobseeker/job-title?job_title_keyword=${encodeURIComponent(
+// //         `https://apiwl.novajobs.us/api/user/job-title?job_title_keyword=${encodeURIComponent(
 // //           keyword
 // //         )}`
 // //       );
@@ -386,7 +386,7 @@
 // //     setIsLoading((prev) => ({ ...prev, location: true }));
 // //     try {
 // //       const response = await fetch(
-// //         `https://apiwl.novajobs.us/api/jobseeker/locations?locations=${encodeURIComponent(
+// //         `https://apiwl.novajobs.us/api/user/locations?locations=${encodeURIComponent(
 // //           keyword
 // //         )}`
 // //       );
@@ -410,7 +410,7 @@
 // //   //   try {
 // //   //     const endpoint = field === "name" ? "/ai-username" : "/ai-jobtitle";
 // //   //     const response = await fetch(
-// //   //       `https://apiwl.novajobs.us/api/jobseeker${endpoint}`,
+// //   //       `https://apiwl.novajobs.us/api/user${endpoint}`,
 // //   //       {
 // //   //         method: "POST",
 // //   //         headers: {
@@ -454,7 +454,7 @@
 // //   //     const token = localStorage.getItem("token"); // Retrieve the token from localStorage or wherever it's stored
 
 // //   //     const response = await fetch(
-// //   //       `https://apiwl.novajobs.us/api/jobseeker${endpoint}`,
+// //   //       `https://apiwl.novajobs.us/api/user${endpoint}`,
 // //   //       {
 // //   //         method: "POST",
 // //   //         headers: {
@@ -500,7 +500,7 @@
 // //       const token = localStorage.getItem("token"); // Retrieve the token
 
 // //       const response = await fetch(
-// //         `https://apiwl.novajobs.us/api/jobseeker${endpoint}`,
+// //         `https://apiwl.novajobs.us/api/user${endpoint}`,
 // //         {
 // //           method: "POST",
 // //           headers: {
@@ -767,7 +767,7 @@
 //     setIsLoading((prev) => ({ ...prev, jobTitle: true }));
 //     try {
 //       const response = await fetch(
-//         `https://apiwl.novajobs.us/api/jobseeker/job-title?job_title_keyword=${encodeURIComponent(
+//         `https://apiwl.novajobs.us/api/user/job-title?job_title_keyword=${encodeURIComponent(
 //           keyword
 //         )}`
 //       );
@@ -792,7 +792,7 @@
 //     setIsLoading((prev) => ({ ...prev, location: true }));
 //     try {
 //       const response = await fetch(
-//         `https://apiwl.novajobs.us/api/jobseeker/locations?locations=${encodeURIComponent(
+//         `https://apiwl.novajobs.us/api/user/locations?locations=${encodeURIComponent(
 //           keyword
 //         )}`
 //       );
@@ -831,7 +831,7 @@
 //       const token = localStorage.getItem("token");
 
 //       const response = await fetch(
-//         `https://apiwl.novajobs.us/api/jobseeker${endpoint}`,
+//         `https://apiwl.novajobs.us/api/user${endpoint}`,
 //         {
 //           method: "POST",
 //           headers: {
@@ -1115,7 +1115,7 @@ const PersonalInformation = () => {
       setIsLoading((prev) => ({ ...prev, countryCodes: true }));
       try {
         const response = await fetch(
-          "https://apiwl.novajobs.us/api/jobseeker/countries"
+          "https://apiwl.novajobs.us/api/user/countries"
         );
         if (response.ok) {
           const data = await response.json();
@@ -1142,7 +1142,7 @@ const PersonalInformation = () => {
     setIsLoading((prev) => ({ ...prev, jobTitle: true }));
     try {
       const response = await fetch(
-        `https://apiwl.novajobs.us/api/jobseeker/job-title?job_title_keyword=${encodeURIComponent(
+        `https://apiwl.novajobs.us/api/user/job-title?job_title_keyword=${encodeURIComponent(
           keyword
         )}`
       );
@@ -1167,7 +1167,7 @@ const PersonalInformation = () => {
     setIsLoading((prev) => ({ ...prev, location: true }));
     try {
       const response = await fetch(
-        `https://apiwl.novajobs.us/api/jobseeker/locations?locations=${encodeURIComponent(
+        `https://apiwl.novajobs.us/api/user/locations?locations=${encodeURIComponent(
           keyword
         )}`
       );
@@ -1206,7 +1206,7 @@ const PersonalInformation = () => {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        `https://apiwl.novajobs.us/api/jobseeker${endpoint}`,
+        `https://apiwl.novajobs.us/api/user${endpoint}`,
         {
           method: "POST",
           headers: {
@@ -1386,13 +1386,11 @@ const PersonalInformation = () => {
 
     // 2️⃣ Special validation for contact information
     if (field === "contactInformation") {
-      console.log("Contact Value: ", fieldValue); // Debugging
 
       const isValidContact = /^(\+\d{1,3}\s?)?\(?\d+\)?[\d\s\-]+$/.test(
         fieldValue
       );
 
-      console.log("Is Valid Contact: ", isValidContact); // Debugging
 
       if (!isValidContact) {
         return true; // Invalid phone number format
@@ -1410,7 +1408,6 @@ const PersonalInformation = () => {
       ""
     )}`;
 
-    console.log("Updated Contact Value: ", fullContactValue); // Debugging line
 
     const updatedContact = {
       target: {
