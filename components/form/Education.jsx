@@ -48,7 +48,7 @@ const Education = () => {
     setIsLoading((prev) => ({ ...prev, university: true }));
     try {
       const response = await fetch(
-        `https://apiwl.novajobs.us/api/jobseeker/university-lists?university_keyword=${encodeURIComponent(
+        `https://apiwl.novajobs.us/api/user/university-lists?university_keyword=${encodeURIComponent(
           keyword
         )}`
       );
@@ -71,7 +71,7 @@ const Education = () => {
     setIsLoading((prev) => ({ ...prev, degree: true }));
     try {
       const response = await fetch(
-        `https://apiwl.novajobs.us/api/jobseeker/degree?degree_keyword=${encodeURIComponent(
+        `https://apiwl.novajobs.us/api/user/degree?degree_keyword=${encodeURIComponent(
           keyword
         )}`
       );
@@ -95,7 +95,7 @@ const Education = () => {
     setIsLoading((prev) => ({ ...prev, location: true }));
     try {
       const response = await fetch(
-        `https://apiwl.novajobs.us/api/jobseeker/locations?locations=${encodeURIComponent(
+        `https://apiwl.novajobs.us/api/user/locations?locations=${encodeURIComponent(
           keyword
         )}`
       );
@@ -254,7 +254,7 @@ const Education = () => {
         <div key={index} className="f-col">
           <div className="relative mb-4">
             <div className="flex items-center justify-between mt-4">
-              <h3 className="text-white text-xl font-semibold">
+              <h3 className="text-black text-xl font-semibold">
                 {`Education ${index + 1}`}
               </h3>
               <button

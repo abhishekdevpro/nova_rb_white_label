@@ -43,7 +43,7 @@
 //     try {
 //       const token = localStorage.getItem("token");
 //       const response = await axios.get(
-//         `https://apiwl.novajobs.us/api/jobseeker/skills-names?skill_keyword=${encodeURIComponent(query)}`,
+//         `https://apiwl.novajobs.us/api/user/skills-names?skill_keyword=${encodeURIComponent(query)}`,
 //         {
 //           headers: {
 //             Authorization: token,
@@ -219,7 +219,7 @@
 //       }
 
 //       const response = await axios.post(
-//         "https://apiwl.novajobs.us/api/jobseeker/ai-skills-data",
+//         "https://apiwl.novajobs.us/api/user/ai-skills-data",
 //         {
 //           key: "skills",
 //           keyword: title,
@@ -506,7 +506,7 @@ const Skill = ({ title, currentSkillIndex }) => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `https://apiwl.novajobs.us/api/jobseeker/skills-names?skill_keyword=${encodeURIComponent(
+        `https://apiwl.novajobs.us/api/user/skills-names?skill_keyword=${encodeURIComponent(
           query
         )}`,
         {
@@ -705,7 +705,7 @@ const Skill = ({ title, currentSkillIndex }) => {
       }
 
       const response = await axios.post(
-        "https://apiwl.novajobs.us/api/jobseeker/ai-skills-data",
+        "https://apiwl.novajobs.us/api/user/ai-skills-data",
         {
           key: "skills",
           keyword: title,

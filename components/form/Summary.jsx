@@ -43,7 +43,7 @@
 //     try {
 //       const token = localStorage.getItem("token");
 //       const response = await axios.post(
-//         "https://apiwl.novajobs.us/api/jobseeker/ai-resume-summery-data",
+//         "https://apiwl.novajobs.us/api/user/ai-resume-summery-data",
 //         {
 //           key: "resumesummery",
 //           keyword: `professional summary in manner of description - ${Date.now()}`,
@@ -296,7 +296,7 @@ const Summary = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "https://apiwl.novajobs.us/api/jobseeker/ai-summery",
+        "https://apiwl.novajobs.us/api/user/ai-summery",
         {
           method: "POST",
           headers: {
@@ -354,7 +354,7 @@ const Summary = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "https://apiwl.novajobs.us/api/jobseeker/ai-resume-summery-data",
+        "https://apiwl.novajobs.us/api/user/ai-resume-summery-data",
         {
           key: "resumesummery",
           keyword: `professional summary in manner of description - ${Date.now()}`,
