@@ -1,5 +1,3 @@
-
-
 import { Download, Edit, Plus } from "lucide-react";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -26,7 +24,7 @@ const Sidebar = ({ score, resumeId }) => {
       router.push({
         pathname: `/dashboard/aibuilder/${resumeId}`,
       });
-    }, 5000);
+    }, 2000);
   };
 
   const handleCreate = () => {
@@ -145,7 +143,7 @@ const Sidebar = ({ score, resumeId }) => {
         {/* Action Buttons */}
         <div className="flex gap-4 mb-6">
           <button
-            onClick={handleEdit}
+            onClick={() => handleEdit()}
             className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-lg 
       ${
         resumeId

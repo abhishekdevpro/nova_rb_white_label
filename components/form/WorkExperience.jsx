@@ -74,6 +74,13 @@ const WorkExperience = () => {
     newWorkExperience[index][field] = `${month || ""},${e.target.value}`;
     setResumeData({ ...resumeData, workExperience: newWorkExperience });
   };
+  const handlePresentToggle = (index) => {
+    const newWorkExperience = [...resumeData.workExperience];
+    newWorkExperience[index].endYear = newWorkExperience[index].endYear === "Present" ? "" : "Present";
+    setResumeData({ ...resumeData, workExperience: newWorkExperience });
+  };
+  
+  
   const handleWorkExperience = (e, index) => {
     const { name, value } = e.target;
     const newWorkExperience = [...resumeData.workExperience];
@@ -759,7 +766,7 @@ const WorkExperience = () => {
                     </select>
                   </div>
 
-                  <label className="text-black">End Date</label>
+                  {/* <label className="text-black">End Date</label>
                   <div className="flex-wrap-gap-2">
                     <select
                       className={`other-input border flex-1 ${
@@ -791,6 +798,58 @@ const WorkExperience = () => {
                         </option>
                       ))}
                     </select>
+                  </div> */}
+                  <label className="text-black">End Date</label>
+                  <div className="flex-wrap-gap-2 flex items-center gap-2 ">
+                    <select
+                      className={`other-input border flex-1 ${
+                        improve && hasErrors(index, "endYear")
+                          ? "border-red-500"
+                          : "border-black"
+                      }`}
+                      value={
+                        experience.endYear === "Present"
+                          ? ""
+                          : (experience.endYear || "Dec,2024").split(",")[0]
+                      }
+                      onChange={(e) => handleMonthChange(e, index, "endYear")}
+                      disabled={experience.endYear === "Present"}
+                    >
+                      {months.map((month, idx) => (
+                        <option key={idx} value={month}>
+                          {month}
+                        </option>
+                      ))}
+                    </select>
+                    <select
+                      className={`other-input border flex-1 ${
+                        improve && hasErrors(index, "endYear")
+                          ? "border-red-500"
+                          : "border-black"
+                      }`}
+                      value={
+                        experience.endYear === "Present"
+                          ? ""
+                          : (experience.endYear || "Dec,2024").split(",")[1]
+                      }
+                      onChange={(e) => handleYearChange(e, index, "endYear")}
+                      disabled={experience.endYear === "Present"}
+                    >
+                      {years.map((year, idx) => (
+                        <option key={idx} value={year}>
+                          {year}
+                        </option>
+                      ))}
+                    </select>
+                    <label className="flex flex-1 items-center gap-1 other-input text-xl">
+                      <input
+                        type="checkbox"
+                        checked={experience.endYear === "Present"}
+                        onChange={() => handlePresentToggle(index)}
+                        className="w-6 h-6"
+                      />
+                      Present
+                    </label>
                   </div>
                 </div>
                 <div className="relative mb-4">
