@@ -67,7 +67,12 @@ const ProjectsSection = ({ resumeData, headerColor }) => {
                   >
                     {item.link}
                   </Link>
-                  <p className="content">{item.description}</p>
+                  <p
+  className="hover:outline-dashed hover:outline-2 hover:outline-gray-400"
+  contentEditable="true"
+  suppressContentEditableWarning={true}
+  dangerouslySetInnerHTML={{ __html: item.description }}
+></p>
 
                   <Droppable
                     droppableId={`PROJECTS_KEY_ACHIEVEMENT-${index}`}
@@ -75,14 +80,12 @@ const ProjectsSection = ({ resumeData, headerColor }) => {
                   >
                     {(provided) => (
                       <ul
-                        className="list-disc ul-padding content"
+                        className="list-disc ul-padding content pl-6"
                         {...provided.droppableProps}
                         ref={provided.innerRef}
                       >
-                        {typeof item.keyAchievements === "string" &&
-                          item.keyAchievements
-                            .split("\n")
-                            .map((achievement, subIndex) => (
+                        {
+                          item.keyAchievements?.map((achievement, subIndex) => (
                               <Draggable
                                 key={`${item.name}-${index}-${subIndex}`}
                                 draggableId={`PROJECTS_KEY_ACHIEVEMENT-${index}-${subIndex}`}

@@ -124,48 +124,27 @@ export default function MobileBuilder() {
     fetchResumeData();
   }, [router.query]);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedToken = localStorage.getItem("token");
-      setToken(storedToken);
 
-      const storedIsFinished = localStorage.getItem("isFinished");
-      const storedTemplate = localStorage.getItem("selectedTemplate");
-      const storedFont = localStorage.getItem("selectedFont");
-      const storedBgColor = localStorage.getItem("backgroundColor");
-      const storedCurrentSection = localStorage.getItem("currentSection");
-      // const storedResumeData = localStorage.getItem("resumeData");
 
-      if (storedIsFinished) setIsFinished(JSON.parse(storedIsFinished));
-      if (storedTemplate && !selectedTemplate)
-        setSelectedTemplate(storedTemplate);
-      if (storedFont) setSelectedFont(storedFont);
-      if (storedBgColor && !backgroundColorss) setBgColor(storedBgColor);
-      if (storedCurrentSection)
-        setCurrentSection(parseInt(storedCurrentSection));
-      // if (storedResumeData && !resumeData) setResumeData(JSON.parse(storedResumeData));
-    }
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("isFinished", JSON.stringify(isFinished));
-      localStorage.setItem("selectedTemplate", selectedTemplate);
-      localStorage.setItem("selectedFont", selectedFont);
-      localStorage.setItem("headerColor", headerColor);
-      localStorage.setItem("backgroundColor", backgroundColorss);
-      localStorage.setItem("currentSection", currentSection.toString());
-      localStorage.setItem("resumeData", JSON.stringify(resumeData));
-    }
-  }, [
-    isFinished,
-    selectedTemplate,
-    selectedFont,
-    headerColor,
-    backgroundColorss,
-    currentSection,
-    resumeData,
-  ]);
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     localStorage.setItem("isFinished", JSON.stringify(isFinished));
+  //     localStorage.setItem("selectedTemplate", selectedTemplate);
+  //     localStorage.setItem("selectedFont", selectedFont);
+  //     localStorage.setItem("headerColor", headerColor);
+  //     localStorage.setItem("backgroundColor", backgroundColorss);
+  //     localStorage.setItem("currentSection", currentSection.toString());
+  //     localStorage.setItem("resumeData", JSON.stringify(resumeData));
+  //   }
+  // }, [
+  //   isFinished,
+  //   selectedTemplate,
+  //   selectedFont,
+  //   headerColor,
+  //   backgroundColorss,
+  //   currentSection,
+  //   resumeData,
+  // ]);
 
   useEffect(() => {
     const savedState = localStorage.getItem("isSaved");
@@ -181,21 +160,6 @@ export default function MobileBuilder() {
     }
   }, [resumeData]);
 
-  useEffect(() => {
-    const handleBeforeUnload = (e) => {
-      if (!isSaved) {
-        e.preventDefault();
-        e.returnValue =
-          "You have unsaved changes. Are you sure you want to leave?";
-      }
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, [isSaved]);
 
   useEffect(() => {
     const path = window.location.pathname;
@@ -225,40 +189,15 @@ export default function MobileBuilder() {
   ];
 
   const handleNext = () => {
-    handleFinish();
+    handleFinish(false);
     if (currentSection === sections.length - 1) {
-      localStorage.setItem("tempResumeData", JSON.stringify(resumeData));
-      localStorage.setItem("tempHeaderColor", headerColor);
-      localStorage.setItem("tempBgColor", backgroundColorss);
-      localStorage.setItem("tempFont", selectedFont);
       setIsFinished(true);
     } else {
       setCurrentSection((prev) => Math.min(prev + 1, sections.length - 1));
     }
   };
 
-  useEffect(() => {
-    if (isFinished) {
-      const tempResumeData = localStorage.getItem("tempResumeData");
-      const tempHeaderColor = localStorage.getItem("tempHeaderColor");
-      const tempBgColor = localStorage.getItem("tempBgColor");
-      const tempFont = localStorage.getItem("tempFont");
 
-      if (tempResumeData) setResumeData(JSON.parse(tempResumeData));
-      if (tempHeaderColor) setHeaderColor(tempHeaderColor);
-      if (tempBgColor) setBgColor(tempBgColor);
-      if (tempFont) setSelectedFont(tempFont);
-    }
-  }, [isFinished]);
-
-  useEffect(() => {
-    return () => {
-      localStorage.removeItem("tempResumeData");
-      localStorage.removeItem("tempHeaderColor");
-      localStorage.removeItem("tempBgColor");
-      localStorage.removeItem("tempFont");
-    };
-  }, []);
 
   const handlePrevious = () => {
     handleFinish();
@@ -405,8 +344,8 @@ export default function MobileBuilder() {
     }
   };
 
-  const handleFinish = async () => {
-    handleFinish();
+  const handleFinish = async (showToast = true) => {
+    const token = localStorage.getItem('token')
     if (!resumeData) return;
 
     const templateData = {
@@ -414,6 +353,7 @@ export default function MobileBuilder() {
         name: resumeData.name || "",
         position: resumeData.position || "",
         contactInformation: resumeData.contactInformation || "",
+        phone_code: resumeData.phone_code || "",
         email: resumeData.email || "",
         address: resumeData.address || "",
         profilePicture: resumeData.profilePicture || "",
@@ -424,6 +364,7 @@ export default function MobileBuilder() {
             socialMedia: media.socialMedia || "",
           })) || [],
         summary: resumeData.summary || "",
+        is_fresher: resumeData.is_fresher || false,
         education:
           resumeData.education?.map((edu) => ({
             school: edu.school || "",
@@ -437,12 +378,12 @@ export default function MobileBuilder() {
             company: exp.company || "",
             position: exp.position || "",
             description: exp.description || "",
-            KeyAchievements: Array.isArray(exp.keyAchievements)
-              ? exp.keyAchievements
-              : [exp.keyAchievements || ""],
+            KeyAchievements: Array.isArray(exp.KeyAchievements)
+              ? exp.KeyAchievements
+              : [exp.KeyAchievements || ""],
             startYear: exp.startYear || "",
             endYear: exp.endYear || "",
-            location: exp.location || "",
+            location: exp.location,
           })) || [],
         projects:
           resumeData.projects?.map((project) => ({
@@ -472,34 +413,51 @@ export default function MobileBuilder() {
       },
     };
 
-    await handleAction(async () => {
-      try {
-        const id = router.query.id || localStorage.getItem("resumeId");
-        if (!id) {
-          console.error("Resume ID not found.");
-          return;
-        }
+    const htmlContent = templateRef?.current?.innerHTML;
+    if (!htmlContent) {
+      toast.error("Error: Template content is missing.");
+      return;
+    }
 
-        const url = `https://apiwl.novajobs.us/api/user/resume-update/${id}`;
-        const response = await axios.put(url, templateData, {
+    const resumeHtml = `
+      <style>
+        @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+      </style>
+      ${htmlContent}
+    `;
+
+    try {
+      const id = router.query.id || resumeId;
+      if (!id) {
+        console.error("Resume ID not found.");
+        toast.error("Error: Resume ID is missing.");
+        return;
+      }
+
+      const url = `https://apiwl.novajobs.us/api/user/resume-update/${id}`;
+      const response = await axios.put(
+        url,
+        { ...templateData, resume_html: resumeHtml },
+        {
           headers: {
             "Content-Type": "application/json",
             Authorization: token,
           },
-        });
-
-        if (response.data.code === 200 || response.data.status === "success") {
-          setIsSaved(true);
-          localStorage.setItem("isSaved", "true");
-          toast.success(response.data.message || "Resume saved Successfully");
-        } else {
-          toast.error(response.data.error || "Error while saving the Resume");
         }
-      } catch (error) {
-        toast.error(error?.message || "Error !!");
-        console.error("Error updating resume:", error);
+      );
+
+      if (response.data.code === 200 || response.data.status === "success") {
+        setIsSaved(true);
+        if (showToast) {
+          toast.success(response.data.message || "Resume saved successfully.");
+        }
+      } else {
+        toast.error(response.data.error || "Error while saving the resume.");
       }
-    });
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "An error occurred.");
+      console.error("Error updating resume:", error);
+    }
   };
 
   const MobileNavigation = () => (
@@ -551,11 +509,9 @@ export default function MobileBuilder() {
 
   const handleBackToEditor = () => {
     // localStorage.setItem("tempResumeData", JSON.stringify(resumeData));
-    localStorage.setItem("tempHeaderColor", headerColor);
-    localStorage.setItem("tempBgColor", backgroundColorss);
-    localStorage.setItem("tempFont", selectedFont);
+    
     setIsFinished(false);
-    setCurrentSection(0);
+    // setCurrentSection(0);
   };
 
   const [formData, setFormData] = useState({
