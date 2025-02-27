@@ -33,6 +33,7 @@ import logo from "./builderImages/logo.jpg";
 import applepay from "./builderImages/apple-pay.png";
 import { ResumeContext } from "../components/context/ResumeContext";
 import { toast } from "react-toastify";
+import { SaveLoader } from "../components/ResumeLoader/SaveLoader";
 
 const Print = dynamic(() => import("../components/utility/WinPrint"), {
   ssr: false,
@@ -54,6 +55,8 @@ export default function MobileBuilder() {
   const [isSaved, setIsSaved] = useState(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [userId, setUserId] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [isDownloading,setisDownloading] =  useState(false)
   const templateRef = useRef(null);
   const {
     resumeData,
@@ -217,48 +220,43 @@ export default function MobileBuilder() {
   const downloadAsPDF = async () => {
     handleFinish();
     if (!templateRef.current) {
-      toast.error("Template reference not found");
-      return;
+        toast.error("Template reference not found");
+        return;
     }
+
+    setisDownloading(true); // Start loading before the async operation
 
     try {
-      // Step 1: Generate PDF
-      const htmlContent = templateRef.current.innerHTML;
+        const htmlContent = templateRef.current.innerHTML;
 
-      // Full HTML content with Tailwind styles
-      const fullContent = `
-        <style>
-          @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
-        </style>
-        ${htmlContent}
-      `;
+        const fullContent = `
+            <style>
+                @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+            </style>
+            ${htmlContent}
+        `;
 
-      // API call to generate PDF
-      const pdfResponse = await axios.post(
-        "https://apiwl.novajobs.us/api/user/generate-pdf-py",
-        { html: fullContent, 
-         pdf_type:selectedPdfType
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: token,
-          },
-        }
-      );
+        const response = await axios.post(
+            "https://apiwl.novajobs.us/api/jobseeker/generate-pdf-py",
+            { html: fullContent, pdf_type: selectedPdfType },
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: token,
+                },
+            }
+        );
 
-      if (pdfResponse.status === 200) {
-        toast.success("PDF generated successfully!");
-        // Call the payment process function
-        initiateCheckout();
-      } else {
-        throw new Error("Failed to generate PDF.");
-      }
+        initiateCheckout(); // Call this only if the request is successful
     } catch (error) {
-      console.error("Error during PDF generation:", error);
-      toast.error(error.response?.data?.message || "Failed to generate PDF.");
+        console.error("PDF generation error:", error);
+        toast.error(
+            error.response?.data?.message || "Failed to generate and open PDF"
+        );
+    } finally {
+      setisDownloading(false); // Ensure loading is stopped after success or failure
     }
-  };
+};
 
   const initiateCheckout = async () => {
     try {
@@ -459,6 +457,14 @@ export default function MobileBuilder() {
       console.error("Error updating resume:", error);
     }
   };
+  const handleClick = async () => {
+    setLoading(true);
+    try {
+      await handleFinish(); // Ensure handleFinish is an async function
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const MobileNavigation = () => (
     <div className="fixed px-2 bottom-0 left-0 right-0 bg-white shadow-lg py-4 ">
@@ -637,24 +643,28 @@ export default function MobileBuilder() {
             </div>
 
             <div className="flex items-center justify-center gap-4 p-2 fixed bottom-0 left-0 right-0 bg-white shadow-lg">
-              <LoaderButton
-                isLoading={isLoading}
-                onClick={handleFinish}
-                className="text-white px-4 py-2 rounded-lg bottom-btns"
-              >
-                Save
-              </LoaderButton>
-              {/* <PayAndDownload
-                resumeId={resumeId}
-                token={token}
-                PayerID={PayerID}
-              /> */}
+            <button
+                onClick={handleClick}
+                                 className={`px-6 py-2 rounded-lg flex items-center justify-center gap-2 ${
+                                   loading
+                                     ? "bg-blue-800 cursor-not-allowed"
+                                     : "bg-blue-950 hover:bg-blue-900 active:bg-blue-800"
+                                 } text-white transition-colors duration-200`}
+                                 disabled={loading}
+                               >
+                                 {loading ? <SaveLoader  /> : "Save"}
+              </button>
+
               <button
                 onClick={downloadAsPDF}
-                // onClick={handleShowModal}
-                className="bg-yellow-500 text-black px-6 py-2 rounded-lg"
+                className={`px-6 py-2 rounded-lg flex items-center justify-center gap-2 ${
+                  loading
+                    ? "bg-yellow-800 cursor-not-allowed"
+                    : "bg-yellow-500 hover:bg-yellow-600 active:bg-yellow-600"
+                } text-white transition-colors duration-200`}
+                disabled={loading}
               >
-                Pay & Download
+                {isDownloading ? <SaveLoader loadingText="Downloading" /> : "Download"}
               </button>
               {/* {showModal && (
                 <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
