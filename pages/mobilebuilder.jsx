@@ -17,7 +17,6 @@ import Certification from "../components/form/certification";
 import ColorPickers from "./ColorPickers";
 import Preview from "../components/preview/Preview";
 import TemplateSelector from "../components/preview/TemplateSelector";
-import toast from "react-hot-toast";
 
 import { useRouter } from "next/router";
 import Sidebar from "./dashboard/Sidebar";
@@ -33,6 +32,7 @@ import paypal from "./builderImages/paypal.png";
 import logo from "./builderImages/logo.jpg";
 import applepay from "./builderImages/apple-pay.png";
 import { ResumeContext } from "../components/context/ResumeContext";
+import { toast } from "react-toastify";
 
 const Print = dynamic(() => import("../components/utility/WinPrint"), {
   ssr: false,
@@ -415,7 +415,7 @@ export default function MobileBuilder() {
 
     const htmlContent = templateRef?.current?.innerHTML;
     if (!htmlContent) {
-      toast.error("Error: Template content is missing.");
+      // toast.error("Error: Template content is missing.");
       return;
     }
 

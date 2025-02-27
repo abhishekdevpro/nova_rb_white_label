@@ -110,9 +110,7 @@
   font-weight: 400;
 }
 
-/* .i-bold {
-  font-weight: 700 !important;
-} */
+/* top */
 
 /* @media print {
   .exclude-print {
@@ -242,7 +240,7 @@ body {
   .a4-wrapper {
     position: absolute;
     left: 0px;
-    top: 250px;
+    top: 210px;
   }
 }
 
