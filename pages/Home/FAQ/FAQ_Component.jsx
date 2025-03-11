@@ -193,7 +193,7 @@ const FAQ = () => {
         </div>
       </div> */}
 
-        <div className="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96 p-6">
+        {/* <div className="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96 p-6">
           <div className="flex items-center mb-4">
             <div className="text-3xl"> ✉</div>
             <h5 className="ml-3 text-slate-900 text-xl font-semibold"></h5>
@@ -228,95 +228,29 @@ const FAQ = () => {
               </a>
             </button>
           </div>
-        </div>
-
-        {/* <div className="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96 p-6">
+        </div> */}
+         <div className="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl p-6 mx-auto">
       <div className="flex items-center mb-4">
-        <div className="text-3xl">🗨</div>
-       
+        <div className="text-3xl">✉</div>
+        <h5 className="ml-3 text-slate-900 text-xl font-semibold">Get in Touch</h5>
       </div>
       <p className="block text-slate-600 leading-normal font-semibold mb-1">
-      Message us
-        </p>
-      <p className="block text-slate-600 leading-normal font-light mb-4  text-sm">We re here to help</p>
-
-      <button
-        className="border px-3 p-2 rounded-lg"
-        onClick={() => setIsFormVisible(!isFormVisible)} // Toggle form visibility
-      >
-        <span className="text-slate-900 font-semibold text-sm hover:underline flex items-center">
-          Chat
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="ml-2 h-4 w-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </span>
-      </button>
-
-      {isFormVisible && (
-        <div className=" top-0 left-10 bg-white shadow-md border rounded-lg p-6 w-full mt-4 z-10">
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label className="block text-sm font-semibold mb-1">Name</label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                className="w-full border px-2 py-1 rounded-lg"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-semibold mb-1">Phone</label>
-              <input
-                type="text"
-                name="phone"
-                value={formData.phone}
-                onChange={handleInputChange}
-                className="w-full border px-2 py-1 rounded-lg"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-semibold mb-1">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="w-full border px-2 py-1 rounded-lg"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-semibold mb-1">Remark</label>
-              <textarea
-                name="remark"
-                value={formData.remark}
-                onChange={handleInputChange}
-                className="w-full border px-2 py-1 rounded-lg"
-                required
-              />
-            </div>
-            {error && <p className="text-red-500 mb-2">{error}</p>}
-            {successMessage && <p className="text-green-500 mb-2">{successMessage}</p>}
-            <button
-              type="submit"
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg"
-            >
-              Send
-            </button>
-          </form>
-        </div>
-      )}
+        Email Us
+      </p>
+      <p className="block text-slate-600 leading-normal font-light mb-4 text-sm">
+        We&apos;re here to help.
+      </p>
+      <div>
+        <a
+          href="mailto:info@Novajobs.US"
+          className="flex items-center justify-center border border-slate-300 px-4 py-2 rounded-lg text-slate-900 font-semibold text-sm hover:bg-slate-100 transition-all duration-200"
+        >
+          info@Novajobs.US
+        </a>
+      </div>
     </div>
-     */}
+
+       
       </div>
     </div>
   );
