@@ -209,7 +209,7 @@ body {
   transform: scale(0.98); /* Keep it at 1 to avoid distortion */
   padding: 0;
   margin: 0;
-  /* border: 1px solid; */
+  /* border: 1px solid red; */
 }
 
 .a4-wrapper {
