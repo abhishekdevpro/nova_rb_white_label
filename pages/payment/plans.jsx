@@ -493,8 +493,9 @@
 import { Lock, CheckCircle } from "lucide-react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-
+import axios from "axios";
 import Navbar from "../Navbar/Navbar";
+import { toast } from "react-toastify";
 
 // Pricing data from your JSON
 const pricingData = {
@@ -577,7 +578,7 @@ const pricingData = {
 
 export default function PaymentPage() {
   const router = useRouter();
-
+  const BASE_URL = "https://apiwl.novajobs.us";
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [planDetails, setPlanDetails] = useState(null);
 
@@ -631,20 +632,80 @@ export default function PaymentPage() {
 
     return "";
   };
-
   useEffect(() => {
-    // Get plan from URL query
-    if (router.query.plan) {
-      const planId = router.query.plan;
+    // Ensure query parameters are available
+    if (router.isReady && router.query.selectedPlan) {
+      const planId = router.query.selectedPlan;
       setSelectedPlan(planId);
-      setPlanDetails(pricingData[planId]);
+      setPlanDetails(pricingData[planId]); // Get the correct plan details
     } else {
       // Default to aiProYearly if no plan specified
       setSelectedPlan("aiProYearly");
       setPlanDetails(pricingData.aiProYearly);
     }
-  }, [router.query]);
+  }, [router.isReady, router.query]);
 
+  // useEffect(() => {
+  //   // Get plan from URL query
+  //   if (router.query.plan) {
+  //     const planId = router.query.plan;
+  //     setSelectedPlan(planId);
+  //     setPlanDetails(pricingData[planId]);
+  //   } else {
+  //     // Default to aiProYearly if no plan specified
+  //     setSelectedPlan("aiProYearly");
+  //     setPlanDetails(pricingData.aiProYearly);
+  //   }
+  // }, [router.query]);
+  const handleCheckout = async () => {
+    if (!selectedPlan) {
+      toast.success("Please select a plan before proceeding.");
+      return;
+    }
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("Authentication required. Please log in.");
+      router.push("/login2"); // Redirect to login page if token is missing
+      return;
+    }
+    // Map selectedPlan to the correct plan_id
+    const planMapping = {
+      // freePlan: 1,
+      singlePass: 2,
+      aiProMonth: 3,
+      aiProYearly: 4,
+    };
+
+    const planId = planMapping[selectedPlan];
+
+    try {
+      // Show loading (optional)
+      // setIsLoading(true);
+
+      const response = await axios.post(
+        `${BASE_URL}/api/user/payment/checkout`,
+        {
+          plan_id: planId,
+        },
+        {
+          headers: {
+            Authorization: token, // Add authentication header
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        toast.success("Payment successful! Redirecting...");
+        // router.push("/success"); // Redirect after success
+        window.location.href = response.data.url;
+      } else {
+        throw new Error("Unexpected response from the server.");
+      }
+    } catch (error) {
+      console.error("Payment Error:", error);
+      toast.error(error.response?.data?.message || "Error processing payment.");
+    }
+  };
   return (
     <>
       <Navbar />
@@ -707,7 +768,10 @@ export default function PaymentPage() {
             </p>
 
             {/* Start Applying Button */}
-            <button className="mt-6 w-full bg-blue-700 text-white text-lg font-semibold py-3 rounded-lg ">
+            <button
+              onClick={handleCheckout}
+              className="mt-6 w-full bg-blue-700 text-white text-lg font-semibold py-3 rounded-lg "
+            >
               Start applying
             </button>
 
