@@ -768,9 +768,15 @@ export default function PaymentPage() {
             </p>
 
             {/* Start Applying Button */}
+
             <button
               onClick={handleCheckout}
-              className="mt-6 w-full bg-blue-700 text-white text-lg font-semibold py-3 rounded-lg "
+              className={`mt-6 w-full text-white text-lg font-semibold py-3 rounded-lg ${
+                selectedPlan === "freePlan"
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-blue-700 hover:bg-blue-800"
+              }`}
+              disabled={selectedPlan === "freePlan"}
             >
               Start applying
             </button>
