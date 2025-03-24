@@ -678,10 +678,34 @@ export default function PaymentPage() {
 
     const planId = planMapping[selectedPlan];
 
-    try {
-      // Show loading (optional)
-      // setIsLoading(true);
+    // try {
+    //   // Show loading (optional)
+    //   // setIsLoading(true);
 
+    //   const response = await axios.post(
+    //     `${BASE_URL}/api/user/payment/checkout`,
+    //     {
+    //       plan_id: planId,
+    //     },
+    //     {
+    //       headers: {
+    //         Authorization: token, // Add authentication header
+    //       },
+    //     }
+    //   );
+
+    //   if (response.status === 200) {
+    //     toast.success("Payment successful! Redirecting...");
+    //     // router.push("/success"); // Redirect after success
+    //     window.location.href = response.data.url;
+    //   } else {
+    //     throw new Error("Unexpected response from the server.");
+    //   }
+    // } catch (error) {
+    //   console.error("Payment Error:", error);
+    //   toast.error(error.response?.data?.message || "Error processing payment.");
+    // }
+    try {
       const response = await axios.post(
         `${BASE_URL}/api/user/payment/checkout`,
         {
@@ -689,15 +713,21 @@ export default function PaymentPage() {
         },
         {
           headers: {
-            Authorization: token, // Add authentication header
+            Authorization: token,
           },
         }
       );
 
+      console.log("API Response:", response.data); // Debugging step
+
       if (response.status === 200) {
-        toast.success("Payment successful! Redirecting...");
-        // router.push("/success"); // Redirect after success
-        window.location.href = response.data.url;
+        if (response.data?.url) {
+          toast.success("Payment successful! Redirecting...");
+          window.location.href = response.data.url;
+        } else {
+          console.error("No URL found in response:", response.data);
+          toast.error("Unexpected response from the server. No URL returned.");
+        }
       } else {
         throw new Error("Unexpected response from the server.");
       }
