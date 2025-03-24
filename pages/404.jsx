@@ -9,7 +9,13 @@ const Custom404 = () => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 text-center p-6">
       <div className="flex-shrink-0 flex items-center">
         <Link href="/">
-          <Image src="https://novajobs.us/static/media/NovaUS.649f79957e5090a75022.png" alt="logo" className="h-10 w-40" />
+          <Image
+            src="https://novajobs.us/static/media/NovaUS.649f79957e5090a75022.png"
+            alt="logo"
+            className="h-10 w-40"
+            width={100}
+            height={100}
+          />
         </Link>
       </div>
       <h1 className="text-6xl font-bold text-red-600">404</h1>
