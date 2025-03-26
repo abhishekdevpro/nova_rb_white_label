@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect, useContext } from "react";
 import Language from "../components/form/Language";
 import axios from "axios";
@@ -50,7 +49,7 @@ export default function WebBuilder() {
   // const [headerColor, setHeaderColor] = useState("");
   // const [backgroundColorss, setBgColor] = useState("");
   const [selectedTemplate, setSelectedTemplate] = useState("template1");
-  const [selectedPdfType, setSelectedPdfType] = useState('1'); 
+  const [selectedPdfType, setSelectedPdfType] = useState("1");
   const [isFinished, setIsFinished] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -65,7 +64,7 @@ export default function WebBuilder() {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [userId, setUserId] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [isDownloading,setisDownloading] =  useState(false)
+  const [isDownloading, setisDownloading] = useState(false);
   const templateRef = useRef(null);
   const {
     resumeData,
@@ -191,8 +190,6 @@ export default function WebBuilder() {
     }
   }, [resumeData]);
 
- 
-
   useEffect(() => {
     const path = window.location.pathname;
     const id = path.split("/").pop();
@@ -219,7 +216,6 @@ export default function WebBuilder() {
     { label: "Languages", component: <Language /> },
     { label: "Certifications", component: <Certification /> },
   ];
-
 
   const handleChange = (e) => {
     setResumeData({ ...resumeData, [e.target.name]: e.target.value });
@@ -258,8 +254,6 @@ export default function WebBuilder() {
   //     if (tempFont) setSelectedFont(tempFont);
   //   }
   // }, [isFinished]);
-
-
 
   const handlePrevious = () => {
     handleFinish(false);
@@ -350,46 +344,94 @@ export default function WebBuilder() {
   //     toast.error(error.response?.data?.message || "Failed to generate PDF.");
   //   }
   // };
+  // const downloadAsPDF = async () => {
+  //   handleFinish();
+  //   if (!templateRef.current) {
+  //     toast.error("Template reference not found");
+  //     return;
+  //   }
+
+  //   setisDownloading(true); // Start loading before the async operation
+
+  //   try {
+  //     const htmlContent = templateRef.current.innerHTML;
+
+  //     const fullContent = `
+  //           <style>
+  //               @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+  //           </style>
+  //           ${htmlContent}
+  //       `;
+
+  //     const response = await axios.post(
+  //       // "https://apiwl.novajobs.us/api/jobseeker/generate-pdf-py",
+  //       `https://apiwl.novajobs.us//api/user/download-resume/${resumeId}`,
+  //       { html: fullContent, pdf_type: 1 },
+
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: token,
+  //         },
+  //       }
+  //     );
+
+  //     initiateCheckout(); // Call this only if the request is successful
+  //   } catch (error) {
+  //     console.error("PDF generation error:", error);
+  //     toast.error(
+  //       error.response?.data?.message || "Failed to generate and open PDF"
+  //     );
+  //   } finally {
+  //     setisDownloading(false); // Ensure loading is stopped after success or failure
+  //   }
+  // };
   const downloadAsPDF = async () => {
     handleFinish();
     if (!templateRef.current) {
-        toast.error("Template reference not found");
-        return;
+      toast.error("Template reference not found");
+      return;
     }
 
     setisDownloading(true); // Start loading before the async operation
 
     try {
-        const htmlContent = templateRef.current.innerHTML;
+      const htmlContent = templateRef.current.innerHTML;
 
-        const fullContent = `
+      const fullContent = `
             <style>
                 @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
             </style>
             ${htmlContent}
         `;
 
-        const response = await axios.post(
-            "https://apiwl.novajobs.us/api/jobseeker/generate-pdf-py",
-            { html: fullContent, pdf_type: selectedPdfType },
-            {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: token,
-                },
-            }
-        );
+      const response = await axios.post(
+        `https://apiwl.novajobs.us/api/user/download-resume/${resumeId}`,
+        { html: fullContent, pdf_type: 1 },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // Ensure "Bearer" prefix
+          },
+        }
+      );
 
-        initiateCheckout(); // Call this only if the request is successful
+      initiateCheckout(); // Call this only if the request is successful
     } catch (error) {
-        console.error("PDF generation error:", error);
+      console.error("PDF generation error:", error.response);
+
+      if (error.response?.status === 401) {
+        toast.error("Session expired, but staying on the page.");
+      } else {
         toast.error(
-            error.response?.data?.message || "Failed to generate and open PDF"
+          error.response?.data?.message || "Failed to generate and open PDF"
         );
+      }
     } finally {
       setisDownloading(false); // Ensure loading is stopped after success or failure
     }
-};
+  };
+
   const initiateCheckout = async () => {
     try {
       // Ensure resumeId is a valid integer
@@ -454,7 +496,7 @@ export default function WebBuilder() {
         if (response.data.status === "success") {
           setPaymentVerified(true);
           toast.success("Payment verified successfully!");
-          downloadPDF()
+          downloadPDF();
           localStorage.removeItem("orderid");
 
           if (pdfExportComponent.current) {
@@ -507,7 +549,7 @@ export default function WebBuilder() {
   };
 
   const handleFinish = async (showToast = true) => {
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
     if (!resumeData) return;
 
     const templateData = {
@@ -730,7 +772,7 @@ export default function WebBuilder() {
                       selectedTemplate={selectedTemplate}
                       setSelectedTemplate={setSelectedTemplate}
                       setSelectedPdfType={setSelectedPdfType}
-                  selectedPdfType={selectedPdfType}
+                      selectedPdfType={selectedPdfType}
                     />
                   </div>
                 </div>
@@ -833,7 +875,7 @@ export default function WebBuilder() {
                 />
               </div>
               <div className="flex gap-4">
-              <button
+                <button
                   onClick={handleClick}
                   className={`px-6 py-2 rounded-lg flex items-center justify-center gap-2 ${
                     loading
@@ -842,7 +884,7 @@ export default function WebBuilder() {
                   } text-white transition-colors duration-200`}
                   disabled={loading}
                 >
-                  {loading ? <SaveLoader  /> : "Save Resume"}
+                  {loading ? <SaveLoader /> : "Save Resume"}
                 </button>
                 <button
                   onClick={downloadAsPDF}
@@ -852,10 +894,12 @@ export default function WebBuilder() {
                       : "bg-yellow-500 hover:bg-yellow-600 active:bg-yellow-600"
                   } text-white transition-colors duration-200`}
                   disabled={loading}
-                > 
-                
-                  {isDownloading ? <SaveLoader loadingText="Downloading" />  : "Pay & Download"}
-                  
+                >
+                  {isDownloading ? (
+                    <SaveLoader loadingText="Downloading" />
+                  ) : (
+                    "Pay & Download"
+                  )}
                 </button>
                 {/* {showModal && (
                   <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">

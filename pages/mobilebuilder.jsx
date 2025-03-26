@@ -41,7 +41,7 @@ const Print = dynamic(() => import("../components/utility/WinPrint"), {
 
 export default function MobileBuilder() {
   const [currentSection, setCurrentSection] = useState(0);
-  const [selectedPdfType, setSelectedPdfType] = useState('1'); 
+  const [selectedPdfType, setSelectedPdfType] = useState("1");
   const [selectedTemplate, setSelectedTemplate] = useState("template1");
   const [isFinished, setIsFinished] = useState(false);
 
@@ -56,7 +56,7 @@ export default function MobileBuilder() {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [userId, setUserId] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [isDownloading,setisDownloading] =  useState(false)
+  const [isDownloading, setisDownloading] = useState(false);
   const templateRef = useRef(null);
   const {
     resumeData,
@@ -127,8 +127,6 @@ export default function MobileBuilder() {
     fetchResumeData();
   }, [router.query]);
 
-
-
   // useEffect(() => {
   //   if (typeof window !== "undefined") {
   //     localStorage.setItem("isFinished", JSON.stringify(isFinished));
@@ -162,7 +160,6 @@ export default function MobileBuilder() {
       localStorage.setItem("isSaved", "false");
     }
   }, [resumeData]);
-
 
   useEffect(() => {
     const path = window.location.pathname;
@@ -200,8 +197,6 @@ export default function MobileBuilder() {
     }
   };
 
-
-
   const handlePrevious = () => {
     handleFinish();
     setCurrentSection((prev) => Math.max(prev - 1, 0));
@@ -220,43 +215,45 @@ export default function MobileBuilder() {
   const downloadAsPDF = async () => {
     handleFinish();
     if (!templateRef.current) {
-        toast.error("Template reference not found");
-        return;
+      toast.error("Template reference not found");
+      return;
     }
 
     setisDownloading(true); // Start loading before the async operation
 
     try {
-        const htmlContent = templateRef.current.innerHTML;
+      const htmlContent = templateRef.current.innerHTML;
 
-        const fullContent = `
+      const fullContent = `
             <style>
                 @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
             </style>
             ${htmlContent}
         `;
 
-        const response = await axios.post(
-            "https://apiwl.novajobs.us/api/jobseeker/generate-pdf-py",
-            { html: fullContent, pdf_type: selectedPdfType },
-            {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: token,
-                },
-            }
-        );
+      const response = await axios.post(
+        // "https://apiwl.novajobs.us/api/jobseeker/generate-pdf-py",
+        `https://apiwl.novajobs.us//api/user/download-resume/${resumeId}`,
+        { html: fullContent, pdf_type: 1 },
+        // { html: fullContent, pdf_type: selectedPdfType },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+        }
+      );
 
-        initiateCheckout(); // Call this only if the request is successful
+      initiateCheckout(); // Call this only if the request is successful
     } catch (error) {
-        console.error("PDF generation error:", error);
-        toast.error(
-            error.response?.data?.message || "Failed to generate and open PDF"
-        );
+      console.error("PDF generation error:", error);
+      toast.error(
+        error.response?.data?.message || "Failed to generate and open PDF"
+      );
     } finally {
       setisDownloading(false); // Ensure loading is stopped after success or failure
     }
-};
+  };
 
   const initiateCheckout = async () => {
     try {
@@ -343,7 +340,7 @@ export default function MobileBuilder() {
   };
 
   const handleFinish = async (showToast = true) => {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token");
     if (!resumeData) return;
 
     const templateData = {
@@ -515,7 +512,7 @@ export default function MobileBuilder() {
 
   const handleBackToEditor = () => {
     // localStorage.setItem("tempResumeData", JSON.stringify(resumeData));
-    
+
     setIsFinished(false);
     // setCurrentSection(0);
   };
@@ -635,7 +632,7 @@ export default function MobileBuilder() {
                 selectedTemplate={selectedTemplate}
                 setSelectedTemplate={setSelectedTemplate}
                 setSelectedPdfType={setSelectedPdfType}
-                  selectedPdfType={selectedPdfType}
+                selectedPdfType={selectedPdfType}
               />
             </div>
             <div className="">
@@ -643,16 +640,16 @@ export default function MobileBuilder() {
             </div>
 
             <div className="flex items-center justify-center gap-4 p-2 fixed bottom-0 left-0 right-0 bg-white shadow-lg">
-            <button
+              <button
                 onClick={handleClick}
-                                 className={`px-6 py-2 rounded-lg flex items-center justify-center gap-2 ${
-                                   loading
-                                     ? "bg-blue-800 cursor-not-allowed"
-                                     : "bg-blue-950 hover:bg-blue-900 active:bg-blue-800"
-                                 } text-white transition-colors duration-200`}
-                                 disabled={loading}
-                               >
-                                 {loading ? <SaveLoader  /> : "Save"}
+                className={`px-6 py-2 rounded-lg flex items-center justify-center gap-2 ${
+                  loading
+                    ? "bg-blue-800 cursor-not-allowed"
+                    : "bg-blue-950 hover:bg-blue-900 active:bg-blue-800"
+                } text-white transition-colors duration-200`}
+                disabled={loading}
+              >
+                {loading ? <SaveLoader /> : "Save"}
               </button>
 
               <button
@@ -664,7 +661,11 @@ export default function MobileBuilder() {
                 } text-white transition-colors duration-200`}
                 disabled={loading}
               >
-                {isDownloading ? <SaveLoader loadingText="Downloading" /> : "Download"}
+                {isDownloading ? (
+                  <SaveLoader loadingText="Downloading" />
+                ) : (
+                  "Download"
+                )}
               </button>
               {/* {showModal && (
                 <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
