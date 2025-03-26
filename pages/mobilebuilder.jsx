@@ -222,6 +222,7 @@ export default function MobileBuilder() {
     setisDownloading(true); // Start loading before the async operation
 
     try {
+      const token = localStorage.getItem("token");
       const htmlContent = templateRef.current.innerHTML;
 
       const fullContent = `
@@ -233,18 +234,18 @@ export default function MobileBuilder() {
 
       const response = await axios.post(
         // "https://apiwl.novajobs.us/api/jobseeker/generate-pdf-py",
-        `https://apiwl.novajobs.us//api/user/download-resume/${resumeId}`,
+        `https://apiwl.novajobs.us/api/user/download-resume/${resumeId}`,
         { html: fullContent, pdf_type: 1 },
-        // { html: fullContent, pdf_type: selectedPdfType },
+
         {
           headers: {
-            "Content-Type": "application/json",
             Authorization: token,
+            "Content-Type": "application/pdf",
           },
         }
       );
-
-      initiateCheckout(); // Call this only if the request is successful
+      downloadPDF();
+      // initiateCheckout(); // Call this only if the request is successful
     } catch (error) {
       console.error("PDF generation error:", error);
       toast.error(
@@ -254,7 +255,6 @@ export default function MobileBuilder() {
       setisDownloading(false); // Ensure loading is stopped after success or failure
     }
   };
-
   const initiateCheckout = async () => {
     try {
       // Ensure resumeId is a valid integer
@@ -338,7 +338,38 @@ export default function MobileBuilder() {
       router.push("/payment-failed");
     }
   };
+  const downloadPDF = async () => {
+    handleFinish();
+    try {
+      const response = await axios.get(
+        `https://apiwl.novajobs.us/api/user/download-file/11/${resumeId}`,
+        {
+          headers: {
+            Authorization: token,
+          },
+          responseType: "blob",
+        }
+      );
 
+      const url = window.URL.createObjectURL(
+        new Blob([response.data], { type: "application/pdf" })
+      );
+      const link = document.createElement("a");
+      link.href = url;
+
+      link.setAttribute("download", `resume.pdf`);
+      document.body.appendChild(link);
+      link.click();
+
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+
+      toast.success("PDF downloaded successfully!");
+    } catch (error) {
+      console.error("PDF Download Error:", error);
+      toast.error("Failed to download the PDF. Please try again.");
+    }
+  };
   const handleFinish = async (showToast = true) => {
     const token = localStorage.getItem("token");
     if (!resumeData) return;
