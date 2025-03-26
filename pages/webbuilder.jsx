@@ -344,48 +344,6 @@ export default function WebBuilder() {
   //     toast.error(error.response?.data?.message || "Failed to generate PDF.");
   //   }
   // };
-  // const downloadAsPDF = async () => {
-  //   handleFinish();
-  //   if (!templateRef.current) {
-  //     toast.error("Template reference not found");
-  //     return;
-  //   }
-
-  //   setisDownloading(true); // Start loading before the async operation
-
-  //   try {
-  //     const htmlContent = templateRef.current.innerHTML;
-
-  //     const fullContent = `
-  //           <style>
-  //               @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
-  //           </style>
-  //           ${htmlContent}
-  //       `;
-
-  //     const response = await axios.post(
-  //       // "https://apiwl.novajobs.us/api/jobseeker/generate-pdf-py",
-  //       `https://apiwl.novajobs.us//api/user/download-resume/${resumeId}`,
-  //       { html: fullContent, pdf_type: 1 },
-
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: token,
-  //         },
-  //       }
-  //     );
-
-  //     initiateCheckout(); // Call this only if the request is successful
-  //   } catch (error) {
-  //     console.error("PDF generation error:", error);
-  //     toast.error(
-  //       error.response?.data?.message || "Failed to generate and open PDF"
-  //     );
-  //   } finally {
-  //     setisDownloading(false); // Ensure loading is stopped after success or failure
-  //   }
-  // };
   const downloadAsPDF = async () => {
     handleFinish();
     if (!templateRef.current) {
@@ -406,31 +364,73 @@ export default function WebBuilder() {
         `;
 
       const response = await axios.post(
-        `https://apiwl.novajobs.us/api/user/download-resume/${resumeId}`,
+        // "https://apiwl.novajobs.us/api/jobseeker/generate-pdf-py",
+        `https://apiwl.novajobs.us//api/user/download-resume/${resumeId}`,
         { html: fullContent, pdf_type: 1 },
+
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // Ensure "Bearer" prefix
+            Authorization: token,
           },
         }
       );
 
       initiateCheckout(); // Call this only if the request is successful
     } catch (error) {
-      console.error("PDF generation error:", error.response);
-
-      if (error.response?.status === 401) {
-        toast.error("Session expired, but staying on the page.");
-      } else {
-        toast.error(
-          error.response?.data?.message || "Failed to generate and open PDF"
-        );
-      }
+      console.error("PDF generation error:", error);
+      toast.error(
+        error.response?.data?.message || "Failed to generate and open PDF"
+      );
     } finally {
       setisDownloading(false); // Ensure loading is stopped after success or failure
     }
   };
+  // const downloadAsPDF = async () => {
+  //   handleFinish();
+  //   if (!templateRef.current) {
+  //     toast.error("Template reference not found");
+  //     return;
+  //   }
+
+  //   setisDownloading(true); // Start loading before the async operation
+
+  //   try {
+  //     const htmlContent = templateRef.current.innerHTML;
+
+  //     const fullContent = `
+  //           <style>
+  //               @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+  //           </style>
+  //           ${htmlContent}
+  //       `;
+
+  //     const response = await axios.post(
+  //       `https://apiwl.novajobs.us/api/user/download-resume/${resumeId}`,
+  //       { html: fullContent, pdf_type: 1 },
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${token}`, // Ensure "Bearer" prefix
+  //         },
+  //       }
+  //     );
+
+  //     initiateCheckout(); // Call this only if the request is successful
+  //   } catch (error) {
+  //     console.error("PDF generation error:", error.response);
+
+  //     if (error.response?.status === 401) {
+  //       toast.error("Session expired, but staying on the page.");
+  //     } else {
+  //       toast.error(
+  //         error.response?.data?.message || "Failed to generate and open PDF"
+  //       );
+  //     }
+  //   } finally {
+  //     setisDownloading(false); // Ensure loading is stopped after success or failure
+  //   }
+  // };
 
   const initiateCheckout = async () => {
     try {
