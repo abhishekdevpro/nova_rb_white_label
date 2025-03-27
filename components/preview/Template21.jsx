@@ -77,7 +77,7 @@
 //                 alt="Profile"
 //               />
 //             </div>
- 
+
 //             <div className="text-left text-white">
 //             <ContactAndSocialMedia
 //               contactData={{
@@ -142,7 +142,6 @@
 //             </Droppable>
 //           </div>
 
-          
 //         </div>
 
 //         <div className="bg-slate-300 w-2/3">
@@ -388,7 +387,7 @@
 //               Log HTML Content
 //             </button>
 //           </div>
-          
+
 //         </div>
 //       </div>
 //     </div>
@@ -466,7 +465,7 @@ const Template21 = () => {
   };
 
   return (
-    <div ref={templateRef} className="max-w-4xl mx-auto p-2 bg-white shadow-md border">
+    <div ref={templateRef} className="">
       <div className="flex">
         <div className="bg-cyan-500 p-5 w-1/3">
           <div className="mb-5">
@@ -481,7 +480,7 @@ const Template21 = () => {
                 alt="Profile"
               />
             </div>
- 
+
             <div className="text-left text-white">
               <ContactAndSocialMedia
                 contactData={{
@@ -797,4 +796,3 @@ const Template21 = () => {
 };
 
 export default Template21;
-
