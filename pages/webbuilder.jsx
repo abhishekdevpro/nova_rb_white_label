@@ -36,6 +36,7 @@ import { ResumeContext } from "../components/context/ResumeContext";
 import { parse } from "path";
 import { toast } from "react-toastify";
 import { SaveLoader } from "../components/ResumeLoader/SaveLoader";
+import FontSelector from "./FontSelector";
 
 const Print = dynamic(() => import("../components/utility/WinPrint"), {
   ssr: false,
@@ -724,7 +725,7 @@ export default function WebBuilder() {
                 </div>
 
                 <div className="hidden lg:flex items-center gap-4">
-                  <select
+                  {/* <select
                     value={selectedFont}
                     onChange={handleFontChange}
                     className="w-40 h-10 rounded-lg border border-blue-800 px-4 font-bold text-blue-800 bg-white focus:ring-2 focus:ring-blue-800"
@@ -734,7 +735,8 @@ export default function WebBuilder() {
                     <option value="Georgia">Georgia</option>
                     <option value="Roboto">Roboto</option>
                     <option value="Poppins">Poppins</option>
-                  </select>
+                  </select> */}
+                  <FontSelector />
 
                   <div className="flex items-center gap-4">
                     <ColorPickers
@@ -825,7 +827,7 @@ export default function WebBuilder() {
           <div className="flex flex-col">
             <div className="hidden md:flex w-screen px-8 py-4 justify-between items-center bg-white shadow">
               <div className="flex gap-4">
-                <select
+                {/* <select
                   value={selectedFont}
                   onChange={handleFontChange}
                   className="px-4 py-2 border rounded-lg"
@@ -835,7 +837,10 @@ export default function WebBuilder() {
                   <option value="Georgia">Georgia</option>
                   <option value="Roboto">Roboto</option>
                   <option value="Poppins">Poppins</option>
-                </select>
+                </select> */}
+                <div className="mt-3">
+                  <FontSelector />
+                </div>
                 <ColorPickers
                   selectmultiplecolor={backgroundColorss}
                   onChange={setBgColor}
