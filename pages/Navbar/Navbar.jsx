@@ -5,7 +5,18 @@ import logo from "../Navbar/logo.jpg";
 import Image from "next/image";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { FileCog, FileText, Grid, Home, LogIn, LogOut, Mail, Settings, User, X } from "lucide-react";
+import {
+  FileCog,
+  FileText,
+  Grid,
+  Home,
+  LogIn,
+  LogOut,
+  Mail,
+  Settings,
+  User,
+  X,
+} from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -246,55 +257,55 @@ const Navbar = () => {
                   //     Logout
                   //   </button>
                   // </div>
-                  <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md text-black">
-  <Link
-    href="https://novajobs.us/user/jobs-profile"
-    className="block px-4 py-2 hover:bg-gray-200 flex items-center space-x-2"
-    onClick={() => setIsDropdownOpen(false)}
-  >
-    <User className="w-5 h-5 text-gray-500" />
-    <span>Profile</span>
-  </Link>
-  <Link
-    href="/dashboard"
-    className=" px-4 py-2 hover:bg-gray-200 flex items-center space-x-2"
-    onClick={() => setIsDropdownOpen(false)}
-  >
-    <Grid className="w-5 h-5 text-gray-500" />
-    <span>Dashboard</span>
-  </Link>
-  <Link
-    href="/dashboard/resumelist"
-    className="px-4 py-2 hover:bg-gray-200 flex items-center space-x-2"
-  >
-    <FileText className="w-5 h-5 text-gray-500" />
-    <span>My Resumes</span>
-  </Link>
-  <Link
-    href="/dashboard/cvletterlist"
-    className=" px-4 py-2 hover:bg-gray-200 flex items-center space-x-2"
-  >
-    <FileText className="w-5 h-5 text-gray-500" />
-    <span>Cover Letter</span>
-  </Link>
-  <Link
-    href="/settings"
-    className="px-4 py-2 hover:bg-gray-200 flex items-center space-x-2"
-  >
-    <Settings className="w-5 h-5 text-gray-500" />
-    <span>Settings</span>
-  </Link>
-  <button
-    onClick={() => {
-      handleLogout();
-      setIsDropdownOpen(false);
-    }}
-    className="w-full text-left px-4 py-2 hover:bg-gray-200 flex items-center space-x-2"
-  >
-    <LogOut className="w-5 h-5 text-gray-500" />
-    <span>Logout</span>
-  </button>
-</div>
+                  <div className="absolute right-0 mt-2 w-48 z-50 bg-white shadow-lg rounded-md text-black">
+                    <Link
+                      href="https://novajobs.us/user/jobs-profile"
+                      className="block px-4 py-2 hover:bg-gray-200 flex items-center space-x-2"
+                      onClick={() => setIsDropdownOpen(false)}
+                    >
+                      <User className="w-5 h-5 text-gray-500" />
+                      <span>Profile</span>
+                    </Link>
+                    <Link
+                      href="/dashboard"
+                      className=" px-4 py-2 hover:bg-gray-200 flex items-center space-x-2"
+                      onClick={() => setIsDropdownOpen(false)}
+                    >
+                      <Grid className="w-5 h-5 text-gray-500" />
+                      <span>Dashboard</span>
+                    </Link>
+                    <Link
+                      href="/dashboard/resumelist"
+                      className="px-4 py-2 hover:bg-gray-200 flex items-center space-x-2"
+                    >
+                      <FileText className="w-5 h-5 text-gray-500" />
+                      <span>My Resumes</span>
+                    </Link>
+                    <Link
+                      href="/dashboard/cvletterlist"
+                      className=" px-4 py-2 hover:bg-gray-200 flex items-center space-x-2"
+                    >
+                      <FileText className="w-5 h-5 text-gray-500" />
+                      <span>Cover Letter</span>
+                    </Link>
+                    <Link
+                      href="/settings"
+                      className="px-4 py-2 hover:bg-gray-200 flex items-center space-x-2"
+                    >
+                      <Settings className="w-5 h-5 text-gray-500" />
+                      <span>Settings</span>
+                    </Link>
+                    <button
+                      onClick={() => {
+                        handleLogout();
+                        setIsDropdownOpen(false);
+                      }}
+                      className="w-full text-left px-4 py-2 hover:bg-gray-200 flex items-center space-x-2"
+                    >
+                      <LogOut className="w-5 h-5 text-gray-500" />
+                      <span>Logout</span>
+                    </button>
+                  </div>
                 )}
               </div>
             ) : (

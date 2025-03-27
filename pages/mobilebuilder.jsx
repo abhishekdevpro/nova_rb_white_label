@@ -34,6 +34,7 @@ import applepay from "./builderImages/apple-pay.png";
 import { ResumeContext } from "../components/context/ResumeContext";
 import { toast } from "react-toastify";
 import { SaveLoader } from "../components/ResumeLoader/SaveLoader";
+import FontSelector from "./FontSelector";
 
 const Print = dynamic(() => import("../components/utility/WinPrint"), {
   ssr: false,
@@ -663,7 +664,7 @@ export default function MobileBuilder() {
                 selectmultiplecolor={backgroundColorss}
                 onChange={setBgColor}
               />
-              <select
+              {/* <select
                 value={selectedFont}
                 onChange={handleFontChange}
                 className="rounded-lg border-2 border-blue-800 px-1 py-2 font-bold bg-white text-blue-800"
@@ -673,7 +674,8 @@ export default function MobileBuilder() {
                 <option value="Georgia">Georgia</option>
                 <option value="Roboto">Roboto</option>
                 <option value="Poppins">Poppins</option>
-              </select>
+              </select> */}
+              <FontSelector />
               <TemplateSelector
                 selectedTemplate={selectedTemplate}
                 setSelectedTemplate={setSelectedTemplate}
