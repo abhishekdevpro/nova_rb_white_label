@@ -74,10 +74,7 @@ const Template12 = () => {
   ];
 
   return (
-    <div
-      ref={templateRef}
-      className="max-w-4xl mx-auto bg-white p-8 border border-gray-200 rounded-lg shadow-lg"
-    >
+    <div ref={templateRef} className="">
       <div className="header text-start mb-6">
         <div className="flex justify-start items-center gap-4">
           {resumeData?.profilePicture && (
@@ -86,14 +83,14 @@ const Template12 = () => {
               alt="Profile Picture"
             />
           )}
-           <TextWrapper
-          name={resumeData.name}
-          position={resumeData.position}
-          headerColor={backgroundColorss}
-          orientation="column" // Use "column" for stacked layout
-        />
+          <TextWrapper
+            name={resumeData.name}
+            position={resumeData.position}
+            headerColor={backgroundColorss}
+            orientation="column" // Use "column" for stacked layout
+          />
         </div>
-       
+
         {/* <h1 className="text-2xl mb-1.5" style={{ color: headerColor }}>{resumeData.name}</h1> */}
         <ContactAndSocialMedia
           contactData={{
@@ -109,7 +106,7 @@ const Template12 = () => {
           className="justify-start gap-4 mt-4"
         />
       </div>
-      
+
       <SummaryWrapper
         summary={resumeData.summary}
         headerColor={"black"}
@@ -132,7 +129,10 @@ const Template12 = () => {
             resumeData={resumeData}
             headerColor={backgroundColorss}
           />
-          <ProjectsSection resumeData={resumeData} headerColor={backgroundColorss} />
+          <ProjectsSection
+            resumeData={resumeData}
+            headerColor={backgroundColorss}
+          />
         </div>
       </section>
 
@@ -204,7 +204,5 @@ const Template12 = () => {
     </div>
   );
 };
-
-
 
 export default Template12;

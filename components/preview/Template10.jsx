@@ -256,7 +256,6 @@
 
 // export default Template10;
 
-
 // import React from "react";
 import { useContext, useRef } from "react";
 // import { ResumeContext } from "../../pages/builder";
@@ -333,12 +332,8 @@ const Template10 = () => {
   ];
 
   return (
-    <div
-      ref={templateRef}
-      className="max-w-4xl mx-auto bg-white p-8 border border-gray-200 rounded-lg shadow-lg"
-    >
+    <div ref={templateRef} className="">
       <div className="header text-center mb-6">
-       
         <TextWrapper
           name={resumeData.name}
           position={resumeData.position}
@@ -383,7 +378,10 @@ const Template10 = () => {
             resumeData={resumeData}
             headerColor={backgroundColorss}
           />
-          <ProjectsSection resumeData={resumeData} headerColor={backgroundColorss} />
+          <ProjectsSection
+            resumeData={resumeData}
+            headerColor={backgroundColorss}
+          />
         </div>
       </section>
 
@@ -455,7 +453,5 @@ const Template10 = () => {
     </div>
   );
 };
-
-
 
 export default Template10;

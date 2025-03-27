@@ -232,19 +232,33 @@ export default function MobileBuilder() {
             ${htmlContent}
         `;
 
-      const response = await axios.post(
+      const response = await axios.get(
         // "https://apiwl.novajobs.us/api/jobseeker/generate-pdf-py",
-        `https://apiwl.novajobs.us/api/user/download-resume/${resumeId}`,
-        { html: fullContent, pdf_type: 1 },
+        `https://apiwl.novajobs.us/api/user/download-resume/${resumeId}?pdf_type=${selectedPdfType}`,
+        // { pdf_type: 1 },
 
         {
           headers: {
             Authorization: token,
             "Content-Type": "application/pdf",
           },
+          responseType: "blob",
         }
       );
-      downloadPDF();
+      const url = window.URL.createObjectURL(
+        new Blob([response.data], { type: "application/pdf" })
+      );
+      const link = document.createElement("a");
+      link.href = url;
+
+      link.setAttribute("download", `resume.pdf`);
+      document.body.appendChild(link);
+      link.click();
+
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+
+      // downloadPDF();
       // initiateCheckout(); // Call this only if the request is successful
     } catch (error) {
       console.error("PDF generation error:", error);
@@ -341,6 +355,7 @@ export default function MobileBuilder() {
   const downloadPDF = async () => {
     handleFinish();
     try {
+      const token = localStorage.getItem("token");
       const response = await axios.get(
         `https://apiwl.novajobs.us/api/user/download-file/11/${resumeId}`,
         {
