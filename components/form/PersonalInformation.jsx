@@ -904,12 +904,10 @@ const PersonalInformation = () => {
           keyword
         )}&lang=${language}`
       );
-      if (response.ok) {
-        const data = await response.json();
-        const locations = data.data.location_names.map((item) => item);
-        setLocationSuggestions(locations);
-        setShowLocationDropdown(true);
-      }
+      const data = response.data;
+      const locations = data.data.location_names.map((item) => item);
+      setLocationSuggestions(locations);
+      setShowLocationDropdown(true);
     } catch (error) {
       console.error("Error fetching locations:", error);
     }
@@ -1290,6 +1288,14 @@ const PersonalInformation = () => {
                           if (field === "address")
                             setShowLocationDropdown(true);
                         }}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            if (field === "address")
+                              setShowLocationDropdown(false);
+                            if (field === "position")
+                              setShowJobTitleDropdown(false);
+                          }
+                        }}
                       />
 
                       {/* Error Icon for Other Fields */}
@@ -1315,7 +1321,7 @@ const PersonalInformation = () => {
                         isLoading[
                           field === "position" ? "jobTitle" : "location"
                         ] && (
-                          <div className="absolute right-8">
+                          <div className="absolute right-8 top-2">
                             <Loader2 className="w-5 h-5 animate-spin text-gray-400" />
                           </div>
                         )}

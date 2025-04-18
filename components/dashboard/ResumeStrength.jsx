@@ -389,7 +389,7 @@ const ResumeStrength = ({ score, strength, resumeId }) => {
 
   const getScoreColor = (score, maxScore) => {
     const percentage = (score / maxScore) * 100;
-    if (percentage >= 70) return "bg-green-500";
+    if (percentage >= 50) return "bg-green-500";
     return "bg-red-600";
   };
 

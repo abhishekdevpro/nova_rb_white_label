@@ -15,9 +15,10 @@ import { BASE_URL } from "../../components/Constant/constant";
 import JobSearch from "../JobSearch";
 import { ResumeContext } from "../../components/context/ResumeContext";
 import PricingSection from "../../components/Pricing/PricingPlan";
+import CurrentPlan from "../settings/currentplan";
 export default function DashboardPage() {
   const { t } = useTranslation();
-  const {selectedLang} = useContext(ResumeContext)
+  const { selectedLang } = useContext(ResumeContext);
   const [strength, setStrength] = useState(null);
   const [resumeId, setResumeId] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -118,7 +119,7 @@ export default function DashboardPage() {
           <h1 className="text-2xl font-bold mb-6">
             {t("dashboard_page.recommendedSteps")}
           </h1>
-
+          <CurrentPlan />
           <ResumeStrength
             score={strength.resume_strenght || 0}
             strength={strength || {}}

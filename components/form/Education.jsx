@@ -50,22 +50,29 @@ const Education = () => {
     }
 
     setIsLoading((prev) => ({ ...prev, university: true }));
+
     try {
       const response = await axiosInstance.get(
         `/api/user/university-lists?university_keyword=${encodeURIComponent(
           keyword
         )}&lang=${language}`
       );
-      if (response.ok) {
-        const data = await response.json();
-        setUniversitySuggestions(data.data.map((item) => item.name));
-        setShowUniversityDropdown(true);
-      }
+
+      // ✅ Axios returns parsed data directly
+      const data = response.data;
+      const universityList = data?.data || [];
+
+      setUniversitySuggestions(universityList.map((item) => item.name));
+      setShowUniversityDropdown(true);
+      // setUniversitySuggestions(data.data.map((item) => item.name));
+      // setShowUniversityDropdown(true);
     } catch (error) {
       console.error("Error fetching universities:", error);
     }
+
     setIsLoading((prev) => ({ ...prev, university: false }));
   };
+
   const fetchDegrees = async (keyword, index) => {
     if (!keyword || keyword.length < 1) {
       setDegreeSuggestions([]);
@@ -367,6 +374,12 @@ const Education = () => {
                 value={education.school}
                 onChange={(e) => handleEducation(e, index)}
                 onClick={(e) => e.stopPropagation()}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault(); // prevent form submission if needed
+                    setShowUniversityDropdown(false); // ✅ hide suggestions
+                  }
+                }}
               />
               {isLoading.university && (
                 <div className="absolute right-8 top-1/2 -translate-y-1/2">
@@ -690,6 +703,12 @@ const Education = () => {
                 value={education.location}
                 onChange={(e) => handleEducation(e, index)}
                 onClick={(e) => e.stopPropagation()}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault(); // prevent form submission if needed
+                    setShowLocationDropdown(false); // ✅ hide suggestions
+                  }
+                }}
               />
               {isLoading.location && (
                 <div className="absolute right-8 top-1/2 -translate-y-1/2">

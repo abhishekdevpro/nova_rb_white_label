@@ -90,8 +90,8 @@ const Projects = () => {
     const newProjects = [...resumeData.projects];
     const achievements = e.target.value
       .split("\n")
-      .map((item) => item.trim())
-      .filter((item) => item !== "");
+      // .map((item) => item.trim())
+      .filter((item) => item.trim !== "");
 
     newProjects[projectIndex].keyAchievements = achievements;
 
@@ -233,11 +233,21 @@ const Projects = () => {
       setKeyAchievements(
         response.data.data.resume_analysis.responsibilities || []
       );
+      const successMessage =
+        response?.data?.message || "Key Achievments generated successfully!";
+      toast.success(successMessage);
       setPopupIndex(index);
       setPopupType("keyAchievements");
       setShowPopup(true);
     } catch (err) {
-      setError(err.message);
+      const apiErrorMessage =
+        err?.response?.data?.message ||
+        err?.response?.data?.error ||
+        err.message ||
+        "Something went wrong";
+
+      setError(apiErrorMessage);
+      toast.error(apiErrorMessage);
     } finally {
       setLoadingStates((prev) => ({
         ...prev,
@@ -273,6 +283,7 @@ const Projects = () => {
       const updatedAchievements = [...currentAchievements, ...filteredSelected];
 
       newProjects[index].keyAchievements = updatedAchievements;
+
       setSelectedKeyAchievements([]);
     } else if (popupType === "description") {
       if (selectedDescriptions.length > 0) {
@@ -435,16 +446,27 @@ const Projects = () => {
         }
       );
 
-      // setDescriptions(response.data.data.resume_analysis.project_summaries);
       const projectSummaries =
         response.data.data.resume_analysis.project_summaries || [];
       setDescriptions(projectSummaries);
+
+      // ✅ Show success toast message from API if available
+      const successMessage =
+        response?.data?.message || "Descriptions generated successfully!";
+      toast.success(successMessage);
 
       setPopupIndex(projectIndex);
       setPopupType("description");
       setShowPopup(true);
     } catch (err) {
-      setError(err.message);
+      const apiErrorMessage =
+        err?.response?.data?.message ||
+        err?.response?.data?.error ||
+        err.message ||
+        "Something went wrong";
+
+      setError(apiErrorMessage);
+      toast.error(apiErrorMessage);
     } finally {
       setLoadingStates((prev) => ({
         ...prev,
@@ -784,7 +806,12 @@ const Projects = () => {
                     name="KeyAchievements"
                     placeholder="Enter key achievements (one per line)"
                     className="w-full other-input border-black border "
-                    value={project.keyAchievements}
+                    // value={project.keyAchievements}
+                    value={
+                      Array.isArray(project?.keyAchievements)
+                        ? project.keyAchievements.join("\n")
+                        : project?.keyAchievements || ""
+                    }
                     onChange={(e) => handleKeyAchievement(e, projectIndex)}
                     maxLength={1000}
                   />
@@ -1016,69 +1043,7 @@ const Projects = () => {
         add={addProjects}
         remove={removeProjects}
       />
-      {/* {showPopup && (
-      
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg w-[90%] max-w-lg">
-            <h3 className="text-xl font-bold mb-4">
-              {popupType === "description"
-                ? "Select Description"
-                : "Select Key Achievements"}
-            </h3>
-            <div className="space-y-3 max-h-96 overflow-y-auto">
-              {(popupType === "description"
-                ? descriptions
-                : keyAchievements
-              ).map((item, index) => (
-                <div key={index} className="flex items-start gap-3">
-                    {popupType === "description" ? (
-                    <input
-                      type="radio"
-                      name="description" // Ensures only one can be selected
-                      checked={selectedDescriptions.includes(item)}
-                      onChange={() => setSelectedDescriptions([item])} // Only one selection
-                      className="mt-1"
-                    />
-                  ) : (
-                    // Checkbox for key achievements (Multi Select)
-                    <input
-                      type="checkbox"
-                      checked={selectedKeyAchievements.includes(item)}
-                      onChange={() => handleSummarySelect(item)}
-                      className="mt-1"
-                    />
-                  )}
-                  <input
-                    type="checkbox"
-                    checked={
-                      popupType === "description"
-                        ? selectedDescriptions.includes(item)
-                        : selectedKeyAchievements.includes(item)
-                    }
-                    onChange={() => handleSummarySelect(item)}
-                    className="mt-1"
-                  />
-                  <p className="text-gray-800">{item}</p>
-                </div>
-              ))}
-            </div>
-            <div className="flex gap-2 mt-4">
-              <button
-                onClick={(e) => handleSaveSelectedSummary(popupIndex, e)}
-                className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-600"
-              >
-                Save Selection
-              </button>
-              <button
-                onClick={() => setShowPopup(false)}
-                className="bg-gray-400 text-black px-4 py-2 rounded hover:bg-gray-300"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )} */}
+
       {showPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-lg w-[90%] max-w-lg">
