@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { BASE_URL } from "../Constant/constant";
 import { useTranslation } from "react-i18next";
 import axiosInstance from "../utils/axiosInstance";
+import { toast } from "react-toastify";
 const Skill = ({ title, currentSkillIndex }) => {
   const { i18n, t } = useTranslation();
   const language = i18n.language;
@@ -248,7 +249,9 @@ const Skill = ({ title, currentSkillIndex }) => {
       );
 
       if (!skillType || !skillType.skills.length) {
-        setError("No skills found for this category.");
+        const msg = "No skills found for this category.";
+        setError(msg);
+        toast.warn(msg);
         return;
       }
 
@@ -269,14 +272,28 @@ const Skill = ({ title, currentSkillIndex }) => {
       if (response.data.status === "success") {
         setAiSkills(response.data.data.resume_analysis.skills || []);
         setIsModalOpen(true);
+
+        // ✅ Show success toast (from API message or fallback)
+        const successMessage =
+          response?.data?.message || "AI Skills generated successfully!";
+        toast.success(successMessage);
       } else {
-        setError("Unable to fetch AI data. Please try again.");
+        const msg =
+          response?.data?.message ||
+          "Unable to fetch AI data. Please try again.";
+        setError(msg);
+        toast.error(msg);
       }
     } catch (error) {
       console.error("Error getting AI skills data:", error);
-      setError(
-        "An error occurred while fetching skills data. Please try again."
-      );
+
+      const errorMsg =
+        error?.response?.data?.message ||
+        error?.response?.data?.error ||
+        "An error occurred while fetching skills data. Please try again.";
+
+      setError(errorMsg);
+      toast.error(errorMsg);
     } finally {
       setLoading(false);
     }
@@ -316,7 +333,7 @@ const Skill = ({ title, currentSkillIndex }) => {
     (skillType) => skillType.title === title
   );
 
-  if (!skillType || skillType.skills.length === 0) {
+  if (!skillType) {
     return null;
   }
 
@@ -324,103 +341,123 @@ const Skill = ({ title, currentSkillIndex }) => {
     <>
       <div className="  flex-col-gap-3 w-full mt-10 px-10">
         <h2 className="input-title text-black text-xl">{title}</h2>
-        {skillType.skills.map((skill, index) => (
-          <div key={index} className="relative flex items-center space-x-2">
-            <div className="relative w-full">
-              <input
-                type="text"
-                placeholder={title}
-                name={title}
-                className={`w-full other-input border ${
-                  improve && hasErrors(index)
-                    ? "border-red-500"
-                    : "border-black"
-                }`}
-                value={skill}
-                onChange={(e) => handleSkill(e, index, title)}
-                onKeyDown={(e) => handleKeyDown(e, index, title)}
-                onFocus={() => {
-                  if (skill.length >= 2) {
-                    fetchSuggestions(skill, index);
-                  }
-                }}
-              />
-              {showSuggestions &&
-                activeInputIndex === index &&
-                suggestions.length > 0 && (
-                  <div
-                    ref={suggestionsRef}
-                    className="absolute z-50 w-full bg-white mt-1 border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto"
-                  >
-                    {suggestions.map((suggestion, i) => (
-                      <div
-                        key={suggestion.id}
-                        className={`px-4 py-2 cursor-pointer hover:bg-gray-100 ${
-                          i === activeSuggestionIndex ? "bg-gray-100" : ""
-                        }`}
-                        onClick={() =>
-                          handleSelectSuggestion(suggestion, index, title)
-                        }
-                      >
-                        {suggestion.name}
-                      </div>
-                    ))}
-                  </div>
-                )}
-            </div>
-
-            {improve && hasErrors(index) && (
-              <button
-                type="button"
-                className="absolute right-8 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
-                onClick={() =>
-                  setActiveTooltip(
-                    activeTooltip === `skill-${index}` ? null : `skill-${index}`
-                  )
-                }
-              >
-                <AlertCircle className="w-5 h-5" />
-              </button>
-            )}
-
+        {skillType.skills.length === 0 ? (
+          <div className="mb-4">
+            <p className="text-gray-600 mb-2">
+              {t("noSkillsFound") || "No skills found."}
+            </p>
             <button
               type="button"
-              onClick={() => removeSkill(title, index)}
-              className="bg-red-500 text-white hover:bg-red-700 py-2 px-2"
-              aria-label="Delete skill"
+              onClick={() => addSkill(title)}
+              className="bg-black text-white px-4 py-2 rounded"
             >
-              <Trash />
+              {"Add Skill"}
             </button>
-
-            {activeTooltip === `skill-${index}` && (
-              <div className="absolute z-10 right-10 top-10 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200">
-                <div className="bg-red-50 px-4 py-2 rounded-t-lg border-b border-red-100">
-                  <div className="flex items-center gap-2">
-                    <AlertCircle className="w-5 h-5 text-red-600" />
-                    <span className="font-medium text-red-800">
-                      Skill Error
-                    </span>
-                  </div>
-                </div>
-                <div className="p-4">
-                  {getErrorMessages(index).map((msg, i) => (
-                    <div key={i} className="text-gray-700 text-sm mb-2">
-                      {msg}
-                    </div>
-                  ))}
-                </div>
-                <div className="border-t border-gray-100 p-3 flex justify-end">
-                  <button
-                    onClick={() => setActiveTooltip(null)}
-                    className="text-blue-600 hover:text-blue-800 text-sm font-medium"
-                  >
-                    Dismiss
-                  </button>
-                </div>
-              </div>
-            )}
           </div>
-        ))}
+        ) : (
+          <>
+            {/* Your skill inputs rendering code here */}
+            {skillType.skills.map((skill, index) => (
+              <div key={index} className="relative flex items-center space-x-2">
+                <div className="relative w-full">
+                  <input
+                    type="text"
+                    placeholder={title}
+                    name={title}
+                    className={`w-full other-input border ${
+                      improve && hasErrors(index)
+                        ? "border-red-500"
+                        : "border-black"
+                    }`}
+                    value={skill}
+                    onChange={(e) => handleSkill(e, index, title)}
+                    onKeyDown={(e) => handleKeyDown(e, index, title)}
+                    onFocus={() => {
+                      if (skill.length >= 2) {
+                        fetchSuggestions(skill, index);
+                      }
+                    }}
+                  />
+                  {showSuggestions &&
+                    activeInputIndex === index &&
+                    suggestions.length > 0 && (
+                      <div
+                        ref={suggestionsRef}
+                        className="absolute z-50 w-full bg-white mt-1 border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto"
+                      >
+                        {suggestions.map((suggestion, i) => (
+                          <div
+                            key={suggestion.id}
+                            className={`px-4 py-2 cursor-pointer hover:bg-gray-100 ${
+                              i === activeSuggestionIndex ? "bg-gray-100" : ""
+                            }`}
+                            onClick={() =>
+                              handleSelectSuggestion(suggestion, index, title)
+                            }
+                          >
+                            {suggestion.name}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                </div>
+
+                {improve && hasErrors(index) && (
+                  <button
+                    type="button"
+                    className="absolute right-8 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
+                    onClick={() =>
+                      setActiveTooltip(
+                        activeTooltip === `skill-${index}`
+                          ? null
+                          : `skill-${index}`
+                      )
+                    }
+                  >
+                    <AlertCircle className="w-5 h-5" />
+                  </button>
+                )}
+
+                <button
+                  type="button"
+                  onClick={() => removeSkill(title, index)}
+                  className="bg-red-500 text-white hover:bg-red-700 py-2 px-2"
+                  aria-label="Delete skill"
+                >
+                  <Trash />
+                </button>
+
+                {activeTooltip === `skill-${index}` && (
+                  <div className="absolute z-10 right-10 top-10 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200">
+                    <div className="bg-red-50 px-4 py-2 rounded-t-lg border-b border-red-100">
+                      <div className="flex items-center gap-2">
+                        <AlertCircle className="w-5 h-5 text-red-600" />
+                        <span className="font-medium text-red-800">
+                          Skill Error
+                        </span>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      {getErrorMessages(index).map((msg, i) => (
+                        <div key={i} className="text-gray-700 text-sm mb-2">
+                          {msg}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="border-t border-gray-100 p-3 flex justify-end">
+                      <button
+                        onClick={() => setActiveTooltip(null)}
+                        className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                      >
+                        Dismiss
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </>
+        )}
 
         <div className="flex space-x-4">
           <FormButton

@@ -280,11 +280,22 @@ const WorkExperience = () => {
       setDescriptions(
         response.data.data.resume_analysis.professional_summaries
       ); // ✅ Store in descriptions state
+      const successMessage =
+        response?.data?.message || "Descriptions generated successfully!";
+      toast.success(successMessage);
+
       setPopupIndex(index);
       setPopupType("description");
       setShowPopup(true);
     } catch (err) {
-      setError(err.message);
+      const apiErrorMessage =
+        err?.response?.data?.message ||
+        err?.response?.data?.error ||
+        err.message ||
+        "Something went wrong";
+
+      setError(apiErrorMessage);
+      toast.error(apiErrorMessage);
     } finally {
       setLoadingStates((prev) => ({
         ...prev,
@@ -329,11 +340,22 @@ const WorkExperience = () => {
       );
 
       setKeyAchievements(response.data.data.resume_analysis.responsibilities); // ✅ Store in keyAchievements state
+      const successMessage =
+        response?.data?.message || "Key Achievments generated successfully!";
+      toast.success(successMessage);
+
       setPopupIndex(index);
       setPopupType("keyAchievements");
       setShowPopup(true);
     } catch (err) {
-      setError(err.message);
+      const apiErrorMessage =
+        err?.response?.data?.message ||
+        err?.response?.data?.error ||
+        err.message ||
+        "Something went wrong";
+
+      setError(apiErrorMessage);
+      toast.error(apiErrorMessage);
     } finally {
       setLoadingStates((prev) => ({
         ...prev,
@@ -341,28 +363,33 @@ const WorkExperience = () => {
       }));
     }
   };
-  const handleKeyAchievement = (e, index) => {
-    const newWorkExperience = [...resumeData.workExperience];
-    const achievements = e.target.value
-      .split("\n")
-      .map((item) => item.trim())
-      .filter((item) => item !== "");
-
-    newWorkExperience[index].keyAchievements = achievements;
-
-    // Optional: Track user-modified achievements separately if needed
-    setSelectedKeyAchievements(achievements); // sync with popup logic
-
-    setResumeData({ ...resumeData, workExperience: newWorkExperience });
-  };
   // const handleKeyAchievement = (e, index) => {
   //   const newWorkExperience = [...resumeData.workExperience];
   //   const achievements = e.target.value
   //     .split("\n")
-  //     .filter((item) => item.trim());
+  //     // .map((item) => item.trim())
+  //     // .filter((item) => item.trim !== "");
+  //     .filter((item) => item.trim() !== "");
+
   //   newWorkExperience[index].keyAchievements = achievements;
+
+  //   // Optional: Track user-modified achievements separately if needed
+  //   setSelectedKeyAchievements(achievements); // sync with popup logic
+
   //   setResumeData({ ...resumeData, workExperience: newWorkExperience });
   // };
+  const handleKeyAchievement = (e, index) => {
+    const newWorkExperience = [...resumeData.workExperience];
+    const achievements = e.target.value
+      .split("\n")
+      // .map((item) => item.trim())
+      .filter((item) => item.trim !== "");
+
+    newWorkExperience[index].keyAchievements = achievements;
+
+    setSelectedKeyAchievements(achievements); // sync with popup logic
+    setResumeData({ ...resumeData, workExperience: newWorkExperience });
+  };
 
   const handleSummarySelect = (item) => {
     if (popupType === "description") {
@@ -524,6 +551,8 @@ const WorkExperience = () => {
       const updatedAchievements = [...currentAchievements, ...filteredSelected];
 
       newWorkExperience[index].keyAchievements = updatedAchievements;
+      // newWorkExperience[index].rawKeyAchievementsText =
+      //   updatedAchievements.join("\n");
       setSelectedKeyAchievements([]);
     } else if (popupType === "description") {
       if (selectedDescriptions.length > 0) {
@@ -661,6 +690,46 @@ const WorkExperience = () => {
       return parts[1] || "";
     }
   };
+  const handleKeyAchievementsChange = (e, index) => {
+    const newWorkExperience = [...resumeData.workExperience];
+    newWorkExperience[index].rawKeyAchievementsText = e.target.value;
+
+    setResumeData({ ...resumeData, workExperience: newWorkExperience });
+  };
+
+  const handleKeyAchievementsBlur = (index) => {
+    const newWorkExperience = [...resumeData.workExperience];
+    const rawText = newWorkExperience[index].rawKeyAchievementsText || "";
+
+    const achievements = rawText
+      .split("\n")
+      .map((item) => item.trim())
+      .filter((item) => item !== "");
+
+    newWorkExperience[index].keyAchievements = achievements;
+
+    setSelectedKeyAchievements(achievements);
+    setResumeData({ ...resumeData, workExperience: newWorkExperience });
+  };
+  const handleJobTitleKeyDown = (e, index) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+
+      // Save the current input as custom value
+      const newWorkExperience = [...resumeData.workExperience];
+      const customTitle = newWorkExperience[index].position.trim();
+
+      if (customTitle) {
+        newWorkExperience[index].position = customTitle;
+        setResumeData({ ...resumeData, workExperience: newWorkExperience });
+      }
+
+      // Hide dropdown
+      setShowJobTitleDropdown(false);
+      setJobTitleSuggestions([]);
+    }
+  };
+
   return (
     <div className="flex-col gap-3 w-full md:mt-10 md:px-10">
       <h2 className="input-title text-black text-3xl mb-6">
@@ -671,6 +740,7 @@ const WorkExperience = () => {
           {t("builder_forms.work_experience.fresher_question")}
         </label>
         <button
+          type="button"
           className={`w-14 h-7 flex items-center rounded-full p-1 transition ${
             resumeData.is_fresher ? "bg-green-500" : "bg-gray-400"
           }`}
@@ -718,6 +788,18 @@ const WorkExperience = () => {
                   <label className="text-black">
                     {t("builder_forms.work_experience.company_name")}
                   </label>
+                  {/* <input
+                    type="text"
+                    placeholder="Company"
+                    name="company"
+                    className={`w-full other-input border ${
+                      improve && hasErrors(index, "company")
+                        ? "border-red-500"
+                        : "border-black"
+                    }`}
+                    value={experience.company}
+                    onChange={(e) => handleWorkExperience(e, index)}
+                  /> */}
                   <input
                     type="text"
                     placeholder="Company"
@@ -729,7 +811,14 @@ const WorkExperience = () => {
                     }`}
                     value={experience.company}
                     onChange={(e) => handleWorkExperience(e, index)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault(); // prevent form submission if needed
+                        setShowCompanyDropdown(false); // ✅ hide suggestions
+                      }
+                    }}
                   />
+
                   {showCompanyDropdown && companySuggestions.length > 0 && (
                     <div className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg">
                       {companySuggestions.map((company, i) => (
@@ -797,6 +886,18 @@ const WorkExperience = () => {
                   <label className="text-black">
                     {t("builder_forms.work_experience.job_title")}
                   </label>
+                  {/* <input
+                    type="text"
+                    placeholder="Position"
+                    name="position"
+                    className={`w-full other-input border ${
+                      improve && hasErrors(index, "position")
+                        ? "border-red-500"
+                        : "border-black"
+                    }`}
+                    value={experience.position}
+                    onChange={(e) => handleWorkExperience(e, index)}
+                  /> */}
                   <input
                     type="text"
                     placeholder="Position"
@@ -808,7 +909,9 @@ const WorkExperience = () => {
                     }`}
                     value={experience.position}
                     onChange={(e) => handleWorkExperience(e, index)}
+                    onKeyDown={(e) => handleJobTitleKeyDown(e, index)}
                   />
+
                   {showJobTitleDropdown && jobTitleSuggestions.length > 0 && (
                     <div className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg">
                       {jobTitleSuggestions.map((jobTitle, i) => (
@@ -1084,6 +1187,12 @@ const WorkExperience = () => {
                     }`}
                     value={experience.location}
                     onChange={(e) => handleWorkExperience(e, index)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault(); // prevent form submission if needed
+                        setShowLocationDropdown(false); // ✅ hide suggestions
+                      }
+                    }}
                   />
                   {isLoading.location && (
                     <div className="absolute right-3 top-1/2 transform translate-y-1">
@@ -1307,6 +1416,7 @@ const WorkExperience = () => {
                     }
                     onChange={(e) => handleKeyAchievement(e, index)}
                   />
+
                   {improve && hasErrors(index, "keyAchievements") && (
                     <button
                       type="button"

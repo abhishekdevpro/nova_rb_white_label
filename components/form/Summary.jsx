@@ -106,6 +106,53 @@ const Summary = () => {
     }
   };
 
+  // const handleAIAssist = async () => {
+  //   setLoading(true);
+  //   setError(null);
+  //   setSelectedSummaryIndex(null);
+
+  //   try {
+  //     const token = localStorage.getItem("token");
+  //     const response = await axios.post(
+  //       `${BASE_URL}/api/user/ai-resume-summery-data/${id}?lang=${language}`,
+  //       {
+  //         key: "resumesummery",
+  //         keyword: `professional summary in manner of description - ${Date.now()}`,
+  //         content: resumeData.position,
+  //         file_location: "",
+  //         lang: selectedLang,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: token,
+  //         },
+  //       }
+  //     );
+
+  //     if (
+  //       response.data.status === "success" &&
+  //       response.data.data?.resume_analysis?.professional_summaries
+  //     ) {
+  //       setSummaries(
+  //         response.data.data.resume_analysis.professional_summaries || []
+  //       );
+  //       setShowPopup(true);
+  //     } else {
+  //       setError("Unable to fetch summaries. Please try again.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error getting AI summaries:", error);
+  //     // setError("An error occurred while fetching summaries. Please try again.");
+  //     const errorMessage =
+  //       error?.response?.data?.message ||
+  //       "An error occurred while fetching summaries.";
+
+  //     toast.error(errorMessage); // show toast with API message
+  //     setError(errorMessage);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
   const handleAIAssist = async () => {
     setLoading(true);
     setError(null);
@@ -129,25 +176,27 @@ const Summary = () => {
         }
       );
 
+      const { status, message, data } = response.data;
+
       if (
-        response.data.status === "success" &&
-        response.data.data?.resume_analysis?.professional_summaries
+        status === "success" &&
+        data?.resume_analysis?.professional_summaries
       ) {
-        setSummaries(
-          response.data.data.resume_analysis.professional_summaries || []
-        );
+        setSummaries(data.resume_analysis.professional_summaries || []);
         setShowPopup(true);
+        toast.success(message || "AI summaries fetched successfully.");
       } else {
-        setError("Unable to fetch summaries. Please try again.");
+        const fallbackMessage =
+          message || "Unable to fetch summaries. Please try again.";
+        toast.error(fallbackMessage);
+        setError(fallbackMessage);
       }
     } catch (error) {
       console.error("Error getting AI summaries:", error);
-      // setError("An error occurred while fetching summaries. Please try again.");
       const errorMessage =
         error?.response?.data?.message ||
         "An error occurred while fetching summaries.";
-
-      toast.error(errorMessage); // show toast with API message
+      toast.error(errorMessage);
       setError(errorMessage);
     } finally {
       setLoading(false);
