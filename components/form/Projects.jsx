@@ -611,7 +611,7 @@ const Projects = () => {
                     {improve && hasErrors(projectIndex, "link") && (
                       <button
                         type="button"
-                        className="absolute right-2 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
+                        className="absolute right-2 top-12 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
                         onClick={() =>
                           setActiveTooltip(
                             activeTooltip === `link-${projectIndex}`
@@ -718,7 +718,7 @@ const Projects = () => {
                   {improve && hasErrors(projectIndex, "description") && (
                     <button
                       type="button"
-                      className="absolute right-2 top-12 text-red-500 hover:text-red-600 transition-colors"
+                      className="absolute right-2 top-14 text-red-500 hover:text-red-600 transition-colors"
                       onClick={() =>
                         setActiveTooltip(
                           activeTooltip === `description-${projectIndex}`
