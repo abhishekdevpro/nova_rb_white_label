@@ -498,7 +498,7 @@ const SocialMedia = () => {
               type="button"
               onClick={() => removeSocialMedia(index)}
               aria-label="Remove"
-              className="p-2 text-white bg-red-700 rounded-lg text-xl mb-2"
+              className="p-2 mt-0 text-white bg-red-700 rounded-lg text-xl mb-4"
             >
               <MdRemoveCircle />
             </button>

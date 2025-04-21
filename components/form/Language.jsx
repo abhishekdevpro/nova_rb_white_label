@@ -149,7 +149,7 @@ const Language = () => {
                   {improve && hasErrors(index, "language") && (
                     <button
                       type="button"
-                      className="absolute right-3 top-[55%] -translate-y-1/2 text-red-500 hover:text-red-600 transition"
+                      className="absolute right-2 top-[68%] -translate-y-1/2 text-red-500 hover:text-red-600 transition"
                       onClick={() =>
                         setActiveTooltip(
                           activeTooltip === `language-${index}`

@@ -38,6 +38,7 @@
 
 //     )
 //   }
+
 import { useTranslation } from "react-i18next";
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
@@ -118,12 +119,14 @@ export default function ExperienceStep({ onNext, onBack, onChange, value }) {
       no_of_experience: value.experience,
     };
   };
-
   const handleSaveExperience = async () => {
-    if (!resumeData) return;
-
     if (!value.experience) {
       toast.error("Please select an experience level before proceeding");
+      return;
+    }
+
+    if (!resumeData) {
+      toast.error("Resume data not loaded yet. Please wait.");
       return;
     }
 
@@ -156,7 +159,6 @@ export default function ExperienceStep({ onNext, onBack, onChange, value }) {
 
       if (response.data.code === 200 || response.data.status === "success") {
         setIsSaved(true);
-        // localStorage.setItem("isSaved", "true");
         toast.success(response.data.message || "Experience saved Successfully");
         onNext();
       } else {
@@ -169,6 +171,55 @@ export default function ExperienceStep({ onNext, onBack, onChange, value }) {
       setIsLoading(false);
     }
   };
+
+  // const handleSaveExperience = async () => {
+  //   if (!value.experience) {
+  //     toast.error("Please select an experience level before proceeding");
+  //     return;
+  //   }
+  //   if (!resumeData) return;
+  //   // Update exp in context
+  //   setExp(value.experience);
+
+  //   const templateData = {
+  //     templateData: formatResumeData(resumeData),
+  //   };
+
+  //   setIsLoading(true);
+
+  //   try {
+  //     const resumeId = router.query.id || localStorage.getItem("resumeId");
+  //     if (!resumeId) {
+  //       toast.error("Resume ID not found");
+  //       return;
+  //     }
+
+  //     const response = await axios.put(
+  //       `${BASE_URL}/api/user/resume-update/${resumeId}`,
+  //       templateData,
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: token,
+  //         },
+  //       }
+  //     );
+
+  //     if (response.data.code === 200 || response.data.status === "success") {
+  //       setIsSaved(true);
+  //       // localStorage.setItem("isSaved", "true");
+  //       toast.success(response.data.message || "Experience saved Successfully");
+  //       onNext();
+  //     } else {
+  //       toast.error(response.data.error || "Error while saving the experience");
+  //     }
+  //   } catch (error) {
+  //     toast.error(error?.message || "Error updating resume!");
+  //     console.error("Error updating resume:", error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
   console.log(exp, "no-of exp");
   return (
     <div className="space-y-6">
@@ -212,11 +263,13 @@ export default function ExperienceStep({ onNext, onBack, onChange, value }) {
         </Link>
         <button
           onClick={handleSaveExperience}
-          disabled={loading || !value.experience}
+          // disabled={loading || !value.experience}
+          disabled={loading}
           className={`px-8 py-3 bg-green-600 text-white rounded-xl font-medium transition-all shadow-lg 
               ${
-                loading || !value.experience
-                  ? "opacity-70 cursor-not-allowed"
+                loading
+                  ? // || !value.experience
+                    "opacity-70 cursor-not-allowed"
                   : "hover:bg-green-700 hover:shadow-xl"
               }`}
         >

@@ -349,7 +349,7 @@ const Signup = () => {
 
     // Restrict phone input to only numeric values
     if (name === "phone") {
-      const numericValue = value.replace(/\D/g, ""); // Remove non-numeric characters
+      const numericValue = value.replace(/\D/g, "").slice(0, 16); // Remove non-numeric characters
       setFormData({ ...formData, [name]: numericValue });
     } else {
       setFormData({ ...formData, [name]: value });

@@ -837,7 +837,7 @@ const WorkExperience = () => {
                   {improve && hasErrors(index, "company") && (
                     <button
                       type="button"
-                      className="absolute right-2 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
+                      className="absolute right-2 top-12 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
                       onClick={() =>
                         setActiveTooltip(
                           activeTooltip === `company-${index}`
@@ -930,7 +930,7 @@ const WorkExperience = () => {
                   {improve && hasErrors(index, "position") && (
                     <button
                       type="button"
-                      className="absolute right-2 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
+                      className="absolute right-2 top-12 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
                       onClick={() =>
                         setActiveTooltip(
                           activeTooltip === `position-${index}`

@@ -499,7 +499,7 @@ const Education = () => {
             )}
           </div>
 
-          <div className="">
+          <div className="relative">
             <label className="text-black">
               {t("builder_forms.work_experience.start_date")}
             </label>
@@ -540,7 +540,7 @@ const Education = () => {
                 <>
                   <button
                     type="button"
-                    className="absolute -right-8 top-1 text-red-500"
+                    className="absolute right-[2px] top-[-1.5rem] text-red-500"
                     onClick={() =>
                       setActiveTooltip(
                         activeTooltip === `startYear-${index}`
@@ -590,7 +590,7 @@ const Education = () => {
             <label className="text-black">
               {t("builder_forms.work_experience.end_date")}
             </label>
-            <div className="flex-wrap-gap-2">
+            <div className="flex-wrap-gap-2 relative">
               <select
                 className={`other-input border flex-1 ${
                   improve && hasErrors(index, "endYear")
@@ -638,7 +638,7 @@ const Education = () => {
                 <>
                   <button
                     type="button"
-                    className="absolute -right-8 top-1 text-red-500"
+                    className="absolute right-[2px] top-[-1.5rem] text-red-500"
                     onClick={() =>
                       setActiveTooltip(
                         activeTooltip === `endYear-${index}`
