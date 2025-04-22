@@ -111,9 +111,13 @@ function Home_five() {
     };
 
     axios
-      .post(`${BASE_URL}/api/user/paypal/create-payment?lang=${selectedLang}`, payload, {
-        headers: { "Content-Type": "application/json" },
-      })
+      .post(
+        `${BASE_URL}/api/user/paypal/create-payment?lang=${selectedLang}`,
+        payload,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      )
       .then((response) => {
         const data = response.data;
         if (data && data.data) {
@@ -130,7 +134,7 @@ function Home_five() {
   const [name1, setName1] = useState("");
   const [email1, setEmail1] = useState("");
   const [phone1, setPhone1] = useState("");
-  const {selectedLang} = useContext(ResumeContext)
+  const { selectedLang } = useContext(ResumeContext);
   // Fixed price
 
   const handleCloseModal1 = () => setShowModal1(false);
@@ -149,9 +153,13 @@ function Home_five() {
     };
 
     axios
-      .post(`${BASE_URL}/api/user/paypal/create-payment?lang=${selectedLang}`, payload, {
-        headers: { "Content-Type": "application/json" },
-      })
+      .post(
+        `${BASE_URL}/api/user/paypal/create-payment?lang=${selectedLang}`,
+        payload,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      )
       .then((response) => {
         const data = response.data;
         if (data && data.data) {
@@ -341,7 +349,7 @@ function Home_five() {
                       <div className="md:w-1/2 w-full p-4 ">
                         <div className="text-left mb-6">
                           <h2 className="text-2xl font-bold text-gray-900">
-                            £19
+                            €19
                           </h2>
                           <p className="text-sm text-gray-500">Total Amount</p>
                         </div>
@@ -468,7 +476,7 @@ function Home_five() {
                       <div className="md:w-1/2 w-full p-4 ">
                         <div className="text-left mb-6">
                           <h2 className="text-2xl font-bold text-gray-900">
-                            £29
+                            €29
                           </h2>
                           <p className="text-sm text-gray-500">Total Amount</p>
                         </div>

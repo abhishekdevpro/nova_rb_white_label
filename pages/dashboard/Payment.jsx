@@ -7,7 +7,7 @@ import { ResumeContext } from "../../components/context/ResumeContext";
 
 function Payment() {
   const { t } = useTranslation();
-  const {selectedLang} = useContext(ResumeContext)
+  const { selectedLang } = useContext(ResumeContext);
   const handleChoosePlan3 = () => {
     const amount = 269; // Fixed price
     const token = localStorage.getItem("token"); // Retrieve token from localStorage
@@ -19,9 +19,13 @@ function Payment() {
     };
 
     axios
-      .post(`${BASE_URL}/api/user/paypal/create-payment?lang=${selectedLang}`, payload, {
-        headers: { "Content-Type": "application/json" }, // Use JSON content type
-      })
+      .post(
+        `${BASE_URL}/api/user/paypal/create-payment?lang=${selectedLang}`,
+        payload,
+        {
+          headers: { "Content-Type": "application/json" }, // Use JSON content type
+        }
+      )
       .then((response) => {
         const data = response.data;
         if (data && data.data) {
@@ -48,9 +52,13 @@ function Payment() {
     };
 
     axios
-      .post(`${BASE_URL}/api/user/paypal/create-payment?lang=${selectedLang}`, payload, {
-        headers: { "Content-Type": "application/json" }, // Use JSON content type
-      })
+      .post(
+        `${BASE_URL}/api/user/paypal/create-payment?lang=${selectedLang}`,
+        payload,
+        {
+          headers: { "Content-Type": "application/json" }, // Use JSON content type
+        }
+      )
       .then((response) => {
         const data = response.data;
         if (data && data.data) {
@@ -77,7 +85,7 @@ function Payment() {
                   </span>
                   <span className=" text-violet-900 font-bold text-lg">
                     {" "}
-                    £ 0
+                    € 0
                   </span>{" "}
                   <br />
                   <button className="bg-blue-900 text-white p-2 rounded-lg m-2 mt-3">
@@ -92,7 +100,7 @@ function Payment() {
                   </p>
                   <span className=" text-violet-900 font-bold text-lg">
                     {" "}
-                    £19
+                    €19
                   </span>{" "}
                   <span className=" text-violet-900 ">
                     {t("payments.per_resume")}{" "}
@@ -109,7 +117,7 @@ function Payment() {
                   <p className="text-lg font-bold">{t("payments.combo")} </p>
                   <span className=" text-violet-900 font-bold text-lg">
                     {" "}
-                    £29
+                    €29
                   </span>{" "}
                   <span className=" text-violet-900 ">
                     {t("payments.per_resume")}{" "}

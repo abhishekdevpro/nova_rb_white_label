@@ -28,7 +28,7 @@ const PricingSection = () => {
   };
 
   // Plan types
-  const planTypes = ["freePlan", "singlePass", "aiProMonth", "aiProYearly"];
+  const planTypes = ["freePlan", "singlePass", "aiProMonth"];
 
   // If the component hasn't mounted yet, return null to avoid rendering on the server
   if (!isMounted) {
@@ -38,7 +38,7 @@ const PricingSection = () => {
   return (
     <section className="py-16 bg-gray-50">
       <div className="max-w-7xl container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {planTypes.map((planType) => (
             <div
               key={planType}
@@ -53,7 +53,7 @@ const PricingSection = () => {
                   <span className="text-3xl font-bold text-gray-900">
                     {Number(t(`pricing.${planType}.price`)) === 0
                       ? t("pricing.freeLabel")
-                      : `£${t(`pricing.${planType}.price`)}`}
+                      : `€${t(`pricing.${planType}.price`)}`}
                   </span>
                   {t(`pricing.${planType}.billingCycle`) && (
                     <span className="text-gray-500 ml-1 text-sm">

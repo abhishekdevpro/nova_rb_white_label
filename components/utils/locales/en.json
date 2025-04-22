@@ -55,7 +55,7 @@
       
       
       "ready_in_15_minutes": "Get it ready in less than 15 minutes",
-      "certified_by_recruiters": "Certified By Recruiters & Admired By Job Seekers",
+      "certified_by_recruiters": "Created by Recruiters, to help you impress.",
       "looking_cover_letter": "Looking For Impressive Cover Letters?",
       "explore_cover_letters": "Explore from our 25+ premium Cover Letters, which are exclusively crafted by our Experts.",
       "create_cv": "Create Your Cover Letter",
@@ -78,7 +78,7 @@
         "resume_builder": "Resume Builder",
         "resume_description": "Relevant for automation & one time download.",
         "starting_price": "Starting",
-        "price_currency": "£",
+        "price_currency": "€",
         "price_amount": "0",
         "feature1": "Create optimized resumes",
         "feature2": "Copy and paste content from site",
@@ -100,7 +100,7 @@
   
     "combo_title": "French English Combo",
     "combo_description": "Built by expert resume writers",
-    "combo_price_currency": "£",
+    "combo_price_currency": "€",
     "combo_price_amount": "29",
     "combo_price_per_resume": "/Resume",
     "feature1_c": "Create optimized resumes",
@@ -595,8 +595,8 @@
                     "professional_title": "Professional Title",
                     "languages": "Languages",
                     "age": "Age",
-                    "current_salary": "Current Salary (£)",
-                    "expected_salary": "Expected Salary (£)",
+                    "current_salary": "Current Salary (€)",
+                    "expected_salary": "Expected Salary (€)",
                     "description": "Description",
                     "phone_number": "Phone Number",
                     "email": "Email",
@@ -1523,11 +1523,11 @@
 },
 "paymentplans":{
   "Cast a wider net – 10x your job applications": "Cast a wider net – 10x your job applications",
-  "Our AI-powered platform scours millions of jobs to continuously find and apply to relevant job openings until you're hired.": "Our AI-powered platform scours millions of jobs to continuously find and apply to relevant job openings until you're hired.",
+  "Our AI-powered platform scours": "Our AI-powered platform scours millions of jobs to continuously find and apply to relevant job openings until you're hired.",
   "Kudos! You're one step closer to success": "Kudos! You're one step closer to success",
   "Pricing Plans": "Pricing Plans",
-  "Choose the plan that works best for you": "Choose the plan that works best for you",
-  "Our pricing plans are designed to accommodate all your resume building needs.": "Our pricing plans are designed to accommodate all your resume building needs.",
+  "title": "Choose the plan that works best for you",
+  "subtitle": "Our pricing plans are designed to accommodate all your resume building needs.",
   "Best Value": "Best Value",
   "Free": "Free",
   "Free Plan": "Free Plan",
@@ -1577,6 +1577,7 @@
   "Contact our 24/7 customer support.": "Contact our 24/7 customer support.",
   "You may cancel by email, online, or by calling us toll-free at 855-695-3235.": "You may cancel by email, online, or by calling us toll-free at 855-695-3235."
 },
+
 "addSection": "✙ Add section",
  "smartAssist": "✙ Smart Assist",
   "keyAssist": "✙ Key Assist",
@@ -1586,6 +1587,29 @@
     "privacyPolicy": "Terms & Conditions",
     "and": "and",
     "button": "Got it!"
+  },
+  "plans":{
+    "mo": "mo",
+  "one-time payment": "one-time payment",
+  "every month": "every month",
+  "Review your order": "Review your order",
+  "Plan": "Plan",
+  "Automatically renews": "Automatically renews",
+  "Total due today": "Total due today",
+  "By clicking": "By clicking",
+  "below, you agree to our": "below, you agree to our",
+  "Terms of Use": "Terms of Use",
+  "and": "and",
+  "Privacy Policy": "Privacy Policy",
+  "You also understand that you will be billed": "You also understand that you will be billed",
+  "which will automatically renew": "which will automatically renew",
+  "You can cancel at any time.": "You can cancel at any time.",
+  "Start applying": "Start applying",
+  "plan.confirm_title": "Are you sure?",
+  "plan.confirm_message": "Do you really want to purchase this plan?",
+  "plan.confirm_yes": "Yes",
+  "plan.confirm_no": "No, Go Back",
+  "SECURE CHECKOUT": "SECURE CHECKOUT"
   }
   }
   

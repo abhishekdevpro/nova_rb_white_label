@@ -1023,7 +1023,7 @@ export default function WebBuilder() {
                         <div className="md:w-1/2 w-full p-4 ">
                           <div className="text-center mb-6">
                             <h2 className="text-2xl font-bold text-gray-900">
-                              £49
+                              €49
                             </h2>
                             <p className="text-sm text-gray-500">
                               Total Amount

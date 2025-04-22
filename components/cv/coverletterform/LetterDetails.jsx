@@ -148,14 +148,25 @@ const LetterDetails = () => {
   const { coverLetterData, setCoverLetterData } =
     useContext(CoverLetterContext);
 
+  // const handleDateChange = (date) => {
+  //   const formattedDate = date
+  //     ? new Intl.DateTimeFormat(i18n.language === "fr" ? "fr-FR" : "en-US", {
+  //         month: "long",
+  //         day: "numeric",
+  //         year: "numeric",
+  //       }).format(date)
+  //     : "";
+
+  //   setCoverLetterData((prevData) => ({
+  //     ...prevData,
+  //     letterDetails: {
+  //       ...prevData.letterDetails,
+  //       date: formattedDate,
+  //     },
+  //   }));
+  // };
   const handleDateChange = (date) => {
-    const formattedDate = date
-      ? new Intl.DateTimeFormat(i18n.language === "fr" ? "fr-FR" : "en-US", {
-          month: "long",
-          day: "numeric",
-          year: "numeric",
-        }).format(date)
-      : "";
+    const formattedDate = date ? date.toISOString() : "";
 
     setCoverLetterData((prevData) => ({
       ...prevData,
