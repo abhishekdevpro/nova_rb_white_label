@@ -83,7 +83,7 @@ const Certification = () => {
           <div className="relative flex justify-center items-center gap-2">
             <input
               type="text"
-              placeholder={title}
+              placeholder={t("builder_forms.certification.placeholderTitle")}
               name={title}
               maxLength={150}
               className={`w-full h-full px-4 py-2 rounded-md border  ${
@@ -124,7 +124,9 @@ const Certification = () => {
                     <div className="flex items-center space-x-2">
                       <AlertCircle className="w-5 h-5 text-red-400" />
                       <span className="font-medium text-black">
-                        Certifications Suggestion
+                        {t(
+                          "builder_forms.certification.certificationSuggestion"
+                        )}
                       </span>
                     </div>
                     <button

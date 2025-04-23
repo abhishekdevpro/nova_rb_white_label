@@ -375,14 +375,53 @@ export default function PaymentPage() {
     }
   }, [router.query, t]);
 
+  // const handleCheckout = async () => {
+  //   if (!selectedPlan) {
+  //     toast.success("Please select a plan before proceeding.");
+  //     return;
+  //   }
+  //   const token = localStorage.getItem("token");
+  //   if (!token) {
+  //     toast.error("Authentication required. Please log in.");
+  //     router.push("/login2");
+  //     return;
+  //   }
+
+  //   const planMapping = {
+  //     singlePass: 2,
+  //     aiProMonth: 3,
+  //     // aiProYearly: 4, // add if needed
+  //   };
+
+  //   const planId = planMapping[selectedPlan];
+
+  //   try {
+  //     const response = await axios.post(
+  //       `${BASE_URL}/api/user/payment/checkout`,
+  //       { plan_id: planId },
+  //       { headers: { Authorization: token } }
+  //     );
+
+  //     if (response.status === 200) {
+  //       toast.success("Payment successful! Redirecting...");
+  //       window.location.href = response.data.url;
+  //     } else {
+  //       throw new Error("Unexpected response from the server.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Payment Error:", error);
+  //     toast.error(error.response?.data?.message || "Error processing payment.");
+  //   }
+  // };
   const handleCheckout = async () => {
     if (!selectedPlan) {
-      toast.success("Please select a plan before proceeding.");
+      toast.success(t("paymentss.selectPlan"));
       return;
     }
+
     const token = localStorage.getItem("token");
     if (!token) {
-      toast.error("Authentication required. Please log in.");
+      toast.error(t("paymentss.authRequired"));
       router.push("/login2");
       return;
     }
@@ -390,7 +429,7 @@ export default function PaymentPage() {
     const planMapping = {
       singlePass: 2,
       aiProMonth: 3,
-      // aiProYearly: 4, // add if needed
+      // aiProYearly: 4,
     };
 
     const planId = planMapping[selectedPlan];
@@ -402,15 +441,15 @@ export default function PaymentPage() {
         { headers: { Authorization: token } }
       );
 
-      if (response.status === 200) {
-        toast.success("Payment successful! Redirecting...");
+      if (response.status === 200 && response.data.url) {
+        toast.success(t("paymentss.redirecting"));
         window.location.href = response.data.url;
       } else {
-        throw new Error("Unexpected response from the server.");
+        toast.error(t("paymentss.alreadySubscribed"));
       }
     } catch (error) {
       console.error("Payment Error:", error);
-      toast.error(error.response?.data?.message || "Error processing payment.");
+      toast.error(error.response?.data?.message || t("paymentss.genericError"));
     }
   };
 

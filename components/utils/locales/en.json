@@ -525,6 +525,14 @@
                   "Ai_CV_Parsing_h20":"Scalability",
                   "Ai_CV_Parsing_h21":"Start Using AI CV Parsing Today",
                   "Ai_CV_Parsing_h22":"Get Started",
+                  "Ai_CV_Parsing_h23":"Review and Analyze",
+                  "Ai_CV_Parsing_h24":"Automate Candidate Matching",
+                  "Ai_CV_Parsing_h25":"Make Informed Hiring Decisions",
+                  "Ai_CV_Parsing_h26":"Benefits of Using AI CV Parsing",
+                  "Ai_CV_Parsing_h27":"Efficiency and Speed",
+                  "Ai_CV_Parsing_h28":"Improved Accuracy",
+                  "Ai_CV_Parsing_h29":"Enhanced Candidate Experience",
+               
                   "Ai_CV_Parsing_p1":"At Cibli Job , we leverage cutting-edge AI CV parsing technology to streamline the recruitment process, making it faster and more efficient for both employers and job seekers. Our AI CV parsing tool accurately extracts and analyzes key information from CVs, helping you identify the best candidates quickly and effectively.",
                   "Ai_CV_Parsing_p2":"Our AI CV parser uses sophisticated algorithms to extract essential details from CVs, including personal information, contact details, work experience, education, skills, and certifications. The extracted data is organized in a structured format, making it easy to review and compare candidates.",
                   "Ai_CV_Parsing_p3":"Our parser can handle CVs in various formats, such as PDF, DOC, DOCX, and TXT. This flexibility ensures that no matter how candidates submit their CVs, our tool can process and analyze them efficiently.",
@@ -551,6 +559,7 @@
                     "AI-Enhanced_h1A": "Key Features of AI-Enhanced Resume Accuracy",
                     "AI-Enhanced_h2": "Grammar and Spell Check",
                     "AI-Enhanced_h3": "Consistency and Formatting",
+                      "AI-Enhanced_h2A": "Key Features of AI-Enhanced Resume Accuracy",
                     "AI-Enhanced_h3A": "Data Verification",
                     "AI-Enhanced_h4": "Skills and Keywords Matching",
                     "AI-Enhanced_h5": "Quantitative Achievements",
@@ -568,6 +577,17 @@
                     "AI-Enhanced_h17": "Higher Success Rate",
                     "AI-Enhanced_h18": "Time and Effort Savings",
                     "AI-Enhanced_h19": "Start Enhancing Your Resume Accuracy Today",
+                    "AI-Enhanced_h20": "Step 2: AI Analysis",
+                    "AI-Enhanced_h21": "Step 3: Receive Feedback",
+                    "AI-Enhanced_h22": "Step 4: Make Adjustments",
+                    "AI-Enhanced_h23": "Step 5: Final Review",
+                    "AI-Enhanced_h24": "Benefits of AI-Enhanced Resume Accuracy",
+                    "AI-Enhanced_h25": "Professional Presentation",
+                    "AI-Enhanced_h26": "Increased Confidence",
+                    "AI-Enhanced_h27": "Higher Success Rate",
+                    "AI-Enhanced_h28": "Time and Effort Savings",
+                    "AI-Enhanced_h29": "Start Enhancing Your Resume Accuracy Today",
+                   
                     "AI-Enhanced_p1": "At Cibli Job, we understand that the accuracy of your resume can significantly impact your chances of landing your dream job. Our AI-enhanced resume accuracy tools ensure that your resume is not only compelling but also precise and error-free. Leveraging advanced AI technology, we help you create resumes that truly reflect your qualifications and experiences.",
                     "AI-Enhanced_p2": "Our AI-powered tools meticulously check for grammar, spelling, and punctuation errors. This ensures that your resume is polished and professional, making a strong impression on potential employers.",
                     "AI-Enhanced_p3": "The AI reviews your resume for consistency in formatting, including font styles, sizes, bullet points, and spacing. This creates a visually appealing and uniform document that is easy to read.",
@@ -1022,7 +1042,15 @@
                     "address_placeholder": "Address",
                     "suggestions": "Suggestions",
                     "auto_fix": "Auto Fix",
-                    "add_section": "✙ Add section"
+                    "add_section": "✙ Add section",
+                     "mark_resolved": "Mark Resolved",
+                    "placeholders": {
+                      "name": "Full Name",
+                      "position": "Job Title",
+                      "address": "Location",
+                      "contactInformation": "Phone Number",
+                      "email": "Email Address"
+                    }
                   },
                   "social_media": {
     "title": "Social Media",
@@ -1033,7 +1061,32 @@
     "remove_button": "Remove",
     "add_section": "✙ Add section"
   },
+  "education":{
+"placeholders": {
+    "school": "School",
+    "degree": "Degree",
+    "location": "Location"
+  },
+  "tooltips": {
+    "school": "School Suggestions",
+    "degree": "Degree Suggestions",
+    "location": "Location Suggestions",
+    "start_date": "Start Date Issues",
+    "end_date": "End Date Issues"
+  },
+  "dropdown": {
+    "month": "Month",
+    "year": "Year",
+    "present": "Present"
+  }
+  },
+  "certification":{
+  "placeholderTitle": "Enter certification title",
+   "certificationSuggestion": "Certifications Suggestion"
+  }
+  ,
   "work_experience": {
+    
     "title": "Work Experience",
     "fresher_question": "Are you a fresher?",
     "company_name": "Company Name",
@@ -1068,6 +1121,28 @@
     "justStarting": "Just Starting"
   }
                 },
+                "summaryperosnal": {
+    "sections": {
+      "personalSummary": "Personal Summary"
+    },
+    "suggestions": {
+      "title": "Summary Suggestions",
+      "autoFix": "Auto Fix"
+    }
+  },
+  "smartAssist": "Smart Assist",
+  "summary": {
+    "placeholder": "Enter your professional summary or use Smart Assist to generate one",
+    "charCount": "{{count}}/1000"
+  },
+  "popup": {
+    "selectSummary": "Select a Summary",
+    "close": "Close",
+    "add": "Add"
+  },
+  "error": {
+    "jobTitleRequired": "Job Title is required in Detail Information"
+  },
                 "aiResumeEnhancer": {
                     "title": "AI Resume Enhancer",
                     "subtitle": "Elevate Your Job Applications with AI-Driven Enhancements",
@@ -1610,7 +1685,15 @@
   "plan.confirm_yes": "Yes",
   "plan.confirm_no": "No, Go Back",
   "SECURE CHECKOUT": "SECURE CHECKOUT"
-  }
+  },
+  "paymentss": {
+  "selectPlan": "Please select a plan before proceeding.",
+  "authRequired": "Authentication required. Please log in.",
+  "redirecting": "Redirecting to payment...",
+  "alreadySubscribed": "You already have an active subscription for this plan.",
+  "genericError": "Error processing payment."
+}
+
   }
   
 
