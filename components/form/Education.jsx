@@ -365,7 +365,7 @@ const Education = () => {
             <div className="relative">
               <input
                 type="text"
-                placeholder="School"
+                placeholder={t("builder_forms.education.placeholders.school")}
                 name="school"
                 maxLength={150}
                 className={`w-full other-input border ${
@@ -417,7 +417,11 @@ const Education = () => {
               </div>
             )}
 
-            {renderTooltip(index, "school", "School Suggestions")}
+            {renderTooltip(
+              index,
+              "school",
+              t(" builder_forms.education.tooltips.school")
+            )}
           </div>
 
           {/* <div className="relative mb-4">
@@ -445,7 +449,7 @@ const Education = () => {
           <div className="relative mb-4">
             <input
               type="text"
-              placeholder="Degree"
+              placeholder={t("builder_forms.education.placeholders.degree")}
               name="degree"
               maxLength={150}
               className={`w-full other-input border ${
@@ -476,7 +480,11 @@ const Education = () => {
                 <AlertCircle className="w-5 h-5" />
               </button>
             )}
-            {renderTooltip(index, "degree", "Degree Suggestions")}
+            {renderTooltip(
+              index,
+              "degree",
+              t(" builder_forms.education.tooltips.degree")
+            )}
 
             {showDegreeDropdown && degreeSuggestions.length > 0 && (
               <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-md  shadow-lg">
@@ -513,7 +521,9 @@ const Education = () => {
                 value={getDatePart(education.startYear, "month")}
                 onChange={(e) => handleMonthChange(e, index, "startYear")}
               >
-                <option value="">Month</option>
+                <option value="">
+                  {t("builder_forms.education.dropdown.month")}
+                </option>
                 {months.map((month, idx) => (
                   <option key={idx} value={month}>
                     {month}
@@ -529,7 +539,10 @@ const Education = () => {
                 value={getDatePart(education.startYear, "year")}
                 onChange={(e) => handleYearChange(e, index, "startYear")}
               >
-                <option value="">Year</option>
+                <option value="">
+                  {" "}
+                  {t("builder_forms.education.dropdown.year")}
+                </option>
                 {years.map((year, idx) => (
                   <option key={idx} value={year}>
                     {year}
@@ -559,7 +572,7 @@ const Education = () => {
                           <div className="flex items-center space-x-2">
                             <AlertCircle className="w-5 h-5 text-red-400" />
                             <span className="font-medium text-black">
-                              Start Date Issues
+                              {t("builder_forms.education.tooltips.start_date")}
                             </span>
                           </div>
                           <button
@@ -601,7 +614,10 @@ const Education = () => {
                 onChange={(e) => handleMonthChange(e, index, "endYear")}
                 disabled={education.endYear === "Present"} // Disable the month select if "Present" is checked
               >
-                <option value="">Month</option>
+                <option value="">
+                  {" "}
+                  {t("builder_forms.education.dropdown.month")}
+                </option>
                 {months.map((month, idx) => (
                   <option key={idx} value={month}>
                     {month}
@@ -618,7 +634,10 @@ const Education = () => {
                 onChange={(e) => handleYearChange(e, index, "endYear")}
                 disabled={education.endYear === "Present"} // Disable the year select if "Present" is checked
               >
-                <option value="">Year</option>
+                <option value="">
+                  {" "}
+                  {t("builder_forms.education.dropdown.year")}
+                </option>
                 {years.map((year, idx) => (
                   <option key={idx} value={year}>
                     {year}
@@ -632,7 +651,7 @@ const Education = () => {
                   onChange={() => handlePresentToggle(index)}
                   className="w-6 h-6"
                 />
-                Present
+                {t("builder_forms.education.dropdown.present")}
               </label>
               {improve && hasErrors(index, "endYear") && (
                 <>
@@ -657,7 +676,7 @@ const Education = () => {
                           <div className="flex items-center space-x-2">
                             <AlertCircle className="w-5 h-5 text-red-400" />
                             <span className="font-medium text-black">
-                              End Date Issues
+                              {t("builder_forms.education.tooltips.end_date")}
                             </span>
                           </div>
                           <button
@@ -693,7 +712,7 @@ const Education = () => {
             <div className="relative">
               <input
                 type="text"
-                placeholder="Location"
+                placeholder={t("builder_forms.education.placeholders.location")}
                 name="location"
                 className={`w-full other-input border ${
                   improve && hasErrors(index, "location")

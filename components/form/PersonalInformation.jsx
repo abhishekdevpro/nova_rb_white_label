@@ -879,12 +879,10 @@ const PersonalInformation = () => {
           keyword
         )}&lang=${language}`
       );
-      if (response.ok) {
-        const data = await response.json();
-        const jobTitles = data.data.map((item) => item.name);
-        setJobTitleSuggestions(jobTitles);
-        setShowJobTitleDropdown(true);
-      }
+
+      const jobTitles = response.data.data.map((item) => item.name);
+      setJobTitleSuggestions(jobTitles);
+      setShowJobTitleDropdown(true);
     } catch (error) {
       console.error("Error fetching job titles:", error);
     }
@@ -1227,7 +1225,9 @@ const PersonalInformation = () => {
                         )} */}
                         <input
                           type={type}
-                          placeholder={placeholder}
+                          placeholder={t(
+                            `builder_forms.personal_info.placeholders.${field}`
+                          )}
                           name={field}
                           className={`w-full p-2 pl-2 border rounded-md outline-none transition-colors ${
                             improve && hasErrors(field)
@@ -1273,7 +1273,10 @@ const PersonalInformation = () => {
                       {/* Input Field */}
                       <input
                         type={type}
-                        placeholder={placeholder}
+                        // placeholder={placeholder}
+                        placeholder={t(
+                          `builder_forms.personal_info.placeholders.${field}`
+                        )}
                         name={field}
                         className={`w-full p-2 border rounded-md outline-none transition-colors ${
                           improve && hasErrors(field)
@@ -1357,7 +1360,7 @@ const PersonalInformation = () => {
                         <div className="flex items-center space-x-2">
                           <AlertCircle className="w-5 h-5 text-red-400" />
                           <span className="font-medium text-black">
-                            Suggestions
+                            {t("builder_forms.personal_info.suggestions")}
                           </span>
                         </div>
 
@@ -1375,7 +1378,7 @@ const PersonalInformation = () => {
                               {isLoading.autoFix ? (
                                 <Loader2 className="w-4 h-4 animate-spin" />
                               ) : (
-                                "Auto Fix"
+                                t("builder_forms.personal_info.auto_fix")
                               )}
                             </button>
                           )}
@@ -1383,7 +1386,7 @@ const PersonalInformation = () => {
                             onClick={() => markAsResolved(field)}
                             className="px-3 py-1 text-sm font-medium text-white bg-green-600 rounded-md shadow hover:bg-green-700 transition-all"
                           >
-                            Mark Resolved
+                            {t("builder_forms.personal_info.mark_resolved")}
                           </button>
                           <button
                             onClick={() => setActiveTooltip(null)}

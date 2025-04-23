@@ -518,6 +518,14 @@
                       "Ai_CV_Parsing_h20": "Évolutivité",
                       "Ai_CV_Parsing_h21": "Commencez à utiliser l'analyse de CV par IA dès aujourd'hui",
                       "Ai_CV_Parsing_h22": "Commencer",
+                      "Ai_CV_Parsing_h23": "Analyser et examiner",
+"Ai_CV_Parsing_h24": "Automatiser la mise en correspondance des candidats",
+"Ai_CV_Parsing_h25": "Prendre des décisions d'embauche éclairées",
+"Ai_CV_Parsing_h26": "Avantages de l’analyse de CV par l’IA",
+"Ai_CV_Parsing_h27": "Efficacité et rapidité",
+"Ai_CV_Parsing_h28": "Précision améliorée",
+"Ai_CV_Parsing_h29": "Expérience candidat optimisée",
+
                       "Ai_CV_Parsing_p1": "Chez Cibli Job, nous exploitons une technologie avancée d'analyse de CV par IA pour rationaliser le processus de recrutement, le rendant plus rapide et plus efficace pour les employeurs et les candidats. Notre outil d'analyse de CV par IA extrait et analyse avec précision les informations clés des CV, vous aidant à identifier rapidement et efficacement les meilleurs candidats.",
                       "Ai_CV_Parsing_p2": "Notre analyseur de CV par IA utilise des algorithmes sophistiqués pour extraire les informations essentielles des CV, notamment les informations personnelles, les coordonnées, l'expérience professionnelle, l'éducation, les compétences et les certifications. Les données extraites sont organisées dans un format structuré, facilitant ainsi l'examen et la comparaison des candidats.",
                       "Ai_CV_Parsing_p3": "Notre analyseur peut traiter des CV dans divers formats, tels que PDF, DOC, DOCX et TXT. Cette flexibilité garantit que, quelle que soit la manière dont les candidats soumettent leurs CV, notre outil peut les traiter et les analyser efficacement.",
@@ -538,38 +546,58 @@
                       "Ai_CV_Parsing_p18": "Révolutionnez votre processus de recrutement avec l'outil d'analyse de CV par IA de Cibli Job. Inscrivez-vous dès maintenant pour découvrir les avantages d'un traitement des CV efficace, précis et automatisé.",
                       "Ai_CV_Parsing_p19": "Prêt à transformer votre processus de recrutement ? Visitez notre page d'analyse de CV par IA et commencez à optimiser votre sélection de candidats dès aujourd'hui !",
                       
-                        "AI-Enhanced_h": "Précision du CV Améliorée par l'IA",
-                        "AI-Enhanced_h1": "Garantir la précision et la fiabilité dans la création de CV",
-                        "AI-Enhanced_h1A": "Principales caractéristiques de la précision du CV améliorée par l'IA",
-                        "AI-Enhanced_h2": "Vérification de la grammaire et de l'orthographe",
-                        "AI-Enhanced_h3": "Cohérence et mise en forme",
-                        "AI-Enhanced_h3A": "Vérification des données",
-                        "AI-Enhanced_h4": "Correspondance des compétences et des mots-clés",
-                        "AI-Enhanced_h5": "Réalisations quantitatives",
-                        "AI-Enhanced_h6": "Pertinence et clarté",
-                        "AI-Enhanced_h7": "Détection du plagiat",
-                        "AI-Enhanced_h8": "Comment ça marche",
-                        "AI-Enhanced_h9": "Étape 1 : Téléchargez votre CV",
-                        "AI-Enhanced_h10": "Étape 2 : Analyse par IA",
-                        "AI-Enhanced_h11": "Étape 3 : Recevez des commentaires",
-                        "AI-Enhanced_h12": "Étape 4 : Apportez des ajustements",
-                        "AI-Enhanced_h13": "Étape 5 : Revue finale",
-                        "AI-Enhanced_h14": "Avantages de la précision du CV améliorée par l'IA",
-                        "AI-Enhanced_h15": "Présentation professionnelle",
-                        "AI-Enhanced_h16": "Confiance accrue",
-                        "AI-Enhanced_h17": "Taux de réussite plus élevé",
-                        "AI-Enhanced_h18": "Gain de temps et d'efforts",
-                        "AI-Enhanced_h19": "Améliorez la précision de votre CV dès aujourd'hui",
-                        "AI-Enhanced_p1": "Chez Cibli Job, nous comprenons que la précision de votre CV peut avoir un impact significatif sur vos chances d'obtenir votre emploi de rêve. Nos outils de précision de CV améliorés par l'IA garantissent que votre CV est non seulement attrayant mais aussi précis et sans erreur.",
-                        "AI-Enhanced_p2": "Nos outils alimentés par l'IA vérifient minutieusement les erreurs de grammaire, d'orthographe et de ponctuation, garantissant un CV professionnel et sans fautes.",
-                        "AI-Enhanced_p3": "L'IA examine la mise en forme de votre CV pour assurer une cohérence visuelle et une présentation uniforme.",
-                        "AI-Enhanced_p4": "Notre IA vérifie les informations clés telles que les dates d'emploi, les titres de poste et les qualifications éducatives pour éviter toute incohérence.",
-                        "AI-Enhanced_p5": "L'IA compare votre CV aux descriptions de poste pour s'assurer qu'il contient les compétences et mots-clés pertinents.",
-                        "AI-Enhanced_p6": "L'IA vous aide à quantifier vos réalisations avec des chiffres concrets.",
-                        "AI-Enhanced_p7": "Elle analyse la pertinence et la clarté de votre contenu.",
-                        "AI-Enhanced_p8": "L'IA détecte le plagiat pour garantir un contenu unique.",
-                        "AI-Enhanced_p18": "Transformez votre CV avec Cibli Job. Inscrivez-vous maintenant !",
-                        
+                       "AI-Enhanced_h": "Précision Améliorée des CV par l’IA",
+  "AI-Enhanced_h1": "Garantir la Précision et la Fiabilité dans la Création de CV",
+  "AI-Enhanced_h1A": "Principales Fonctionnalités de la Précision des CV Améliorée par l’IA",
+  "AI-Enhanced_h2": "Correction Grammaticale et Orthographique",
+  "AI-Enhanced_h3": "Cohérence et Mise en Forme",
+  "AI-Enhanced_h2A": "Principales Fonctionnalités de la Précision des CV Améliorée par l’IA",
+  "AI-Enhanced_h3A": "Vérification des Données",
+  "AI-Enhanced_h4": "Correspondance Compétences et Mots-clés",
+  "AI-Enhanced_h5": "Réalisations Quantifiées",
+  "AI-Enhanced_h6": "Pertinence et Clarté",
+  "AI-Enhanced_h7": "Détection du Plagiat",
+  "AI-Enhanced_h8": "Comment Ça Marche",
+  "AI-Enhanced_h9": "Étape 1 : Téléversez Votre CV",
+  "AI-Enhanced_h10": "Étape 2 : Analyse par l’IA",
+  "AI-Enhanced_h11": "Étape 3 : Recevez des Commentaires",
+  "AI-Enhanced_h12": "Étape 4 : Apportez des Ajustements",
+  "AI-Enhanced_h13": "Étape 5 : Révision Finale",
+  "AI-Enhanced_h14": "Avantages de la Précision des CV Améliorée par l’IA",
+  "AI-Enhanced_h15": "Présentation Professionnelle",
+  "AI-Enhanced_h16": "Confiance Accrue",
+  "AI-Enhanced_h17": "Taux de Réussite Plus Élevé",
+  "AI-Enhanced_h18": "Gain de Temps et d’Efforts",
+  "AI-Enhanced_h19": "Commencez à Améliorer la Précision de Votre CV Aujourd’hui",
+  "AI-Enhanced_h20": "Étape 2 : Analyse par l’IA",
+  "AI-Enhanced_h21": "Étape 3 : Recevez des Commentaires",
+  "AI-Enhanced_h22": "Étape 4 : Apportez des Ajustements",
+  "AI-Enhanced_h23": "Étape 5 : Révision Finale",
+  "AI-Enhanced_h24": "Avantages de la Précision des CV Améliorée par l’IA",
+  "AI-Enhanced_h25": "Présentation Professionnelle",
+  "AI-Enhanced_h26": "Confiance Accrue",
+  "AI-Enhanced_h27": "Taux de Réussite Plus Élevé",
+  "AI-Enhanced_h28": "Gain de Temps et d’Efforts",
+  "AI-Enhanced_h29": "Commencez à Améliorer la Précision de Votre CV Aujourd’hui",
+
+  "AI-Enhanced_p1": "Chez Cibli Job, nous comprenons que la précision de votre CV peut grandement influencer vos chances d’obtenir l’emploi de vos rêves. Nos outils de précision améliorée par l’IA garantissent que votre CV soit non seulement percutant, mais aussi précis et sans erreurs. En tirant parti des technologies avancées de l’IA, nous vous aidons à créer des CV qui reflètent véritablement vos qualifications et vos expériences.",
+  "AI-Enhanced_p2": "Nos outils alimentés par l’IA vérifient minutieusement les fautes de grammaire, d’orthographe et de ponctuation. Cela garantit que votre CV soit soigné et professionnel, laissant une impression forte aux recruteurs.",
+  "AI-Enhanced_p3": "L’IA examine la cohérence de la mise en forme de votre CV, y compris les styles de police, les tailles, les puces et les espacements. Cela permet de créer un document visuellement attrayant et uniforme, facile à lire.",
+  "AI-Enhanced_p4": "Notre IA vérifie les informations clés telles que les dates d’emploi, les intitulés de poste et les diplômes. Cela réduit les risques d’inexactitudes et de divergences susceptibles d’inquiéter les employeurs.",
+  "AI-Enhanced_p5": "L’IA analyse les offres d’emploi pour identifier les compétences et mots-clés pertinents. Elle vérifie ensuite que ces éléments essentiels sont inclus dans votre CV, augmentant vos chances de passer les systèmes de suivi des candidatures (ATS).",
+  "AI-Enhanced_p6": "L’IA vous encourage à quantifier vos réalisations, en ajoutant par exemple des chiffres et des indicateurs précis. Cela donne de la crédibilité à votre CV et met en avant des preuves concrètes de vos succès.",
+  "AI-Enhanced_p7": "Notre IA évalue la pertinence et la clarté de votre contenu. Elle met en évidence les sections floues ou hors sujet et propose des améliorations pour rendre votre CV plus percutant et ciblé.",
+  "AI-Enhanced_p8": "L’IA vérifie si votre CV contient du plagiat potentiel, garantissant que tout le contenu est original et vous est propre. Cela renforce l’intégrité de votre CV et vous différencie des autres candidats.",
+  "AI-Enhanced_p9": "Téléversez votre CV sur la plateforme Cibli Job. Notre IA commencera immédiatement l’analyse de votre document.",
+  "AI-Enhanced_p10": "L’IA scanne votre CV à la recherche d’erreurs, d’incohérences et d’informations manquantes. Elle évalue la grammaire, la mise en forme, l’exactitude des données et la pertinence des mots-clés.",
+  "AI-Enhanced_p11": "En quelques minutes, vous recevrez un rapport détaillé mettant en évidence les points à améliorer. L’IA fournit des suggestions précises pour corriger les erreurs, améliorer le contenu et optimiser la mise en forme.",
+  "AI-Enhanced_p12": "Mettez en œuvre les modifications suggérées pour perfectionner votre CV. Utilisez les commentaires de l’IA pour garantir un CV précis, professionnel et adapté au poste visé.",
+  "AI-Enhanced_p13": "Effectuez une révision finale de votre CV à l’aide de notre outil d’IA pour vous assurer que toutes les modifications ont été apportées et que votre CV est au meilleur niveau.",
+  "AI-Enhanced_p14": "Un CV soigné et sans fautes démontre votre souci du détail et votre professionnalisme, ce qui impressionne positivement les recruteurs.",
+  "AI-Enhanced_p15": "Avec un CV précis et bien conçu, vous pouvez postuler avec confiance, sachant que votre candidature est solide et fiable.",
+  "AI-Enhanced_p16": "L’optimisation de votre CV pour plus de précision et de pertinence augmente vos chances de franchir les filtres ATS et d’être présélectionné pour des entretiens.",
+  "AI-Enhanced_p17": "Nos outils d’IA automatisent le processus de révision du CV, vous faisant gagner du temps et de l’énergie tout en garantissant un haut niveau de qualité.",
+  "AI-Enhanced_p18": "Transformez votre CV avec les outils de précision améliorée de Cibli Job. Inscrivez-vous dès maintenant pour créer un CV soigné, précis et professionnel.",
                           "basic_information": "INFORMATIONS DE BASE",
                           "first_name": "Prénom",
                           "last_name": "Nom de famille",
@@ -1006,8 +1034,39 @@
           "address_placeholder": "Adresse",
           "suggestions": "Suggestions",
           "auto_fix": "Correction automatique",
-          "add_section": "✙ Ajouter une section"
+          "add_section": "✙ Ajouter une section",
+          "mark_resolved": "Marquer comme résolu",
+          "placeholders": {
+            "name": "Nom complet",
+            "position": "Intitulé du poste",
+            "address": "Emplacement",
+            "contactInformation": "Numéro de téléphone",
+            "email": "Adresse e-mail"
+          }
         },
+        "education":{
+          "placeholders": {
+            "school": "École",
+            "degree": "Diplôme",
+            "location": "Lieu"
+          },
+          "tooltips": {
+            "school": "Suggestions d'école",
+            "degree": "Suggestions de diplôme",
+            "location": "Suggestions de lieu",
+            "start_date": "Problèmes de date de début",
+            "end_date": "Problèmes de date de fin"
+          },
+          "dropdown": {
+            "month": "Mois",
+            "year": "Année",
+            "present": "Actuel"
+          }
+        },
+        "certification":{
+          "placeholderTitle": "Entrez le titre de la certification",
+           "certificationSuggestion": "Suggestion de certifications"
+          },
                   "social_media": {
     "title": "Réseaux Sociaux",
     "subtitle": "Veuillez mentionner la plateforme et son lien",
@@ -1050,6 +1109,28 @@
     "basicKnowledge": "Connaissance de base",
     "justStarting": "Débutant"
   }
+                },
+                "summarypersonal": {
+                  "sections": {
+                    "personalSummary": "Résumé personnel"
+                  },
+                  "suggestions": {
+                    "title": "Suggestions de résumé",
+                    "autoFix": "Correction automatique"
+                  }
+                },
+                "smartAssist": "Assistance intelligente",
+                "summary": {
+                  "placeholder": "Entrez votre résumé professionnel ou utilisez l'assistance intelligente pour en générer un",
+                  "charCount": "{{count}}/1000"
+                },
+                "popup": {
+                  "selectSummary": "Sélectionnez un résumé",
+                  "close": "Fermer",
+                  "add": "Ajouter"
+                },
+                "error": {
+                  "jobTitleRequired": "Le titre du poste est requis dans les informations détaillées"
                 },
                 
                   "aiResumeEnhancer": {
@@ -1594,7 +1675,15 @@
   "plan.confirm_yes": "Oui",
   "plan.confirm_no": "Non, retour",
   "SECURE CHECKOUT": "PAIEMENT SÉCURISÉ"
-  }
+  },
+  "paymentss": {
+  "selectPlan": "Veuillez sélectionner un plan avant de continuer.",
+  "authRequired": "Authentification requise. Veuillez vous connecter.",
+  "redirecting": "Redirection vers le paiement...",
+  "alreadySubscribed": "Vous avez déjà un abonnement actif pour ce plan.",
+  "genericError": "Erreur lors du traitement du paiement."
+}
+
   
   
   

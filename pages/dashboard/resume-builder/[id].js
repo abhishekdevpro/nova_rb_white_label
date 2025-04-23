@@ -1,41 +1,41 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { useRouter } from 'next/router'
-import ProgressBar from '../../../components/resume-builder-steps/Progress-Bar'
-import ExperienceStep from '../../../components/resume-builder-steps/Experience'
-import TemplateStep from '../../../components/resume-builder-steps/Template-step'
-import UploadStep from '../../../components/resume-builder-steps/Upload-Step'
-import FileUploadStep from '../../../components/resume-builder-steps/File-upload'
-import { ResumeProvider } from '../../../components/context/ResumeContext'
+import { useState } from "react";
+import { useRouter } from "next/router";
+import ProgressBar from "../../../components/resume-builder-steps/Progress-Bar";
+import ExperienceStep from "../../../components/resume-builder-steps/Experience";
+import TemplateStep from "../../../components/resume-builder-steps/Template-step";
+import UploadStep from "../../../components/resume-builder-steps/Upload-Step";
+import FileUploadStep from "../../../components/resume-builder-steps/File-upload";
+import { ResumeProvider } from "../../../components/context/ResumeContext";
 
 export default function Home() {
-  const router = useRouter()
-  const { id } = router.query // Retrieve the dynamic ID
+  const router = useRouter();
+  const { id } = router.query; // Retrieve the dynamic ID
 
-  const [currentStep, setCurrentStep] = useState(1)
+  const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
-    experience: '',
-    template: '',
+    experience: "",
+    template: "",
     hasPhoto: false,
     columns: 1,
-    uploadType: '',
+    uploadType: "",
     file: null,
-  })
+  });
 
-  const totalSteps = 4
+  const totalSteps = 4;
 
   const handleNext = () => {
-    setCurrentStep((prev) => Math.min(prev + 1, totalSteps))
-  }
+    setCurrentStep((prev) => Math.min(prev + 1, totalSteps));
+  };
 
   const handleBack = () => {
-    setCurrentStep((prev) => Math.max(prev - 1, 1))
-  }
+    setCurrentStep((prev) => Math.max(prev - 1, 1));
+  };
 
   const updateFormData = (data) => {
-    setFormData((prev) => ({ ...prev, ...data }))
-  }
+    setFormData((prev) => ({ ...prev, ...data }));
+  };
 
   return (
     <main className="min-h-screen bg-gray-50 py-8 px-4">
@@ -74,7 +74,7 @@ export default function Home() {
             />
           )}
 
-          {currentStep === 4 && formData.uploadType === 'upload' && (
+          {currentStep === 4 && formData.uploadType === "upload" && (
             <FileUploadStep
               onNext={handleNext}
               onBack={handleBack}
@@ -85,5 +85,5 @@ export default function Home() {
         </div>
       </div>
     </main>
-  )
+  );
 }

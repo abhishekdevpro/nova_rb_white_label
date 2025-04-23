@@ -254,7 +254,7 @@ const Summary = () => {
               if (resumeData?.position) {
                 handleAIAssist();
               } else {
-                toast.error("Job Title is required in Detail Information");
+                toast.error(t("error.jobTitleRequired"));
               }
             }}
             disabled={loading}
@@ -292,7 +292,7 @@ const Summary = () => {
                     {isAutoFixLoading ? (
                       <Loader2 className="w-4 h-4 animate-spin" />
                     ) : (
-                      "Auto Fix"
+                      t("summarypersonal.suggestions.autoFix")
                     )}
                   </button>
                   <button
@@ -342,7 +342,7 @@ const Summary = () => {
           {resumeData.summary?.length || 0}/1000
         </div> */}
         <ReactQuill
-          placeholder="Enter your professional summary or use Smart Assist to generate one"
+          placeholder={t("summary.placeholder")}
           value={resumeData.summary || ""}
           onChange={(content) => {
             if (content.replace(/<[^>]*>/g, "").length <= 1000) {
@@ -357,7 +357,10 @@ const Summary = () => {
         />
 
         <div className="text-sm text-gray-500 mt-1 text-right">
-          {resumeData.summary?.replace(/<[^>]*>/g, "").length || 0}/1000
+          {/* {resumeData.summary?.replace(/<[^>]*>/g, "").length || 0}/1000 */}
+          {t("summary.charCount", {
+            count: resumeData.summary?.replace(/<[^>]*>/g, "").length || 0,
+          })}
         </div>
       </div>
 
@@ -365,7 +368,9 @@ const Summary = () => {
       {showPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-lg w-[90%] max-w-4xl">
-            <h3 className="text-xl font-bold mb-4">Select a Summary</h3>
+            <h3 className="text-xl font-bold mb-4">
+              {t("popup.selectSummary")}
+            </h3>
             <div className="space-y-3 max-h-96 overflow-y-auto">
               {summaries.map((summary, index) => (
                 <div key={index} className="flex items-start gap-3">
@@ -385,14 +390,14 @@ const Summary = () => {
                 onClick={() => setShowPopup(false)}
                 className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-600"
               >
-                Close
+                {t("popup.close")}
               </button>
               <button
                 onClick={handleAddSummary}
                 className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500"
                 disabled={selectedSummaryIndex === null}
               >
-                Add
+                {t("popup.add")}
               </button>
             </div>
           </div>
