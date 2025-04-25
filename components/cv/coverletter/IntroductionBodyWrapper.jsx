@@ -14,7 +14,7 @@ const IntroductionBodyWrapper = ({
   return (
     <div className={`p-4  ${className}`}>
       {/* Introduction Section */}
-      {introduction && (
+      {/* {introduction && (
         <div className="mb-6">
           <p
             className={`text-gray-800 ${
@@ -28,7 +28,7 @@ const IntroductionBodyWrapper = ({
             {introduction}
           </p>
         </div>
-      )}
+      )} */}
 
       {/* Body Section */}
 
@@ -39,7 +39,7 @@ const IntroductionBodyWrapper = ({
               className="text-lg font-medium"
               style={{ color: headerColor }}
             ></h4>
-            <p
+            {/* <p
               className={`text-gray-800 ${
                 editable
                   ? "hover:outline-dashed hover:outline-2 hover:outline-gray-400"
@@ -49,10 +49,20 @@ const IntroductionBodyWrapper = ({
               suppressContentEditableWarning={true}
             >
               {paragraph}
-            </p>
+            </p> */}
+            <p
+              className={`text-gray-800 ${
+                editable
+                  ? "hover:outline-dashed hover:outline-2 hover:outline-gray-400"
+                  : ""
+              }`}
+              contentEditable={editable}
+              suppressContentEditableWarning={true}
+              dangerouslySetInnerHTML={{ __html: paragraph }}
+            />
           </div>
         ))}
-        {closing && (
+        {/* {closing && (
           <div className="mb-6">
             <p
               className={`text-gray-800 ${
@@ -66,10 +76,10 @@ const IntroductionBodyWrapper = ({
               {closing}
             </p>
           </div>
-        )}
+        )} */}
 
         {/* Gratitude Section */}
-        {gratitude && (
+        {/* {gratitude && (
           <div className="mb-6">
             <p
               className={`text-gray-800 ${
@@ -83,7 +93,7 @@ const IntroductionBodyWrapper = ({
               {gratitude}
             </p>
           </div>
-        )}
+        )} */}
 
         {/* Signature Section */}
         {signature && (

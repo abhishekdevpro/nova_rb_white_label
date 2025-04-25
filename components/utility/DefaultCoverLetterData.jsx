@@ -53,7 +53,7 @@ const DefaultCoverLetterData = {
   ],
   closing: "Je vous remercie pour votre temps et votre considération.",
   gratitude: "Cordialement,",
-  signature: "Jons Jons",
+  signature: "Jean Dupont",
 };
 
 export default DefaultCoverLetterData;

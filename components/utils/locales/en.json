@@ -917,6 +917,7 @@
             "back": "Back",
             "next": "Next",
             "loading": "Loading...",
+            "usethistemplate":"Use This Template",
             "toast": {
               "resume_not_found": "Resume ID or token not found",
               "fetch_error": "Error fetching resume data",
@@ -1099,6 +1100,18 @@
     "save_button": "Save",
     "cancel_button": "Cancel",
     "add_section": "✙ Add section"
+  },
+  "skill":{
+    "noSkillsFound": "No skills found.",
+    "addSkill": "Add Skill",
+    "skillError": "Skill Error",
+    "dismiss": "Dismiss",
+    "deleteAllSkills": "Delete All Skills",
+    "smartAssist": "Smart Assist",
+    "selectAISkills": "Select AI Skills",
+    "noAISkillsAvailable": "No AI skills available.",
+    "addSelectedSkills": "Add Selected Skills",
+    "close": "Close"
   },
   "language": {
     "title": "Languages",
@@ -1396,6 +1409,17 @@
     "addSection": "✙ Add section",
     "remove": "Remove"
   },
+  "coverLetterSection": {
+    "title": "Cover Letter Sections",
+    "sections": [
+      "Introduction: Stating Intent Clearly",
+      "Hook: Why You’re a Fit",
+      "Proof & Sign-Off: Show Value and Close Strong"
+    ],
+    "placeholder": "Write {{sectionTitle}}",
+   
+  "aiAssist": "AI Assist"
+  },
   "closingGratitude": {
     "title": "Closing & Gratitude",
     "closing": "Closing",
@@ -1407,7 +1431,11 @@
   },
   "navigation": {
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+     "finish": "Finish",
+     "toast":{
+      "pleaseSaveCoverLetter":"Please save your cover letter"
+     }
   },
   
     "cvBuilder": {
@@ -1428,7 +1456,8 @@
       "template2": "Template 2",
       "template3": "Template 3",
       "template4": "Template 4"
-    }
+    },
+    "premium": "Premium"
   },
   "buttons": {
     "save": "Save Resume",
