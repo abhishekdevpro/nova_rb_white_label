@@ -93,7 +93,10 @@ const TemplateSelector = ({
       setSelectedPdfType(templates[selectedIndex].pdfType);
     }
   }, [selectedTemplate]);
-  const templates = userData?.plan_id === 1 ? basicTemplates : allTemplates;
+  // const templates = userData?.plan_id === 1 ? basicTemplates : allTemplates;
+  const templates = allTemplates;
+  const isBasicUser = userData?.plan_id === 1;
+
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
@@ -172,7 +175,7 @@ const TemplateSelector = ({
 
               <div className="flex justify-center w-full overflow-hidden px-8">
                 <div className="flex gap-4">
-                  {getDisplayedTemplates().map((template) => (
+                  {/* {getDisplayedTemplates().map((template) => (
                     <div
                       key={template.key}
                       onClick={() => handleTemplateClick(template)}
@@ -227,13 +230,86 @@ const TemplateSelector = ({
                           >
                             {template.key}
                           </div>
-                          {/* <div className="text-center py-1 px-4 rounded-md bg-gray-100 text-gray-700">
-                            {template.pdfType}
-                          </div> */}
+                         
                         </div>
                       </div>
                     </div>
-                  ))}
+                  ))} */}
+                  {getDisplayedTemplates().map((template, idx) => {
+                    const isPremium =
+                      isBasicUser &&
+                      !basicTemplates.some((b) => b.key === template.key);
+
+                    return (
+                      <div
+                        key={template.key}
+                        onClick={() => {
+                          if (!isPremium) {
+                            handleTemplateClick(template);
+                          }
+                        }}
+                        className={`
+        relative group cursor-pointer transition-all duration-300
+        ${
+          template.key === templateId
+            ? "transform scale-105"
+            : "hover:scale-102"
+        }
+        ${isPremium ? "opacity-50 cursor-not-allowed" : ""}
+      `}
+                      >
+                        <div
+                          className={`
+          w-64 p-2 rounded-lg transition-all duration-300
+          ${
+            template.key === templateId
+              ? "bg-pink-100 ring-4 ring-pink-500 ring-offset-2"
+              : "hover:bg-gray-50"
+          }
+        `}
+                        >
+                          <div className="relative">
+                            <Image
+                              src={template.imageUrl}
+                              alt={template.key}
+                              width={300}
+                              height={400}
+                              className={`
+              w-full h-80 object-cover rounded-lg shadow-md transition-transform duration-300
+              ${
+                template.key === templateId
+                  ? "ring-2 ring-pink-400"
+                  : "group-hover:ring-2 group-hover:ring-pink-300"
+              }
+            `}
+                            />
+                            {isPremium && (
+                              <div className="absolute inset-0 bg-black bg-opacity-50 text-white flex items-center justify-center rounded-lg text-lg font-bold">
+                                {t("templateSelector.premium")}
+                              </div>
+                            )}
+                            {template.key === templateId && (
+                              <div className="absolute inset-0 border-4 border-pink-500 rounded-lg pointer-events-none" />
+                            )}
+                          </div>
+                          <div className="flex flex-col gap-1">
+                            <div
+                              className={`
+              mt-2 text-center py-2 px-4 rounded-md transition-colors duration-300
+              ${
+                template.key === templateId
+                  ? "bg-pink-500 text-white font-semibold"
+                  : "text-gray-600 group-hover:text-[#00b38d]"
+              }
+            `}
+                            >
+                              {template.key}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 

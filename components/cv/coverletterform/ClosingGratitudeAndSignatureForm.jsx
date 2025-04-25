@@ -76,12 +76,12 @@ const ClosingGratitudeAndSignatureForm = () => {
 
   return (
     <div className="p-4 md:p-8 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-6 text-black">
+      {/* <h2 className="text-2xl font-bold mb-6 text-black">
         {t("closingGratitude.title")}
-      </h2>
+      </h2> */}
 
       {/* Closing Section */}
-      <div className="mb-6">
+      {/* <div className="mb-6">
         <label className="block text-black font-medium mb-2">
           {t("closingGratitude.closing")}
         </label>
@@ -92,10 +92,10 @@ const ClosingGratitudeAndSignatureForm = () => {
           rows="4"
           placeholder={t("closingGratitude.closingPlaceholder")}
         ></textarea>
-      </div>
+      </div> */}
 
       {/* Gratitude Section */}
-      <div className="mb-6">
+      {/* <div className="mb-6">
         <label className="block text-black font-medium mb-2">
           {t("closingGratitude.gratitude")}
         </label>
@@ -106,7 +106,7 @@ const ClosingGratitudeAndSignatureForm = () => {
           rows="4"
           placeholder={t("closingGratitude.gratitudePlaceholder")}
         ></textarea>
-      </div>
+      </div> */}
 
       {/* Signature Section */}
       <div>

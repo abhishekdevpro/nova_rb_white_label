@@ -910,6 +910,7 @@
     "back": "Retour",
     "next": "Suivant",
     "loading": "Chargement...",
+    "usethistemplate":"Utilisez ce modèle",
     "toast": {
       "resume_not_found": "ID de CV ou jeton introuvable",
       "fetch_error": "Erreur lors de la récupération des données du CV",
@@ -1089,7 +1090,22 @@
       "save_button": "Enregistrer",
       "cancel_button": "Annuler",
       "add_section": "✙ Ajouter une section"
-    },"language": {
+    },
+  "skill":{
+    "noSkillsFound": "Aucune compétence trouvée.",
+    "addSkill": "Ajouter une compétence",
+    "skillError": "Erreur de compétence",
+    "dismiss": "Fermer",
+    "deleteAllSkills": "Supprimer toutes les compétences",
+    "smartAssist": "Assistance intelligente",
+    "selectAISkills": "Sélectionner des compétences IA",
+    "noAISkillsAvailable": "Aucune compétence IA disponible.",
+    "addSelectedSkills": "Ajouter les compétences sélectionnées",
+    "close": "Fermer"
+  }
+,  
+    
+    "language": {
     "title": "Langues",
     "description": "Si vous maîtrisez une ou plusieurs langues, mentionnez-les dans cette section.",
     "firstLanguage": "Première langue",
@@ -1386,6 +1402,17 @@
     "addSection": "✙ Ajouter une section",
     "remove": "Supprimer"
   },
+  "coverLetterSection": {
+    "title": "Sections de la lettre de motivation",
+    "sections": [
+      "Introduction : Exprimer clairement votre intention",
+      "Accroche : Pourquoi vous êtes un bon choix",
+      "Preuve et conclusion : Montrez votre valeur et terminez fort"
+    ],
+    "placeholder": "Écrivez {{sectionTitle}}",
+    "aiAssist": "Assistance IA"
+
+  },
   "closingGratitude": {
     "title": "Clôture et Remerciements",
     "closing": "Clôture",
@@ -1397,7 +1424,11 @@
   },
   "navigation": {
     "previous": "Précédent",
-    "next": "Suivant"
+    "next": "Suivant",
+     "finish": "Terminer",
+     "toast": {
+      "pleaseSaveCoverLetter": "Veuillez enregistrer votre lettre de motivation"
+    }
   },
   "cvBuilder": {
     "save": "Enregistrer la lettre de motivation",
@@ -1417,7 +1448,8 @@
       "template2": "Modèle 2",
       "template3": "Modèle 3",
       "template4": "Modèle 4"
-    }
+    },
+     "premium": "Premium (réservé aux abonnés)"
   },
   "buttons": {
     "save": "Enregistrer le CV",

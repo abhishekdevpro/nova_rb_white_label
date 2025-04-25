@@ -208,7 +208,7 @@ const Skill = ({ title, currentSkillIndex }) => {
 
       // Prevent removing the last skill if there's only one left
       if (skillType.skills.length <= 1) {
-        alert("At least one skill is required.");
+        toast.success("At least one skill is required.");
         return prevData; // Prevent deletion
       }
 
@@ -344,14 +344,14 @@ const Skill = ({ title, currentSkillIndex }) => {
         {skillType.skills.length === 0 ? (
           <div className="mb-4">
             <p className="text-gray-600 mb-2">
-              {t("noSkillsFound") || "No skills found."}
+              {t("builder_forms.skill.noSkillsFound") || "No skills found."}
             </p>
             <button
               type="button"
               onClick={() => addSkill(title)}
               className="bg-black text-white px-4 py-2 rounded"
             >
-              {"Add Skill"}
+              {t("builder_forms.skill.addSkill")}
             </button>
           </div>
         ) : (
@@ -433,7 +433,7 @@ const Skill = ({ title, currentSkillIndex }) => {
                       <div className="flex items-center gap-2">
                         <AlertCircle className="w-5 h-5 text-red-600" />
                         <span className="font-medium text-red-800">
-                          Skill Error
+                          {t("builder_forms.skill.skillError")}
                         </span>
                       </div>
                     </div>
@@ -449,7 +449,7 @@ const Skill = ({ title, currentSkillIndex }) => {
                         onClick={() => setActiveTooltip(null)}
                         className="text-blue-600 hover:text-blue-800 text-sm font-medium"
                       >
-                        Dismiss
+                        {t("builder_forms.skill.dismiss")}
                       </button>
                     </div>
                   </div>
@@ -500,14 +500,14 @@ const Skill = ({ title, currentSkillIndex }) => {
                     </li>
                   ))
                 ) : (
-                  <li>No AI skills available.</li>
+                  <li>{t("builder_forms.skill.noAISkillsAvailable")}</li>
                 )}
               </ul>
               <button
                 className="mt-4 px-4 py-2 bg-gray-300 rounded-lg"
                 onClick={addSelectedSkills}
               >
-                Add Selected Skills
+                {t("builder_forms.skill.addSelectedSkills")}
               </button>
               <button
                 className="mt-4 ml-2 px-4 py-2 bg-gray-300 rounded-lg"
@@ -516,7 +516,7 @@ const Skill = ({ title, currentSkillIndex }) => {
                   setSelectedSkills([]);
                 }}
               >
-                Close
+                {t("builder_forms.skill.close")}
               </button>
             </div>
           </div>

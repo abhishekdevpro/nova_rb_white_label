@@ -986,7 +986,7 @@ const TemplateStep = ({ onNext, onBack, onChange, value }) => {
                       {/* Button on hover */}
                       <div className="absolute inset-0 flex items-end justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-t from-black/60 to-transparent p-4">
                         <span className="bg-gradient-to-r from-orange-400 to-pink-500 text-white font-semibold px-4 py-2 rounded-full shadow-md">
-                          Use This Template
+                          {t("templateStep.usethistemplate")}
                         </span>
                       </div>
                     </button>
