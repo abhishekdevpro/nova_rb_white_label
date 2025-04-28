@@ -849,7 +849,8 @@
     "improvements": {
       "title": "Areas for Improvement",
       "file_format": "File Formatting",
-      "keyword_optimization": "Keyword Optimization"
+      "keyword_optimization": "Keyword Optimization",
+      "sectionOrder": "Section Order"
     },
     "formatting": {
       "title": "Formatting Checklist",
@@ -860,7 +861,11 @@
       "consistent_font": "Consistent Font",
       "consistent_font_desc": "Consistent font usage throughout the resume",
       "contact_info": "Contact Info Visible",
-      "contact_info_desc": "Contact information is clearly visible"
+      "contact_info_desc": "Contact information is clearly visible",
+       "clear_exp": "Clear Experience",
+      "clear_exp_desc": "Work experience section is clearly structured and readable",
+        "clear_summary": "Clear Summary",
+      "clear_summary_desc": "Summary section is well-written and clearly presented"
     },
     "overall_comments": "Overall Comments",
     "button": {
@@ -904,7 +909,16 @@
           },
           "back": "Back",
              "next": "Next",
-              "saving": "Saving"
+              "saving": "Saving",
+              "toast": {
+                "selectExperience": "Please select an experience level before proceeding.",
+                "resumeDataNotLoaded": "Resume data not loaded yet. Please wait.",
+                "resumeIdNotFound": "Resume ID not found.",
+                "experienceSaved": "Experience saved successfully.",
+                "errorSavingExperience": "Error while saving the experience.",
+                "errorUpdatingResume": "Error updating resume!",
+                "errorFetchingResume": "Error fetching resume data."
+              }
         },
         
           "templateStep": {

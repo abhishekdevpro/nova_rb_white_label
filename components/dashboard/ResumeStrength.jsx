@@ -69,10 +69,20 @@ const TooltipContent = ({ improvements, resumeId, onClose }) => {
       value: improvements?.formatting?.contact_info_visible,
       description: t("formatting.contact_info_desc"),
     },
+    {
+      label: t("formatting.clear_exp"),
+      value: improvements?.formatting?.clear_experience,
+      description: t("formatting.clear_exp_desc"),
+    },
+    {
+      label: t("formatting.clear_summary"),
+      value: improvements?.formatting?.clear_summary,
+      description: t("formatting.clear_summary_desc"),
+    },
   ];
 
   const handleATS = async () => {
-    if (!improveBy) return; // Don't proceed if no option is selected
+    // if (!improveBy) return; // Don't proceed if no option is selected
 
     const token = localStorage.getItem("token");
 
@@ -135,6 +145,18 @@ const TooltipContent = ({ improvements, resumeId, onClose }) => {
                     {t("improvements.keyword_optimization")}:{" "}
                   </span>
                   {improvements.areas_for_improvement.keyword_optimization}
+                </p>
+              </li>
+            )}
+            {improvements?.areas_for_improvement?.section_order && (
+              <li className="flex items-start gap-3">
+                <div className="w-2 h-2 mt-2 bg-blue-500 rounded-full" />
+                <p className="text-gray-700">
+                  <span className="font-bold text-black">
+                    {" "}
+                    {t("improvements.sectionOrder")}{" "}
+                  </span>
+                  {improvements.areas_for_improvement.section_order}
                 </p>
               </li>
             )}
@@ -208,7 +230,7 @@ const TooltipContent = ({ improvements, resumeId, onClose }) => {
         <p>{improvements?.overall_comments}</p>
       </div>
       {/* Improvement Option Selection */}
-      <div className="flex flex-col gap-2 mt-4">
+      {/* <div className="flex flex-col gap-2 mt-4">
         <h4 className="font-medium text-gray-800">
           Select Improvement Method:
         </h4>
@@ -234,15 +256,15 @@ const TooltipContent = ({ improvements, resumeId, onClose }) => {
           />
           Improve Overall
         </label>
-      </div>
+      </div> */}
       <button
         onClick={handleATS}
         className={`mt-6 px-6 py-2 w-full bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors ${
-          !improveBy || improvements.ats_score === 10 || Loading
+          improvements.ats_score === 10 || Loading
             ? "opacity-50 cursor-not-allowed"
             : ""
         }`}
-        disabled={!improveBy || improvements.ats_score === 10 || Loading}
+        disabled={improvements.ats_score === 10 || Loading}
       >
         {Loading ? (
           <SaveLoader loadingText="Proceed To Improve" />
@@ -338,15 +360,6 @@ const ResumeStrength = ({ score, strength, resumeId }) => {
     ];
   };
 
-  // const handleImproveResume = () => {
-  //   setShowLoader(true);
-  //   setTimeout(() => {
-  //     router.push({
-  //       pathname: `/dashboard/aibuilder/${resumeId}`,
-  //       query: { improve: "true" },
-  //     });
-  //   }, 5000);
-  // };
   const handleImproveResume = async () => {
     if (!resumeId) return;
 

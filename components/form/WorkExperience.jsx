@@ -17,6 +17,7 @@ import { toast } from "react-toastify";
 import { BASE_URL } from "../Constant/constant";
 import { useTranslation } from "react-i18next";
 import axiosInstance from "../utils/axiosInstance";
+import ErrorPopup from "../utility/ErrorPopUp";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const WorkExperience = () => {
@@ -47,7 +48,10 @@ const WorkExperience = () => {
 
   const [selectedDescriptions, setSelectedDescriptions] = useState([]); // Stores selected descriptions
   const [selectedKeyAchievements, setSelectedKeyAchievements] = useState([]); // Stores selected key achievements
-
+  const [errorPopup, setErrorPopup] = useState({
+    show: false,
+    message: "",
+  });
   const token = localStorage.getItem("token");
   const router = useRouter();
   const { improve } = router.query;
@@ -293,7 +297,12 @@ const WorkExperience = () => {
         err?.response?.data?.error ||
         err.message ||
         "Something went wrong";
-
+      setErrorPopup({
+        show: true,
+        message:
+          err.response?.data?.message ||
+          "Your API Limit is Exhausted. Please upgrade your plan.",
+      });
       setError(apiErrorMessage);
       toast.error(apiErrorMessage);
     } finally {
@@ -355,6 +364,12 @@ const WorkExperience = () => {
         "Something went wrong";
 
       setError(apiErrorMessage);
+      setErrorPopup({
+        show: true,
+        message:
+          err.response?.data?.message ||
+          "Your API Limit is Exhausted. Please upgrade your plan.",
+      });
       toast.error(apiErrorMessage);
     } finally {
       setLoadingStates((prev) => ({
@@ -439,7 +454,43 @@ const WorkExperience = () => {
     });
     setExpandedExperiences([...expandedExperiences, true]);
   };
+  const removeWork = (index) => {
+    // Check if this is the last work experience entry
+    if ((resumeData.workExperience || []).length <= 1) {
+      toast.warn("At least one work experience entry is required");
+      // setValidationErrors({
+      //   ...validationErrors,
+      //   general: "At least one work experience entry is required"
+      // });
 
+      // // Clear the error message after 3 seconds
+      // setTimeout(() => {
+      //   const updatedErrors = {...validationErrors};
+      //   delete updatedErrors.general;
+      //   setValidationErrors(updatedErrors);
+      // }, 3000);
+      return; // Don't remove if it's the last one
+    }
+
+    const newworkExperience = [...(resumeData.workExperience || [])];
+    newworkExperience.splice(index, 1);
+
+    // Clear any errors related to this index
+    // const updatedErrors = {};
+    // Object.keys(validationErrors).forEach(key => {
+    //   if (!key.startsWith(`${index}-`)) {
+    //     updatedErrors[key] = validationErrors[key];
+    //   }
+    // });
+    // setValidationErrors(updatedErrors);
+
+    setResumeData({ ...resumeData, workExperience: newworkExperience });
+    setExpandedExperiences(
+      expandedExperiences
+        .filter((i) => i !== index)
+        .map((i) => (i > index ? i - 1 : i))
+    );
+  };
   const removeWorkExperience = (index) => {
     const newWorkExperience = [...resumeData.workExperience];
     newWorkExperience.splice(index, 1);
@@ -655,16 +706,16 @@ const WorkExperience = () => {
     }));
   };
 
-  const removeWork = (index) => {
-    const newworkExperience = [...(resumeData.workExperience || [])];
-    newworkExperience.splice(index, 1);
-    setResumeData({ ...resumeData, workExperience: newworkExperience });
-    setExpandedExperiences(
-      expandedExperiences
-        .filter((i) => i !== index)
-        .map((i) => (i > index ? i - 1 : i))
-    );
-  };
+  // const removeWork = (index) => {
+  //   const newworkExperience = [...(resumeData.workExperience || [])];
+  //   newworkExperience.splice(index, 1);
+  //   setResumeData({ ...resumeData, workExperience: newworkExperience });
+  //   setExpandedExperiences(
+  //     expandedExperiences
+  //       .filter((i) => i !== index)
+  //       .map((i) => (i > index ? i - 1 : i))
+  //   );
+  // };
   // Parse date string to get month and year
   const getDatePart = (dateStr, part) => {
     if (!dateStr) return "";
@@ -690,27 +741,7 @@ const WorkExperience = () => {
       return parts[1] || "";
     }
   };
-  const handleKeyAchievementsChange = (e, index) => {
-    const newWorkExperience = [...resumeData.workExperience];
-    newWorkExperience[index].rawKeyAchievementsText = e.target.value;
 
-    setResumeData({ ...resumeData, workExperience: newWorkExperience });
-  };
-
-  const handleKeyAchievementsBlur = (index) => {
-    const newWorkExperience = [...resumeData.workExperience];
-    const rawText = newWorkExperience[index].rawKeyAchievementsText || "";
-
-    const achievements = rawText
-      .split("\n")
-      .map((item) => item.trim())
-      .filter((item) => item !== "");
-
-    newWorkExperience[index].keyAchievements = achievements;
-
-    setSelectedKeyAchievements(achievements);
-    setResumeData({ ...resumeData, workExperience: newWorkExperience });
-  };
   const handleJobTitleKeyDown = (e, index) => {
     if (e.key === "Enter") {
       e.preventDefault();
@@ -1582,7 +1613,12 @@ const WorkExperience = () => {
           </div>
         </div>
       )}
-
+      {errorPopup.show && (
+        <ErrorPopup
+          message={errorPopup.message}
+          onClose={() => setErrorPopup({ show: false, message: "" })}
+        />
+      )}
       {searchResults.length > 0 && (
         <div className="absolute z-50 top-full left-0 right-0 bg-white rounded-lg shadow-xl mt-2">
           {searchResults.map((result, idx) => (

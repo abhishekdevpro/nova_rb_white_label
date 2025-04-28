@@ -997,6 +997,18 @@ const PersonalInformation = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    const maxLengths = {
+      name: 30,
+      position: 20,
+      contactInformation: 10,
+      email: 50,
+      address: 50,
+    };
+
+    // Check if value exceeds max length for the field
+    if (maxLengths[name] && value.length > maxLengths[name]) {
+      return;
+    }
     handleChange(e);
 
     if (name === "position") {

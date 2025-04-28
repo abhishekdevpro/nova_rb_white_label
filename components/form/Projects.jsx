@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { BASE_URL } from "../Constant/constant";
 import { useTranslation } from "react-i18next";
+import ErrorPopup from "../utility/ErrorPopUp";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const Projects = () => {
@@ -29,7 +30,10 @@ const Projects = () => {
   const [selectedDescriptions, setSelectedDescriptions] = useState([]);
   const [selectedKeyAchievements, setSelectedKeyAchievements] = useState([]);
   const [activeTooltip, setActiveTooltip] = useState(null);
-
+  const [errorPopup, setErrorPopup] = useState({
+    show: false,
+    message: "",
+  });
   const token = localStorage.getItem("token");
   const months = [
     "Jan",
@@ -171,16 +175,16 @@ const Projects = () => {
 
     setResumeData({ ...resumeData, projects: newProjects });
   };
-  const removeProjects = (index) => {
-    const newProjects = [...(resumeData.projects || [])];
-    newProjects.splice(index, 1);
-    setResumeData({ ...resumeData, projects: newProjects });
-    setExpandedProjects(
-      expandedProjects
-        .filter((i) => i !== index)
-        .map((i) => (i > index ? i - 1 : i))
-    );
-  };
+  // const removeProjects = (index) => {
+  //   const newProjects = [...(resumeData.projects || [])];
+  //   newProjects.splice(index, 1);
+  //   setResumeData({ ...resumeData, projects: newProjects });
+  //   setExpandedProjects(
+  //     expandedProjects
+  //       .filter((i) => i !== index)
+  //       .map((i) => (i > index ? i - 1 : i))
+  //   );
+  // };
 
   const toggleProjectExpansion = (index, e) => {
     e.preventDefault(); // Prevent the default button behavior
@@ -245,7 +249,12 @@ const Projects = () => {
         err?.response?.data?.error ||
         err.message ||
         "Something went wrong";
-
+      setErrorPopup({
+        show: true,
+        message:
+          err.response?.data?.message ||
+          "Your API Limit is Exhausted. Please upgrade your plan.",
+      });
       setError(apiErrorMessage);
       toast.error(apiErrorMessage);
     } finally {
@@ -463,7 +472,13 @@ const Projects = () => {
         err?.response?.data?.message ||
         err?.response?.data?.error ||
         err.message ||
-        "Something went wrong";
+        setErrorPopup({
+          show: true,
+          message:
+            err.response?.data?.message ||
+            "Your API Limit is Exhausted. Please upgrade your plan.",
+        });
+      ("Something went wrong");
 
       setError(apiErrorMessage);
       toast.error(apiErrorMessage);
@@ -473,6 +488,43 @@ const Projects = () => {
         [`description_${projectIndex}`]: false,
       }));
     }
+  };
+  const removeProjects = (index) => {
+    // Check if this is the last project entry
+    if ((resumeData.projects || []).length <= 1) {
+      toast.warn("At least one project entry is required");
+      // setValidationErrors({
+      //   ...validationErrors,
+      //   general: "At least one project entry is required"
+      // });
+
+      // // Clear the error message after 3 seconds
+      // setTimeout(() => {
+      //   const updatedErrors = {...validationErrors};
+      //   delete updatedErrors.general;
+      //   setValidationErrors(updatedErrors);
+      // }, 3000);
+      return; // Don't remove if it's the last one
+    }
+
+    const newProjects = [...(resumeData.projects || [])];
+    newProjects.splice(index, 1);
+
+    // Clear any errors related to this index
+    // const updatedErrors = {};
+    // Object.keys(validationErrors).forEach(key => {
+    //   if (!key.startsWith(`${index}-`)) {
+    //     updatedErrors[key] = validationErrors[key];
+    //   }
+    // });
+    // setValidationErrors(updatedErrors);
+
+    setResumeData({ ...resumeData, projects: newProjects });
+    setExpandedProjects(
+      expandedProjects
+        .filter((i) => i !== index)
+        .map((i) => (i > index ? i - 1 : i))
+    );
   };
   // Parse date string to get month and year
   const getDatePart = (dateStr, part) => {
@@ -1141,6 +1193,12 @@ const Projects = () => {
             </button>
           </div>
         </div>
+      )}
+      {errorPopup.show && (
+        <ErrorPopup
+          message={errorPopup.message}
+          onClose={() => setErrorPopup({ show: false, message: "" })}
+        />
       )}
     </div>
   );

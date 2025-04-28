@@ -842,7 +842,8 @@
   "improvements": {
     "title": "Domaines d'amélioration",
     "file_format": "Format de fichier",
-    "keyword_optimization": "Optimisation des mots-clés"
+    "keyword_optimization": "Optimisation des mots-clés",
+    "sectionOrder": "Ordre des sections"
   },
   "formatting": {
     "title": "Liste de vérification du formatage",
@@ -853,7 +854,11 @@
     "consistent_font": "Police cohérente",
     "consistent_font_desc": "Utilisation cohérente des polices dans tout le CV",
     "contact_info": "Informations de contact visibles",
-    "contact_info_desc": "Les informations de contact sont clairement visibles"
+    "contact_info_desc": "Les informations de contact sont clairement visibles",
+    "clear_exp": "Expérience claire",
+    "clear_exp_desc": "La section expérience professionnelle est clairement structurée et lisible",
+      "clear_summary": "Résumé clair",
+    "clear_summary_desc": "La section résumé est bien rédigée et clairement présentée"
   },
   "overall_comments": "Commentaires généraux",
   "button": {
@@ -898,7 +903,16 @@
       },
       "back": "Retour",
       "next": "Suivant",
-       "saving": "Enregistrement en cours"
+       "saving": "Enregistrement en cours",
+       "toast": {
+      "selectExperience": "Veuillez sélectionner un niveau d'expérience avant de continuer.",
+      "resumeDataNotLoaded": "Les données du CV ne sont pas encore chargées. Veuillez patienter.",
+      "resumeIdNotFound": "Identifiant du CV introuvable.",
+      "experienceSaved": "Expérience enregistrée avec succès.",
+      "errorSavingExperience": "Erreur lors de l'enregistrement de l'expérience.",
+      "errorUpdatingResume": "Erreur lors de la mise à jour du CV !",
+      "errorFetchingResume": "Erreur lors de la récupération des données du CV."
+    }
     },
     "templateStep": {
     "choose_template": "Choisissez votre modèle parfait",
