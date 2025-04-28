@@ -7,6 +7,7 @@ import { MdRemoveCircle } from "react-icons/md";
 import { BASE_URL } from "../Constant/constant";
 import { useTranslation } from "react-i18next";
 import axiosInstance from "../utils/axiosInstance";
+import { toast } from "react-toastify";
 const Education = () => {
   const { i18n, t } = useTranslation();
   const language = i18n.language;
@@ -229,6 +230,17 @@ const Education = () => {
   };
 
   const removeEducation = (index) => {
+    if (resumeData.education.length <= 1) {
+      toast.warn("At least one Education is required");
+
+      // Clear the error message after 3 seconds
+      // setTimeout(() => {
+      //   // const updatedErrors = {...validationErrors};
+      //   delete updatedErrors.general;
+      //   setValidationErrors(updatedErrors);
+      // }, 3000);
+      return; // Don't remove if it's the last one
+    }
     const newEducation = [...resumeData.education];
     newEducation.splice(index, 1);
     setResumeData({ ...resumeData, education: newEducation });

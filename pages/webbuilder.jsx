@@ -26,7 +26,7 @@ import { toast } from "react-toastify";
 import LoaderButton from "../components/utility/LoaderButton";
 import useLoader from "../hooks/useLoader";
 import Modal from "./adminlogin/Modal";
-import { Menu, X } from "lucide-react";
+import { AlertCircle, Menu, X } from "lucide-react";
 import Image from "next/image";
 import resumeImg from "./builderImages/GraphicDesignerResume.jpg";
 import poweredbypaypal from "./builderImages/poweredbypaypal.png";
@@ -69,6 +69,7 @@ export default function WebBuilder() {
   const [loading, setLoading] = useState(null);
   const { i18n, t } = useTranslation();
   const language = i18n.language;
+  const { improve } = router.query;
   const {
     setResumeStrength,
     resumeData,
@@ -79,6 +80,8 @@ export default function WebBuilder() {
     selectedFont,
     backgroundColorss,
     headerColor,
+
+    resumeStrength,
   } = useContext(ResumeContext);
 
   useEffect(() => {
@@ -218,23 +221,36 @@ export default function WebBuilder() {
     {
       label: t("resumeStrength.sections.personalInformation"),
       component: <PersonalInformation />,
+      showErrorIcon: resumeStrength?.is_personal_info === false,
     },
     {
       label: t("resumeStrength.sections.socialLinks"),
       component: <SocialMedia />,
+      showErrorIcon: resumeStrength?.is_social === false,
     },
     {
       label: t("resumeStrength.sections.personalSummary"),
       component: <Summary />,
+      showErrorIcon: resumeStrength?.is_personal_summery === false,
     },
-    { label: t("resumeStrength.sections.education"), component: <Education /> },
+    {
+      label: t("resumeStrength.sections.education"),
+      component: <Education />,
+      showErrorIcon: resumeStrength?.is_education === false,
+    },
     {
       label: t("resumeStrength.sections.workHistory"),
       component: <WorkExperience />,
+      showErrorIcon: resumeStrength?.is_work_history === false,
     },
-    { label: t("resumeStrength.sections.projects"), component: <Projects /> },
+    {
+      label: t("resumeStrength.sections.projects"),
+      component: <Projects />,
+      showErrorIcon: resumeStrength?.is_project === false,
+    },
     {
       label: t("resumeStrength.sections.skills"),
+      showErrorIcon: resumeStrength?.is_skills === false,
       component: Array.isArray(resumeData?.skills) ? (
         resumeData.skills.map((skill, index) => (
           <Skill title={skill.title} currentSkillIndex={index} key={index} />
@@ -243,10 +259,15 @@ export default function WebBuilder() {
         <p>No skills available</p>
       ),
     },
-    { label: t("resumeStrength.sections.languages"), component: <Language /> },
+    {
+      label: t("resumeStrength.sections.languages"),
+      component: <Language />,
+      showErrorIcon: resumeStrength?.is_languages === false,
+    },
     {
       label: t("resumeStrength.sections.certification"),
       component: <Certification />,
+      showErrorIcon: resumeStrength?.is_certifications === false,
     },
   ];
   // const sections = [
@@ -848,14 +869,17 @@ export default function WebBuilder() {
                         {sections.map((section, index) => (
                           <li
                             key={index}
-                            className={`px-4 py-2 cursor-pointer transition rounded-lg border-2 ${
+                            className={`flex items-center justify-between gap-2 px-4 py-2 cursor-pointer transition-all duration-200 rounded-lg border-2 ${
                               currentSection === index
                                 ? "border-green-500 font-semibold bg-green-500 text-white"
                                 : "border-green-500 bg-white text-black hover:bg-blue-50"
                             }`}
                             onClick={() => handleSectionClick(index)}
                           >
-                            {section.label}
+                            <span> {section.label} </span>
+                            {improve && section.showErrorIcon && (
+                              <AlertCircle className="text-red-500 w-5 h-5" />
+                            )}
                           </li>
                         ))}
                       </ul>

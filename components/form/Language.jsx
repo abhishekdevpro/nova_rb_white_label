@@ -11,6 +11,7 @@ import {
   Globe2,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 const Language = () => {
   const { resumeData, setResumeData, resumeStrength } =
@@ -79,7 +80,7 @@ const Language = () => {
         [skillType]: newLanguages,
       });
     } else {
-      alert("At least one language is required.");
+      toast.warn("At least one language is required.");
     }
   };
 

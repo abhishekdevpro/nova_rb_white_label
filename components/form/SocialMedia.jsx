@@ -202,6 +202,7 @@ import { AlertCircle, X } from "lucide-react";
 
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 const SOCIAL_MEDIA_OPTIONS = [
   { name: "GitHub", baseUrl: "https://github.com/" },
@@ -341,6 +342,20 @@ const SocialMedia = () => {
 
   // Remove a social media entry
   const removeSocialMedia = (index) => {
+    if (resumeData.socialMedia.length <= 1) {
+      toast.warn("At least one social media profile is required");
+
+      setValidationErrors({
+        ...validationErrors,
+        general: "At least one social media profile is required",
+      });
+      setTimeout(() => {
+        const updatedErrors = { ...validationErrors };
+        delete updatedErrors.general;
+        setValidationErrors(updatedErrors);
+      }, 3000);
+      return; // Don't remove if it's the last one
+    }
     const newSocialMedia = [...resumeData.socialMedia];
     newSocialMedia.splice(index, 1); // Remove the entry at the given index
 
