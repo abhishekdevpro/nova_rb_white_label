@@ -88,7 +88,7 @@ const TooltipContent = ({ improvements, resumeId, onClose }) => {
 
     setLoading(true); // Ensure loading is set to true when the request starts
     if (!resumeData.position) {
-      toast.error("Job Title is required");
+      toast.error(t("job_title_required"));
       return;
     }
     try {
@@ -267,7 +267,7 @@ const TooltipContent = ({ improvements, resumeId, onClose }) => {
         disabled={improvements.ats_score === 10 || Loading}
       >
         {Loading ? (
-          <SaveLoader loadingText="Proceed To Improve" />
+          <SaveLoader loadingText={t("button.improve")} />
         ) : (
           t("button.improve")
         )}

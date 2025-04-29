@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { BASE_URL } from "../../components/Constant/constant";
+import { useTranslation } from "react-i18next";
 
 const Index = () => {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const router = useRouter();
@@ -52,7 +54,7 @@ const Index = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        Loading...
+        {t("loading")}
       </div>
     );
   }

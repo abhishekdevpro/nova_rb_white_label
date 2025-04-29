@@ -1057,6 +1057,7 @@
                     "address_placeholder": "Address",
                     "suggestions": "Suggestions",
                     "auto_fix": "Auto Fix",
+                    "fixing": "Fixing...",
                     "add_section": "✙ Add section",
                      "mark_resolved": "Mark Resolved",
                     "placeholders": {
@@ -1113,7 +1114,28 @@
     "location": "Location",
     "save_button": "Save",
     "cancel_button": "Cancel",
-    "add_section": "✙ Add section"
+    "add_section": "✙ Add section",
+    "company":"Company",
+    "companySuggestions": "Company Suggestions",
+    "position": "Position",
+    "positionSuggestions": "Position Suggestions",
+  
+    "locationSuggestions": "Location Suggestions",
+   
+    "descriptionSuggestions": "Description Suggestions",
+    "keyAchievementsPlaceholder": "Enter key achievements (one per line)",
+    "keyAchievementsSuggestions": "Key Achievement Suggestions",
+    "removeWorkExperience": "Remove Work Experience",
+    "popup": {
+    "selectDescription": "Select Description",
+    "selectKeyAchievements": "Select Key Achievements",
+    "noDescriptions": "No descriptions available.",
+    "noKeyAchievements": "No key achievements available.",
+    "retry": "Retry",
+    "retrying": "Retrying...",
+    "saveSelection": "Save Selection",
+    "close": "Close"
+  }
   },
   "skill":{
     "noSkillsFound": "No skills found.",
@@ -1146,7 +1168,27 @@
     "good": "Good",
     "basicKnowledge": "Basic Knowledge",
     "justStarting": "Just Starting"
+  },
+  "project":{
+     "placeholderName": "Project Name",
+      "placeholderLink": "Link",
+      "project":"Project",
+       "remove": "Remove Project",
+       "nameSuggestion": "Project Name Suggestion",
+         "link": "Project Link",
+         "popup": {
+          "select_description": "Select Description",
+          "select_key_achievements": "Select Key Achievements",
+          "no_descriptions": "No descriptions available.",
+          "no_key_achievements": "No key achievements available.",
+          "retrying": "Retrying...",
+          "retry": "Retry",
+          "save_selection": "Save Selection",
+          "close": "Close"
+        }
   }
+
+  
                 },
                 "summaryperosnal": {
     "sections": {
@@ -1735,7 +1777,25 @@
   "redirecting": "Redirecting to payment...",
   "alreadySubscribed": "You already have an active subscription for this plan.",
   "genericError": "Error processing payment."
-}
+},
+
+  "job_title_required": "Job Title is required",
+  "resumePreview":{
+     "summary": "Summary",
+     "education":"Education",
+      "workExperience": "Work Experience",
+       "projects": "Projects",
+        "skills": "Skills",
+         "languages": "Languages"
+  },
+  "errorPopup": {
+    "title": "Error",
+    "message": "An error occurred. Please try again.",
+    "cancel": "Cancel",
+    "upgradePlan": "Upgrade Plan"
+  }
+
+
 
   }
   

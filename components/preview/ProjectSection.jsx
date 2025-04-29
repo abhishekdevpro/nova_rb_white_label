@@ -1,9 +1,9 @@
-
 import React from "react";
 import dynamic from "next/dynamic";
 import DateRange from "../utility/DateRange";
 import Link from "next/link";
 import DateRangeExperience from "../utility/DateRangeExperience";
+import { useTranslation } from "react-i18next";
 const DragDropContext = dynamic(
   () => import("react-beautiful-dnd").then((mod) => mod.DragDropContext),
   { ssr: false }
@@ -17,6 +17,7 @@ const Draggable = dynamic(
   { ssr: false }
 );
 const ProjectsSection = ({ resumeData, headerColor }) => {
+  const { t } = useTranslation();
   if (!resumeData?.projects || resumeData.projects.length === 0) {
     return null;
   }
@@ -36,7 +37,7 @@ const ProjectsSection = ({ resumeData, headerColor }) => {
               borderBottom: `2px solid ${headerColor}`,
             }}
           >
-            Projects
+            {t("resumePreview.projects")}
           </h2>
           {resumeData.projects.map((item, index) => (
             <Draggable
@@ -55,10 +56,13 @@ const ProjectsSection = ({ resumeData, headerColor }) => {
                   }`}
                 >
                   <div className="flex flex-row justify-between space-y-1">
-                    <p className="content i-bold"
+                    <p
+                      className="content i-bold"
                       contentEditable
                       suppressContentEditableWarning
-                    >{item.name}</p>
+                    >
+                      {item.name}
+                    </p>
                     <DateRangeExperience
                       startYear={item.startYear}
                       endYear={item.endYear}
@@ -71,14 +75,14 @@ const ProjectsSection = ({ resumeData, headerColor }) => {
                     rel="noopener noreferrer"
                     className="content"
                     contentEditable
-                     suppressContentEditableWarning
+                    suppressContentEditableWarning
                   >
                     {item.link}
                   </Link>
                   <p
                     className="content"
                     contentEditable
-                     suppressContentEditableWarning
+                    suppressContentEditableWarning
                     dangerouslySetInnerHTML={{
                       __html: item.description,
                     }}

@@ -54,7 +54,7 @@ const MobileCoverLetterBuilder = ({
         <div className="flex flex-col min-h-screen bg-gray-50">
           {/* Sticky Options Bar */}
           <div className="sticky top-[64px] z-40 bg-gray-200 p-4 shadow-sm">
-            <div className="flex flex-row flex-wrap justify-center items-center ">
+            <div className="flex items-center absolute justify-center gap-2 p-2  top-26 left-0 right-0 bg-white shadow-lg ">
               {/* Font Selector */}
               <select
                 value={selectedFont}

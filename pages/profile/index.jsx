@@ -414,7 +414,7 @@ const ProfileForm = () => {
               />
             </div>
           </div> */}
-          <div className="md:flex items-center space-x-4 relative">
+          {/* <div className="md:flex items-center space-x-4 relative">
             {formData.photo && (
               <div className="relative">
                 <img
@@ -456,6 +456,51 @@ const ProfileForm = () => {
                 ? t("image_uploaded")
                 : t("no_file_chosen")}
             </span>
+          </div> */}
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-4 relative">
+            {formData.photo && (
+              <div className="relative">
+                <img
+                  src={
+                    formData.uploadPhoto
+                      ? URL.createObjectURL(formData.uploadPhoto)
+                      : `https://api.ciblijob.fr${formData.photo}`
+                  }
+                  alt="Profile"
+                  className="w-20 h-20 rounded-full border object-cover"
+                />
+                <button
+                  type="button"
+                  onClick={handleRemovePhoto}
+                  className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1"
+                >
+                  <Trash2 size={16} />
+                </button>
+              </div>
+            )}
+
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="hidden"
+                id="fileInput"
+              />
+              <label
+                htmlFor="fileInput"
+                className="border p-2 cursor-pointer bg-gray-100 rounded-md text-center"
+              >
+                {t("choose_file")}
+              </label>
+              <span className="text-gray-700 text-sm sm:ml-2 break-all">
+                {formData.uploadPhoto
+                  ? formData.uploadPhoto.name
+                  : formData.photo
+                  ? t("image_uploaded")
+                  : t("no_file_chosen")}
+              </span>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">

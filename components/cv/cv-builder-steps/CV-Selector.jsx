@@ -291,7 +291,7 @@ const CVSelector = ({ onNext, onBack, onChange, value }) => {
       }
 
       const response = await axios.put(
-        `${BASE_URL}/api/user/coverletter/${coverletterId}`,
+        `${BASE_URL}/api/user/coverletter/${coverletterId}?lang=${language}`,
         coverletterInfo,
         {
           headers: {

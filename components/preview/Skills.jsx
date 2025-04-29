@@ -1,4 +1,3 @@
-
 // import React, { useContext } from "react";
 // import { ResumeContext } from "../context/ResumeContext";
 
@@ -57,7 +56,8 @@ import React, { useContext } from "react";
 import { ResumeContext } from "../context/ResumeContext";
 
 const Skills = ({ title, skills, color = "black", layout }) => {
-  const { resumeData, setResumeData, backgroundColorss } = useContext(ResumeContext);
+  const { resumeData, setResumeData, backgroundColorss } =
+    useContext(ResumeContext);
 
   console.log(backgroundColorss, "backgroundColorss");
 
