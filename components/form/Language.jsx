@@ -101,7 +101,7 @@ const Language = () => {
   };
 
   return (
-    <div className="flex-col-gap-3 w-full mt-10 px-10">
+    <div className="flex-col-gap-3 w-full mt-10 px-10 max-h-[400px] overflow-y-auto">
       <div className="flex items-center gap-3 mb-4">
         {/* <Globe2 className="w-8 h-8 text-black" /> */}
         <h2 className="input-title text-black text-3xl">
