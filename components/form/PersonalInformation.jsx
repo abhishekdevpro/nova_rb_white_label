@@ -1159,7 +1159,7 @@ const PersonalInformation = () => {
   };
 
   return (
-    <div className="flex flex-col gap-3 w-full items-center md:mt-10 md:px-10">
+    <div className="flex flex-col gap-3 w-full items-center md:mt-10 md:px-10 max-h-[400px] overflow-y-auto">
       <h2 className="text-2xl md:text-3xl font-semibold text-black">
         {t("builder_forms.personal_info.details_info")}
       </h2>

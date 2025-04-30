@@ -777,7 +777,7 @@ const WorkExperience = () => {
   };
 
   return (
-    <div className="flex-col gap-3 w-full md:mt-10 md:px-10">
+    <div className="flex-col gap-3 w-full md:mt-10 md:px-10 max-h-[400px] overflow-y-auto">
       <h2 className="input-title text-black text-3xl mb-6">
         {t("resumeStrength.sections.workHistory")}
       </h2>

@@ -292,7 +292,8 @@ import { BASE_URL } from "../Constant/constant";
 import Link from "next/link";
 
 export default function ExperienceStep({ onNext, onBack, onChange, value }) {
-  const { t } = useTranslation();
+  const { i18n, t } = useTranslation();
+  const language = i18n.language;
   const router = useRouter();
   const { resumeData, setResumeData, exp, setExp } = useContext(ResumeContext);
 
@@ -397,7 +398,7 @@ export default function ExperienceStep({ onNext, onBack, onChange, value }) {
       }
 
       const response = await axios.put(
-        `${BASE_URL}/api/user/resume-update/${resumeId}`,
+        `${BASE_URL}/api/user/resume-update/${resumeId}?lang=${language}`,
         templateData,
         {
           headers: {
