@@ -365,106 +365,111 @@ const Skill = ({ title, currentSkillIndex }) => {
           </div>
         ) : (
           <>
-            {/* Your skill inputs rendering code here */}
-            {skillType.skills.map((skill, index) => (
-              <div key={index} className="relative flex items-center space-x-2">
-                <div className="relative w-full">
-                  <input
-                    type="text"
-                    placeholder={title}
-                    name={title}
-                    className={`w-full other-input border ${
-                      improve && hasErrors(index)
-                        ? "border-red-500"
-                        : "border-black"
-                    }`}
-                    value={skill}
-                    onChange={(e) => handleSkill(e, index, title)}
-                    onKeyDown={(e) => handleKeyDown(e, index, title)}
-                    onFocus={() => {
-                      if (skill.length >= 2) {
-                        fetchSuggestions(skill, index);
+            <div className="  max-h-[400px] overflow-y-auto">
+              {/* Your skill inputs rendering code here */}
+              {skillType.skills.map((skill, index) => (
+                <div
+                  key={index}
+                  className="relative flex items-center space-x-2"
+                >
+                  <div className="relative w-full">
+                    <input
+                      type="text"
+                      placeholder={title}
+                      name={title}
+                      className={`w-full other-input border ${
+                        improve && hasErrors(index)
+                          ? "border-red-500"
+                          : "border-black"
+                      }`}
+                      value={skill}
+                      onChange={(e) => handleSkill(e, index, title)}
+                      onKeyDown={(e) => handleKeyDown(e, index, title)}
+                      onFocus={() => {
+                        if (skill.length >= 2) {
+                          fetchSuggestions(skill, index);
+                        }
+                      }}
+                    />
+                    {showSuggestions &&
+                      activeInputIndex === index &&
+                      suggestions.length > 0 && (
+                        <div
+                          ref={suggestionsRef}
+                          className="absolute z-50 w-full bg-white mt-1 border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto"
+                        >
+                          {suggestions.map((suggestion, i) => (
+                            <div
+                              key={suggestion.id}
+                              className={`px-4 py-2 cursor-pointer hover:bg-gray-100 ${
+                                i === activeSuggestionIndex ? "bg-gray-100" : ""
+                              }`}
+                              onClick={() =>
+                                handleSelectSuggestion(suggestion, index, title)
+                              }
+                            >
+                              {suggestion.name}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                  </div>
+
+                  {improve && hasErrors(index) && (
+                    <button
+                      type="button"
+                      className="absolute right-[55px] top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
+                      onClick={() =>
+                        setActiveTooltip(
+                          activeTooltip === `skill-${index}`
+                            ? null
+                            : `skill-${index}`
+                        )
                       }
-                    }}
-                  />
-                  {showSuggestions &&
-                    activeInputIndex === index &&
-                    suggestions.length > 0 && (
-                      <div
-                        ref={suggestionsRef}
-                        className="absolute z-50 w-full bg-white mt-1 border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto"
-                      >
-                        {suggestions.map((suggestion, i) => (
-                          <div
-                            key={suggestion.id}
-                            className={`px-4 py-2 cursor-pointer hover:bg-gray-100 ${
-                              i === activeSuggestionIndex ? "bg-gray-100" : ""
-                            }`}
-                            onClick={() =>
-                              handleSelectSuggestion(suggestion, index, title)
-                            }
-                          >
-                            {suggestion.name}
+                    >
+                      <AlertCircle className="w-5 h-5" />
+                    </button>
+                  )}
+
+                  <button
+                    type="button"
+                    onClick={() => removeSkill(title, index)}
+                    className="bg-red-500 text-white hover:bg-red-700 py-2 px-2"
+                    aria-label="Delete skill"
+                  >
+                    <Trash />
+                  </button>
+
+                  {activeTooltip === `skill-${index}` && (
+                    <div className="absolute z-10 right-10 top-10 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200">
+                      <div className="bg-red-50 px-4 py-2 rounded-t-lg border-b border-red-100">
+                        <div className="flex items-center gap-2">
+                          <AlertCircle className="w-5 h-5 text-red-600" />
+                          <span className="font-medium text-red-800">
+                            {t("builder_forms.skill.skillError")}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="p-4">
+                        {getErrorMessages(index).map((msg, i) => (
+                          <div key={i} className="text-gray-700 text-sm mb-2">
+                            {msg}
                           </div>
                         ))}
                       </div>
-                    )}
-                </div>
-
-                {improve && hasErrors(index) && (
-                  <button
-                    type="button"
-                    className="absolute right-[55px] top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
-                    onClick={() =>
-                      setActiveTooltip(
-                        activeTooltip === `skill-${index}`
-                          ? null
-                          : `skill-${index}`
-                      )
-                    }
-                  >
-                    <AlertCircle className="w-5 h-5" />
-                  </button>
-                )}
-
-                <button
-                  type="button"
-                  onClick={() => removeSkill(title, index)}
-                  className="bg-red-500 text-white hover:bg-red-700 py-2 px-2"
-                  aria-label="Delete skill"
-                >
-                  <Trash />
-                </button>
-
-                {activeTooltip === `skill-${index}` && (
-                  <div className="absolute z-10 right-10 top-10 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200">
-                    <div className="bg-red-50 px-4 py-2 rounded-t-lg border-b border-red-100">
-                      <div className="flex items-center gap-2">
-                        <AlertCircle className="w-5 h-5 text-red-600" />
-                        <span className="font-medium text-red-800">
-                          {t("builder_forms.skill.skillError")}
-                        </span>
+                      <div className="border-t border-gray-100 p-3 flex justify-end">
+                        <button
+                          onClick={() => setActiveTooltip(null)}
+                          className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                        >
+                          {t("builder_forms.skill.dismiss")}
+                        </button>
                       </div>
                     </div>
-                    <div className="p-4">
-                      {getErrorMessages(index).map((msg, i) => (
-                        <div key={i} className="text-gray-700 text-sm mb-2">
-                          {msg}
-                        </div>
-                      ))}
-                    </div>
-                    <div className="border-t border-gray-100 p-3 flex justify-end">
-                      <button
-                        onClick={() => setActiveTooltip(null)}
-                        className="text-blue-600 hover:text-blue-800 text-sm font-medium"
-                      >
-                        {t("builder_forms.skill.dismiss")}
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
+                  )}
+                </div>
+              ))}
+            </div>
           </>
         )}
 
