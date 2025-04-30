@@ -20,6 +20,7 @@ const Summary = () => {
     selectedLang,
   } = useContext(ResumeContext);
   const { i18n, t } = useTranslation();
+
   const language = i18n.language;
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -292,7 +293,7 @@ const Summary = () => {
             {loading ? (
               <span className="flex items-center gap-2">
                 <Loader />
-                Loading...
+                {t("loading")}
               </span>
             ) : (
               t("smartAssist")

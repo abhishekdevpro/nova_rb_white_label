@@ -221,7 +221,7 @@ const Projects = () => {
           content:
             resumeData.projects[index].description || "Project description",
           project_name: resumeData.projects[index].name || "N/A",
-          job_title: resumeData.projects[index].po || "Project",
+          job_title: resumeData.projects[index].position || "Project",
           link: resumeData.projects[index].link || "N/A",
           start_date: resumeData.projects[index].startYear,
           end_date: resumeData.projects[index].endYear,
@@ -564,7 +564,8 @@ const Projects = () => {
           >
             <div className="flex  justify-between items-center mb-2">
               <h3 className="text-black text-xl font-semibold">
-                {project.name || `Project ${projectIndex + 1}`}
+                {project.name ||
+                  `${t("builder_forms.project.project")} ${projectIndex + 1}`}
               </h3>
               <button
                 onClick={(e) => toggleProjectExpansion(projectIndex, e)}
@@ -583,7 +584,7 @@ const Projects = () => {
                 <div className="relative mb-2">
                   <input
                     type="text"
-                    placeholder="Project Name"
+                    placeholder={t("builder_forms.project.placeholderName")}
                     name="name"
                     maxLength={150}
                     className={`w-full other-input border  ${
@@ -617,7 +618,7 @@ const Projects = () => {
                           <div className="flex items-center space-x-2">
                             <AlertCircle className="w-5 h-5 text-red-400" />
                             <span className="font-medium text-black">
-                              Project Name Suggestion
+                              {t("builder_forms.project.nameSuggestion")}
                             </span>
                           </div>
                           <button
@@ -646,10 +647,12 @@ const Projects = () => {
                 </div>
                 <div className="flex flex-col justify-between mb-2">
                   <div className="relative ">
-                    <label className="text-black">Link </label>
+                    <label className="text-black">
+                      {t("builder_forms.project.placeholderLink")}{" "}
+                    </label>
                     <input
                       type="text"
-                      placeholder="Link"
+                      placeholder={t("builder_forms.project.placeholderLink")}
                       name="link"
                       maxLength={150}
                       className={`w-full other-input border  ${
@@ -682,7 +685,7 @@ const Projects = () => {
                             <div className="flex items-center space-x-2">
                               <AlertCircle className="w-5 h-5 text-red-400" />
                               <span className="font-medium text-black">
-                                Project Link
+                                {t("builder_forms.project.link")}
                               </span>
                             </div>
                             <button
@@ -724,13 +727,13 @@ const Projects = () => {
                       }
                     >
                       {loadingStates[`description_${projectIndex}`]
-                        ? "Loading..."
+                        ? t("loading")
                         : t("smartAssist")}
                     </button>
                   </div>
 
                   <ReactQuill
-                    placeholder="Description"
+                    placeholder={t("builder_forms.work_experience.description")}
                     value={project.description}
                     // onChange={(value) =>
                     //   handleProjects(
@@ -789,7 +792,9 @@ const Projects = () => {
                           <div className="flex items-center space-x-2">
                             <AlertCircle className="w-5 h-5 text-red-400" />
                             <span className="font-medium text-black">
-                              Description Suggestions
+                              {t(
+                                "builder_forms.work_experience.descriptionSuggestions"
+                              )}
                             </span>
                           </div>
 
@@ -810,8 +815,8 @@ const Projects = () => {
                             }
                           >
                             {loadingStates[`description_${projectIndex}`]
-                              ? "Fixing..."
-                              : "Auto Fix"}
+                              ? t("builder_forms.personal_info.fixing")
+                              : t("builder_forms.personal_info.auto_fix")}
                           </button>
 
                           <button
@@ -838,37 +843,90 @@ const Projects = () => {
                     </div>
                   )}
                 </div>
-                <div className="mt-4">
+
+                <div className="mt-4 relative">
                   <div className="flex justify-between mb-2">
                     <label className="text-black">
+                      {" "}
                       {t("builder_forms.work_experience.key_achievements")}
                     </label>
                     <button
                       type="button"
-                      className="p-2 text-white bg-black rounded-lg text-sm mb-2"
+                      className="border bg-black text-white px-3 rounded-3xl"
                       onClick={() => handleAIAssistKey(projectIndex)}
                       disabled={loadingStates[`key_${projectIndex}`]}
                     >
                       {loadingStates[`key_${projectIndex}`]
-                        ? "Loading..."
+                        ? t("loading")
                         : t("keyAssist")}
                     </button>
                   </div>
+
                   <textarea
-                    name="KeyAchievements"
-                    placeholder="Enter key achievements (one per line)"
+                    placeholder={t(
+                      "builder_forms.work_experience.keyAchievementsPlaceholder"
+                    )}
                     className="w-full other-input border-black border "
-                    // value={project.keyAchievements}
                     value={
                       Array.isArray(project?.keyAchievements)
                         ? project.keyAchievements.join("\n")
                         : project?.keyAchievements || ""
                     }
                     onChange={(e) => handleKeyAchievement(e, projectIndex)}
-                    maxLength={1000}
                   />
-                </div>
 
+                  {improve && hasErrors(projectIndex, "keyAchievements") && (
+                    <button
+                      type="button"
+                      className="absolute right-2 top-12 text-red-500 hover:text-red-600 transition-colors"
+                      onClick={() =>
+                        setActiveTooltip(
+                          activeTooltip === `keyAchievements-${projectIndex}`
+                            ? null
+                            : `keyAchievements-${projectIndex}`
+                        )
+                      }
+                    >
+                      <AlertCircle className="w-5 h-5" />
+                    </button>
+                  )}
+
+                  {activeTooltip === `keyAchievements-${projectIndex}` && (
+                    <div className="absolute z-50 right-0 top-[50px] w-80 bg-white rounded-lg shadow-xl transform transition-all duration-200 ease-in-out border border-gray-700">
+                      <div className="p-4 border-b border-gray-700">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-2">
+                            <AlertCircle className="w-5 h-5 text-red-400" />
+                            <span className="font-medium text-black">
+                              {t(
+                                "builder_forms.work_experience.keyAchievementsSuggestions"
+                              )}
+                            </span>
+                          </div>
+                          <button
+                            onClick={() => setActiveTooltip(null)}
+                            className="text-black transition-colors"
+                          >
+                            <X className="w-5 h-5" />
+                          </button>
+                        </div>
+                      </div>
+                      <div className="p-4">
+                        {getErrorMessages(projectIndex, "keyAchievements").map(
+                          (msg, i) => (
+                            <div
+                              key={i}
+                              className="flex items-start space-x-3 mb-3 last:mb-0"
+                            >
+                              <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-400 mt-2"></div>
+                              <p className="text-black text-sm">{msg}</p>
+                            </div>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
                 <div className="relative">
                   {/* Start Date */}
                   <label className="text-black">
@@ -887,7 +945,10 @@ const Projects = () => {
                         handleMonthChange(e, projectIndex, "startYear")
                       }
                     >
-                      <option value="">Month</option>
+                      <option value="">
+                        {" "}
+                        {t("builder_forms.education.dropdown.month")}
+                      </option>
                       {months.map((month, idx) => (
                         <option key={idx} value={month}>
                           {month}
@@ -905,7 +966,10 @@ const Projects = () => {
                         handleYearChange(e, projectIndex, "startYear")
                       }
                     >
-                      <option value="">Year</option>
+                      <option value="">
+                        {" "}
+                        {t("builder_forms.education.dropdown.year")}
+                      </option>
                       {years.map((year, idx) => (
                         <option key={idx} value={year}>
                           {year}
@@ -936,7 +1000,9 @@ const Projects = () => {
                                 <div className="flex items-center space-x-2">
                                   <AlertCircle className="w-5 h-5 text-red-400" />
                                   <span className="font-medium text-black">
-                                    Start Date Issues
+                                    {t(
+                                      "builder_forms.education.tooltips.start_date"
+                                    )}
                                   </span>
                                 </div>
                                 <button
@@ -984,7 +1050,10 @@ const Projects = () => {
                       }
                       disabled={project.endYear === "Present"}
                     >
-                      <option value="">Month</option>
+                      <option value="">
+                        {" "}
+                        {t("builder_forms.education.dropdown.month")}
+                      </option>
                       {months.map((month, idx) => (
                         <option key={idx} value={month}>
                           {month}
@@ -1003,7 +1072,10 @@ const Projects = () => {
                       }
                       disabled={project.endYear === "Present"}
                     >
-                      <option value="">Year</option>
+                      <option value="">
+                        {" "}
+                        {t("builder_forms.education.dropdown.year")}
+                      </option>
                       {years.map((year, idx) => (
                         <option key={idx} value={year}>
                           {year}
@@ -1014,10 +1086,10 @@ const Projects = () => {
                       <input
                         type="checkbox"
                         checked={project.endYear === "Present"}
-                        onChange={() => handlePresentToggle(index)}
+                        onChange={() => handlePresentToggle(projectIndex)}
                         className="w-6 h-6"
                       />
-                      Present
+                      {t("builder_forms.education.dropdown.present")}
                     </label>
 
                     {improve && hasErrors(projectIndex, "endYear") && (
@@ -1043,7 +1115,9 @@ const Projects = () => {
                                 <div className="flex items-center space-x-2">
                                   <AlertCircle className="w-5 h-5 text-red-400" />
                                   <span className="font-medium text-black">
-                                    End Date Issues
+                                    {t(
+                                      "builder_forms.education.tooltips.end_date"
+                                    )}
                                   </span>
                                 </div>
                                 <button
@@ -1078,7 +1152,7 @@ const Projects = () => {
                   className="bg-red-500 text-white px-4 py-2 rounded mt-4"
                   type="button"
                 >
-                  Remove Project
+                  {t("builder_forms.project.remove")}
                 </button>
               </>
             )}
@@ -1101,29 +1175,27 @@ const Projects = () => {
           <div className="bg-white p-6 rounded-lg w-[90%] max-w-lg">
             <h3 className="text-xl font-bold mb-4">
               {popupType === "description"
-                ? "Select Description"
-                : "Select Key Achievements"}
+                ? t("builder_forms.project.popup.select_description")
+                : t("builder_forms.project.popup.select_key_achievements")}
             </h3>
+
             <div className="space-y-3 max-h-96 overflow-y-auto">
               {(popupType === "description" ? descriptions : keyAchievements)
                 ?.length > 0 ? (
-                // Rendering the list items when data exists
                 (popupType === "description"
                   ? descriptions
                   : keyAchievements
                 )?.map((item, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    {/* Radio for description (Single Select) */}
                     {popupType === "description" ? (
                       <input
                         type="radio"
-                        name="description" // Ensures only one can be selected
+                        name="description"
                         checked={selectedDescriptions.includes(item)}
-                        onChange={() => setSelectedDescriptions([item])} // Only one selection
+                        onChange={() => setSelectedDescriptions([item])}
                         className="mt-1"
                       />
                     ) : (
-                      // Checkbox for key achievements (Multi Select)
                       <input
                         type="checkbox"
                         checked={selectedKeyAchievements.includes(item)}
@@ -1135,12 +1207,11 @@ const Projects = () => {
                   </div>
                 ))
               ) : (
-                // Fallback message when no data is available
                 <div className="text-center py-6">
                   <p className="text-gray-500 mb-4">
                     {popupType === "description"
-                      ? "No descriptions available."
-                      : "No key achievements available."}
+                      ? t("builder_forms.project.popup.no_descriptions")
+                      : t("builder_forms.project.popup.no_key_achievements")}
                   </p>
                   <button
                     onClick={() => {
@@ -1164,12 +1235,13 @@ const Projects = () => {
                         popupType === "description" ? "description" : "key"
                       }_${popupIndex}`
                     ]
-                      ? "Retrying..."
-                      : "Retry"}
+                      ? t("builder_forms.project.popup.retrying")
+                      : t("builder_forms.project.popup.retry")}
                   </button>
                 </div>
               )}
             </div>
+
             <button
               onClick={(e) => handleSaveSelectedSummary(popupIndex, e)}
               className={`mt-4 px-4 py-2 rounded text-white ${
@@ -1183,17 +1255,19 @@ const Projects = () => {
                   ?.length === 0
               }
             >
-              Save Selection
+              {t("builder_forms.project.popup.save_selection")}
             </button>
+
             <button
               onClick={() => setShowPopup(false)}
               className="mt-2 ml-2 bg-gray-400 text-black px-4 py-2 rounded hover:bg-gray-300"
             >
-              Close
+              {t("builder_forms.project.popup.close")}
             </button>
           </div>
         </div>
       )}
+
       {errorPopup.show && (
         <ErrorPopup
           message={errorPopup.message}

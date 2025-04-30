@@ -262,7 +262,7 @@ const WorkExperience = () => {
 
     try {
       const response = await axios.post(
-        `${BASE_URL}/api/user/ai-resume-profexp-summery-data`,
+        `${BASE_URL}/api/user/ai-resume-profexp-summery-data?lang=${language},`,
         {
           key: "professional_experience",
           keyword:
@@ -329,7 +329,7 @@ const WorkExperience = () => {
 
     try {
       const response = await axios.post(
-        `${BASE_URL}/api/user/ai-resume-profexp-key-data`,
+        `${BASE_URL}/api/user/ai-resume-profexp-key-data?lang=${language}`,
         {
           key: "professional_experience",
           keyword:
@@ -393,19 +393,31 @@ const WorkExperience = () => {
 
   //   setResumeData({ ...resumeData, workExperience: newWorkExperience });
   // };
+  // const handleKeyAchievement = (e, index) => {
+  //   const newWorkExperience = [...resumeData.workExperience];
+  //   const achievements = e.target.value
+  //     .split("\n")
+  //     // .map((item) => item.trim())
+  //     .filter((item) => item.trim !== "");
+
+  //   newWorkExperience[index].keyAchievements = achievements;
+
+  //   setSelectedKeyAchievements(achievements); // sync with popup logic
+  //   setResumeData({ ...resumeData, workExperience: newWorkExperience });
+  // };
   const handleKeyAchievement = (e, index) => {
     const newWorkExperience = [...resumeData.workExperience];
-    const achievements = e.target.value
-      .split("\n")
-      // .map((item) => item.trim())
-      .filter((item) => item.trim !== "");
+
+    // Don't filter out empty strings - this is the key change
+    const achievements = e.target.value.split("\n");
 
     newWorkExperience[index].keyAchievements = achievements;
 
+    // Optional: Track user-modified achievements separately if needed
     setSelectedKeyAchievements(achievements); // sync with popup logic
+
     setResumeData({ ...resumeData, workExperience: newWorkExperience });
   };
-
   const handleSummarySelect = (item) => {
     if (popupType === "description") {
       setSelectedDescriptions((prev) =>
@@ -523,7 +535,7 @@ const WorkExperience = () => {
       setIsLoading(true);
       try {
         const response = await axios.post(
-          `${BASE_URL}/api/user/ai-resume-profexp-data`,
+          `${BASE_URL}/api/user/ai-resume-profexp-data?lang=${language}`,
           {
             key: "professional_experience",
             keyword: value,
@@ -634,21 +646,24 @@ const WorkExperience = () => {
         return;
       }
 
-      const response = await fetch(`${BASE_URL}/api/user/ai-expsummery`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${token}`,
-        },
-        body: JSON.stringify({
-          key: "experience description",
-          keyword: "auto improve",
-          content: content.description || "",
-          company_name: content.company || "",
-          job_title: content.position,
-          location: content.location || "",
-        }),
-      });
+      const response = await fetch(
+        `${BASE_URL}/api/user/ai-expsummery?lang=${language}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `${token}`,
+          },
+          body: JSON.stringify({
+            key: "experience description",
+            keyword: "auto improve",
+            content: content.description || "",
+            company_name: content.company || "",
+            job_title: content.position,
+            location: content.location || "",
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`API request failed with status ${response.status}`);
@@ -833,7 +848,7 @@ const WorkExperience = () => {
                   /> */}
                   <input
                     type="text"
-                    placeholder="Company"
+                    placeholder={t("builder_forms.work_experience.company")}
                     name="company"
                     className={`w-full other-input border ${
                       improve && hasErrors(index, "company")
@@ -887,7 +902,9 @@ const WorkExperience = () => {
                           <div className="flex items-center space-x-2">
                             <AlertCircle className="w-5 h-5 text-red-400" />
                             <span className="font-medium text-black">
-                              Company Suggestions
+                              {t(
+                                "builder_forms.work_experience.companySuggestions"
+                              )}
                             </span>
                           </div>
                           <button
@@ -931,7 +948,7 @@ const WorkExperience = () => {
                   /> */}
                   <input
                     type="text"
-                    placeholder="Position"
+                    placeholder={t("builder_forms.work_experience.position")}
                     name="position"
                     className={`w-full other-input border ${
                       improve && hasErrors(index, "position")
@@ -980,7 +997,9 @@ const WorkExperience = () => {
                           <div className="flex items-center space-x-2">
                             <AlertCircle className="w-5 h-5 text-red-400" />
                             <span className="font-medium text-black">
-                              Position Suggestions
+                              {t(
+                                "builder_forms.work_experience.positionSuggestions"
+                              )}
                             </span>
                           </div>
                           <button
@@ -1022,7 +1041,10 @@ const WorkExperience = () => {
                       value={getDatePart(experience.startYear, "month")}
                       onChange={(e) => handleMonthChange(e, index, "startYear")}
                     >
-                      <option value="">Month</option>
+                      <option value="">
+                        {" "}
+                        {t("builder_forms.education.dropdown.month")}
+                      </option>
                       {months.map((month, idx) => (
                         <option key={idx} value={month}>
                           {month}
@@ -1038,7 +1060,9 @@ const WorkExperience = () => {
                       value={getDatePart(experience.startYear, "year")}
                       onChange={(e) => handleYearChange(e, index, "startYear")}
                     >
-                      <option value="">Year</option>
+                      <option value="">
+                        {t("builder_forms.education.dropdown.year")}
+                      </option>
                       {years.map((year, idx) => (
                         <option key={idx} value={year}>
                           {year}
@@ -1069,7 +1093,9 @@ const WorkExperience = () => {
                                 <div className="flex items-center space-x-2">
                                   <AlertCircle className="w-5 h-5 text-red-400" />
                                   <span className="font-medium text-black">
-                                    Start Date Issues
+                                    {t(
+                                      "builder_forms.education.tooltips.start_date"
+                                    )}
                                   </span>
                                 </div>
                                 <button
@@ -1115,7 +1141,9 @@ const WorkExperience = () => {
                       onChange={(e) => handleMonthChange(e, index, "endYear")}
                       disabled={experience.endYear === "Present"}
                     >
-                      <option value="">Month</option>
+                      <option value="">
+                        {t("builder_forms.education.dropdown.month")}
+                      </option>
                       {months.map((month, idx) => (
                         <option key={idx} value={month}>
                           {month}
@@ -1132,7 +1160,9 @@ const WorkExperience = () => {
                       onChange={(e) => handleYearChange(e, index, "endYear")}
                       disabled={experience.endYear === "Present"}
                     >
-                      <option value="">Year</option>
+                      <option value="">
+                        {t("builder_forms.education.dropdown.year")}
+                      </option>
                       {years.map((year, idx) => (
                         <option key={idx} value={year}>
                           {year}
@@ -1146,7 +1176,7 @@ const WorkExperience = () => {
                         onChange={() => handlePresentToggle(index)}
                         className="w-6 h-6"
                       />
-                      Present
+                      {t("builder_forms.education.dropdown.present")}
                     </label>
 
                     {improve && hasErrors(index, "endYear") && (
@@ -1172,7 +1202,9 @@ const WorkExperience = () => {
                                 <div className="flex items-center space-x-2">
                                   <AlertCircle className="w-5 h-5 text-red-400" />
                                   <span className="font-medium text-black">
-                                    End Date Issues
+                                    {t(
+                                      "builder_forms.education.tooltips.end_date"
+                                    )}
                                   </span>
                                 </div>
                                 <button
@@ -1209,7 +1241,7 @@ const WorkExperience = () => {
                   </label>
                   <input
                     type="text"
-                    placeholder="Location"
+                    placeholder={t("builder_forms.work_experience.location")}
                     name="location"
                     className={`w-full other-input border ${
                       improve && hasErrors(index, "location")
@@ -1265,7 +1297,9 @@ const WorkExperience = () => {
                           <div className="flex items-center space-x-2">
                             <AlertCircle className="w-5 h-5 text-red-400" />
                             <span className="font-medium text-black">
-                              Location Suggestions
+                              {t(
+                                "builder_forms.work_experience.locationSuggestions"
+                              )}
                             </span>
                           </div>
                           <button
@@ -1305,18 +1339,18 @@ const WorkExperience = () => {
                         if (experience?.position) {
                           handleAIAssistDescription(index, experience);
                         } else {
-                          toast.error("Job Title is required");
+                          toast.error(t("job_title_required"));
                         }
                       }}
                       disabled={loadingStates[`description_${index}`]} // Check loading state per button
                     >
                       {loadingStates[`description_${index}`]
-                        ? "Loading..."
+                        ? t("loading")
                         : t("smartAssist")}
                     </button>
                   </div>
                   <ReactQuill
-                    placeholder="Description"
+                    placeholder={t("builder_forms.work_experience.description")}
                     value={experience.description}
                     onChange={(value) => handleDescriptionChange(value, index)}
                     className={`bg-white rounded-md ${
@@ -1351,7 +1385,9 @@ const WorkExperience = () => {
                           <div className="flex items-center space-x-2">
                             <AlertCircle className="w-5 h-5 text-red-400" />
                             <span className="font-medium text-black">
-                              Description Suggestions
+                              {t(
+                                "builder_forms.work_experience.descriptionSuggestions"
+                              )}
                             </span>
                           </div>
 
@@ -1362,7 +1398,7 @@ const WorkExperience = () => {
                             }
                             onMouseDown={() => {
                               if (!experience?.position) {
-                                toast.error("Job Title is required");
+                                toast.error(t("job_title_required"));
                               }
                             }}
                             className="px-3 py-1 text-sm font-medium text-white bg-blue-600 rounded-md shadow hover:bg-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
@@ -1372,8 +1408,8 @@ const WorkExperience = () => {
                             }
                           >
                             {loadingStates[`description_${index}`]
-                              ? "Fixing..."
-                              : "Auto Fix"}
+                              ? t("builder_forms.personal_info.fixing")
+                              : t("builder_forms.personal_info.auto_fix")}
                           </button>
 
                           <button
@@ -1414,13 +1450,13 @@ const WorkExperience = () => {
                         if (experience?.position) {
                           handleAIAssistKey(index, experience);
                         } else {
-                          toast.error("Job Title is required");
+                          toast.error(t("job_title_required"));
                         }
                       }}
                       disabled={loadingStates[`key_${index}`]} // Check loading state per button
                     >
                       {loadingStates[`key_${index}`]
-                        ? "Loading..."
+                        ? t("loading")
                         : t("keyAssist")}
                     </button>
                   </div>
@@ -1437,13 +1473,15 @@ const WorkExperience = () => {
                     rows={4}
                   /> */}
                   <textarea
-                    placeholder="Enter key achievements (one per line)"
+                    placeholder={t(
+                      "builder_forms.work_experience.keyAchievementsPlaceholder"
+                    )}
                     className="w-full other-input border-black border"
                     // value={experience.keyAchievements}
                     value={
                       Array.isArray(experience?.keyAchievements)
                         ? experience.keyAchievements.join("\n")
-                        : experience?.keyAchievements || ""
+                        : experience?.keyAchievements
                     }
                     onChange={(e) => handleKeyAchievement(e, index)}
                   />
@@ -1451,7 +1489,7 @@ const WorkExperience = () => {
                   {improve && hasErrors(index, "keyAchievements") && (
                     <button
                       type="button"
-                      className="absolute right-2 top-8 text-red-500 hover:text-red-600 transition-colors"
+                      className="absolute right-2 top-12 text-red-500 hover:text-red-600 transition-colors"
                       onClick={() =>
                         setActiveTooltip(
                           activeTooltip === `achievements-${index}`
@@ -1470,7 +1508,9 @@ const WorkExperience = () => {
                           <div className="flex items-center space-x-2">
                             <AlertCircle className="w-5 h-5 text-red-400" />
                             <span className="font-medium text-black">
-                              Achievement Suggestions
+                              {t(
+                                "builder_forms.work_experience.keyAchievementsSuggestions"
+                              )}
                             </span>
                           </div>
                           <button
@@ -1503,7 +1543,7 @@ const WorkExperience = () => {
                   className="bg-red-500 w-full text-white px-4 py-2 rounded mt-4"
                   type="button"
                 >
-                  Remove Work Experience
+                  {t("builder_forms.work_experience.removeWorkExperience")}
                 </button>
               </div>
             )}
@@ -1521,8 +1561,10 @@ const WorkExperience = () => {
           <div className="bg-white p-6 rounded-lg w-[90%] max-w-lg">
             <h3 className="text-xl font-bold mb-4">
               {popupType === "description"
-                ? "Select Description"
-                : "Select Key Achievements"}
+                ? t("builder_forms.work_experience.popup.selectDescription")
+                : t(
+                    "builder_forms.work_experience.popup.selectKeyAchievements"
+                  )}
             </h3>
 
             <div className="space-y-3 max-h-96 overflow-y-auto">
@@ -1531,7 +1573,7 @@ const WorkExperience = () => {
                 (popupType === "description"
                   ? descriptions
                   : keyAchievements
-                )?.map((item, index) => (
+                ).map((item, index) => (
                   <div key={index} className="flex items-start gap-3">
                     {popupType === "description" ? (
                       <input
@@ -1556,8 +1598,10 @@ const WorkExperience = () => {
                 <div className="text-center py-6">
                   <p className="text-gray-500 mb-4">
                     {popupType === "description"
-                      ? "No descriptions available."
-                      : "No key achievements available."}
+                      ? t("builder_forms.work_experience.popup.noDescriptions")
+                      : t(
+                          "builder_forms.work_experience.popup.noKeyAchievements"
+                        )}
                   </p>
                   <button
                     onClick={() => {
@@ -1581,8 +1625,8 @@ const WorkExperience = () => {
                         popupType === "description" ? "description" : "key"
                       }_${popupIndex}`
                     ]
-                      ? "Retrying..."
-                      : "Retry"}
+                      ? t("builder_forms.work_experience.popup.retrying")
+                      : t("builder_forms.work_experience.popup.retry")}
                   </button>
                 </div>
               )}
@@ -1601,18 +1645,19 @@ const WorkExperience = () => {
                   ?.length === 0
               }
             >
-              Save Selection
+              {t("builder_forms.work_experience.popup.saveSelection")}
             </button>
 
             <button
               onClick={() => setShowPopup(false)}
               className="mt-2 ml-2 bg-gray-400 text-black px-4 py-2 rounded hover:bg-gray-300"
             >
-              Close
+              {t("builder_forms.work_experience.popup.close")}
             </button>
           </div>
         </div>
       )}
+
       {errorPopup.show && (
         <ErrorPopup
           message={errorPopup.message}

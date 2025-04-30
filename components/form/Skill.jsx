@@ -355,13 +355,13 @@ const Skill = ({ title, currentSkillIndex }) => {
             <p className="text-gray-600 mb-2">
               {t("builder_forms.skill.noSkillsFound") || "No skills found."}
             </p>
-            <button
+            {/* <button
               type="button"
               onClick={() => addSkill(title)}
               className="bg-black text-white px-4 py-2 rounded"
             >
               {t("builder_forms.skill.addSkill")}
-            </button>
+            </button> */}
           </div>
         ) : (
           <>
@@ -414,7 +414,7 @@ const Skill = ({ title, currentSkillIndex }) => {
                 {improve && hasErrors(index) && (
                   <button
                     type="button"
-                    className="absolute right-8 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
+                    className="absolute right-[55px] top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
                     onClick={() =>
                       setActiveTooltip(
                         activeTooltip === `skill-${index}`
@@ -488,14 +488,16 @@ const Skill = ({ title, currentSkillIndex }) => {
             className="border bg-black text-white px-3 rounded-3xl  mb-2"
             disabled={loading}
           >
-            {loading ? "Loading..." : t("smartAssist")}
+            {loading ? t("loading") : t("smartAssist")}
           </button>
         </div>
 
         {isModalOpen && (
           <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50">
             <div className="bg-white p-6 rounded-xl w-96">
-              <h3 className="text-xl mb-4">Select AI Skills</h3>
+              <h3 className="text-xl mb-4">
+                {t("builder_forms.skill.selectAISkills")}
+              </h3>
               <ul className="space-y-2">
                 {Array.isArray(aiSkills) && aiSkills.length > 0 ? (
                   aiSkills.map((skill, index) => (

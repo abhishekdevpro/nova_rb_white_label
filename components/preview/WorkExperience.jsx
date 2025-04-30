@@ -1,6 +1,7 @@
 import React from "react";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import DateRangeExperience from "../utility/DateRangeExperience";
+import { useTranslation } from "react-i18next";
 
 const WorkExperience = ({
   resumeData,
@@ -9,6 +10,7 @@ const WorkExperience = ({
   style = {},
   itemClassNames = {},
 }) => {
+  const { t } = useTranslation();
   if (
     resumeData.is_fresher ||
     !resumeData?.workExperience ||
@@ -35,7 +37,7 @@ const WorkExperience = ({
               borderBottom: `2px solid ${headerColor}`,
             }}
           >
-            Work Experience
+            {t("resumePreview.workExperience")}
           </h2>
 
           {resumeData.workExperience.map((item, index) => (

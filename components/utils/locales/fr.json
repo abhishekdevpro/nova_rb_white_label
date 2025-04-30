@@ -1049,6 +1049,7 @@
           "address_placeholder": "Adresse",
           "suggestions": "Suggestions",
           "auto_fix": "Correction automatique",
+          "fixing": "Réparation...",
           "add_section": "✙ Ajouter une section",
           "mark_resolved": "Marquer comme résolu",
           "placeholders": {
@@ -1103,7 +1104,28 @@
       "key_achievements": "Réalisations Clés",
       "save_button": "Enregistrer",
       "cancel_button": "Annuler",
-      "add_section": "✙ Ajouter une section"
+      "add_section": "✙ Ajouter une section",
+         "company": "Entreprise",
+         "companySuggestions": "Suggestions d'entreprise",
+         "position": "Poste",
+         "positionSuggestions": "Suggestions de poste",
+      
+         "locationSuggestions": "Suggestions de lieu",
+        
+         "descriptionSuggestions": "Suggestions de description",
+         "keyAchievementsPlaceholder": "Entrez les principales réalisations (une par ligne)",
+         "keyAchievementsSuggestions": "Suggestions de réalisations clés",
+         "removeWorkExperience": "Supprimer l'expérience professionnelle",
+         "popup": {
+          "selectDescription": "Sélectionner une description",
+          "selectKeyAchievements": "Sélectionner les réalisations clés",
+          "noDescriptions": "Aucune description disponible.",
+          "noKeyAchievements": "Aucune réalisation clé disponible.",
+          "retry": "Réessayer",
+          "retrying": "Nouvelle tentative...",
+          "saveSelection": "Enregistrer la sélection",
+          "close": "Fermer"
+        }
     },
   "skill":{
     "noSkillsFound": "Aucune compétence trouvée.",
@@ -1138,6 +1160,24 @@
     "good": "Bon niveau",
     "basicKnowledge": "Connaissance de base",
     "justStarting": "Débutant"
+  },
+  "project": {
+    "placeholderName": "Nom du projet",
+    "placeholderLink": "Lien",
+     "project":"Projet",
+      "remove": "Supprimer le projet",
+       "nameSuggestion": "Suggestion de nom de projet",
+        "link": "Lien du projet",
+        "popup": {
+    "select_description": "Sélectionner une description",
+    "select_key_achievements": "Sélectionner des réalisations clés",
+    "no_descriptions": "Aucune description disponible.",
+    "no_key_achievements": "Aucune réalisation clé disponible.",
+    "retrying": "Nouvelle tentative...",
+    "retry": "Réessayer",
+    "save_selection": "Enregistrer la sélection",
+    "close": "Fermer"
+  }
   }
                 },
                 "summarypersonal": {
@@ -1728,6 +1768,21 @@
   "redirecting": "Redirection vers le paiement...",
   "alreadySubscribed": "Vous avez déjà un abonnement actif pour ce plan.",
   "genericError": "Erreur lors du traitement du paiement."
+},
+"job_title_required": "Le titre du poste est requis",
+"resumePreview":{
+  "summary": "Résumé",
+   "education":"Éducation",
+    "workExperience": "Expérience professionnelle",
+     "projects": "Projets",
+        "skills": "Compétences",
+          "languages": "Langues"
+},
+"errorPopup": {
+  "title": "Erreur",
+  "message": "Une erreur s'est produite. Veuillez réessayer.",
+  "cancel": "Annuler",
+  "upgradePlan": "Mettre à niveau le plan"
 }
 
   

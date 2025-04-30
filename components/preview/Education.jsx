@@ -7,13 +7,13 @@
 //   hassidebar,
 //   className = "",
 //   style = {},
-//   itemClassNames = {}, 
+//   itemClassNames = {},
 //   layout = "column", // "column" or "row"
 // }) => {
 //   if (!educationData || educationData.length === 0) return null;
 // console.log(headerColor,"");
 //   return (
-//     <div className={`mb-1 ${className}`} 
+//     <div className={`mb-1 ${className}`}
 //     >
 //        <h2
 //          style={{
@@ -27,7 +27,7 @@
 //       {educationData.map((item, index) => (
 //         <div key={index}  className={`flex  mb-1${
 //           layout === "row" ? "flex-row items-center flex-wrap gap-2" : "flex-col gap-2 justify-between"
-//         }`}> 
+//         }`}>
 //           <div>
 //           <p className={` font-semibold}`}>
 //             {item.degree}
@@ -54,6 +54,7 @@
 import React, { useContext } from "react";
 import DateRange from "../utility/DateRange";
 import { ResumeContext } from "../context/ResumeContext";
+import { useTranslation } from "react-i18next";
 
 const EducationSection = ({
   educationData,
@@ -61,21 +62,26 @@ const EducationSection = ({
   className = "",
   layout = "column", // "column" or "row"
 }) => {
-  const {backgroundColorss}= useContext(ResumeContext)
+  const { t } = useTranslation();
+  const { backgroundColorss } = useContext(ResumeContext);
   if (!educationData || educationData.length === 0) return null;
 
   return (
     <div className={`mb-1 ${className}`}>
       <h2
         style={{
-          color: `${headerColor == "black" ? `${backgroundColorss}` : headerColor}`,
-          borderBottom: `2px solid ${headerColor == "black" ? `${backgroundColorss}` : headerColor}`,
+          color: `${
+            headerColor == "black" ? `${backgroundColorss}` : headerColor
+          }`,
+          borderBottom: `2px solid ${
+            headerColor == "black" ? `${backgroundColorss}` : headerColor
+          }`,
         }}
         className="text-xl font-bold mb-1"
         contentEditable
-  suppressContentEditableWarning
+        suppressContentEditableWarning
       >
-        Education
+        {t("resumePreview.education")}
       </h2>
       {educationData.map((item, index) => (
         <div
@@ -88,27 +94,46 @@ const EducationSection = ({
         >
           <div>
             <p
-             contentEditable
-             suppressContentEditableWarning
+              contentEditable
+              suppressContentEditableWarning
               className="font-semibold"
-              style={{ color: layout === "row" || headerColor == "black" ? "black" : "white" }}
+              style={{
+                color:
+                  layout === "row" || headerColor == "black"
+                    ? "black"
+                    : "white",
+              }}
             >
               {item.degree}
             </p>
             <p
-             contentEditable
-             suppressContentEditableWarning
-              style={{ color: layout === "row" || headerColor == "black" ? "black" : "white" }}
+              contentEditable
+              suppressContentEditableWarning
+              style={{
+                color:
+                  layout === "row" || headerColor == "black"
+                    ? "black"
+                    : "white",
+              }}
             >
               {item.school}
             </p>
           </div>
           <div>
-            <DateRange layout={layout} startYear={item.startYear} endYear={item.endYear} />
+            <DateRange
+              layout={layout}
+              startYear={item.startYear}
+              endYear={item.endYear}
+            />
             <p
-             contentEditable
-             suppressContentEditableWarning
-              style={{ color: layout === "row" || headerColor == "black" ? "black" : "white" }}
+              contentEditable
+              suppressContentEditableWarning
+              style={{
+                color:
+                  layout === "row" || headerColor == "black"
+                    ? "black"
+                    : "white",
+              }}
             >
               {item.location}
             </p>

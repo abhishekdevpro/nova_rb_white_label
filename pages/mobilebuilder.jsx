@@ -536,9 +536,14 @@ export default function MobileBuilder() {
             company: exp.company || "",
             position: exp.position || "",
             description: exp.description,
-            KeyAchievements: Array.isArray(exp.KeyAchievements)
-              ? exp.KeyAchievements
-              : [exp.KeyAchievements],
+            // KeyAchievements: Array.isArray(exp.KeyAchievements)
+            //   ? exp.KeyAchievements
+            //   : [exp.KeyAchievements],
+            keyAchievements: Array.isArray(exp.keyAchievements)
+              ? exp.keyAchievements.filter((item) => item?.trim?.()) // filter out empty strings or undefined
+              : exp.keyAchievements && exp.keyAchievements.trim?.()
+              ? [exp.keyAchievements.trim()]
+              : [],
             startYear: exp.startYear,
             endYear: exp.endYear,
             location: exp.location || "",
@@ -546,11 +551,17 @@ export default function MobileBuilder() {
         projects:
           resumeData.projects?.map((project) => ({
             title: project.title || "",
+
             link: project.link || "",
             description: project.description,
+            // keyAchievements: Array.isArray(project.keyAchievements)
+            //   ? project.keyAchievements
+            //   : [project.keyAchievements],
             keyAchievements: Array.isArray(project.keyAchievements)
-              ? project.keyAchievements
-              : [project.keyAchievements],
+              ? project.keyAchievements.filter((item) => item?.trim?.()) // filter out empty strings or undefined
+              : project.keyAchievements && project.keyAchievements.trim?.()
+              ? [project.keyAchievements.trim()]
+              : [],
             startYear: project.startYear,
             endYear: project.endYear,
             name: project.name || "",
@@ -579,7 +590,7 @@ export default function MobileBuilder() {
           return;
         }
 
-        const url = `${BASE_URL}/api/user/resume-update/${id}`;
+        const url = `${BASE_URL}/api/user/resume-update/${id}?lang=${language}`;
         const response = await axios.put(url, templateData, {
           headers: {
             "Content-Type": "application/json",
