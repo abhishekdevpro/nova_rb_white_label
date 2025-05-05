@@ -7,33 +7,33 @@ const Home_fourth = () => {
   const { t } = useTranslation();
   const course = [
     {
-      img: "https://blog.ciblijob.fr/wp-content/uploads/2025/01/Ciblijob-blog-How-AI-is-Revolutionizing-Resume-Building-A-Beginners-Guide-1.png",
+      img: "https://blog.novajob.fr/wp-content/uploads/2025/01/novajob-blog-How-AI-is-Revolutionizing-Resume-Building-A-Beginners-Guide-1.png",
       title: "card_title1",
-      link: "https://blog.ciblijob.fr/?p=1",
+      link: "https://blog.novajob.fr/?p=1",
     },
     {
-      img: "https://blog.ciblijob.fr/wp-content/uploads/2025/01/Blog-2-CibliJob-AI-Powered-Resume-Builders-vs-Traditional-Methods-Whats-Better.png",
+      img: "https://blog.novajob.fr/wp-content/uploads/2025/01/Blog-2-novajob-AI-Powered-Resume-Builders-vs-Traditional-Methods-Whats-Better.png",
       title: "card_title2",
-      link: "https://blog.ciblijob.fr/?p=23",
+      link: "https://blog.novajob.fr/?p=23",
     },
 
     {
-      img: "https://blog.ciblijob.fr/wp-content/uploads/2025/01/Blog-3-CibliJob-Top-5-Benefits-of-Using-an-AI-Resume-Builder.png",
+      img: "https://blog.novajob.fr/wp-content/uploads/2025/01/Blog-3-novajob-Top-5-Benefits-of-Using-an-AI-Resume-Builder.png",
       title: "card_title3",
-      link: "https://blog.ciblijob.fr/?p=27",
+      link: "https://blog.novajob.fr/?p=27",
     },
 
     {
-      img: "https://blog.ciblijob.fr/wp-content/uploads/2025/01/Blog-4-Step-by-Step-Guide-to-Creating-a-Job-Winning-Resume-with-AI-Tools.png",
+      img: "https://blog.novajob.fr/wp-content/uploads/2025/01/Blog-4-Step-by-Step-Guide-to-Creating-a-Job-Winning-Resume-with-AI-Tools.png",
       title: "card_title4",
-      link: "https://blog.ciblijob.fr/?p=30",
+      link: "https://blog.novajob.fr/?p=30",
     },
   ];
   return (
     <>
       <div id="course" className="bg-gray-100 py-10 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl lg:text-5xl font-bold px-4 lg:px-0 py-5 text-center text-[#00b38d]">
+          <h2 className="text-4xl lg:text-5xl font-bold px-4 lg:px-0 py-5 text-center text-[#1C2957]">
             {t("neweststratigies")}
           </h2>
           <p className="mx-auto px-4 lg:px-0 text-lg lg:text-base text-gray-700 max-w-4xl text-center mb-8">
@@ -65,8 +65,8 @@ const Home_fourth = () => {
           </div>
 
           <div className="flex justify-center mt-10">
-            <Link href={"https://blog.ciblijob.fr/"}>
-              <button className="px-6 py-3 text-lg font-semibold text-white bg-[#00b38d] hover:bg-[#00b38d] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#00b38d]">
+            <Link href={"https://blog.novajob.fr/"}>
+              <button className="px-6 py-3 text-lg font-semibold text-white bg-[#1C2957] hover:bg-[#1C2957] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1C2957]">
                 {t("get_moreadvice")}
               </button>
             </Link>

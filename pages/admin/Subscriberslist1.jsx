@@ -145,7 +145,7 @@ function Subscriberslist1() {
                   <td className="py-2 px-4">
                     {/* <button
                       className={`border px-8 rounded-3xl py-2 ${
-                        user.is_subscribe === 1 ? "bg-green-700" : "bg-red-700"
+                        user.is_subscribe === 1 ? "bg-blue-700" : "bg-red-700"
                       } text-white`}
                     >
                       {user.is_subscribe === 1
@@ -154,7 +154,7 @@ function Subscriberslist1() {
                     </button> */}
                     <button
                       className={`border px-8 rounded-3xl py-2 ${
-                        user.is_subscribe === 1 ? "bg-green-700" : "bg-red-700"
+                        user.is_subscribe === 1 ? "bg-blue-700" : "bg-red-700"
                       } text-white`}
                       onClick={() => {
                         if (user.is_subscribe === 0) {

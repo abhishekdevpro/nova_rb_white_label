@@ -77,7 +77,7 @@ const PricingSection = () => {
                     }
                     return (
                       <li key={index} className="flex items-start">
-                        <Check className="h-5 w-5 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                        <Check className="h-5 w-5 text-blue-500 mr-2 mt-1 flex-shrink-0" />
                         <span className="text-gray-600 text-sm">{feature}</span>
                       </li>
                     );
@@ -85,7 +85,7 @@ const PricingSection = () => {
                 </ul>
 
                 <button
-                  className="w-full mt-8 bg-teal-600 hover:bg-teal-700 text-white font-medium py-3 px-4 rounded-lg transition duration-300"
+                  className="w-full mt-8 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition duration-300"
                   onClick={() => handleClick(planType)}
                 >
                   {t(`pricing.${planType}.buttonText`)}

@@ -97,7 +97,7 @@
 
 //           <button
 //             onClick={fetchJobs}
-//             className="w-full py-2 px-4 bg-[#00b38d] text-white rounded-lg "
+//             className="w-full py-2 px-4 bg-[#1C2957] text-white rounded-lg "
 //           >
 //             Search Jobs
 //           </button>
@@ -113,7 +113,7 @@
 //                 key={job.id}
 //                 className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-200"
 //               >
-//                 <h3 className="text-xl font-semibold text-[#00b38d]">
+//                 <h3 className="text-xl font-semibold text-[#1C2957]">
 //                   {job.title}
 //                 </h3>
 //                 <p className="text-sm text-gray-600">{job.company}</p>
@@ -122,7 +122,7 @@
 //                   href={job.url}
 //                   target="_blank"
 //                   rel="noopener noreferrer"
-//                   className="text-[#00b38d] hover:underline mt-2 block"
+//                   className="text-[#1C2957] hover:underline mt-2 block"
 //                 >
 //                   Apply Now
 //                 </a>
@@ -228,7 +228,7 @@
 
 //           <button
 //             onClick={fetchJobs}
-//             className="w-full py-2 px-4 bg-[#00b38d] text-white rounded-lg"
+//             className="w-full py-2 px-4 bg-[#1C2957] text-white rounded-lg"
 //           >
 //             {t("jobsearch.search_jobs")}
 //           </button>
@@ -246,7 +246,7 @@
 //                 key={job.id}
 //                 className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-200"
 //               >
-//                 <h3 className="text-xl font-semibold text-[#00b38d]">
+//                 <h3 className="text-xl font-semibold text-[#1C2957]">
 //                   {job.title}
 //                 </h3>
 //                 <p className="text-sm text-gray-600">{job.company}</p>
@@ -255,7 +255,7 @@
 //                   href={job.url}
 //                   target="_blank"
 //                   rel="noopener noreferrer"
-//                   className="text-[#00b38d] hover:underline mt-2 block"
+//                   className="text-[#1C2957] hover:underline mt-2 block"
 //                 >
 //                   {t("jobsearch.apply_now")}
 //                 </a>
@@ -289,7 +289,7 @@ const JobSearch = () => {
   //     console.log("called");
   //     try {
   //       const response = await fetch(
-  //         "https://api.ciblijob.fr/api/user/job-list"
+  //         "https://api.novajob.fr/api/user/job-list"
   //       );
   //       if (!response.ok) {
   //         throw new Error("Failed to fetch job data");
@@ -355,7 +355,7 @@ const JobSearch = () => {
                 className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-200"
               >
                 <h3
-                  className="text-xl font-semibold text-[#00b38d] cursor-pointer"
+                  className="text-xl font-semibold text-[#1C2957] cursor-pointer"
                   onClick={() => handleTitleClick(job)}
                 >
                   {job.job_title}
@@ -366,7 +366,7 @@ const JobSearch = () => {
                   href={job.redirect_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#00b38d] hover:underline mt-2 block"
+                  className="text-[#1C2957] hover:underline mt-2 block"
                 >
                   {t("jobsearch.apply_now")}
                 </a>
@@ -389,7 +389,7 @@ const JobSearch = () => {
                 href={selectedJob.redirect_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#00b38d] text-white py-2 px-4 rounded-lg mr-2"
+                className="bg-[#1C2957] text-white py-2 px-4 rounded-lg mr-2"
               >
                 {t("jobsearch.apply_now")}
               </a>

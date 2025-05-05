@@ -68,7 +68,7 @@ const TemplateSelector = ({
           return;
         }
 
-        const response = await axios.get(`${BASE_URL}/api/user/user-profile`, {
+        const response = await axios.get(`${BASE_URL}/api/jobseeker/user-profile`, {
           headers: { Authorization: token },
         });
 
@@ -139,7 +139,7 @@ const TemplateSelector = ({
       <div className="flex flex-col md:flex-row gap-2 m-2">
         <button
           onClick={openModal}
-          className="hidden md:block rounded-lg border-2 border-green-500 px-5 py-2 font-bold bg-white text-black"
+          className="hidden md:block rounded-lg border-2 border-blue-500 px-5 py-2 font-bold bg-white text-black"
         >
           <span>
             {t("templateSelector.selectedTemplate", {
@@ -149,7 +149,7 @@ const TemplateSelector = ({
         </button>
         <button
           onClick={openModal}
-          className="block md:hidden rounded-lg border-2 border-green-500 px-5 py-2 font-bold bg-white text-black"
+          className="block md:hidden rounded-lg border-2 border-blue-500 px-5 py-2 font-bold bg-white text-black"
         >
           {t("templateSelector.templateButton")}
         </button>
@@ -224,7 +224,7 @@ const TemplateSelector = ({
                             ${
                               template.key === templateId
                                 ? "bg-pink-500 text-white font-semibold"
-                                : "text-gray-600 group-hover:text-[#00b38d]"
+                                : "text-gray-600 group-hover:text-[#1C2957]"
                             }
                           `}
                           >
@@ -299,7 +299,7 @@ const TemplateSelector = ({
               ${
                 template.key === templateId
                   ? "bg-pink-500 text-white font-semibold"
-                  : "text-gray-600 group-hover:text-[#00b38d]"
+                  : "text-gray-600 group-hover:text-[#1C2957]"
               }
             `}
                             >

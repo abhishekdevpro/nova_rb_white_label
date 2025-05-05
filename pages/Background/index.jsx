@@ -90,7 +90,7 @@ const Background = () => {
 
       <div className="flex px-60 my-20 justify-between text-center">
         <Link href="/Createletterpage">
-          <button className="border-2 rounded-full p-2 px-10 text-lg font-bold border-green-500 text-black">
+          <button className="border-2 rounded-full p-2 px-10 text-lg font-bold border-blue-500 text-black">
             Back
           </button>
         </Link>

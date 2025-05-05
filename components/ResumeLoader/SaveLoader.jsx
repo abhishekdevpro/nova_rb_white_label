@@ -4,10 +4,10 @@ export const SaveLoader = ({ loadingText = t("saving") }) => {
       <div className="bg-white bg-opacity-10 p-8 rounded-lg flex flex-col items-center shadow-lg">
         <div className="w-16 h-16 mb-4 relative">
           {/* Outer spinning circle */}
-          <div className="absolute inset-0 border-4 border-[#00b38d] border-t-transparent rounded-full animate-spin"></div>
+          <div className="absolute inset-0 border-4 border-[#1C2957] border-t-transparent rounded-full animate-spin"></div>
 
           {/* Inner pulsing circle */}
-          <div className="absolute inset-2 bg-[#00b38d] rounded-full animate-pulse"></div>
+          <div className="absolute inset-2 bg-[#1C2957] rounded-full animate-pulse"></div>
         </div>
 
         <div className="text-white text-lg font-semibold animate-pulse">

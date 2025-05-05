@@ -5,14 +5,14 @@
   "ai_resume_builder": "Générateur de CV IA",
   "jobs": "Emplois",
   "resources": "Ressources",
-  "cibli_job_id": "Identifiant  CibliJob",
+  "cibli_job_id": "Identifiant  novajob",
   "home": "Accueil",
   "profile": "Profil",
   "logout": "Se déconnecter",
   "login": "Se connecter",
   "signup":"S'inscrire",
   "settings": "Paramètres",
-   "resume_tool_live": "L'outil de CV basé sur l'IA « Cibli Job » est désormais disponible !",
+   "resume_tool_live": "L'outil de CV basé sur l'IA « Nova Job » est désormais disponible !",
    "resume_features":"Score de CV , CV amélioré et bien plus encore. Postulez dès maintenant en toute confiance grâce à notre solution tout-en-un sous un même toit.",
     "contact_us": "Contactez-nous",
  
@@ -144,14 +144,14 @@
       "ai_resume_accuracy": "IA - Précision du CV",
       "ai_resume_enhancer": "IA - Amélioration du CV",
       "ai_job_match_apply": "IA - Correspondance et candidature aux emplois",
-      "copyright": "© Copyright By CibliJob.fr Tous droits réservés",
+      "copyright": "© Copyright By novajob.fr Tous droits réservés",
        "toast_success":"Abonné avec succès !"
     },
     
       "about_us": "À propos de nous",
-      "welcome_message": "Bienvenue chez Cibli Job, votre partenaire de confiance pour créer le CV idéal qui ouvre les portes à de nouvelles opportunités de carrière. Nous nous spécialisons dans la création de CV personnalisés et professionnels mettant en valeur vos compétences, expériences et réalisations uniques.",
+      "welcome_message": "Bienvenue chez Nova Job, votre partenaire de confiance pour créer le CV idéal qui ouvre les portes à de nouvelles opportunités de carrière. Nous nous spécialisons dans la création de CV personnalisés et professionnels mettant en valeur vos compétences, expériences et réalisations uniques.",
       "our_mission": "Notre Mission",
-      "mission_description": "Chez Cibli Job, notre mission est d’aider les chercheurs d’emploi en fournissant des CV conçus par des experts qui laissent une impression durable. Nous comprenons que votre CV est bien plus qu’un simple document ; c’est un reflet de votre parcours professionnel et de vos aspirations. Notre objectif est de vous aider à vous démarquer sur un marché du travail compétitif et à obtenir le poste que vous méritez.",
+      "mission_description": "Chez Nova Job, notre mission est d’aider les chercheurs d’emploi en fournissant des CV conçus par des experts qui laissent une impression durable. Nous comprenons que votre CV est bien plus qu’un simple document ; c’est un reflet de votre parcours professionnel et de vos aspirations. Notre objectif est de vous aider à vous démarquer sur un marché du travail compétitif et à obtenir le poste que vous méritez.",
       "why_choose_us": "Pourquoi nous choisir ?",
       "expertise_experience": "Expertise et Expérience",
       "expertise_description": "Notre équipe de rédacteurs de CV expérimentés et de coachs de carrière apporte des années d’expérience dans l’industrie. Nous restons à jour avec les dernières tendances en matière de mise en forme et de contenu des CV, garantissant que votre CV répond aux normes et attentes actuelles.",
@@ -169,23 +169,23 @@
       "career_coaching": "Coaching de carrière",
       "career_coaching_description": "Nos services de coaching de carrière vous offrent l’accompagnement et le soutien nécessaires pour naviguer dans votre recherche d’emploi, préparer vos entretiens et prendre des décisions éclairées concernant votre carrière.",
       "join_community": "Rejoignez Notre Communauté",
-      "join_community_description": "Chez Cibli Job, nous sommes plus qu’un service de rédaction de CV. Nous sommes une communauté de professionnels engagés à se soutenir mutuellement dans leur développement de carrière. Rejoignez-nous dès aujourd’hui et faites le premier pas vers la réalisation de vos aspirations professionnelles.",
+      "join_community_description": "Chez Nova Job, nous sommes plus qu’un service de rédaction de CV. Nous sommes une communauté de professionnels engagés à se soutenir mutuellement dans leur développement de carrière. Rejoignez-nous dès aujourd’hui et faites le premier pas vers la réalisation de vos aspirations professionnelles.",
      
-      "contact_us_description": "Prêt à transformer votre CV et à saisir de nouvelles opportunités ? Contactez-nous dès aujourd’hui et laissez Cibli Job vous aider à rédiger le CV parfait pour votre parcours professionnel.",
+      "contact_us_description": "Prêt à transformer votre CV et à saisir de nouvelles opportunités ? Contactez-nous dès aujourd’hui et laissez Nova Job vous aider à rédiger le CV parfait pour votre parcours professionnel.",
       
-        "careers_title": "Carrières chez Cibli Job",
+        "careers_title": "Carrières chez Nova Job",
         "join_our_team": "Rejoignez notre équipe",
-        "join_our_team_description": "Chez Cibli Job, nous nous engageons à aider les individus à atteindre leurs objectifs de carrière grâce à des CV soigneusement rédigés et des services de carrière personnalisés. Notre équipe est passionnée par l’idée d’avoir un impact positif sur la vie des chercheurs d’emploi, et nous sommes toujours à la recherche de talents partageant notre vision et notre engagement.",
+        "join_our_team_description": "Chez Nova Job, nous nous engageons à aider les individus à atteindre leurs objectifs de carrière grâce à des CV soigneusement rédigés et des services de carrière personnalisés. Notre équipe est passionnée par l’idée d’avoir un impact positif sur la vie des chercheurs d’emploi, et nous sommes toujours à la recherche de talents partageant notre vision et notre engagement.",
         
         "why_work_with_us": "Pourquoi travailler avec nous ?",
         "innovative_environment": "Environnement innovant",
         "innovative_environment_description": "Nous favorisons une culture de l'innovation et de l'apprentissage continu. Notre équipe reste à la pointe des tendances du secteur, garantissant ainsi des services de qualité à nos clients. Vous aurez l’opportunité de travailler avec les outils et techniques les plus récents en matière de rédaction de CV et de coaching de carrière.",
         
         "collaborative_culture": "Culture collaborative",
-        "collaborative_culture_description": "Chez Cibli Job, nous croyons en la puissance de la collaboration. Nos membres travaillent en étroite collaboration, partagent leurs idées et se soutiennent mutuellement pour atteindre des objectifs communs. Vous ferez partie d’une communauté bienveillante qui valorise vos contributions et encourage votre développement professionnel.",
+        "collaborative_culture_description": "Chez Nova Job, nous croyons en la puissance de la collaboration. Nos membres travaillent en étroite collaboration, partagent leurs idées et se soutiennent mutuellement pour atteindre des objectifs communs. Vous ferez partie d’une communauté bienveillante qui valorise vos contributions et encourage votre développement professionnel.",
         
         "impactful_work": "Travail impactant",
-        "impactful_work_description": "Votre travail chez Cibli Job aura un impact direct sur la vie de nos clients. En aidant les chercheurs d’emploi à se présenter sous leur meilleur jour auprès des employeurs, vous jouerez un rôle clé dans leur réussite professionnelle. Il n’y a rien de plus gratifiant que de savoir que vous avez contribué au succès de quelqu'un.",
+        "impactful_work_description": "Votre travail chez Nova Job aura un impact direct sur la vie de nos clients. En aidant les chercheurs d’emploi à se présenter sous leur meilleur jour auprès des employeurs, vous jouerez un rôle clé dans leur réussite professionnelle. Il n’y a rien de plus gratifiant que de savoir que vous avez contribué au succès de quelqu'un.",
         
         "career_development": "Développement de carrière",
         "career_development_description": "Nous investissons dans la croissance et le développement de notre équipe. Vous bénéficierez de formations continues et d'opportunités de développement professionnel, vous permettant d’améliorer vos compétences et de progresser dans votre carrière. Que vous soyez un professionnel expérimenté ou débutant, nous offrons un chemin clair pour votre progression.",
@@ -201,19 +201,19 @@
         "linkedin_specialist_description": "Optimisez les profils LinkedIn de nos clients pour augmenter leur visibilité et leur présence professionnelle. Vous créerez des profils convaincants qui mettront en avant leurs compétences et expériences, les connectant ainsi à de nouvelles opportunités.",
         
         "customer_support": "Représentant du service client",
-        "customer_support_description": "Offrez un support exceptionnel à nos clients en répondant à leurs questions et en résolvant les problèmes liés à nos services. Vous veillerez à ce que chaque client vive une expérience positive avec Cibli Job.",
+        "customer_support_description": "Offrez un support exceptionnel à nos clients en répondant à leurs questions et en résolvant les problèmes liés à nos services. Vous veillerez à ce que chaque client vive une expérience positive avec Nova Job.",
         
         "how_to_apply": "Comment postuler",
-        "how_to_apply_description": "Si vous êtes passionné par l’aide aux autres et souhaitez faire partie d’une équipe dynamique et en pleine croissance, nous aimerions vous entendre. Pour postuler à un poste chez Cibli Job, veuillez envoyer votre CV et une lettre de motivation à",
-        "apply_email": "career@CibliJob.ca",
+        "how_to_apply_description": "Si vous êtes passionné par l’aide aux autres et souhaitez faire partie d’une équipe dynamique et en pleine croissance, nous aimerions vous entendre. Pour postuler à un poste chez Nova Job, veuillez envoyer votre CV et une lettre de motivation à",
+        "apply_email": "career@novajob.ca",
         
         "join_us": "Rejoignez-nous et faites la différence",
-        "join_us_description": "Chez Cibli Job, vous aurez l’opportunité d’avoir un impact significatif chaque jour. Rejoignez-nous et contribuez à façonner l’avenir des chercheurs d’emploi à travers le monde. Nous avons hâte de vous accueillir dans notre équipe !",
+        "join_us_description": "Chez Nova Job, vous aurez l’opportunité d’avoir un impact significatif chaque jour. Rejoignez-nous et contribuez à façonner l’avenir des chercheurs d’emploi à travers le monde. Nous avons hâte de vous accueillir dans notre équipe !",
         
           "salary_tools_title": "Outils de Salaire",
           "salary_tools_for_job_seekers": "Outils de Salaire pour les Chercheurs d'Emploi",
           "navigate_your_career": "Naviguez dans Votre Carrière en Toute Confiance",
-          "salary_tools_intro": "Comprendre votre valeur sur le marché et négocier votre salaire sont des étapes cruciales dans votre recherche d'emploi et votre avancement de carrière. Chez Cibli Job, nous vous donnons accès à divers outils et ressources pour vous aider à prendre des décisions éclairées sur votre rémunération.",
+          "salary_tools_intro": "Comprendre votre valeur sur le marché et négocier votre salaire sont des étapes cruciales dans votre recherche d'emploi et votre avancement de carrière. Chez Nova Job, nous vous donnons accès à divers outils et ressources pour vous aider à prendre des décisions éclairées sur votre rémunération.",
         
           "comprehensive_salary_tools": "Outils de Salaire Complets",
           "salary_calculators": "Calculatrices de Salaire",
@@ -228,18 +228,18 @@
           "company_reviews": "Avis sur les Entreprises",
           "company_reviews_desc": "Des sites comme Glassdoor et Indeed offrent des avis d'employés actuels et anciens, partageant leurs expériences, y compris des informations sur les salaires et les avantages sociaux.",
         
-          "how_cibli_job_can_help": "Comment Cibli Job Peut Vous Aider",
+          "how_cibli_job_can_help": "Comment Nova Job Peut Vous Aider",
           "one_on_one_coaching": "Coaching Individuel",
           "one_on_one_coaching_desc": "Nos coachs de carrière vous guident dans la recherche salariale et la négociation. Nous vous aidons à préparer les discussions sur le salaire et à développer des stratégies de négociation efficaces.",
         
           "exclusive_resources": "Ressources Exclusives",
-          "exclusive_resources_desc": "En tant que client de Cibli Job, vous aurez accès à des ressources exclusives, notamment des rapports sur l'industrie, des enquêtes salariales et des ateliers de négociation.",
+          "exclusive_resources_desc": "En tant que client de Nova Job, vous aurez accès à des ressources exclusives, notamment des rapports sur l'industrie, des enquêtes salariales et des ateliers de négociation.",
         
           "maximize_earning": "Maximisez Votre Potentiel de Revenu",
-          "maximize_earning_desc": "Ne laissez pas votre salaire au hasard. Prenez le contrôle de votre carrière et maximisez votre potentiel de revenus avec l'aide des outils et ressources de Cibli Job.",
+          "maximize_earning_desc": "Ne laissez pas votre salaire au hasard. Prenez le contrôle de votre carrière et maximisez votre potentiel de revenus avec l'aide des outils et ressources de Nova Job.",
           
             "privacyPolicy": "Politique de Confidentialité",
-            "intro": "Chez Cibli Job, nous accordons une grande importance à votre confidentialité et nous nous engageons à protéger vos informations personnelles. Cette Politique de Confidentialité explique comment nous collectons, utilisons et protégeons vos données lorsque vous utilisez notre site Web et nos services.",
+            "intro": "Chez Nova Job, nous accordons une grande importance à votre confidentialité et nous nous engageons à protéger vos informations personnelles. Cette Politique de Confidentialité explique comment nous collectons, utilisons et protégeons vos données lorsque vous utilisez notre site Web et nos services.",
             "sections": {
               "informationWeCollect": "1. Informations que Nous Collectons",
               "howWeUse": "2. Comment Nous Utilisons Vos Informations",
@@ -282,7 +282,7 @@
             
               "title": "Générateur de CV IA",
               "introduction": "Révolutionner le processus de candidature",
-              "description_ai": "Bienvenue sur le Générateur de CV IA de Cibli Job – une solution innovante conçue pour simplifier la création de CV et vous aider à décrocher l’emploi de vos rêves. Notre technologie IA avancée facilite la rédaction de CV en mettant en valeur vos compétences et réalisations de la meilleure façon possible.",
+              "description_ai": "Bienvenue sur le Générateur de CV IA de Nova Job – une solution innovante conçue pour simplifier la création de CV et vous aider à décrocher l’emploi de vos rêves. Notre technologie IA avancée facilite la rédaction de CV en mettant en valeur vos compétences et réalisations de la meilleure façon possible.",
               "key_features": "Principales Fonctionnalités",
               "features": [
                 {
@@ -318,7 +318,7 @@
               "steps": [
                 {
                   "title": "Étape 1 : Inscription et Saisie de vos Informations",
-                  "description": "Créez un compte sur Cibli Job et renseignez vos informations professionnelles, y compris votre expérience, formation, compétences et réalisations."
+                  "description": "Créez un compte sur Nova Job et renseignez vos informations professionnelles, y compris votre expérience, formation, compétences et réalisations."
                 },
                 {
                   "title": "Étape 2 : Choisissez un Modèle",
@@ -354,7 +354,7 @@
               ],
               "cta": {
                 "title": "Commencez à Créer votre CV dès Aujourd'hui",
-                "description": "Transformez votre processus de candidature avec le Générateur de CV IA de Cibli Job. Inscrivez-vous dès maintenant et franchissez la première étape vers votre emploi idéal avec un CV professionnel qui met en valeur vos compétences et qualifications uniques.",
+                "description": "Transformez votre processus de candidature avec le Générateur de CV IA de Nova Job. Inscrivez-vous dès maintenant et franchissez la première étape vers votre emploi idéal avec un CV professionnel qui met en valeur vos compétences et qualifications uniques.",
                 "button": "Commencer"
               },
               
@@ -382,7 +382,7 @@
                   "Ai_Skill_Tests_heading20": "Recrutement rentable",
                   "Ai_Skill_Tests_heading21": "Commencez à utiliser les tests de compétences en IA dès aujourd’hui",
                   "Ai_Skill_Tests_heading22": "Commencer",
-                  "Ai_Skill_Tests_paragraph1": "Chez Cibli Job, nous comprenons l'importance de trouver le bon talent pour votre organisation. Nos tests de compétences en IA sont conçus pour simplifier le processus de recrutement en évaluant avec précision les capacités des candidats et en les associant aux exigences du poste. Grâce à une technologie IA avancée, nos tests offrent un moyen fiable, efficace et impartial d’évaluer les candidats potentiels.",
+                  "Ai_Skill_Tests_paragraph1": "Chez Nova Job, nous comprenons l'importance de trouver le bon talent pour votre organisation. Nos tests de compétences en IA sont conçus pour simplifier le processus de recrutement en évaluant avec précision les capacités des candidats et en les associant aux exigences du poste. Grâce à une technologie IA avancée, nos tests offrent un moyen fiable, efficace et impartial d’évaluer les candidats potentiels.",
                   "Ai_Skill_Tests_paragraph2": "Nos tests de compétences en IA couvrent un large éventail de compétences dans divers secteurs, notamment les compétences techniques, les compétences interpersonnelles et les compétences spécifiques à un rôle. Que vous recrutiez pour l'informatique, le marketing, la finance ou tout autre domaine, nos tests peuvent être adaptés à vos besoins spécifiques.",
                   "Ai_Skill_Tests_paragraph3": "Recevez des résultats instantanés et des analyses détaillées sur la performance des candidats. Notre IA analyse les résultats des tests pour fournir des informations sur les forces et les domaines d'amélioration de chaque candidat, vous aidant ainsi à prendre des décisions de recrutement basées sur les données.",
                   "Ai_Skill_Tests_paragraph4": "Créez des tests alignés sur vos besoins de recrutement. Vous pouvez choisir parmi plusieurs formats de questions, notamment les choix multiples, les défis de codage, les études de cas et les tests de jugement situationnels. Personnalisez le niveau de difficulté et la durée en fonction du poste.",
@@ -399,7 +399,7 @@
                   "Ai_Skill_Tests_paragraph15": "Obtenez une meilleure compréhension des capacités des candidats grâce à des évaluations précises et objectives. Notre technologie IA garantit des résultats cohérents et fiables.",
                   "Ai_Skill_Tests_paragraph16": "Offrez aux candidats une expérience de test fluide et conviviale. La nature adaptative de nos tests maintient leur engagement et leur motivation.",
                   "Ai_Skill_Tests_paragraph17": "Réduisez les coûts associés aux méthodes de recrutement traditionnelles. Nos tests de compétences en IA minimisent le besoin de multiples tours d’entretiens et vous aident à identifier rapidement les meilleurs talents.",
-                  "Ai_Skill_Tests_paragraph18": "Transformez votre processus de recrutement avec les tests de compétences en IA de Cibli Job. Inscrivez-vous dès maintenant pour découvrir les avantages d’une évaluation précise, efficace et impartiale des candidats.",
+                  "Ai_Skill_Tests_paragraph18": "Transformez votre processus de recrutement avec les tests de compétences en IA de Nova Job. Inscrivez-vous dès maintenant pour découvrir les avantages d’une évaluation précise, efficace et impartiale des candidats.",
                   "Ai_Skill_Tests_paragraph19": "Prêt à améliorer votre processus de recrutement ? Visitez notre page sur les tests de compétences en IA et commencez à créer des évaluations de compétences personnalisées dès aujourd’hui !",
                   "Ai_Skill_Tests_paragraph20":"Utilisez notre plateforme intuitive pour créer le test de compétences IA. Choisissez parmi une variété de types de questions et de formats, et définissez le niveau de difficulté ainsi que les limites de temps selon vos besoins.",
                   "Ai_Skill_Tests_paragraph21":"Envoyez des invitations aux candidats par e-mail ou intégrez le lien du test à vos offres d’emploi. Les candidats peuvent passer le test en ligne à leur convenance.",
@@ -413,14 +413,14 @@
                   "Ai_Skill_Tests_paragraph29":"Prêt à améliorer votre processus de recrutement ? Visitez notre page de tests de compétences IA et commencez à créer des évaluations personnalisées dès aujourd’hui !",
                     "Terms-and-Conditions": {
                       "title": "Conditions Générales",
-                      "introduction": "Bienvenue sur Cibli Job. Ces conditions générales définissent les règles et réglementations d'utilisation du site web et des services de Cibli Job. En accédant à ce site et en utilisant nos services, vous acceptez ces conditions générales dans leur intégralité. Si vous n'êtes pas d'accord avec une partie de ces conditions, veuillez ne pas utiliser notre site ou nos services.",
+                      "introduction": "Bienvenue sur Nova Job. Ces conditions générales définissent les règles et réglementations d'utilisation du site web et des services de Nova Job. En accédant à ce site et en utilisant nos services, vous acceptez ces conditions générales dans leur intégralité. Si vous n'êtes pas d'accord avec une partie de ces conditions, veuillez ne pas utiliser notre site ou nos services.",
                       "sections": [
                         {
                           "title": "1. Définitions",
                           "list": [
-                            "Client : Toute personne physique ou morale utilisant les services de Cibli Job.",
-                            "Entreprise : Cibli Job.",
-                            "Services : Rédaction de CV, coaching de carrière, optimisation du profil LinkedIn et autres services liés à la carrière fournis par Cibli Job."
+                            "Client : Toute personne physique ou morale utilisant les services de Nova Job.",
+                            "Entreprise : Nova Job.",
+                            "Services : Rédaction de CV, coaching de carrière, optimisation du profil LinkedIn et autres services liés à la carrière fournis par Nova Job."
                           ]
                         },
                         {
@@ -442,7 +442,7 @@
                         {
                           "title": "4. Propriété intellectuelle",
                           "list": [
-                            "Tout le contenu, les matériaux et les services fournis par Cibli Job sont protégés par des lois sur la propriété intellectuelle.",
+                            "Tout le contenu, les matériaux et les services fournis par Nova Job sont protégés par des lois sur la propriété intellectuelle.",
                             "Les clients bénéficient d'une licence limitée pour utiliser le contenu à des fins personnelles et non commerciales.",
                             "Toute reproduction, distribution ou modification sans consentement écrit préalable est interdite."
                           ]
@@ -465,7 +465,7 @@
                         {
                           "title": "7. Clause de non-garantie",
                           "list": [
-                            "Nos services sont fournis 'tels quels' et 'selon disponibilité'. Cibli Job ne garantit pas l'exactitude ou l'exhaustivité des services.",
+                            "Nos services sont fournis 'tels quels' et 'selon disponibilité'. Nova Job ne garantit pas l'exactitude ou l'exhaustivité des services.",
                             "Nous ne garantissons pas que nos services répondront aux attentes des clients."
                           ]
                         },
@@ -479,7 +479,7 @@
                         {
                           "title": "9. Droit applicable",
                           "list": [
-                            "Ces conditions générales sont régies par les lois du pays où opère Cibli Job.",
+                            "Ces conditions générales sont régies par les lois du pays où opère Nova Job.",
                             "Tout litige sera soumis à la juridiction exclusive des tribunaux compétents."
                           ]
                         },
@@ -491,7 +491,7 @@
                           ]
                         }
                       ],
-                      "closing": "Ces conditions garantissent une compréhension claire de nos services et des responsabilités de Cibli Job et de ses clients.",
+                      "closing": "Ces conditions garantissent une compréhension claire de nos services et des responsabilités de Nova Job et de ses clients.",
                       "contact": "Si vous avez des questions, contactez-nous."
                     }    ,
                     
@@ -526,7 +526,7 @@
 "Ai_CV_Parsing_h28": "Précision améliorée",
 "Ai_CV_Parsing_h29": "Expérience candidat optimisée",
 
-                      "Ai_CV_Parsing_p1": "Chez Cibli Job, nous exploitons une technologie avancée d'analyse de CV par IA pour rationaliser le processus de recrutement, le rendant plus rapide et plus efficace pour les employeurs et les candidats. Notre outil d'analyse de CV par IA extrait et analyse avec précision les informations clés des CV, vous aidant à identifier rapidement et efficacement les meilleurs candidats.",
+                      "Ai_CV_Parsing_p1": "Chez Nova Job, nous exploitons une technologie avancée d'analyse de CV par IA pour rationaliser le processus de recrutement, le rendant plus rapide et plus efficace pour les employeurs et les candidats. Notre outil d'analyse de CV par IA extrait et analyse avec précision les informations clés des CV, vous aidant à identifier rapidement et efficacement les meilleurs candidats.",
                       "Ai_CV_Parsing_p2": "Notre analyseur de CV par IA utilise des algorithmes sophistiqués pour extraire les informations essentielles des CV, notamment les informations personnelles, les coordonnées, l'expérience professionnelle, l'éducation, les compétences et les certifications. Les données extraites sont organisées dans un format structuré, facilitant ainsi l'examen et la comparaison des candidats.",
                       "Ai_CV_Parsing_p3": "Notre analyseur peut traiter des CV dans divers formats, tels que PDF, DOC, DOCX et TXT. Cette flexibilité garantit que, quelle que soit la manière dont les candidats soumettent leurs CV, notre outil peut les traiter et les analyser efficacement.",
                       "Ai_CV_Parsing_p4": "Grâce à des techniques avancées de NLP, notre analyseur de CV par IA comprend le contexte et les nuances du langage humain. Cela lui permet d'interpréter avec précision les titres de poste, les compétences et les responsabilités, même s'ils sont formulés différemment dans les CV.",
@@ -543,7 +543,7 @@
                       "Ai_CV_Parsing_p15": "Éliminez les erreurs humaines et les biais du processus de sélection des CV. Notre technologie IA garantit une extraction de données cohérente et précise, menant à de meilleures décisions de recrutement.",
                       "Ai_CV_Parsing_p16": "Offrez une expérience de recrutement plus fluide et plus rapide aux candidats. Grâce à un traitement rapide et précis des CV, les candidats reçoivent des retours et des mises à jour en temps opportun.",
                       "Ai_CV_Parsing_p17": "Gérez sans effort de gros volumes de CV. Notre outil d'analyse de CV par IA peut s'adapter aux besoins des campagnes de recrutement à grande échelle, garantissant qu'aucun candidat n'est négligé.",
-                      "Ai_CV_Parsing_p18": "Révolutionnez votre processus de recrutement avec l'outil d'analyse de CV par IA de Cibli Job. Inscrivez-vous dès maintenant pour découvrir les avantages d'un traitement des CV efficace, précis et automatisé.",
+                      "Ai_CV_Parsing_p18": "Révolutionnez votre processus de recrutement avec l'outil d'analyse de CV par IA de Nova Job. Inscrivez-vous dès maintenant pour découvrir les avantages d'un traitement des CV efficace, précis et automatisé.",
                       "Ai_CV_Parsing_p19": "Prêt à transformer votre processus de recrutement ? Visitez notre page d'analyse de CV par IA et commencez à optimiser votre sélection de candidats dès aujourd'hui !",
                       
                        "AI-Enhanced_h": "Précision Améliorée des CV par l’IA",
@@ -580,7 +580,7 @@
   "AI-Enhanced_h28": "Gain de Temps et d’Efforts",
   "AI-Enhanced_h29": "Commencez à Améliorer la Précision de Votre CV Aujourd’hui",
 
-  "AI-Enhanced_p1": "Chez Cibli Job, nous comprenons que la précision de votre CV peut grandement influencer vos chances d’obtenir l’emploi de vos rêves. Nos outils de précision améliorée par l’IA garantissent que votre CV soit non seulement percutant, mais aussi précis et sans erreurs. En tirant parti des technologies avancées de l’IA, nous vous aidons à créer des CV qui reflètent véritablement vos qualifications et vos expériences.",
+  "AI-Enhanced_p1": "Chez Nova Job, nous comprenons que la précision de votre CV peut grandement influencer vos chances d’obtenir l’emploi de vos rêves. Nos outils de précision améliorée par l’IA garantissent que votre CV soit non seulement percutant, mais aussi précis et sans erreurs. En tirant parti des technologies avancées de l’IA, nous vous aidons à créer des CV qui reflètent véritablement vos qualifications et vos expériences.",
   "AI-Enhanced_p2": "Nos outils alimentés par l’IA vérifient minutieusement les fautes de grammaire, d’orthographe et de ponctuation. Cela garantit que votre CV soit soigné et professionnel, laissant une impression forte aux recruteurs.",
   "AI-Enhanced_p3": "L’IA examine la cohérence de la mise en forme de votre CV, y compris les styles de police, les tailles, les puces et les espacements. Cela permet de créer un document visuellement attrayant et uniforme, facile à lire.",
   "AI-Enhanced_p4": "Notre IA vérifie les informations clés telles que les dates d’emploi, les intitulés de poste et les diplômes. Cela réduit les risques d’inexactitudes et de divergences susceptibles d’inquiéter les employeurs.",
@@ -588,7 +588,7 @@
   "AI-Enhanced_p6": "L’IA vous encourage à quantifier vos réalisations, en ajoutant par exemple des chiffres et des indicateurs précis. Cela donne de la crédibilité à votre CV et met en avant des preuves concrètes de vos succès.",
   "AI-Enhanced_p7": "Notre IA évalue la pertinence et la clarté de votre contenu. Elle met en évidence les sections floues ou hors sujet et propose des améliorations pour rendre votre CV plus percutant et ciblé.",
   "AI-Enhanced_p8": "L’IA vérifie si votre CV contient du plagiat potentiel, garantissant que tout le contenu est original et vous est propre. Cela renforce l’intégrité de votre CV et vous différencie des autres candidats.",
-  "AI-Enhanced_p9": "Téléversez votre CV sur la plateforme Cibli Job. Notre IA commencera immédiatement l’analyse de votre document.",
+  "AI-Enhanced_p9": "Téléversez votre CV sur la plateforme Nova Job. Notre IA commencera immédiatement l’analyse de votre document.",
   "AI-Enhanced_p10": "L’IA scanne votre CV à la recherche d’erreurs, d’incohérences et d’informations manquantes. Elle évalue la grammaire, la mise en forme, l’exactitude des données et la pertinence des mots-clés.",
   "AI-Enhanced_p11": "En quelques minutes, vous recevrez un rapport détaillé mettant en évidence les points à améliorer. L’IA fournit des suggestions précises pour corriger les erreurs, améliorer le contenu et optimiser la mise en forme.",
   "AI-Enhanced_p12": "Mettez en œuvre les modifications suggérées pour perfectionner votre CV. Utilisez les commentaires de l’IA pour garantir un CV précis, professionnel et adapté au poste visé.",
@@ -597,7 +597,7 @@
   "AI-Enhanced_p15": "Avec un CV précis et bien conçu, vous pouvez postuler avec confiance, sachant que votre candidature est solide et fiable.",
   "AI-Enhanced_p16": "L’optimisation de votre CV pour plus de précision et de pertinence augmente vos chances de franchir les filtres ATS et d’être présélectionné pour des entretiens.",
   "AI-Enhanced_p17": "Nos outils d’IA automatisent le processus de révision du CV, vous faisant gagner du temps et de l’énergie tout en garantissant un haut niveau de qualité.",
-  "AI-Enhanced_p18": "Transformez votre CV avec les outils de précision améliorée de Cibli Job. Inscrivez-vous dès maintenant pour créer un CV soigné, précis et professionnel.",
+  "AI-Enhanced_p18": "Transformez votre CV avec les outils de précision améliorée de Nova Job. Inscrivez-vous dès maintenant pour créer un CV soigné, précis et professionnel.",
                           "basic_information": "INFORMATIONS DE BASE",
                           "first_name": "Prénom",
                           "last_name": "Nom de famille",
@@ -793,13 +793,13 @@
                       
   },
   "modal": {
-    "title": "CibliJob ID",
+    "title": "novajob ID",
     "subtitle": "Votre accès unique aux solutions de carrière",
     "coming_soon": "Bientôt disponible !",
     "status": "Statut du développement :",
     "progress": "90% Complet",
-    "description": "CibliJob ID vous permettra de vous connecter facilement à tous nos services avec un seul compte. Restez à l'écoute pour le lancement !",
-    "signup": "Vous voulez savoir quand CibliJob ID sera en ligne ? Inscrivez-vous pour recevoir des mises à jour !",
+    "description": "novajob ID vous permettra de vous connecter facilement à tous nos services avec un seul compte. Restez à l'écoute pour le lancement !",
+    "signup": "Vous voulez savoir quand novajob ID sera en ligne ? Inscrivez-vous pour recevoir des mises à jour !",
     "email_placeholder": "Entrez votre email",
     "notify_button": "Prévenez-moi",
     "close_button": "Fermer",
@@ -880,7 +880,7 @@
     "viewCoverLetters": "Voir les lettres de motivation"
   },
   "createResume":{
-    "welcome_resumebuilder":"Bienvenue sur Cibli Job",
+    "welcome_resumebuilder":"Bienvenue sur Nova Job",
     "create_resume":"Cliquez sur le bouton ci-dessous pour créer votre CV.",
     "resume_btn":"Créez votre CV",
     "creating":"Création..."
@@ -1206,7 +1206,7 @@
                   "aiResumeEnhancer": {
                     "title": "Optimiseur de CV par IA",
                     "subtitle": "Améliorez vos candidatures avec des optimisations basées sur l'IA",
-                    "intro": "Chez Cibli Job, nous croyons que chaque chercheur d'emploi mérite un CV exceptionnel qui met efficacement en valeur ses compétences et expériences. Notre Optimiseur de CV par IA est conçu pour améliorer votre CV, en s'assurant qu'il répond aux normes de l'industrie et capte l'attention des recruteurs. En utilisant une technologie d'IA avancée, nous transformons votre CV en un outil puissant pour votre réussite professionnelle",
+                    "intro": "Chez Nova Job, nous croyons que chaque chercheur d'emploi mérite un CV exceptionnel qui met efficacement en valeur ses compétences et expériences. Notre Optimiseur de CV par IA est conçu pour améliorer votre CV, en s'assurant qu'il répond aux normes de l'industrie et capte l'attention des recruteurs. En utilisant une technologie d'IA avancée, nous transformons votre CV en un outil puissant pour votre réussite professionnelle",
                     "featuresTitle": "Caractéristiques principales de notre Optimiseur de CV par IA",
                     "feature1Title": "1. Optimisation du contenu",
                     "feature1Desc": "Notre IA analyse le contenu de votre CV pour s'assurer qu'il est concis, pertinent et percutant. Elle vous aide à mettre en évidence les réalisations, compétences et expériences clés qui correspondent au poste auquel vous postulez.",
@@ -1226,7 +1226,7 @@
                     "feature8Desc": "L'IA vérifie et corrige les erreurs grammaticales, d'orthographe et de ponctuation. Cela garantit que votre CV est soigné et professionnel, sans erreurs distrayantes.",
                     "howItWorksTitle": "Comment ça marche",
                     "step1Title": "Étape 1: Téléchargez votre CV",
-                    "step1Desc": "Téléchargez votre CV existant sur la plateforme Cibli Job. Notre IA commencera à analyser votre document immédiatement.",
+                    "step1Desc": "Téléchargez votre CV existant sur la plateforme Nova Job. Notre IA commencera à analyser votre document immédiatement.",
                     "step2Title": "Étape 2: Analyse par IA",
                     "step2Desc": "L'IA évalue votre CV, examinant le contenu, la structure, les mots-clés et la présentation générale. Elle identifie les domaines qui nécessitent une amélioration et génère un plan d'amélioration complet.",
                     "step3Title": "Étape 3: Recevez des recommandations",
@@ -1243,14 +1243,14 @@
                     "benefit4Title": "Efficacité et commodité",
                     "benefit4Desc": "Économisez du temps et des efforts grâce à des améliorations automatisées qui garantissent que votre CV est complet et percutant.",
                     "startEnhancingTitle": "Commencez à améliorer votre CV aujourd'hui",
-                    "startEnhancingDesc": "Transformez votre CV avec l'Optimiseur de CV par IA de Cibli Job. Inscrivez-vous maintenant pour créer un CV qui se démarque et ouvre les portes à de nouvelles opportunités de carrière.",
+                    "startEnhancingDesc": "Transformez votre CV avec l'Optimiseur de CV par IA de Nova Job. Inscrivez-vous maintenant pour créer un CV qui se démarque et ouvre les portes à de nouvelles opportunités de carrière.",
                     "getStartedTitle": "Commencer",
                     "getStartedDesc": "Prêt à améliorer votre CV? Visitez notre page d'Optimiseur de CV par IA et commencez à peaufiner votre CV dès aujourd'hui!"
                   },
                   "aiJobMatchApply": {
     "title": "IA-Correspondance & Candidature d'Emploi",
     "subtitle": "Simplifier Votre Recherche d'Emploi avec la Technologie IA",
-    "intro": "Chez Cibli Job, nous visons à rendre votre recherche d'emploi efficiente et efficace avec notre outil IA-Correspondance & Candidature. Cette technologie innovante utilise des algorithmes avancés pour faire correspondre vos compétences et expériences avec des opportunités d'emploi pertinentes, simplifiant le processus de candidature et augmentant vos chances de décrocher l'emploi parfait.",
+    "intro": "Chez Nova Job, nous visons à rendre votre recherche d'emploi efficiente et efficace avec notre outil IA-Correspondance & Candidature. Cette technologie innovante utilise des algorithmes avancés pour faire correspondre vos compétences et expériences avec des opportunités d'emploi pertinentes, simplifiant le processus de candidature et augmentant vos chances de décrocher l'emploi parfait.",
     "featuresTitle": "Caractéristiques Principales de Notre Outil IA-Correspondance & Candidature",
     "feature1Title": "1. Correspondance d'Emploi Personnalisée",
     "feature1Desc": "Notre IA analyse votre CV et votre profil pour identifier les opportunités d'emploi qui correspondent à vos compétences, expérience et objectifs de carrière. Cela garantit que vous postulez à des postes où vous êtes le plus susceptible de réussir.",
@@ -1270,7 +1270,7 @@
     "feature8Desc": "Obtenez des aperçus sur les employeurs potentiels avec des profils d'entreprise détaillés. Renseignez-vous sur la culture d'entreprise, les valeurs, les avantages et les actualités récentes pour prendre des décisions éclairées sur où postuler.",
     "howItWorksTitle": "Comment Ça Marche",
     "step1Title": "Étape 1: Créez Votre Profil",
-    "step1Desc": "Inscrivez-vous sur la plateforme Cibli Job et créez votre profil. Téléchargez votre CV et fournissez des détails sur vos compétences, expériences et aspirations de carrière.",
+    "step1Desc": "Inscrivez-vous sur la plateforme Nova Job et créez votre profil. Téléchargez votre CV et fournissez des détails sur vos compétences, expériences et aspirations de carrière.",
     "step2Title": "Étape 2: Analyse IA",
     "step2Desc": "L'IA analyse votre profil et votre CV, analysant vos qualifications et préférences. Elle vous met en correspondance avec des opportunités d'emploi appropriées à partir de notre vaste base de données.",
     "step3Title": "Étape 3: Recevez des Correspondances d'Emploi",
@@ -1291,7 +1291,7 @@
     "benefit4Title": "Support Complet",
     "benefit4Desc": "Gérez l'ensemble de votre processus de recherche d'emploi à partir d'une seule plateforme. Suivez les candidatures, recevez des alertes en temps réel et obtenez des insights précieux sur les employeurs potentiels.",
     "startUsingTitle": "Commencez à Utiliser l'IA-Correspondance & Candidature Aujourd'hui",
-    "startUsingDesc": "Transformez votre recherche d'emploi avec l'outil IA-Correspondance & Candidature de Cibli Job. Inscrivez-vous maintenant pour découvrir des opportunités d'emploi qui correspondent parfaitement à votre profil et simplifier votre chemin vers le succès professionnel.",
+    "startUsingDesc": "Transformez votre recherche d'emploi avec l'outil IA-Correspondance & Candidature de Nova Job. Inscrivez-vous maintenant pour découvrir des opportunités d'emploi qui correspondent parfaitement à votre profil et simplifier votre chemin vers le succès professionnel.",
     "getStartedTitle": "Commencer",
     "getStartedDesc": "Prêt à trouver l'emploi de vos rêves? Visitez notre page IA-Correspondance & Candidature et commencez à correspondre avec les meilleures opportunités d'emploi dès aujourd'hui!"
   },
@@ -1549,7 +1549,7 @@
     "help_support": "Besoin d'aide ou envie de modifier votre abonnement?",
     "contact_us": "Contactez-nous à:",
     "phone": "📞 855-695-3235",
-    "email": "📧 customersupport@CibliJob.fr",
+    "email": "📧 customersupport@novajob.fr",
     "availability": "Disponible 7 jours sur 7:",
     "monday_friday": "Lundi-Vendredi: 8h - 20h (CST)",
     "saturday": "Samedi: 8h - 17h (CST)",

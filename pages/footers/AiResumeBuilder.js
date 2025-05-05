@@ -15,7 +15,7 @@
 //           Revolutionizing the Job Application Process
 //         </h2>
 //         <p className="text-base sm:text-lg">
-//           Welcome to Cibli Job’s AI Resume Builder – an innovative solution
+//           Welcome to Nova Job’s AI Resume Builder – an innovative solution
 //           designed to streamline the resume creation process and help you land
 //           your dream job. Our cutting-edge AI technology simplifies resume
 //           writing, ensuring that your skills and achievements are presented in
@@ -73,7 +73,7 @@
 //           {
 //             title: "Step 1: Sign Up & Input Your Information",
 //             description:
-//               "Create an account on Cibli Job and provide your career details, including work experience, education, skills, and achievements.",
+//               "Create an account on Nova Job and provide your career details, including work experience, education, skills, and achievements.",
 //           },
 //           {
 //             title: "Step 2: Choose a Template",
@@ -133,7 +133,7 @@
 //           Start Building Your Resume Today
 //         </h2>
 //         <p className="text-base sm:text-lg">
-//           Transform your job application process with Cibli Job’s AI Resume
+//           Transform your job application process with Nova Job’s AI Resume
 //           Builder. Sign up now and take the first step toward landing your dream
 //           job with a professionally crafted resume that showcases your unique
 //           strengths and qualifications.
@@ -141,7 +141,7 @@
 
 //         <h2 className="text-lg font-bold my-4 text-center">Get Started</h2>
 //         <p className="text-center text-base sm:text-lg ">
-//           Ready to create your Cibli Job ? Visit our AI Resume Builder page and
+//           Ready to create your Nova Job ? Visit our AI Resume Builder page and
 //           start building your resume today!
 //         </p>
 //       </div>

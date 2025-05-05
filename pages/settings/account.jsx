@@ -20,7 +20,7 @@
 //           return;
 //         }
 
-//         const response = await axios.get(`${BASE_URL}/api/user/user-profile?lang=${selectedLang}`, {
+//         const response = await axios.get(`${BASE_URL}/api/jobseeker/user-profile?lang=${selectedLang}`, {
 //           headers: { Authorization: token },
 //         });
 
@@ -145,7 +145,7 @@ const Account = () => {
         }
 
         const response = await axios.get(
-          `${BASE_URL}/api/user/user-profile?lang=${selectedLang}`,
+          `${BASE_URL}/api/jobseeker/user-profile?lang=${selectedLang}`,
           {
             headers: { Authorization: token },
           }

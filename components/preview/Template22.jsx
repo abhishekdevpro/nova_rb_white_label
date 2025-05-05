@@ -412,7 +412,7 @@ const Template22 = () => {
         </div>
         {/* <button
               onClick={extractHtml}
-              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-[#00b38d] transition-colors"
+              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-[#1C2957] transition-colors"
             >
               Log HTML Content
             </button> */}

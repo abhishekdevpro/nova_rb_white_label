@@ -8,13 +8,13 @@
 //       <Navbar />
 //       <div className="m-4 sm:mx-10 lg:mx-40 p-4 sm:p-6 shadow-2xl">
 //         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold my-4 underline">
-//           Careers at Cibli Job
+//           Careers at Nova Job
 //         </h2>
 //         <h2 className="text-xl sm:text-2xl font-semibold my-2 mt-5">
 //           Join Our Team
 //         </h2>
 //         <p className="text-base sm:text-lg">
-//           At Cibli Job, we are committed to helping individuals achieve their
+//           At Nova Job, we are committed to helping individuals achieve their
 //           career goals through expertly crafted resumes and personalized career
 //           services. Our team is passionate about making a difference in the
 //           lives of job seekers, and we’re always on the lookout for talented
@@ -38,7 +38,7 @@
 //           Collaborative Culture
 //         </h3>
 //         <p className="text-base sm:text-lg">
-//           At Cibli Job, we believe in the power of collaboration. Our team
+//           At Nova Job, we believe in the power of collaboration. Our team
 //           members work closely together, sharing ideas and supporting one
 //           another to achieve common goals. You’ll be part of a supportive
 //           community that values your input and encourages professional growth.
@@ -48,7 +48,7 @@
 //           Impactful Work
 //         </h3>
 //         <p className="text-base sm:text-lg">
-//           Your work at Cibli Job will have a direct impact on our clients’
+//           Your work at Nova Job will have a direct impact on our clients’
 //           lives. By helping job seekers present their best selves to potential
 //           employers, you’ll play a crucial role in their career success. There’s
 //           nothing more rewarding than knowing you’ve contributed to someone’s
@@ -105,7 +105,7 @@
 //         <p className="text-base sm:text-lg">
 //           Provide exceptional support to our clients, answering questions and
 //           resolving issues related to our services. You’ll ensure that every
-//           client has a positive experience with Cibli Job.
+//           client has a positive experience with Nova Job.
 //         </p>
 
 //         <h3 className="text-xl sm:text-2xl font-semibold my-2 mt-5">
@@ -114,10 +114,10 @@
 //         <p className="text-base sm:text-lg">
 //           If you’re passionate about helping others succeed and want to be part
 //           of a dynamic, growth-oriented team, we’d love to hear from you. To
-//           apply for a position at Cibli Job, please send your resume and a cover
+//           apply for a position at Nova Job, please send your resume and a cover
 //           letter to{" "}
 //           <a href="mailto:bonjour@cibli.fR" className="text-blue-500">
-//             career@CibliJob.ca
+//             career@novajob.ca
 //           </a>
 //           .
 //         </p>
@@ -126,7 +126,7 @@
 //           Join Us and Make a Difference
 //         </h3>
 //         <p className="text-base sm:text-lg">
-//           At Cibli Job, you’ll have the opportunity to make a meaningful impact
+//           At Nova Job, you’ll have the opportunity to make a meaningful impact
 //           every day. Join us and help shape the future of job seekers around the
 //           world. We look forward to welcoming you to our team!
 //         </p>
@@ -223,7 +223,7 @@ function Careers() {
         </h3>
         <p className="text-base sm:text-lg">
           {t("how_to_apply_description")}{" "}
-          <a href="mailto:career@CibliJob.ca" className="text-blue-500">
+          <a href="mailto:career@novajob.ca" className="text-blue-500">
             {t("apply_email")}
           </a>
           .

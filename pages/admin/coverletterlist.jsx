@@ -13,7 +13,7 @@ const CoverLetterListPage = () => {
       <div className="max-h-[500px] overflow-y-auto p-2 w-full flex flex-wrap justify-center gap-10">
         {templates.map((template, index) => (
           <Link href="" key={index}>
-            <div className="bg-[#00b38d] rounded-lg shadow-xl shadow-[#00b38d] text-center text-white cursor-pointer text-3xl font-semibold box-hover-effect transition-all hover:scale-105">
+            <div className="bg-[#1C2957] rounded-lg shadow-xl shadow-[#1C2957] text-center text-white cursor-pointer text-3xl font-semibold box-hover-effect transition-all hover:scale-105">
               <Image
                 src={template}
                 alt={`Template ${index + 1}`}

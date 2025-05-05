@@ -13,7 +13,7 @@
 //         <h2 className="text-xl font-bold my-5">
 //           Elevate Your Job Applications with AI-Driven Enhancements
 //         </h2>
-//         At Cibli Job , we believe that every job seeker deserves a standout
+//         At Nova Job , we believe that every job seeker deserves a standout
 //         resume that effectively showcases their skills and experiences. Our AI
 //         Resume Enhancer is designed to elevate your resume, ensuring it meets
 //         industry standards and captures the attention of recruiters. Using
@@ -66,7 +66,7 @@
 //         <h2 className="text-sm font-semibold my-2">
 //           Step 1: Upload Your Resume
 //         </h2>
-//         Upload your existing resume to the Cibli Job platform. Our AI will start
+//         Upload your existing resume to the Nova Job platform. Our AI will start
 //         analyzing your document immediately.
 //         <h2 className="text-sm font-semibold my-2">Step 2: AI Analysis</h2>
 //         The AI evaluates your resume, examining content, structure, keywords,
@@ -103,7 +103,7 @@
 //         <h2 className="text-sm font-semibold my-2">
 //           Start Enhancing Your Resume Today
 //         </h2>
-//         Transform your resume with Cibli Job ’s AI Resume Enhancer. Sign up now
+//         Transform your resume with Nova Job ’s AI Resume Enhancer. Sign up now
 //         to create a resume that stands out and opens doors to new career
 //         opportunities.
 //         <h2 className="text-lg font-bold my-2">Get Started</h2>

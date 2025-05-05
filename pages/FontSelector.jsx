@@ -19,7 +19,7 @@ const FontSelector = () => {
           return;
         }
 
-        const response = await axios.get(`${BASE_URL}/api/user/user-profile`, {
+        const response = await axios.get(`${BASE_URL}/api/jobseeker/user-profile`, {
           headers: { Authorization: token },
         });
 
@@ -40,7 +40,7 @@ const FontSelector = () => {
     <select
       value={selectedFont}
       onChange={(e) => setSelectedFont(e.target.value)}
-      className="w-40 h-10 rounded-lg border border-green-500 px-4 font-bold text-black bg-white focus:ring-2 focus:ring-green-600"
+      className="w-40 h-10 rounded-lg border border-blue-500 px-4 font-bold text-black bg-white focus:ring-2 focus:ring-blue-600"
     >
       {fonts.map((font) => (
         <option key={font} value={font}>

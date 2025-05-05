@@ -125,7 +125,7 @@ const Skills = () => {
         <div className="flex justify-center mt-5">
           <button
             onClick={handleCreateResume}
-            className="flex justify-center items-center px-4 py-2 w-full sm:w-auto bg-[#00b38d] text-white rounded-lg hover:bg-[#369984] transition-colors duration-200 font-medium shadow-sm"
+            className="flex justify-center items-center px-4 py-2 w-full sm:w-auto bg-[#1C2957] text-white rounded-lg hover:bg-[#369984] transition-colors duration-200 font-medium shadow-sm"
           >
             <Plus className="w-5 h-5 mr-2" /> {t("skill.create_new_resume")}
           </button>
@@ -165,7 +165,7 @@ const Skills = () => {
               skills.map((skill, index) => (
                 <div
                   key={index}
-                  className="bg-[#00b38d] rounded-xl shadow-2xl border-2 border-slate-600 px-5 py-4 text-center"
+                  className="bg-[#1C2957] rounded-xl shadow-2xl border-2 border-slate-600 px-5 py-4 text-center"
                 >
                   <h3 className="text-2xl sm:text-3xl text-white font-semibold py-3">
                     {skill.name}

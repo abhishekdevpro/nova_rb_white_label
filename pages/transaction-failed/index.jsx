@@ -34,7 +34,7 @@ const PaymentFailed = () => {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 w-full">
             <button
-              className="w-full py-2 px-4 bg-[#00b38d] text-white rounded-lg hover:bg-blue-800 transition-colors"
+              className="w-full py-2 px-4 bg-[#1C2957] text-white rounded-lg hover:bg-blue-800 transition-colors"
               onClick={() => {
                 window.location.href = "/dashboard/aibuilder";
               }}

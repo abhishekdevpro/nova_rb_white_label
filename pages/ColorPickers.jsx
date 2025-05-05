@@ -40,7 +40,7 @@ const allColors = [
   {
     name: "Blue",
 
-    value: "#00b38d",
+    value: "#1C2957",
   },
   {
     name: "Indigo",
@@ -99,7 +99,7 @@ const ColorPicker = ({ selectedColor, onChange }) => {
           return;
         }
 
-        const response = await axios.get(`${BASE_URL}/api/user/user-profile`, {
+        const response = await axios.get(`${BASE_URL}/api/jobseeker/user-profile`, {
           headers: { Authorization: token },
         });
 
@@ -128,14 +128,14 @@ const ColorPicker = ({ selectedColor, onChange }) => {
     <div className="relative flex items-center m-2 z-20 ">
       <button
         onClick={handleToggleDropdown}
-        className="hidden sm:block rounded-lg border-2 border-green-500 px-8 p-1 font-bold  bg-white text-black"
+        className="hidden sm:block rounded-lg border-2 border-blue-500 px-8 p-1 font-bold  bg-white text-black"
         style={{ backgroundColor: selectedColor || "transparent" }}
       >
         <span className="">{t("backgroundColor.label")}</span>
       </button>
       <button
         onClick={handleToggleDropdown}
-        className="sm:hidden rounded-lg border-2 border-green-500 px-5 py-2 font-bold  bg-white text-black"
+        className="sm:hidden rounded-lg border-2 border-blue-500 px-5 py-2 font-bold  bg-white text-black"
         style={{ backgroundColor: selectedColor || "transparent" }}
       >
         {t("backgroundColor.labelMobile")}

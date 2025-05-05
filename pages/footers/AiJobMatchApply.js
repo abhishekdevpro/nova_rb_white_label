@@ -13,7 +13,7 @@
 //         <h2 className="text-xl font-bold my-5">
 //           Simplifying Your Job Search with AI Technology
 //         </h2>
-//         At Cibli Job , we aim to make your job search efficient and effective
+//         At Nova Job , we aim to make your job search efficient and effective
 //         with our AI Job Match & Apply tool. This innovative technology uses
 //         advanced algorithms to match your skills and experiences with relevant
 //         job opportunities, streamlining the application process and increasing
@@ -62,7 +62,7 @@
 //         <h2 className="text-sm font-semibold my-2">
 //           Step 1: Create Your Profile
 //         </h2>
-//         Sign up on the Cibli Job platform and create your profile. Upload your
+//         Sign up on the Nova Job platform and create your profile. Upload your
 //         resume and provide details about your skills, experiences, and career
 //         aspirations.
 //         <h2 className="text-sm font-semibold my-2">Step 2: AI Analysis</h2>
@@ -114,7 +114,7 @@
 //         <h2 className="text-sm font-semibold my-2">
 //           Start Using AI Job Match & Apply Today
 //         </h2>
-//         Transform your job search with Cibli Job ’s AI Job Match & Apply tool.
+//         Transform your job search with Nova Job ’s AI Job Match & Apply tool.
 //         Sign up now to discover job opportunities that perfectly match your
 //         profile and streamline your path to career success.
 //         <h2 className="text-lg font-bold my-2">Get Started</h2>

@@ -54,7 +54,7 @@
 // //         </div>
 // //       </div>
 // //       <div className="flex justify-between my-8 w-full px-40 mb-28">
-// //         <button className="px-16 py-1 border-2 bg-white text-lg border-green-500 text-blue-700 rounded-3xl hover:bg-gray-300">Back</button>
+// //         <button className="px-16 py-1 border-2 bg-white text-lg border-blue-500 text-blue-700 rounded-3xl hover:bg-gray-300">Back</button>
 // //         <button className="px-16 py-2 bg-yellow-400 text-lg rounded-3xl hover:bg-yellow-500" onClick={handleNext}>Next</button>
 // //       </div>
 // //     </div>

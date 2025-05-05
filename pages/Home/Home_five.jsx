@@ -10,47 +10,47 @@
 //         setIsAuthenticated(!!token);
 //     }, []);
 //   return (
-//     <div className="bg-green-100 py-10">
+//     <div className="bg-blue-100 py-10">
 //       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 //         <h1 className="text-center font-bold text-3xl py-5">Want To Supercharge Your Career Growth With Our AI Tool?</h1>
 //         <div className="flex justify-center">
 //           <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 md:p-8">
 //             <h1 className="font-bold text-xl mb-4">Cibli Job  Builder</h1>
 //             <div className="flex items-center gap-2 font-medium mb-2">
-//               <i className="fa-solid fa-check border-2 px-2 py-2 rounded-full text-white bg-green-500"></i>
+//               <i className="fa-solid fa-check border-2 px-2 py-2 rounded-full text-white bg-blue-500"></i>
 //               <span>AI Score</span>
 //             </div>
 //             <div className="flex items-center gap-2 font-medium mb-2">
-//               <i className="fa-solid fa-check border-2 px-2 py-2 rounded-full text-white bg-green-500"></i>
+//               <i className="fa-solid fa-check border-2 px-2 py-2 rounded-full text-white bg-blue-500"></i>
 //               <span>AI Parsing</span>
 //             </div>
 //             <div className="flex items-center gap-2 font-medium mb-2">
-//               <i className="fa-solid fa-check border-2 px-2 py-2 rounded-full text-white bg-green-500"></i>
+//               <i className="fa-solid fa-check border-2 px-2 py-2 rounded-full text-white bg-blue-500"></i>
 //               <span>Resume Building</span>
 //             </div>
 //             <div className="flex items-center gap-2 font-medium mb-2">
-//               <i className="fa-solid fa-check border-2 px-2 py-2 rounded-full text-white bg-green-500"></i>
+//               <i className="fa-solid fa-check border-2 px-2 py-2 rounded-full text-white bg-blue-500"></i>
 //               <span>AI Enhancer</span>
 //             </div>
 //             <div className="flex items-center gap-2 font-medium mb-2">
-//               <i className="fa-solid fa-check border-2 px-2 py-2 rounded-full text-white bg-green-500"></i>
+//               <i className="fa-solid fa-check border-2 px-2 py-2 rounded-full text-white bg-blue-500"></i>
 //               <span>Match & Apply</span>
 //             </div>
 //             <div className="flex items-center gap-2 font-medium mb-2">
-//               <i className="fa-solid fa-check border-2 px-2 py-2 rounded-full text-white bg-green-500"></i>
+//               <i className="fa-solid fa-check border-2 px-2 py-2 rounded-full text-white bg-blue-500"></i>
 //               <span>AI Skill Test</span>
 //             </div>
 //             <div className="flex items-center gap-2 font-medium mb-2">
-//               <i className="fa-solid fa-check border-2 px-2 py-2 rounded-full text-white bg-green-500"></i>
+//               <i className="fa-solid fa-check border-2 px-2 py-2 rounded-full text-white bg-blue-500"></i>
 //               <span>Skill Badges</span>
 //             </div>
 //             <div className="flex items-center gap-2 font-medium mb-2">
-//               <i className="fa-solid fa-check border-2 px-2 py-2 rounded-full text-white bg-green-500"></i>
+//               <i className="fa-solid fa-check border-2 px-2 py-2 rounded-full text-white bg-blue-500"></i>
 //               <span>& More</span>
 //             </div>
 //             <div className="flex justify-center mt-6">
 //             <Link href={isAuthenticated?"/dashboard":"/login2"}>
-//               <button className="px-6 py-3 rounded-2xl font-semibold text-black bg-green-400 hover:bg-green-500 shadow-md">
+//               <button className="px-6 py-3 rounded-2xl font-semibold text-black bg-blue-400 hover:bg-blue-500 shadow-md">
 //                 Get Started For Free
 //               </button>
 //               </Link>
@@ -201,7 +201,7 @@ function Home_five() {
         <section className=" ">
           <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
             <div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
-              <h2 className="mb-4 text-4xl tracking-tight font-extrabold  rounded-2xl text-[#00b38d] border p-3 border-gray">
+              <h2 className="mb-4 text-4xl tracking-tight font-extrabold  rounded-2xl text-[#1C2957] border p-3 border-gray">
                 {t("choose_plan")}
               </h2>
             </div>
@@ -231,7 +231,7 @@ function Home_five() {
                     <li key={index} className="flex items-center space-x-3">
                       {/* Check Icon */}
                       <svg
-                        className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                        className="flex-shrink-0 w-5 h-5 text-blue-500 dark:text-blue-400"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg"
@@ -278,7 +278,7 @@ function Home_five() {
                     <li key={index} className="flex items-center space-x-3">
                       {/* Check Icon */}
                       <svg
-                        className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                        className="flex-shrink-0 w-5 h-5 text-blue-500 dark:text-blue-400"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg"
@@ -361,7 +361,7 @@ function Home_five() {
                             </label>
                             <input
                               type="text"
-                              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                               value={name}
                               onChange={(e) => setName(e.target.value)}
                               required
@@ -373,7 +373,7 @@ function Home_five() {
                             </label>
                             <input
                               type="email"
-                              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                               value={email}
                               onChange={(e) => setEmail(e.target.value)}
                               required
@@ -385,7 +385,7 @@ function Home_five() {
                             </label>
                             <input
                               type="tel"
-                              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                               value={phone}
                               onChange={(e) => setPhone(e.target.value)}
                               required
@@ -488,7 +488,7 @@ function Home_five() {
                             </label>
                             <input
                               type="text"
-                              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                               value={name1}
                               onChange={(e) => setName1(e.target.value)}
                               required
@@ -500,7 +500,7 @@ function Home_five() {
                             </label>
                             <input
                               type="email"
-                              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                               value={email1}
                               onChange={(e) => setEmail1(e.target.value)}
                               required
@@ -512,7 +512,7 @@ function Home_five() {
                             </label>
                             <input
                               type="tel"
-                              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                               value={phone1}
                               onChange={(e) => setPhone1(e.target.value)}
                               required
@@ -579,7 +579,7 @@ function Home_five() {
                     <li key={index} className="flex items-center space-x-3">
                       {/* Check Icon */}
                       <svg
-                        className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                        className="flex-shrink-0 w-5 h-5 text-blue-500 dark:text-blue-400"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg"

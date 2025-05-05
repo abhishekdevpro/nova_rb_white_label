@@ -1,3 +1,3 @@
 User-agent: *
 Disallow:
-https://ciblijob.fr/sitemap.xml
+https://novajob.fr/sitemap.xml

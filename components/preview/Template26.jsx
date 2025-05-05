@@ -58,7 +58,7 @@ const Template26 = () => {
     <div className="max-w-3xl mx-auto p-5 bg-white shadow-md mb-5">
       <div className="mb-8 pt-2.5">
         <h1
-          className="text-6xl text-black font-bold mb-2 text-[#00b38d]	"
+          className="text-6xl text-black font-bold mb-2 text-[#1C2957]	"
           style={{ color: headerColor }}
         >
           {resumeData.name}
@@ -85,7 +85,7 @@ const Template26 = () => {
       </div>
       <div className="mb-5">
         <h2
-          className="text-xl font-bold mb-4 text-[#00b38d] border-y-2 border-[#00b38d] p-2"
+          className="text-xl font-bold mb-4 text-[#1C2957] border-y-2 border-[#1C2957] p-2"
           style={{ color: headerColor }}
         >
           ABOUT ME
@@ -100,7 +100,7 @@ const Template26 = () => {
       </div>
       <div className="mb-8">
         <h2
-          className="text-xl font-bold text-[#00b38d] mb-2 border-y-2 border-[#00b38d] p-2"
+          className="text-xl font-bold text-[#1C2957] mb-2 border-y-2 border-[#1C2957] p-2"
           style={{ color: headerColor }}
         >
           SKILLS
@@ -136,7 +136,7 @@ const Template26 = () => {
       </div>
       <div class="mb-5">
         <h2
-          className="text-xl font-bold mb-4 text-[#00b38d] border-y-2 border-[#00b38d] p-2"
+          className="text-xl font-bold mb-4 text-[#1C2957] border-y-2 border-[#1C2957] p-2"
           style={{ color: headerColor }}
         >
           EXPERIENCE
@@ -346,7 +346,7 @@ const Template26 = () => {
       </div>
       <div className="mb-8 ">
         <h2
-          className="text-xl text-[#00b38d] font-bold mb-2 border-y-2 border-[#00b38d] p-2"
+          className="text-xl text-[#1C2957] font-bold mb-2 border-y-2 border-[#1C2957] p-2"
           style={{ color: headerColor }}
         >
           EDUCATION
@@ -379,7 +379,7 @@ const Template26 = () => {
       </div>
       <div className="mb-8">
         <h2
-          className="text-xl font-bold text-[#00b38d] border-y-2 border-[#00b38d] p-2"
+          className="text-xl font-bold text-[#1C2957] border-y-2 border-[#1C2957] p-2"
           style={{ color: headerColor }}
         >
           LANGUAGE

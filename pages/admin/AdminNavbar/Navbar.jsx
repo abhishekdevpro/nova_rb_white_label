@@ -28,7 +28,7 @@
 //       const checkApiSuccess = async () => {
 //         try {
 //           const response = await fetch(
-//             `${BASE_URL}/api/user/user-profile?lang=${language}`,
+//             `${BASE_URL}/api/jobseeker/user-profile?lang=${language}`,
 //             {
 //               headers: {
 //                 Authorization: token,
@@ -251,7 +251,7 @@ const Navbar = () => {
       const checkApiSuccess = async () => {
         try {
           const response = await fetch(
-            `${BASE_URL}/api/user/user-profile?lang=${language}`,
+            `${BASE_URL}/api/jobseeker/user-profile?lang=${language}`,
             {
               headers: {
                 Authorization: token,

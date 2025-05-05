@@ -283,7 +283,7 @@ function CoverLetterBuilder() {
                   <select
                     value={selectedFont}
                     onChange={handleFontChange}
-                    className="w-40 h-10 rounded-lg border border-green-500 px-4 font-bold text-black bg-white focus:ring-2 focus:ring-green-500"
+                    className="w-40 h-10 rounded-lg border border-blue-500 px-4 font-bold text-black bg-white focus:ring-2 focus:ring-blue-500"
                   >
                     <option value="Ubuntu">Ubuntu</option>
                     <option value="Calibri">Calibri</option>

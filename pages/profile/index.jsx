@@ -39,7 +39,7 @@ const ProfileForm = () => {
 
         // Fetch user profile
         const userProfileResponse = await axios.get(
-          `${BASE_URL}/api/user/user-profile?lang=${language}`,
+          `${BASE_URL}/api/jobseeker/user-profile?lang=${language}`,
           {
             headers: {
               Authorization: token,
@@ -69,7 +69,7 @@ const ProfileForm = () => {
 
           // Fetch countries
           const countriesResponse = await axiosInstance.get(
-            `/api/user/countries?lang=${language}`
+            `/api/jobseeker/countries?lang=${language}`
           );
           if (countriesResponse.data.status === "success") {
             setCountries(countriesResponse.data.data);
@@ -91,7 +91,7 @@ const ProfileForm = () => {
         try {
           const token = localStorage.getItem("token");
           const response = await axiosInstance.get(
-            `/api/user/stats/${formData.country_id}?lang=${language}`
+            `/api/jobseeker/stats/${formData.country_id}?lang=${language}`
           );
           if (response.data.status === "success") {
             setStates(response.data.data);
@@ -115,7 +115,7 @@ const ProfileForm = () => {
         setLoading(true); // Set loading state to true
         try {
           const citiesResponse = await axiosInstance.get(
-            `/api/user/cities/${formData.state_id}?lang=${language}`
+            `/api/jobseeker/cities/${formData.state_id}?lang=${language}`
           );
 
           if (citiesResponse.data.status === "success") {
@@ -214,7 +214,7 @@ const ProfileForm = () => {
 
   //   try {
   //     const response = await axios.patch(
-  //       `${BASE_URL}/api/user/user-profile?lang=${language}`,
+  //       `${BASE_URL}/api/jobseeker/user-profile?lang=${language}`,
   //       formDataToSend,
   //       {
   //         headers: {
@@ -320,7 +320,7 @@ const ProfileForm = () => {
 
     try {
       const response = await axios.patch(
-        `${BASE_URL}/api/user/user-profile?lang=${language}`,
+        `${BASE_URL}/api/jobseeker/user-profile?lang=${language}`,
         formDataToSend,
         {
           headers: {
@@ -391,7 +391,7 @@ const ProfileForm = () => {
               {formData.photo && (
                 <div className="relative">
                   <img
-                    src={`https://api.ciblijob.fr${formData.photo}`}
+                    src={`https://api.novajob.fr${formData.photo}`}
                     alt="Profile"
                     className="w-20 h-20 rounded-full border"
                   />
@@ -421,7 +421,7 @@ const ProfileForm = () => {
                   src={
                     formData.uploadPhoto
                       ? URL.createObjectURL(formData.uploadPhoto)
-                      : `https://api.ciblijob.fr${formData.photo}`
+                      : `https://api.novajob.fr${formData.photo}`
                   }
                   alt="Profile"
                   className="w-20 h-20 rounded-full border"
@@ -464,7 +464,7 @@ const ProfileForm = () => {
                   src={
                     formData.uploadPhoto
                       ? URL.createObjectURL(formData.uploadPhoto)
-                      : `https://api.ciblijob.fr${formData.photo}`
+                      : `https://api.novajob.fr${formData.photo}`
                   }
                   alt="Profile"
                   className="w-20 h-20 rounded-full border object-cover"
@@ -602,7 +602,7 @@ const ProfileForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-green-400 text-white p-2 rounded"
+            className="w-full bg-blue-400 text-white p-2 rounded"
           >
             {t("update_profile")}
           </button>

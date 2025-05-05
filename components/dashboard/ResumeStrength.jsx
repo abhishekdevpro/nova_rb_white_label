@@ -177,7 +177,7 @@ const TooltipContent = ({ improvements, resumeId, onClose }) => {
                 <div
                   className={`rounded-full p-1.5 ${
                     item.value
-                      ? "bg-green-100 text-green-600"
+                      ? "bg-blue-100 text-blue-600"
                       : "bg-red-100 text-red-600"
                   }`}
                 >
@@ -199,7 +199,7 @@ const TooltipContent = ({ improvements, resumeId, onClose }) => {
 
       {/* Keywords Section */}
       <div className="w-full flex flex-col md:flex-row justify-between items-start gap-2 md:gap-6 mt-6">
-        <div className="w-full md:w-1/2 p-4 bg-green-100 text-green-700 rounded-lg">
+        <div className="w-full md:w-1/2 p-4 bg-blue-100 text-blue-700 rounded-lg">
           <h4 className="font-bold text-lg">Keywords Found</h4>
           {improvements.keywords_found?.length > 0 ? (
             <ul className="list-disc list-inside">
@@ -259,7 +259,7 @@ const TooltipContent = ({ improvements, resumeId, onClose }) => {
       </div> */}
       <button
         onClick={handleATS}
-        className={`mt-6 px-6 py-2 w-full bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors ${
+        className={`mt-6 px-6 py-2 w-full bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors ${
           improvements.ats_score === 10 || Loading
             ? "opacity-50 cursor-not-allowed"
             : ""
@@ -402,7 +402,7 @@ const ResumeStrength = ({ score, strength, resumeId }) => {
 
   const getScoreColor = (score, maxScore) => {
     const percentage = (score / maxScore) * 100;
-    if (percentage >= 50) return "bg-green-500";
+    if (percentage >= 50) return "bg-blue-500";
     return "bg-red-600";
   };
 
@@ -425,7 +425,7 @@ const ResumeStrength = ({ score, strength, resumeId }) => {
               {t("resumeStrength.resumeStrength")}
             </h2>
             <div className="flex items-center gap-2">
-              <span className="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-lg font-semibold">
+              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-lg font-semibold">
                 {score}%
               </span>
             </div>
@@ -455,7 +455,7 @@ const ResumeStrength = ({ score, strength, resumeId }) => {
               <button
                 disabled={!resumeId}
                 onClick={() => setIsModalOpen(true)}
-                className={`px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors ${
+                className={`px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors ${
                   !resumeId ? "opacity-50 cursor-not-allowed" : ""
                 }`}
               >
@@ -471,7 +471,7 @@ const ResumeStrength = ({ score, strength, resumeId }) => {
               {t("resumeStrength.resumeStrength")}
             </h2>
             <div className="flex items-center gap-2">
-              <span className="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-lg font-semibold">
+              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-lg font-semibold">
                 {score}%
               </span>
             </div>
@@ -502,7 +502,7 @@ const ResumeStrength = ({ score, strength, resumeId }) => {
               <button
                 disabled={!resumeId}
                 onClick={() => setIsModalOpen(true)}
-                className={`w-full sm:w-auto px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors ${
+                className={`w-full sm:w-auto px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors ${
                   !resumeId ? "opacity-50 cursor-not-allowed" : ""
                 }`}
               >

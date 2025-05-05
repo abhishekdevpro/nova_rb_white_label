@@ -25,8 +25,8 @@
 //               }}
 //               className={`p-4 rounded-lg border-2 transition-all ${
 //                 value === exp.id
-//                   ? 'border-green-500 bg-blue-50'
-//                   : 'border-gray-200 hover:border-green-400'
+//                   ? 'border-blue-500 bg-blue-50'
+//                   : 'border-gray-200 hover:border-blue-400'
 //               }`}
 //             >
 //               {exp.label}
@@ -241,8 +241,8 @@
 //             }}
 //             className={`p-6 rounded-lg border-2 transition-all hover:shadow-md ${
 //               value.experience === experience.id
-//                 ? "border-green-600 bg-greeb-50"
-//                 : "border-gray-200 hover:border-green-400"
+//                 ? "border-blue-600 bg-greeb-50"
+//                 : "border-gray-200 hover:border-blue-400"
 //             }`}
 //           >
 //             <span className="block text-lg font-medium">
@@ -264,11 +264,11 @@
 //         <button
 //           onClick={handleSaveExperience}
 //           disabled={loading || !value.experience} // ✅ disable if loading OR no experience selected
-//           className={`px-8 py-3 bg-green-600 text-white rounded-xl font-medium transition-all shadow-lg
+//           className={`px-8 py-3 bg-blue-600 text-white rounded-xl font-medium transition-all shadow-lg
 //     ${
 //       loading || !value.experience // ✅ update the disabled styling too
 //         ? "opacity-70 cursor-not-allowed"
-//         : "hover:bg-green-700 hover:shadow-xl"
+//         : "hover:bg-blue-700 hover:shadow-xl"
 //     }`}
 //         >
 //           {isLoading ? (
@@ -451,8 +451,8 @@ export default function ExperienceStep({ onNext, onBack, onChange, value }) {
             }}
             className={`p-6 rounded-lg border-2 transition-all hover:shadow-md ${
               value.experience === experience.id
-                ? "border-green-600 bg-green-50"
-                : "border-gray-200 hover:border-green-400"
+                ? "border-blue-600 bg-blue-50"
+                : "border-gray-200 hover:border-blue-400"
             }`}
           >
             <span className="block text-lg font-medium">
@@ -475,11 +475,11 @@ export default function ExperienceStep({ onNext, onBack, onChange, value }) {
         <button
           onClick={handleSaveExperience}
           disabled={loading || isLoading} // ✅ Disable only if loading or saving
-          className={`px-8 py-3 bg-green-600 text-white rounded-xl font-medium transition-all shadow-lg 
+          className={`px-8 py-3 bg-blue-600 text-white rounded-xl font-medium transition-all shadow-lg 
             ${
               loading || isLoading
                 ? "opacity-70 cursor-not-allowed"
-                : "hover:bg-green-700 hover:shadow-xl"
+                : "hover:bg-blue-700 hover:shadow-xl"
             }`}
         >
           {isLoading ? (

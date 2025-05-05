@@ -93,7 +93,7 @@ const SupportPopup = ({ isOpen, onClose }) => {
           ×
         </button>
 
-        <h2 className="text-2xl font-bold mb-4 text-[#00b38d]">Support Form</h2>
+        <h2 className="text-2xl font-bold mb-4 text-[#1C2957]">Support Form</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="flex flex-col md:flex-row gap-4">
@@ -187,7 +187,7 @@ const SupportPopup = ({ isOpen, onClose }) => {
           <div className="text-center">
             <button
               type="submit"
-              className="bg-[#00b38d] text-white px-6 py-2 rounded font-semibold hover:bg-green-600 disabled:opacity-50"
+              className="bg-[#1C2957] text-white px-6 py-2 rounded font-semibold hover:bg-blue-600 disabled:opacity-50"
               disabled={loading}
             >
               {loading ? "Submitting..." : "SUBMIT FORM"}

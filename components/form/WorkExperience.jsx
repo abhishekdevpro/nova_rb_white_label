@@ -788,7 +788,7 @@ const WorkExperience = () => {
         <button
           type="button"
           className={`w-14 h-7 flex items-center rounded-full p-1 transition ${
-            resumeData.is_fresher ? "bg-green-500" : "bg-gray-400"
+            resumeData.is_fresher ? "bg-blue-500" : "bg-gray-400"
           }`}
           onClick={handleToggleFresher}
         >

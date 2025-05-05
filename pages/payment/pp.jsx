@@ -228,11 +228,11 @@
 //             {/* Terms and Conditions */}
 //             <p className="text-sm text-gray-600 mt-4">
 //               {t("By clicking")} <strong>&quot;{t("Start applying")}&quot;</strong> {t("below, you agree to our")}{" "}
-//               <a href="#" className="text-[#00b38d] underline">
+//               <a href="#" className="text-[#1C2957] underline">
 //                 {t("Terms of Use")}
 //               </a>{" "}
 //               {t("and")}{" "}
-//               <a href="#" className="text-[#00b38d] underline">
+//               <a href="#" className="text-[#1C2957] underline">
 //                 {t("Privacy Policy")}
 //               </a>
 //               . {t("You also understand that you will be billed")}{" "}
@@ -240,13 +240,13 @@
 //             </p>
 
 //             {/* Start Applying Button */}
-//             <button className="mt-6 w-full bg-[#00b38d] text-white text-lg font-semibold py-3 rounded-lg ">
+//             <button className="mt-6 w-full bg-[#1C2957] text-white text-lg font-semibold py-3 rounded-lg ">
 //               {t("Start applying")}
 //             </button>
 
 //             {/* Secure Checkout */}
 //             <div className="flex items-center mt-4 text-sm text-gray-600">
-//               <Lock className="text-green-500 mr-2" size={20} />
+//               <Lock className="text-blue-500 mr-2" size={20} />
 //               <span>{t("SECURE CHECKOUT")}</span>
 //             </div>
 //           </div>
@@ -260,21 +260,21 @@
 //             <ul className="mt-4 space-y-2">
 //               {selectedPlan && getPlanFeatures(selectedPlan).map((feature, index) => (
 //                 <li key={index} className="flex items-start">
-//                   <CheckCircle className="text-green-500 mr-2 mt-1 flex-shrink-0" size={18} />
+//                   <CheckCircle className="text-blue-500 mr-2 mt-1 flex-shrink-0" size={18} />
 //                   <span>{t(feature)}</span>
 //                 </li>
 //               ))}
 
 //               {planDetails && planDetails.billingCycle !== "single" && (
 //                 <li className="flex items-start">
-//                   <CheckCircle className="text-green-500 mr-2 mt-1 flex-shrink-0" size={18} />
+//                   <CheckCircle className="text-blue-500 mr-2 mt-1 flex-shrink-0" size={18} />
 //                   <span>{t("Automatically renews")} {getRenewalText(planDetails)}.</span>
 //                 </li>
 //               )}
 //             </ul>
 
 //             {/* Total Price */}
-//             <div className="mt-6 bg-[#00b38d] text-white p-4 rounded-lg text-center text-lg font-semibold">
+//             <div className="mt-6 bg-[#1C2957] text-white p-4 rounded-lg text-center text-lg font-semibold">
 //               {t("Total due today")} <br />
 //               <span className="text-2xl">{planDetails ? formatPrice(planDetails) : ""}</span>
 //             </div>
@@ -561,7 +561,7 @@ export default function PaymentPage() {
                   getPlanFeatures(selectedPlan).map((feature, index) => (
                     <li key={index} className="flex items-start">
                       <CheckCircle
-                        className="text-green-500 mr-2 mt-1 flex-shrink-0"
+                        className="text-blue-500 mr-2 mt-1 flex-shrink-0"
                         size={18}
                       />
                       <span>{t(feature)}</span>
@@ -571,7 +571,7 @@ export default function PaymentPage() {
                 {planDetails && planDetails.billingCycle !== "single" && (
                   <li className="flex items-start">
                     <CheckCircle
-                      className="text-green-500 mr-2 mt-1 flex-shrink-0"
+                      className="text-blue-500 mr-2 mt-1 flex-shrink-0"
                       size={18}
                     />
                     <span>
@@ -581,7 +581,7 @@ export default function PaymentPage() {
                 )}
               </ul>
 
-              <div className="mt-6 bg-[#00b38d] text-white p-4 rounded-lg text-center text-lg font-semibold">
+              <div className="mt-6 bg-[#1C2957] text-white p-4 rounded-lg text-center text-lg font-semibold">
                 {t("Total due today")} <br />
                 <span className="text-2xl">
                   {planDetails ? formatPrice(planDetails) : ""}
@@ -595,14 +595,14 @@ export default function PaymentPage() {
               {t("below, you agree to our")}{" "}
               <Link
                 href="/TermsandConditions"
-                className="text-[#00b38d] underline"
+                className="text-[#1C2957] underline"
               >
                 {t("Terms of Use")}
               </Link>{" "}
               {t("and")}{" "}
               <Link
                 href="/footers/PrivacyPolicy"
-                className="text-[#00b38d] underline"
+                className="text-[#1C2957] underline"
               >
                 {t("Privacy Policy")}
               </Link>
@@ -616,7 +616,7 @@ export default function PaymentPage() {
             {/* Start Applying Button */}
             {/* <button
               onClick={handleCheckout}
-              className="mt-6 w-full bg-[#00b38d] text-white text-lg font-semibold py-3 rounded-lg "
+              className="mt-6 w-full bg-[#1C2957] text-white text-lg font-semibold py-3 rounded-lg "
             >
               {t("Start applying")}
             </button> */}
@@ -625,7 +625,7 @@ export default function PaymentPage() {
               className={`mt-6 w-full text-white text-lg font-semibold py-3 rounded-lg ${
                 selectedPlan === "freePlan"
                   ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-[#00b38d]"
+                  : "bg-[#1C2957]"
               }`}
               disabled={selectedPlan === "freePlan"}
             >
@@ -664,7 +664,7 @@ export default function PaymentPage() {
             )}
             {/* Secure Checkout */}
             <div className="flex items-center mt-4 text-sm text-gray-600">
-              <Lock className="text-green-500 mr-2" size={20} />
+              <Lock className="text-blue-500 mr-2" size={20} />
               <span>{t("SECURE CHECKOUT")}</span>
             </div>
           </div>
@@ -681,7 +681,7 @@ export default function PaymentPage() {
                 getPlanFeatures(selectedPlan).map((feature, index) => (
                   <li key={index} className="flex items-start">
                     <CheckCircle
-                      className="text-green-500 mr-2 mt-1 flex-shrink-0"
+                      className="text-blue-500 mr-2 mt-1 flex-shrink-0"
                       size={18}
                     />
                     <span>{t(feature)}</span>
@@ -691,7 +691,7 @@ export default function PaymentPage() {
               {planDetails && planDetails.billingCycle !== "single" && (
                 <li className="flex items-start">
                   <CheckCircle
-                    className="text-green-500 mr-2 mt-1 flex-shrink-0"
+                    className="text-blue-500 mr-2 mt-1 flex-shrink-0"
                     size={18}
                   />
                   <span>
@@ -701,7 +701,7 @@ export default function PaymentPage() {
               )}
             </ul>
 
-            <div className="mt-6 bg-[#00b38d] text-white p-4 rounded-lg text-center text-lg font-semibold">
+            <div className="mt-6 bg-[#1C2957] text-white p-4 rounded-lg text-center text-lg font-semibold">
               {t("Total due today")} <br />
               <span className="text-2xl">
                 {planDetails ? formatPrice(planDetails) : ""}

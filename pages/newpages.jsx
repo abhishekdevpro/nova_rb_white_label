@@ -35,7 +35,7 @@ const NewPages = () => {
       <div className="flex justify-center gap-4 items-center mt-4">
         {/* Features Section */}
         <h3 className="text-2xl font-bold text-center my-6">
-          CIBLI AI INTERVIEWS
+          Nova AI INTERVIEWS
         </h3>
 
         <div className="">
@@ -48,7 +48,7 @@ const NewPages = () => {
               <button
                 onClick={() => toggleSection(index)}
                 className={`w-full flex items-center justify-between p-3 text-lg font-semibold rounded-md transition-all duration-300 ${
-                  openSection === index ? "bg-green-200" : "bg-gray-100"
+                  openSection === index ? "bg-blue-200" : "bg-gray-100"
                 }`}
               >
                 {item}

@@ -98,7 +98,7 @@ export default function FileUploadStep({ onNext, onBack }) {
       >
         <input {...getInputProps()} disabled={isUploading} />
         <div className="w-20 h-20 mx-auto mb-6 bg-blue-100 rounded-full flex items-center justify-center">
-          <Upload className="w-10 h-10 text-[#00b38d]" />
+          <Upload className="w-10 h-10 text-[#1C2957]" />
         </div>
 
         {isUploading ? (
@@ -106,7 +106,7 @@ export default function FileUploadStep({ onNext, onBack }) {
             <div className="text-lg font-medium">Uploading your resume...</div>
             <div className="w-64 h-3 bg-gray-200 rounded-full mx-auto overflow-hidden">
               <div
-                className="h-full bg-[#00b38d] rounded-full transition-all duration-300"
+                className="h-full bg-[#1C2957] rounded-full transition-all duration-300"
                 style={{ width: `${uploadProgress}%` }}
               />
             </div>
@@ -117,7 +117,7 @@ export default function FileUploadStep({ onNext, onBack }) {
             <p className="text-xl font-medium mb-4">
               Drag and drop your resume here
             </p>
-            <button className="px-6 py-3 bg-[#00b38d] text-white rounded-lg hover:bg-[#00b38d] transition-colors">
+            <button className="px-6 py-3 bg-[#1C2957] text-white rounded-lg hover:bg-[#1C2957] transition-colors">
               Select PDF File
             </button>
             <p className="mt-4 text-sm text-gray-500">
@@ -137,8 +137,8 @@ export default function FileUploadStep({ onNext, onBack }) {
         <button
           onClick={onNext}
           disabled={!uploadSuccess || isUploading}
-          className="px-8 py-3 bg-[#00b38d] text-white rounded-lg font-medium hover:bg-[#00b38d] transition-colors
-            disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#00b38d]"
+          className="px-8 py-3 bg-[#1C2957] text-white rounded-lg font-medium hover:bg-[#1C2957] transition-colors
+            disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#1C2957]"
         >
           Next
         </button>

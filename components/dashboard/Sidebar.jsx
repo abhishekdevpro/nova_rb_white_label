@@ -106,7 +106,7 @@
 //         <h2 className="text-lg font-semibold">{resumeTitle}</h2>
 //         <Link
 //           href="/dashboard/resumelist"
-//           className="text-[#00b38d] hover:text-[#369984]"
+//           className="text-[#1C2957] hover:text-[#369984]"
 //         >
 //           View All
 //         </Link>
@@ -156,10 +156,10 @@
 //         <div className="flex justify-between items-center mb-2">
 //           <span className="text-sm font-medium">Resume Strength:</span>
 //           <div className="flex items-center gap-2">
-//             <span className="bg-teal-100 text-teal-800 px-2 py-1 rounded-full text-sm">
+//             <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm">
 //               {score}
 //             </span>
-//             <button className="text-[#00b38d] hover:text-blue-700 text-sm">
+//             <button className="text-[#1C2957] hover:text-blue-700 text-sm">
 //               Improve
 //             </button>
 //           </div>
@@ -169,7 +169,7 @@
 //       {/* Create New Resume Button */}
 //       <button
 //         onClick={handleCreate}
-//         className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-[#00b38d] text-white rounded-lg hover:bg-[#00b38d]"
+//         className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-[#1C2957] text-white rounded-lg hover:bg-[#1C2957]"
 //       >
 //         <svg
 //           className="w-5 h-5"
@@ -314,7 +314,7 @@ const Sidebar = ({ score, resumeId }) => {
         <h2 className="text-lg font-semibold">{resumeTitle}</h2>
         <Link
           href="/dashboard/resumelist"
-          className="text-[#00b38d] hover:text-[#369984]"
+          className="text-[#1C2957] hover:text-[#369984]"
         >
           {t("dashboard_sidebar.viewAll")}
         </Link>
@@ -355,10 +355,10 @@ const Sidebar = ({ score, resumeId }) => {
             {t("dashboard_sidebar.resumeStrength")}
           </span>
           <div className="flex items-center gap-2">
-            <span className="bg-teal-100 text-teal-800 px-2 py-1 rounded-full text-sm">
+            <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm">
               {score}
             </span>
-            <button className="text-[#00b38d] hover:text-blue-700 text-sm">
+            <button className="text-[#1C2957] hover:text-blue-700 text-sm">
               {t("dashboard_sidebar.improve")}
             </button>
           </div>
@@ -368,7 +368,7 @@ const Sidebar = ({ score, resumeId }) => {
       {/* Create New Resume Button */}
       <button
         onClick={handleCreate}
-        className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-[#00b38d] text-white rounded-lg hover:bg-[#00b38d]"
+        className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-[#1C2957] text-white rounded-lg hover:bg-[#1C2957]"
       >
         <svg
           className="w-5 h-5"

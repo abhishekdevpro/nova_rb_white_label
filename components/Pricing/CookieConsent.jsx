@@ -28,14 +28,14 @@ const CookieConsent = () => {
           {t("cookie.message")}{" "}
           <Link
             href="/privacy-policy"
-            className="text-teal-600 hover:underline"
+            className="text-blue-600 hover:underline"
           >
             {t("cookie.cookiePolicy")}
           </Link>{" "}
           {t("cookie.and")}{" "}
           <Link
             href="/terms&conditions"
-            className="text-teal-600 hover:underline"
+            className="text-blue-600 hover:underline"
           >
             {t("cookie.privacyPolicy")}
           </Link>
@@ -44,7 +44,7 @@ const CookieConsent = () => {
       </div>
       <button
         onClick={acceptCookies}
-        className="bg-teal-600 hover:bg-teal-700 text-white font-medium py-2 px-6 rounded text-sm sm:text-base"
+        className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded text-sm sm:text-base"
       >
         {t("cookie.button")}
       </button>

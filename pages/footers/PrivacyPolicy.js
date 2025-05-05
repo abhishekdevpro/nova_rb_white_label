@@ -14,7 +14,7 @@
 //         <div className="mb-6">
 //           <h2 className="text-xl font-semibold">Introduction</h2>
 //           <p className="text-gray-700 mt-2">
-//             At Cibli Job, we value your privacy and are committed to protecting
+//             At Nova Job, we value your privacy and are committed to protecting
 //             your personal information. This Privacy Policy outlines how we
 //             collect, use, and safeguard your data when you use our website and
 //             services.

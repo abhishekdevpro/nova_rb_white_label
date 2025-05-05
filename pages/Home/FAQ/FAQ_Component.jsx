@@ -2,9 +2,6 @@ import React from "react";
 import FAQItem from "./FAQ_Item";
 
 import { useState } from "react";
-import ContactUs from "./Contact";
-import { BASE_URL } from "../../../components/Constant/constant";
-import axiosInstance from "../../../components/utils/axiosInstance";
 const FAQ = () => {
   const faqs = [
     {
@@ -124,14 +121,17 @@ const FAQ = () => {
     setSuccessMessage("");
 
     try {
-      const response = await axiosInstance.post(`/api/user/contact-us`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          //     Authorization: token, // Using token in the headers
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://apiwl.novajobs.us/api/user/contact-us",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            //     Authorization: token, // Using token in the headers
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to submit the form");
@@ -147,7 +147,111 @@ const FAQ = () => {
 
   return (
     <div id="faq" className=" bg-gray-100">
-        <ContactUs />
+      <div className=" max-w-4xl mt-2  mx-auto p-4">
+        <h2 className="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          {faqs.map((faq, index) => (
+            <FAQItem key={index} question={faq.question} answer={faq.answer} />
+          ))}
+        </div>
+      </div>
+
+      <h1
+        className=" text-center font-bold text-3xl pt-10 mt-5 pb-3 bg-white"
+        id="phone"
+      >
+        Get In Touch
+      </h1>
+      <p className=" text-center pb-5 bg-white">
+        Build professional, job-winning resumes in minutes with our AI-powered
+        tools and expert suggestions!
+      </p>
+
+      <div className="lg:flex justify-center flex-row gap-10 pb-20 bg-white">
+        {/* <div className="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96 p-6">
+        <div className="flex items-center mb-4">
+        <div className='text-3xl'> ☎</div>
+          <h5 className="ml-3 text-slate-900 text-xl font-semibold">
+            
+          </h5>
+        </div>
+        <p className="block text-slate-600 leading-normal font-semibold mb-1">
+        Call Us 
+        </p>
+        <p className="block text-slate-600 leading-normal font-light mb-4  text-sm">
+        We re here for help
+        </p>
+        <div className=''>
+          <button className='border px-3 p-2 rounded-lg'>
+          <a href="tel:+1 8887936474" className="text-slate-900  font-semibold text-sm hover:underline flex items-center">
+          +1 8887936474
+            <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+          </button>
+        </div>
+      </div> */}
+
+        {/* <div className="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96 p-6">
+          <div className="flex items-center mb-4">
+            <div className="text-3xl"> ✉</div>
+            <h5 className="ml-3 text-slate-900 text-xl font-semibold"></h5>
+          </div>
+          <p className="block text-slate-600 leading-normal font-semibold mb-1">
+            Email Us
+          </p>
+          <p className="block text-slate-600 leading-normal font-light mb-4  text-sm">
+            We re here for help
+          </p>
+          <div className="">
+            <button className="border px-3 p-2 rounded-lg">
+              <a
+                href="mailto:info@Novajobs.US"
+                className="text-slate-900  font-semibold text-sm hover:underline flex items-center"
+              >
+                info@Novajobs.US
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="ml-2 h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </a>
+            </button>
+          </div>
+        </div> */}
+         <div className="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl p-6 mx-auto">
+      <div className="flex items-center mb-4">
+        <div className="text-3xl">✉</div>
+        <h5 className="ml-3 text-slate-900 text-xl font-semibold">Get in Touch</h5>
+      </div>
+      <p className="block text-slate-600 leading-normal font-semibold mb-1">
+        Email Us
+      </p>
+      <p className="block text-slate-600 leading-normal font-light mb-4 text-sm">
+        We&apos;re here to help.
+      </p>
+      <div>
+        <a
+          href="mailto:info@Novajobs.US"
+          className="flex items-center justify-center border border-slate-300 px-4 py-2 rounded-lg text-slate-900 font-semibold text-sm hover:bg-slate-100 transition-all duration-200"
+        >
+          info@Novajobs.US
+        </a>
+      </div>
+    </div>
+
+       
+      </div>
     </div>
   );
 };

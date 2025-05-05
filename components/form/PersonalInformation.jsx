@@ -1396,7 +1396,7 @@ const PersonalInformation = () => {
                           )}
                           <button
                             onClick={() => markAsResolved(field)}
-                            className="px-3 py-1 text-sm font-medium text-white bg-green-600 rounded-md shadow hover:bg-green-700 transition-all"
+                            className="px-3 py-1 text-sm font-medium text-white bg-blue-600 rounded-md shadow hover:bg-blue-700 transition-all"
                           >
                             {t("builder_forms.personal_info.mark_resolved")}
                           </button>

@@ -33,7 +33,7 @@
 //                   <ul className="list-disc ml-5 text-gray-700">
 //                     <li>📞 855-695-3235</li>
 //                     <li className="text-[15px]">
-//                       📧 customersupport@CibliJob.fr
+//                       📧 customersupport@novajob.fr
 //                     </li>
 //                   </ul>
 //                 </div>
@@ -73,7 +73,7 @@
 //                   </p>
 //                   <Link href="/payment">
 //                     <button
-//                       className="mt-3 md:mt-0 text-[#00b38d] font-medium underline"
+//                       className="mt-3 md:mt-0 text-[#1C2957] font-medium underline"
 //                       // onClick={() => setStatus("Active")}
 //                     >
 //                       Subscribe
@@ -84,9 +84,9 @@
 //                 <p className="mt-4 text-gray-700">
 //                   For more information or changes to your subscription, contact
 //                   us at
-//                   <span className="text-[#00b38d] cursor-pointer">
+//                   <span className="text-[#1C2957] cursor-pointer">
 //                     {" "}
-//                     customersupport@CibliJob.fr
+//                     customersupport@novajob.fr
 //                   </span>
 //                   .
 //                 </p>
@@ -171,7 +171,7 @@ export default function Subscription() {
         }
 
         const response = await axios.get(
-          `${BASE_URL}/api/user/user-profile?lang=${selectedLang}`,
+          `${BASE_URL}/api/jobseeker/user-profile?lang=${selectedLang}`,
           {
             headers: { Authorization: token },
           }
@@ -267,20 +267,20 @@ export default function Subscription() {
                     Status:{" "}
                     <span
                       className={`font-medium ${
-                        status === "Active" ? "text-green-600" : "text-red-600"
+                        status === "Active" ? "text-blue-600" : "text-red-600"
                       }`}
                     >
                       {status}
                     </span>
                   </p>
                   {/* <Link href="/payment">
-                    <button className="mt-3 md:mt-0 text-[#00b38d] font-medium underline">
+                    <button className="mt-3 md:mt-0 text-[#1C2957] font-medium underline">
                       {t("subscription.subscribe")}
                     </button>
                   </Link> */}
                   <div className="flex space-x-4">
                     <Link href="/payment">
-                      <button className="mt-3 md:mt-0 px-4 py-2 bg-[#00b38d] text-white rounded-md">
+                      <button className="mt-3 md:mt-0 px-4 py-2 bg-[#1C2957] text-white rounded-md">
                         {t("subscription.upgrade")}
                       </button>
                     </Link>
@@ -357,8 +357,8 @@ export default function Subscription() {
                 </p>
                 <p className="mt-4 text-gray-700">
                   {t("subscription.more_info")}{" "}
-                  <a href="mailto:customersupport@CibliJob.fr.">
-                    <span className="text-[#00b38d] cursor-pointer">
+                  <a href="mailto:customersupport@novajob.fr.">
+                    <span className="text-[#1C2957] cursor-pointer">
                       {t("subscription.email")}
                     </span>
                   </a>

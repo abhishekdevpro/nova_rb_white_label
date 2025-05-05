@@ -25,7 +25,7 @@ export default function CurrentPlan() {
         }
 
         const response = await axios.get(
-          `${BASE_URL}/api/user/user-profile?lang=${selectedLang}`,
+          `${BASE_URL}/api/jobseeker/user-profile?lang=${selectedLang}`,
           {
             headers: { Authorization: token },
           }
@@ -56,7 +56,7 @@ export default function CurrentPlan() {
           <p className="">
             Current Plan:{" "}
             {userData?.plan_id ? (
-              <span className="font-medium text-green-500">
+              <span className="font-medium text-blue-500">
                 {userData.plan_id === 1 && "Free Plan"}
                 {userData.plan_id === 2 && "Single Pass"}
                 {userData.plan_id === 3 && "AI Pro Month"}

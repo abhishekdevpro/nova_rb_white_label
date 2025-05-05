@@ -13,7 +13,7 @@ function Placement() {
       <h2 className="text-lg font-semibold my-2 mt-5 ">
         Empowering Your Job Search
       </h2>
-      At Cibli Job , we go beyond crafting exceptional resumes. We provide
+      At Nova Job , we go beyond crafting exceptional resumes. We provide
       comprehensive placement support services designed to help you navigate the
       job market with confidence and secure the position that aligns with your
       career goals. Our tailored approach ensures that you have the tools and
@@ -62,7 +62,7 @@ function Placement() {
       professionals, we’ve helped countless individuals achieve their career
       goals. Here are a few of their stories:
       <br />
-      {/* - Anna S.: "Thanks to Cibli Job , I landed my dream job in marketing
+      {/* - Anna S.: "Thanks to Nova Job , I landed my dream job in marketing
       within a month. Their interview prep and job search strategy were
       invaluable!"
       <br />
@@ -71,17 +71,17 @@ function Placement() {
       fantastic position."
       <br />
       - Jessica M.: "I was nervous about negotiating my salary, but the guidance
-      I received from Cibli Job  helped me secure a 20% increase over my
+      I received from Nova Job  helped me secure a 20% increase over my
       initial offer."
       <br /> */}
       <h2 className="text-sm font-bold my-2 mt-5 ">Get Started Today</h2>
       Ready to take your job search to the next level? Contact us today to learn
       more about our placement support services and how we can help you achieve
-      your career goals. At Cibli Job , we’re dedicated to your success and are
+      your career goals. At Nova Job , we’re dedicated to your success and are
       here to support you every step of the way.
       <h2 className="text-sm font-bold my-2 mt-5 ">Contact Us</h2>
       Reach out to us at [career@Cibli Job .ca](mailto:career@Cibli Job .ca) to
-      to schedule a consultation. Let Cibli Job be your partner in navigating
+      to schedule a consultation. Let Nova Job be your partner in navigating
       the job market and securing the perfect role for your future.
     </div>
      </>

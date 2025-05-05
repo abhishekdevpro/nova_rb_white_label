@@ -28,7 +28,7 @@
 //             }}
 //             className={`p-4 rounded-lg border-2 transition-all ${
 //               value === exp.id
-//                 ? "border-[#00b38d] bg-blue-50"
+//                 ? "border-[#1C2957] bg-blue-50"
 //                 : "border-gray-200 hover:border-blue-400"
 //             }`}
 //           >
@@ -72,8 +72,8 @@ export default function ExperienceStep({ onNext, onChange, value }) {
             }}
             className={`p-4 rounded-lg border-2 transition-all ${
               value === exp.id
-                ? "border-green-500 bg-blue-50"
-                : "border-gray-200 hover:border-green-400"
+                ? "border-blue-500 bg-blue-50"
+                : "border-gray-200 hover:border-blue-400"
             }`}
           >
             {exp.label}

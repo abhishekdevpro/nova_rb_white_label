@@ -48,13 +48,13 @@ const ContactUs = () => {
     <div className="bg-gray-100 py-12 lg:py-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <h2
-          className="text-3xl font-bold text-center mb-8 sm:mb-12 text-[#00b38d]"
+          className="text-3xl font-bold text-center mb-8 sm:mb-12 text-[#1C2957]"
           id="phone"
         >
           {t("getintouch")}
         </h2>
         <p className="text-center mb-8 sm:mb-12">{t("contact_paragraph")}</p>
-        {/* <div className="flex flex-col md:flex-row items-center justify-center gap-8 border border-green-500 ">
+        {/* <div className="flex flex-col md:flex-row items-center justify-center gap-8 border border-blue-500 ">
           <div className="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-6 ">
             <div className="flex items-center mb-4">
               <div className="text-3xl">✉</div>
@@ -65,10 +65,10 @@ const ContactUs = () => {
             <div className="">
               <button className="border px-3 p-2 rounded-lg">
                 <a
-                  href="mailto:info@ciblijob.fr"
+                  href="mailto:info@novajob.fr"
                   className="text-slate-800 font-semibold text-sm hover:underline flex items-center"
                 >
-                  info@ciblijob.fr
+                  info@novajob.fr
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="ml-2 h-4 w-4"
@@ -154,8 +154,8 @@ const ContactUs = () => {
                     />
                   </div>
                   {error && <p className="text-red-500 mb-2">{error}</p>}
-                  {successMessage && <p className="text-green-500 mb-2">{successMessage}</p>}
-                  <button type="submit" className="bg-green-400 text-white px-4 py-2 rounded-lg">
+                  {successMessage && <p className="text-blue-500 mb-2">{successMessage}</p>}
+                  <button type="submit" className="bg-blue-400 text-white px-4 py-2 rounded-lg">
                     Send
                   </button>
                 </form>
@@ -333,11 +333,11 @@ const ContactUs = () => {
                   </div>
                   {error && <p className="text-red-500 mb-2">{error}</p>}
                   {successMessage && (
-                    <p className="text-green-500 mb-2">{successMessage}</p>
+                    <p className="text-blue-500 mb-2">{successMessage}</p>
                   )}
                   <button
                     type="submit"
-                    className="bg-green-400 text-white px-4 py-2 rounded-lg"
+                    className="bg-blue-400 text-white px-4 py-2 rounded-lg"
                   >
                     {t("form.send")}
                   </button>

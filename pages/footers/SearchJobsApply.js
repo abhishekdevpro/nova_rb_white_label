@@ -11,9 +11,9 @@ function SearchJobsApply() {
           Search Jobs & Apply
         </h2>
         <h2 className="text-lg font-bold my-5">
-          Find Your Dream Job with Cibli Job ’s Advanced Job Search & Apply Tool
+          Find Your Dream Job with Nova Job ’s Advanced Job Search & Apply Tool
         </h2>
-        At Cibli Job , we aim to simplify your job search and application
+        At Nova Job , we aim to simplify your job search and application
         process. Our advanced job search and apply tool leverages cutting-edge
         technology to connect you with opportunities that match your skills,
         experience, and career aspirations.
@@ -90,7 +90,7 @@ function SearchJobsApply() {
         <br />
         <h2 className="text-lg font-bold my-4 ">How It Works</h2>
         <h2 className="text-sm font-bold ">Step 1: Create Your Profile</h2>
-        Sign up on the Cibli Job platform and create your profile. Upload your
+        Sign up on the Nova Job platform and create your profile. Upload your
         resume and provide details about your skills, experiences, and career
         aspirations.
         <br />
@@ -157,7 +157,7 @@ function SearchJobsApply() {
         <h2 className="text-sm font-bold ">
           Start Searching for Jobs & Apply Today
         </h2>
-        Transform your job search with Cibli Job ’s advanced job search and
+        Transform your job search with Nova Job ’s advanced job search and
         apply tool. Sign up now to discover job opportunities that perfectly
         match your profile and streamline your path to career success.
         <br />

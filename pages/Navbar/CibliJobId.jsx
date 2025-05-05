@@ -3,7 +3,7 @@
 // import Link from "next/link";
 // import logo from "../Navbar/logo.png";
 // import Image from "next/image";
-// const CibliJobId = ({ isOpen, onClose }) => {
+// const novajobId = ({ isOpen, onClose }) => {
 //   if (!isOpen) return null;
 
 //   return (
@@ -37,7 +37,7 @@
 //               <Image src={logo} alt="logo" className="h-10  w-[140px]" />
 //             </Link>
 //           </div>
-//           <h1>CibliJob ID</h1>
+//           <h1>novajob ID</h1>
 //           <p>Your One-Stop Access to Career Solutions</p>
 //           <p>
 //             <em>Coming Soon!</em>
@@ -51,11 +51,11 @@
 //           <p>90% Complete</p>
 //         </div>
 //         <p>
-//           CibliJob ID will allow you to seamlessly connect to all our services
+//           novajob ID will allow you to seamlessly connect to all our services
 //           with a single account. Stay tuned for the launch!
 //         </p>
 //         <div className="">
-//           <p>Want to know when CibliJob ID is live? Sign up for updates!</p>
+//           <p>Want to know when novajob ID is live? Sign up for updates!</p>
 //           <form>
 //             <input
 //               type="email"
@@ -87,14 +87,14 @@
 //   );
 // };
 
-// export default CibliJobId;
+// export default novajobId;
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import logo from "../Navbar/logo.png"; // Update path to your logo
 
-function CibliJobId({ isOpen, onClose }) {
+function novajobId({ isOpen, onClose }) {
   const { t } = useTranslation();
   if (!isOpen) return null;
 
@@ -176,4 +176,4 @@ function CibliJobId({ isOpen, onClose }) {
   );
 }
 
-export default CibliJobId;
+export default novajobId;

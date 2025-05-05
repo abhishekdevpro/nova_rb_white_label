@@ -36,7 +36,7 @@
 
 //       try {
 //         const token = localStorage.getItem("token");
-//         const userProfileResponse = await axios.get(' ${BASE_URL}/api/user/user-profile', {
+//         const userProfileResponse = await axios.get(' ${BASE_URL}/api/jobseeker/user-profile', {
 //           headers: { Authorization: token },
 //         });
 
@@ -144,9 +144,9 @@
 
 //    <>
 //    <Navbar/>
-//     <div className="bg-[#00b38d] p-4">
+//     <div className="bg-[#1C2957] p-4">
 //       <div className="max-w-4xl mx-auto">
-//         <div className="rounded-lg shadow-lg p-6 bg-[#00b38d] flex flex-col md:flex-row justify-between items-center md:h-44">
+//         <div className="rounded-lg shadow-lg p-6 bg-[#1C2957] flex flex-col md:flex-row justify-between items-center md:h-44">
 //           <div className="space-y-4 mb-6 md:mb-0 md:mr-6 md:pr-6 w-full">
 //             <div className="flex flex-col md:flex-row md:items-center md:space-x-4">
 //               <img
@@ -200,7 +200,7 @@
 //             </div>
 //             <Link href="/dashboard/ai-resume-builder">
 //               <button
-//                 className="bg-blue-500 text-white px-1 py-2 rounded-lg hover:bg-[#00b38d] w-full md:w-auto"
+//                 className="bg-blue-500 text-white px-1 py-2 rounded-lg hover:bg-[#1C2957] w-full md:w-auto"
 //           >
 //             Upload Resume
 //           </button>
@@ -281,7 +281,7 @@ const ProfilePage = () => {
       try {
         const token = localStorage.getItem("token");
         const userProfileResponse = await axios.get(
-          `${BASE_URL}/api/user/user-profile?lang=${selectedLang}`,
+          `${BASE_URL}/api/jobseeker/user-profile?lang=${selectedLang}`,
           {
             headers: { Authorization: token },
           }
@@ -504,7 +504,7 @@ const ProfilePage = () => {
   return (
     <>
       <Navbar />
-      {/* <div className="bg-[#00b38d] p-4">
+      {/* <div className="bg-[#1C2957] p-4">
         <div className="max-w-4xl mx-auto">
           <div className="rounded-lg shadow-lg p-6 bg-pink-600 flex flex-col md:flex-row justify-between items-center md:h-44">
             <div className="space-y-4 mb-6 md:mb-0 md:mr-6 md:pr-6 w-full">
@@ -593,7 +593,7 @@ const ProfilePage = () => {
                 />
                 <label
                   htmlFor="fileInput"
-                  className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-[#00b38d] cursor-pointer w-full md:w-auto text-center"
+                  className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-[#1C2957] cursor-pointer w-full md:w-auto text-center"
                 >
                   {isLoading ? (
                     <span className="flex items-center justify-center">
@@ -644,7 +644,7 @@ const ProfilePage = () => {
                 <div className="flex mt-4">
                   <button
                     onClick={copyToClipboard}
-                    className="bg-blue-500 text-white py-1 px-4 rounded mr-2 hover:bg-[#00b38d]"
+                    className="bg-blue-500 text-white py-1 px-4 rounded mr-2 hover:bg-[#1C2957]"
                   >
                     Copy
                   </button>

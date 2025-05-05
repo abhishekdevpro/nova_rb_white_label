@@ -33,7 +33,7 @@
 //           </button>
 //           <Link
 //             href="/login"
-//             className="px-4 py-2 bg-[#00b38d] text-white rounded hover:bg-[#00b38d] transition-colors"
+//             className="px-4 py-2 bg-[#1C2957] text-white rounded hover:bg-[#1C2957] transition-colors"
 //           >
 //             Login
 //           </Link>
@@ -64,7 +64,7 @@
 //             <Link
 //               href={`${item.redirect_url}`}
 //               // href={""}
-//               className="text-lg font-semibold text-gray-900 hover:text-[#00b38d] transition-colors"
+//               className="text-lg font-semibold text-gray-900 hover:text-[#1C2957] transition-colors"
 //             >
 //               {item.job_title}
 //             </Link>
@@ -96,7 +96,7 @@
 
 //         {item.job_type && (
 //           <div className="flex items-center">
-//             <span className="px-3 py-1 text-sm text-[#00b38d] bg-blue-50 rounded-full">
+//             <span className="px-3 py-1 text-sm text-[#1C2957] bg-blue-50 rounded-full">
 //               {item.job_type}
 //             </span>
 //           </div>
@@ -111,7 +111,7 @@
 //           </button>
 //           <button
 //             onClick={() => onApplyNow(item.id)}
-//             className="p-2 text-gray-600 hover:text-[#00b38d] transition-colors"
+//             className="p-2 text-gray-600 hover:text-[#1C2957] transition-colors"
 //           >
 //             <Bookmark className="w-5 h-5" />
 //           </button>
@@ -320,7 +320,7 @@
 //           </div>
 //           {/* <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
 //           <div
-//             className="bg-[#00b38d] h-2 rounded-full transition-all duration-300"
+//             className="bg-[#1C2957] h-2 rounded-full transition-all duration-300"
 //             style={{ width: `${(displayedJobs.length / jobs.length) * 100}%` }}
 //           ></div>
 //         </div> */}
@@ -328,7 +328,7 @@
 //          <Link href={'https://abroadium-arbuild-fe.vercel.app/job-list'}>
 //             <button
 //             // onClick={() => setPerPage({ start: 0, end: 0 })}
-//             className="px-6 py-2 bg-[#00b38d] text-white rounded-md hover:bg-[#00b38d] transition-colors"
+//             className="px-6 py-2 bg-[#1C2957] text-white rounded-md hover:bg-[#1C2957] transition-colors"
 //           >
 //             Show More
 //           </button>
@@ -381,7 +381,7 @@ const LoginModal = ({ onClose }) => {
           </button>
           <Link
             href="/login2"
-            className="px-4 py-2 bg-[#00b38d] text-white rounded hover:bg-[#00b38d] transition-colors"
+            className="px-4 py-2 bg-[#1C2957] text-white rounded hover:bg-[#1C2957] transition-colors"
           >
             Login
           </Link>
@@ -411,7 +411,7 @@ const JobCard = ({ item, onSaveJob, onApplyNow }) => (
           <div className="flex-1">
             <Link
               href={`${item.redirect_url}`}
-              className="text-lg font-semibold text-gray-900 hover:text-[#00b38d] transition-colors"
+              className="text-lg font-semibold text-gray-900 hover:text-[#1C2957] transition-colors"
             >
               {item.job_title}
             </Link>
@@ -433,7 +433,7 @@ const JobCard = ({ item, onSaveJob, onApplyNow }) => (
 
         {item.job_type && (
           <div className="flex items-center">
-            <span className="px-3 py-1 text-sm text-[#00b38d] bg-blue-50 rounded-full">
+            <span className="px-3 py-1 text-sm text-[#1C2957] bg-blue-50 rounded-full">
               {item.job_type}
             </span>
           </div>
@@ -448,7 +448,7 @@ const JobCard = ({ item, onSaveJob, onApplyNow }) => (
           </button>
           <button
             onClick={() => onApplyNow(item.id)}
-            className="p-2 text-gray-600 hover:text-[#00b38d] transition-colors"
+            className="p-2 text-gray-600 hover:text-[#1C2957] transition-colors"
           >
             <Bookmark className="w-5 h-5" />
           </button>

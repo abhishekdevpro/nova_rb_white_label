@@ -20,7 +20,7 @@
 
 //         <p className="text-base sm:text-lg">
 //           Understanding your market value and negotiating your salary are
-//           crucial steps in your job search and career advancement. At Cibli Job,
+//           crucial steps in your job search and career advancement. At Nova Job,
 //           we provide access to a variety of salary tools and resources that
 //           empower you to make informed decisions about your compensation. These
 //           tools help you research industry standards, evaluate job offers, and
@@ -79,7 +79,7 @@
 //         </p>
 
 //         <h2 className="text-xl sm:text-2xl font-semibold my-2 mt-5">
-//           How Cibli Job Can Help
+//           How Nova Job Can Help
 //         </h2>
 
 //         <h3 className="text-xl sm:text-2xl font-semibold my-2 mt-5">
@@ -98,7 +98,7 @@
 //           Exclusive Resources
 //         </h3>
 //         <p className="text-base sm:text-lg">
-//           As a Cibli Job client, you’ll gain access to exclusive resources,
+//           As a Nova Job client, you’ll gain access to exclusive resources,
 //           including industry reports, salary surveys, and negotiation workshops.
 //           Our comprehensive toolkit ensures that you have all the information
 //           and skills needed to advocate for yourself effectively.
@@ -109,7 +109,7 @@
 //         </h3>
 //         <p className="text-base sm:text-lg">
 //           Don’t leave your salary to chance. Take control of your career and
-//           maximize your earning potential with the help of Cibli Job’s salary
+//           maximize your earning potential with the help of Nova Job’s salary
 //           tools and resources. Contact us today to learn more about how we can
 //           support you in your job search and salary negotiations.
 //         </p>

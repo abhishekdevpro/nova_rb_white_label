@@ -27,7 +27,7 @@ const Createletterpage = () => {
       <div className="flex gap-10 justify-center text-center mb-60">
         <div
           className={`border p-5 px-20 rounded-2xl border-blue-700 bg-stone-50 cursor-pointer ${
-            selectedOption === "create" ? "bg-blue-100 border-2 border-green-500 font-semibold" : ""
+            selectedOption === "create" ? "bg-blue-100 border-2 border-blue-500 font-semibold" : ""
           }`}
           onClick={() => setSelectedOption("create")}
         >
@@ -36,7 +36,7 @@ const Createletterpage = () => {
 
         <div
           className={`border p-5 px-20 rounded-2xl border-blue-700 bg-stone-50 cursor-pointer ${
-            selectedOption === "upload" ? "bg-blue-100 border-2 border-green-500 font-semibold" : ""
+            selectedOption === "upload" ? "bg-blue-100 border-2 border-blue-500 font-semibold" : ""
           }`}
           onClick={() => setSelectedOption("upload")}
         >
@@ -46,7 +46,7 @@ const Createletterpage = () => {
 
       <div className="flex px-60 my-20 justify-between text-center">
         <Link  href="/Landingpage">
-        <button className="border-2 rounded-full p-2 px-10 text-lg font-bold border-green-500 text-black">
+        <button className="border-2 rounded-full p-2 px-10 text-lg font-bold border-blue-500 text-black">
          Back
         </button>
         </Link>

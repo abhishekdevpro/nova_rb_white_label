@@ -6,7 +6,7 @@
 //   return (
 //     <button
 //       onClick={onClick}
-//       className={`relative flex items-center justify-center px-4 py-2 font-medium text-white bg-green-400 rounded-md hover:bg-green-500 disabled:bg-blue-300 ${className}`}
+//       className={`relative flex items-center justify-center px-4 py-2 font-medium text-white bg-blue-400 rounded-md hover:bg-blue-500 disabled:bg-blue-300 ${className}`}
 //       disabled={isLoading}
 //       {...props}
 //     >
@@ -37,7 +37,7 @@ const LoaderButton = ({ isLoading, onClick, children, className = '', ...props }
   return (
     <button
       onClick={onClick}
-      className={`relative flex items-center justify-center px-4 py-2 font-medium text-white bg-green-400 rounded-lg hover:bg-green-500 disabled:bg-blue-300 ${className}`}
+      className={`relative flex items-center justify-center px-4 py-2 font-medium text-white bg-blue-400 rounded-lg hover:bg-blue-500 disabled:bg-blue-300 ${className}`}
       disabled={isLoading}
       {...props}
     >

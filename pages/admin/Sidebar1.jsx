@@ -14,8 +14,8 @@ const Sidebar1 = ({ onClose }) => {
 
   const getLinkClassName = (path) => {
     return location === path
-      ? "flex items-center p-2 bg-green-600 border-b-2 rounded font-semibold text-white"
-      : "flex items-center p-2 hover:bg-green-600 border-b-2 rounded font-semibold";
+      ? "flex items-center p-2 bg-blue-600 border-b-2 rounded font-semibold text-white"
+      : "flex items-center p-2 hover:bg-blue-600 border-b-2 rounded font-semibold";
   };
   return (
     <div className="bg-white h-screen p-4 border-r border-gray-200 md:block">
@@ -125,7 +125,7 @@ const Sidebar1 = ({ onClose }) => {
         <li>
           <Link
             href="/"
-            className="flex items-center p-2 hover:bg-green-600  border-b-2 rounded font-semibold"
+            className="flex items-center p-2 hover:bg-blue-600  border-b-2 rounded font-semibold"
             onClick={() => {
               handleLogout();
             }}

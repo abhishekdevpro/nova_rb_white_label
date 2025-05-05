@@ -13,8 +13,8 @@
 //         </h2>
 
 //         <p className="text-base sm:text-lg">
-//           Welcome to Cibli Job. These terms and conditions outline the rules and
-//           regulations for the use of Cibli Jobs website and services. By
+//           Welcome to Nova Job. These terms and conditions outline the rules and
+//           regulations for the use of Nova Jobs website and services. By
 //           accessing this website and using our services, you accept these terms
 //           and conditions in full. If you disagree with any part of these terms
 //           and conditions, please do not use our website or services.
@@ -25,9 +25,9 @@
 //         </h2>
 //         <ul className="list-inside list-disc pl-4 text-base sm:text-lg">
 //           <li>
-//             Client: Any individual or entity using the services of Cibli Job.
+//             Client: Any individual or entity using the services of Nova Job.
 //           </li>
-//           <li>Company: Cibli Job.</li>
+//           <li>Company: Nova Job.</li>
 //           <li>
 //             Services: Resume writing, career coaching, LinkedIn profile
 //             optimization, and other career-related services provided by Cibli
@@ -77,7 +77,7 @@
 //         </h2>
 //         <ul className="list-inside list-disc pl-4 text-base sm:text-lg">
 //           <li>
-//             All content, materials, and services provided by Cibli Job are
+//             All content, materials, and services provided by Nova Job are
 //             protected by intellectual property laws.
 //           </li>
 //           <li>
@@ -95,7 +95,7 @@
 //         </h2>
 //         <ul className="list-inside list-disc pl-4 text-base sm:text-lg">
 //           <li>
-//             Cibli Job respects the privacy and confidentiality of its clients.
+//             Nova Job respects the privacy and confidentiality of its clients.
 //           </li>
 //           <li>
 //             Any personal information provided by clients will be used solely for
@@ -113,7 +113,7 @@
 //         </h2>
 //         <ul className="list-inside list-disc pl-4 text-base sm:text-lg">
 //           <li>
-//             Cibli Job will not be liable for any direct, indirect, incidental,
+//             Nova Job will not be liable for any direct, indirect, incidental,
 //             or consequential damages arising out of or in connection with the
 //             use of our services.
 //           </li>
@@ -143,7 +143,7 @@
 //         </h2>
 //         <ul className="list-inside list-disc pl-4 text-base sm:text-lg">
 //           <li>
-//             Cibli Job reserves the right to modify or update these terms and
+//             Nova Job reserves the right to modify or update these terms and
 //             conditions at any time without prior notice.
 //           </li>
 //           <li>
@@ -158,7 +158,7 @@
 //         <ul className="list-inside list-disc pl-4 text-base sm:text-lg">
 //           <li>
 //             These terms and conditions are governed by and construed in
-//             accordance with the laws of the jurisdiction in which Cibli Job
+//             accordance with the laws of the jurisdiction in which Nova Job
 //             operates.
 //           </li>
 //           <li>

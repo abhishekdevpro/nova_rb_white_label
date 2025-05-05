@@ -28,7 +28,7 @@ const ColorPicker = ({ selectedColor, onChange }) => {
     <div className="relative flex items-center m-2 z-20">
       <button
         onClick={handleToggleDropdown}
-      className="rounded-lg border-2 border-green-500 px-8 p-1 font-bold  bg-white text-black"
+      className="rounded-lg border-2 border-blue-500 px-8 p-1 font-bold  bg-white text-black"
         style={{ backgroundColor: selectedColor || 'transparent' }}
       >
         Selected Text color 

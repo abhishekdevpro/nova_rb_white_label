@@ -9,7 +9,7 @@ const PaymentSuccess = () => {
         <div className="flex flex-col items-center text-center">
           {/* Success Icon */}
           <div className="mb-4">
-            <CheckCircle className="w-16 h-16 text-green-500" />
+            <CheckCircle className="w-16 h-16 text-blue-500" />
           </div>
 
           {/* Main Heading */}
@@ -34,7 +34,7 @@ const PaymentSuccess = () => {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 w-full">
             <button
-              className="w-full py-2 px-4 bg-[#00b38d] text-white rounded-lg hover:bg-blue-800 transition-colors"
+              className="w-full py-2 px-4 bg-[#1C2957] text-white rounded-lg hover:bg-blue-800 transition-colors"
               onClick={() => {
                 window.location.href = "/dashboard/aibuilder";
               }}

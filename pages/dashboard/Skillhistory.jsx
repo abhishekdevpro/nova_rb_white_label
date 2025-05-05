@@ -46,7 +46,7 @@ function Skillhistory() {
             ) : (
               <table className="min-w-full bg-dark text-black rounded-md text-center">
                 <thead>
-                  <tr className="bg-[#00b38d] text-white">
+                  <tr className="bg-[#1C2957] text-white">
                     <th className="py-2 px-4">{t("skillhistory.date_time")}</th>
                     <th className="py-2 px-4">
                       {t("skillhistory.verification_status")}

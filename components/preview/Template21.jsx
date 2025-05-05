@@ -309,7 +309,7 @@
 //                                   href={item.link}
 //                                   target="_blank"
 //                                   rel="noopener noreferrer"
-//                                   className="text-[#00b38d] hover:underline block mt-2"
+//                                   className="text-[#1C2957] hover:underline block mt-2"
 //                                 >
 //                                   {item.link}
 //                                 </Link>
@@ -382,7 +382,7 @@
 //             </div>
 //             <button
 //               onClick={extractHtml}
-//               className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-[#00b38d] transition-colors"
+//               className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-[#1C2957] transition-colors"
 //             >
 //               Log HTML Content
 //             </button>
@@ -714,7 +714,7 @@ const Template21 = () => {
                                   href={item.link}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-[#00b38d] hover:underline block mt-2"
+                                  className="text-[#1C2957] hover:underline block mt-2"
                                 >
                                   {item.link}
                                 </Link>
@@ -787,7 +787,7 @@ const Template21 = () => {
             </div>
             {/* <button
               onClick={extractHtml}
-              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-[#00b38d] transition-colors"
+              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-[#1C2957] transition-colors"
             >
               Log HTML Content
             </button> */}
