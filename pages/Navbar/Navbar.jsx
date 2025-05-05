@@ -83,7 +83,7 @@ const Navbar = () => {
     } else {
       setIsLoggedIn(false);
     }
-  }, []);
+  }, [router]);
 
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -139,9 +139,11 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0 flex items-center">
             <Link href="/">
-              <img
+              <Image
                 src="https://novajobs.us/static/media/NovaUS.649f79957e5090a75022.png"
                 alt="logo"
+                width={160}
+                height={40}
                 className="h-10 w-40"
               />
             </Link>
@@ -204,13 +206,15 @@ const Navbar = () => {
                   onClick={toggleDropdown}
                   className="flex items-center bg-white text-black px-4 py-2 text-md font-semibold border-2 rounded-xl"
                 >
-                  <img
+                  <Image
                     src={
                       photo
                         ? `https://apiwl.novajobs.us${photo}`
                         : "https://img.freepik.com/premium-vector/businessman-avatar-illustration-cartoon-user-portrait-user-profile-icon_118339-4382.jpg"
                     }
                     alt="User"
+                    width={32}
+                    height={32}
                     className="w-8 h-8 rounded-full"
                   />
 

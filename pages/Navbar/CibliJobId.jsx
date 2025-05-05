@@ -94,7 +94,7 @@ import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import logo from "../Navbar/logo.png"; // Update path to your logo
 
-function novajobId({ isOpen, onClose }) {
+function NovajobId({ isOpen, onClose }) {
   const { t } = useTranslation();
   if (!isOpen) return null;
 
@@ -176,4 +176,4 @@ function novajobId({ isOpen, onClose }) {
   );
 }
 
-export default novajobId;
+export default NovajobId;

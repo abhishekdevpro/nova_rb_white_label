@@ -8,7 +8,7 @@ import DateRange from "../utility/DateRange";
 import Language from "./Language";
 import Skills from "./Skills";
 import Certification from "./Certification";
-// import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import {
     FaGithub,
@@ -41,8 +41,13 @@ const Template27 = () => {
         <div className="max-w-3xl mx-auto p-5 bg-white shadow-md mb-5">
           <div class="flex">
             <div class="mb-5 w-1/4">
-            <img src={resumeData.profilePicture ? resumeData.profilePicture : "img/profile_one.png"} alt="Profile" />
-
+              <Image
+                src={resumeData.profilePicture ? resumeData.profilePicture : "img/profile_one.png"}
+                alt="Profile"
+                width={200}
+                height={200}
+                className="w-full h-auto"
+              />
             </div>
             <div className="mb-8 pt-2.5 w-3/4">    
                 <h1 className="text-6xl text-black font-bold mb-2" style={{ color: headerColor }}>{resumeData.name}</h1>
