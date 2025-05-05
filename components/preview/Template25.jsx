@@ -8,7 +8,7 @@ import DateRange from "../utility/DateRange";
 import Language from "./Language";
 import Skills from "./Skills";
 import Certification from "./Certification";
-// import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import {
     FaGithub,
@@ -72,8 +72,13 @@ const Template25 = () => {
               </div>
             </div>
             <div class="mb-5 w-1/3">
-            <img src={resumeData.profilePicture ? resumeData.profilePicture : "img/profile_one.png"} alt="Profile" />
-
+              <Image
+                src={resumeData.profilePicture ? resumeData.profilePicture : "img/profile_one.png"}
+                alt="Profile"
+                width={200}
+                height={200}
+                className="w-full h-auto"
+              />
             </div>
         </div>
         <div class="flex gap-2 items-start justify-between">

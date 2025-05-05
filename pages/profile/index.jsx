@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import { Trash2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import axiosInstance from "../../components/utils/axiosInstance";
+import Image from "next/image";
+
 const ProfileForm = () => {
   const { i18n, t } = useTranslation();
   const language = i18n.language;
@@ -83,7 +85,7 @@ const ProfileForm = () => {
     };
 
     fetchData();
-  }, []);
+  }, [language]);
 
   useEffect(() => {
     const fetchStates = async () => {
@@ -107,7 +109,7 @@ const ProfileForm = () => {
     };
 
     fetchStates();
-  }, [formData.country_id]);
+  }, [formData.country_id, language]);
 
   useEffect(() => {
     const fetchCities = async () => {
@@ -137,7 +139,7 @@ const ProfileForm = () => {
     };
 
     fetchCities();
-  }, [formData.state_id]);
+  }, [formData.state_id, language]);
 
   const handleCountryChange = async (e) => {
     const selectedCountryId = e.target.value;
@@ -460,14 +462,16 @@ const ProfileForm = () => {
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4 relative">
             {formData.photo && (
               <div className="relative">
-                <img
+                <Image
                   src={
-                    formData.uploadPhoto
-                      ? URL.createObjectURL(formData.uploadPhoto)
-                      : `https://api.novajob.fr${formData.photo}`
+                    formData.photo
+                      ? `${BASE_URL}${formData.photo}`
+                      : "https://img.freepik.com/premium-vector/businessman-avatar-illustration-cartoon-user-portrait-user-profile-icon_118339-4382.jpg"
                   }
                   alt="Profile"
-                  className="w-20 h-20 rounded-full border object-cover"
+                  width={128}
+                  height={128}
+                  className="w-32 h-32 rounded-full object-cover"
                 />
                 <button
                   type="button"

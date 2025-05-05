@@ -8,7 +8,7 @@ import DateRange from "../utility/DateRange";
 import Language from "./Language";
 import Skills from "./Skills";
 import Certification from "./Certification";
-// import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import {
     FaGithub,
@@ -41,7 +41,13 @@ const Template24 = () => {
         <div className="max-w-3xl mx-auto p-5 bg-neutral-300 shadow-md border-solid border-2 border-black mb-5 rounded-lg">
         <div class="flex gap-1 items-start ">
             <div class="border-solid border-cyan-900 mb-5 w-1/3">
-            <img src={resumeData.profilePicture ? resumeData.profilePicture : "img/profile_one.png"} alt="Profile" className="rounded-full " />
+              <Image
+                src={resumeData.profilePicture ? resumeData.profilePicture : "img/profile_one.png"}
+                alt="Profile"
+                width={200}
+                height={200}
+                className="rounded-full"
+              />
             </div>
             <div className="mb-8 pt-2.5	w-2/3 text-left">
                 <div class="border-solid border-2 border-black mb-2 "></div>
