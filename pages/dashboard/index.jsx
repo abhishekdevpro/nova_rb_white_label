@@ -29,7 +29,7 @@ export default function DashboardPage() {
       setLoading(true);
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${BASE_URL}/api/user/resume-list/0?resume_default=true?lang=${selectedLang}`,
+        `${BASE_URL}/api/user/resume-list/0?resume_default=true&lang=${selectedLang}`,
         {
           headers: {
             Authorization: token,
