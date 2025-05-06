@@ -55,6 +55,8 @@ const WorkExperience = () => {
   const token = localStorage.getItem("token");
   const router = useRouter();
   const { improve } = router.query;
+  const [validationErrors, setValidationErrors] = useState({});
+
   const months = [
     "Jan",
     "Feb",
@@ -130,18 +132,8 @@ const WorkExperience = () => {
 
   const handleWorkExperience = (e, index) => {
     const { name, value } = e.target;
-    const newWorkExperience = [...resumeData.workExperience];
-
-    if (name === "keyAchievements") {
-      const lines = value
-        .split("\n")
-        .map((line) => line.trim())
-        .filter((line) => line.length > 0);
-      newWorkExperience[index][name] = lines.length > 0 ? lines : [];
-    } else {
-      newWorkExperience[index][name] = value;
-    }
-
+    const newWorkExperience = [...(resumeData?.workExperience || [])];
+    newWorkExperience[index] = { ...newWorkExperience[index], [name]: value };
     setResumeData({ ...resumeData, workExperience: newWorkExperience });
 
     if (name === "position") {
@@ -378,33 +370,6 @@ const WorkExperience = () => {
       }));
     }
   };
-  // const handleKeyAchievement = (e, index) => {
-  //   const newWorkExperience = [...resumeData.workExperience];
-  //   const achievements = e.target.value
-  //     .split("\n")
-  //     // .map((item) => item.trim())
-  //     // .filter((item) => item.trim !== "");
-  //     .filter((item) => item.trim() !== "");
-
-  //   newWorkExperience[index].keyAchievements = achievements;
-
-  //   // Optional: Track user-modified achievements separately if needed
-  //   setSelectedKeyAchievements(achievements); // sync with popup logic
-
-  //   setResumeData({ ...resumeData, workExperience: newWorkExperience });
-  // };
-  // const handleKeyAchievement = (e, index) => {
-  //   const newWorkExperience = [...resumeData.workExperience];
-  //   const achievements = e.target.value
-  //     .split("\n")
-  //     // .map((item) => item.trim())
-  //     .filter((item) => item.trim !== "");
-
-  //   newWorkExperience[index].keyAchievements = achievements;
-
-  //   setSelectedKeyAchievements(achievements); // sync with popup logic
-  //   setResumeData({ ...resumeData, workExperience: newWorkExperience });
-  // };
   const handleKeyAchievement = (e, index) => {
     const newWorkExperience = [...resumeData.workExperience];
 
@@ -430,29 +395,11 @@ const WorkExperience = () => {
     }
   };
 
-  // const handleSaveSelectedSummary = (index, e) => {
-  //   e.preventDefault();
-  //   const newWorkExperience = [...resumeData.workExperience];
-
-  //   if (popupType === "description") {
-  //     newWorkExperience[index].description = selectedDescriptions.join(" ");
-  //   } else {
-  //     newWorkExperience[index].keyAchievements = selectedKeyAchievements;
-  //   }
-
-  //   setResumeData({
-  //     ...resumeData,
-  //     workExperience: newWorkExperience,
-  //   });
-
-  //   setShowPopup(false);
-  // };
-
   const addWorkExperience = () => {
     setResumeData({
       ...resumeData,
       workExperience: [
-        ...resumeData.workExperience,
+        ...(resumeData?.workExperience || []),
         {
           company: "",
           position: "",
@@ -460,56 +407,25 @@ const WorkExperience = () => {
           endYear: "",
           location: "",
           description: "",
-          keyAchievements: [],
-        },
-      ],
+          keyAchievements: []
+        }
+      ]
     });
     setExpandedExperiences([...expandedExperiences, true]);
   };
-  const removeWork = (index) => {
-    // Check if this is the last work experience entry
-    if ((resumeData.workExperience || []).length <= 1) {
-      toast.warn("At least one work experience entry is required");
-      // setValidationErrors({
-      //   ...validationErrors,
-      //   general: "At least one work experience entry is required"
-      // });
-
-      // // Clear the error message after 3 seconds
-      // setTimeout(() => {
-      //   const updatedErrors = {...validationErrors};
-      //   delete updatedErrors.general;
-      //   setValidationErrors(updatedErrors);
-      // }, 3000);
-      return; // Don't remove if it's the last one
+  const removeWorkExperience = (index) => {
+    if ((resumeData?.workExperience || []).length <= 1) {
+      toast.warn(t("builder_forms.work_experience.errors.min_experience"));
+      return;
     }
-
-    const newworkExperience = [...(resumeData.workExperience || [])];
-    newworkExperience.splice(index, 1);
-
-    // Clear any errors related to this index
-    // const updatedErrors = {};
-    // Object.keys(validationErrors).forEach(key => {
-    //   if (!key.startsWith(`${index}-`)) {
-    //     updatedErrors[key] = validationErrors[key];
-    //   }
-    // });
-    // setValidationErrors(updatedErrors);
-
-    setResumeData({ ...resumeData, workExperience: newworkExperience });
+    const newWorkExperience = [...(resumeData?.workExperience || [])];
+    newWorkExperience.splice(index, 1);
+    setResumeData({ ...resumeData, workExperience: newWorkExperience });
     setExpandedExperiences(
       expandedExperiences
         .filter((i) => i !== index)
         .map((i) => (i > index ? i - 1 : i))
     );
-  };
-  const removeWorkExperience = (index) => {
-    const newWorkExperience = [...resumeData.workExperience];
-    newWorkExperience.splice(index, 1);
-    setResumeData({ ...resumeData, workExperience: newWorkExperience });
-    const newExpandedExperiences = [...expandedExperiences];
-    newExpandedExperiences.splice(index, 1);
-    setExpandedExperiences(newExpandedExperiences);
   };
 
   const hasErrors = (index, field) => {
@@ -577,26 +493,6 @@ const WorkExperience = () => {
       return newExpanded;
     });
   };
-  // const handleSaveSelectedSummary = (index, e) => {
-  //   e.preventDefault();
-
-  //   const newWorkExperience = [...resumeData.workExperience];
-  //   const currentAchievements = newWorkExperience[index].keyAchievements || [];
-
-  //   // Avoid duplicates, respect deletions
-  //   const filteredSelected = selectedKeyAchievements.filter(
-  //     (item) => !currentAchievements.includes(item)
-  //   );
-
-  //   const updatedAchievements = [...currentAchievements, ...filteredSelected];
-
-  //   newWorkExperience[index].keyAchievements = updatedAchievements;
-  //   setResumeData({ ...resumeData, workExperience: newWorkExperience });
-
-  //   // Close popup and clear state
-  //   setShowPopup(false);
-  //   setSelectedKeyAchievements([]);
-  // };
   const handleSaveSelectedSummary = (index, e) => {
     e.preventDefault();
 
@@ -614,8 +510,6 @@ const WorkExperience = () => {
       const updatedAchievements = [...currentAchievements, ...filteredSelected];
 
       newWorkExperience[index].keyAchievements = updatedAchievements;
-      // newWorkExperience[index].rawKeyAchievementsText =
-      //   updatedAchievements.join("\n");
       setSelectedKeyAchievements([]);
     } else if (popupType === "description") {
       if (selectedDescriptions.length > 0) {
@@ -721,16 +615,6 @@ const WorkExperience = () => {
     }));
   };
 
-  // const removeWork = (index) => {
-  //   const newworkExperience = [...(resumeData.workExperience || [])];
-  //   newworkExperience.splice(index, 1);
-  //   setResumeData({ ...resumeData, workExperience: newworkExperience });
-  //   setExpandedExperiences(
-  //     expandedExperiences
-  //       .filter((i) => i !== index)
-  //       .map((i) => (i > index ? i - 1 : i))
-  //   );
-  // };
   // Parse date string to get month and year
   const getDatePart = (dateStr, part) => {
     if (!dateStr) return "";
@@ -776,6 +660,24 @@ const WorkExperience = () => {
     }
   };
 
+  // Initialize workExperience array if it doesn't exist
+  React.useEffect(() => {
+    if (!resumeData?.workExperience) {
+      setResumeData({
+        ...resumeData,
+        workExperience: [{
+          company: "",
+          position: "",
+          startDate: "",
+          endDate: "",
+          description: "",
+          location: "",
+          keyAchievements: []
+        }]
+      });
+    }
+  }, []);
+
   return (
     <div className="flex-col gap-3 w-full md:mt-10 md:px-10 max-h-[400px] overflow-y-auto">
       <h2 className="input-title text-black text-3xl mb-6">
@@ -800,8 +702,8 @@ const WorkExperience = () => {
         </button>
       </div>
 
-      {!resumeData.is_fresher &&
-        resumeData.workExperience.map((experience, index) => (
+      {!resumeData?.is_fresher && (
+        (resumeData?.workExperience || []).map((experience, index) => (
           <div key={index} className="mb-6 rounded-lg overflow-hidden">
             <div
               className="flex justify-between items-center p-4 cursor-pointer bg-white"
@@ -819,7 +721,10 @@ const WorkExperience = () => {
                   <ChevronDown className="w-6 h-6 text-black" />
                 )}
                 <button
-                  onClick={() => removeWork(index)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    removeWorkExperience(index);
+                  }}
                   className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded bg-red-500 text-white hover:bg-red-600 transition-colors md:ml-2"
                   type="button"
                 >
@@ -834,18 +739,6 @@ const WorkExperience = () => {
                   <label className="text-black">
                     {t("builder_forms.work_experience.company_name")}
                   </label>
-                  {/* <input
-                    type="text"
-                    placeholder="Company"
-                    name="company"
-                    className={`w-full other-input border ${
-                      improve && hasErrors(index, "company")
-                        ? "border-red-500"
-                        : "border-black"
-                    }`}
-                    value={experience.company}
-                    onChange={(e) => handleWorkExperience(e, index)}
-                  /> */}
                   <input
                     type="text"
                     placeholder={t("builder_forms.work_experience.company")}
@@ -884,13 +777,14 @@ const WorkExperience = () => {
                     <button
                       type="button"
                       className="absolute right-2 top-12 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
-                      onClick={() =>
+                      onClick={(e) => {
+                        e.stopPropagation();
                         setActiveTooltip(
                           activeTooltip === `company-${index}`
                             ? null
                             : `company-${index}`
-                        )
-                      }
+                        );
+                      }}
                     >
                       <AlertCircle className="w-5 h-5" />
                     </button>
@@ -908,7 +802,10 @@ const WorkExperience = () => {
                             </span>
                           </div>
                           <button
-                            onClick={() => setActiveTooltip(null)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setActiveTooltip(null);
+                            }}
                             className="text-black transition-colors"
                           >
                             <X className="w-5 h-5" />
@@ -934,18 +831,6 @@ const WorkExperience = () => {
                   <label className="text-black">
                     {t("builder_forms.work_experience.job_title")}
                   </label>
-                  {/* <input
-                    type="text"
-                    placeholder="Position"
-                    name="position"
-                    className={`w-full other-input border ${
-                      improve && hasErrors(index, "position")
-                        ? "border-red-500"
-                        : "border-black"
-                    }`}
-                    value={experience.position}
-                    onChange={(e) => handleWorkExperience(e, index)}
-                  /> */}
                   <input
                     type="text"
                     placeholder={t("builder_forms.work_experience.position")}
@@ -979,13 +864,14 @@ const WorkExperience = () => {
                     <button
                       type="button"
                       className="absolute right-2 top-12 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
-                      onClick={() =>
+                      onClick={(e) => {
+                        e.stopPropagation();
                         setActiveTooltip(
                           activeTooltip === `position-${index}`
                             ? null
                             : `position-${index}`
-                        )
-                      }
+                        );
+                      }}
                     >
                       <AlertCircle className="w-5 h-5" />
                     </button>
@@ -1003,7 +889,10 @@ const WorkExperience = () => {
                             </span>
                           </div>
                           <button
-                            onClick={() => setActiveTooltip(null)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setActiveTooltip(null);
+                            }}
                             className="text-black transition-colors"
                           >
                             <X className="w-5 h-5" />
@@ -1075,13 +964,14 @@ const WorkExperience = () => {
                         <button
                           type="button"
                           className="absolute right-[2px] top-[-1.5rem] text-red-500"
-                          onClick={() =>
+                          onClick={(e) => {
+                            e.stopPropagation();
                             setActiveTooltip(
                               activeTooltip === `startYear-${index}`
                                 ? null
                                 : `startYear-${index}`
-                            )
-                          }
+                            );
+                          }}
                         >
                           <AlertCircle className="w-5 h-5" />
                         </button>
@@ -1099,7 +989,10 @@ const WorkExperience = () => {
                                   </span>
                                 </div>
                                 <button
-                                  onClick={() => setActiveTooltip(null)}
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setActiveTooltip(null);
+                                  }}
                                   className="text-black transition-colors"
                                 >
                                   <X className="w-5 h-5" />
@@ -1184,13 +1077,14 @@ const WorkExperience = () => {
                         <button
                           type="button"
                           className="absolute right-[2px] top-[-1.5rem] text-red-500"
-                          onClick={() =>
+                          onClick={(e) => {
+                            e.stopPropagation();
                             setActiveTooltip(
                               activeTooltip === `endYear-${index}`
                                 ? null
                                 : `endYear-${index}`
-                            )
-                          }
+                            );
+                          }}
                         >
                           <AlertCircle className="w-5 h-5" />
                         </button>
@@ -1208,7 +1102,10 @@ const WorkExperience = () => {
                                   </span>
                                 </div>
                                 <button
-                                  onClick={() => setActiveTooltip(null)}
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setActiveTooltip(null);
+                                  }}
                                   className="text-black transition-colors"
                                 >
                                   <X className="w-5 h-5" />
@@ -1279,13 +1176,14 @@ const WorkExperience = () => {
                     <button
                       type="button"
                       className="absolute right-2 top-1/2 translate-y-1 text-red-500 hover:text-red-600 transition-colors"
-                      onClick={() =>
+                      onClick={(e) => {
+                        e.stopPropagation();
                         setActiveTooltip(
                           activeTooltip === `location-${index}`
                             ? null
                             : `location-${index}`
-                        )
-                      }
+                        );
+                      }}
                     >
                       <AlertCircle className="w-5 h-5" />
                     </button>
@@ -1303,117 +1201,10 @@ const WorkExperience = () => {
                             </span>
                           </div>
                           <button
-                            onClick={() => setActiveTooltip(null)}
-                            className="text-black transition-colors"
-                          >
-                            <X className="w-5 h-5" />
-                          </button>
-                        </div>
-                      </div>
-                      <div className="p-4">
-                        {getErrorMessages(index, "location").map((msg, i) => (
-                          <div
-                            key={i}
-                            className="flex items-start space-x-3 mb-3 last:mb-0"
-                          >
-                            <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-400 mt-2"></div>
-                            <p className="text-black text-sm">{msg}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <div className="relative mb-4">
-                  <div className="flex justify-between mb-2">
-                    <label className="text-black">
-                      {" "}
-                      {t("builder_forms.work_experience.description")}
-                    </label>
-
-                    <button
-                      type="button"
-                      className="border bg-black text-white px-3 rounded-3xl"
-                      onClick={() => {
-                        if (experience?.position) {
-                          handleAIAssistDescription(index, experience);
-                        } else {
-                          toast.error(t("job_title_required"));
-                        }
-                      }}
-                      disabled={loadingStates[`description_${index}`]} // Check loading state per button
-                    >
-                      {loadingStates[`description_${index}`]
-                        ? t("loading")
-                        : t("smartAssist")}
-                    </button>
-                  </div>
-                  <ReactQuill
-                    placeholder={t("builder_forms.work_experience.description")}
-                    value={experience.description}
-                    onChange={(value) => handleDescriptionChange(value, index)}
-                    className={`bg-white rounded-md ${
-                      improve && hasErrors(index, "descriptionDetails")
-                        ? "border-red-500"
-                        : "border-black"
-                    }`}
-                    theme="snow"
-                    modules={{
-                      toolbar: [["bold", "italic", "underline"], ["clean"]],
-                    }}
-                  />
-                  {improve && hasErrors(index, "descriptionDetails") && (
-                    <button
-                      type="button"
-                      className="absolute right-2 top-12 text-red-500 hover:text-red-600 transition-colors"
-                      onClick={() =>
-                        setActiveTooltip(
-                          activeTooltip === `description-${index}`
-                            ? null
-                            : `description-${index}`
-                        )
-                      }
-                    >
-                      <AlertCircle className="w-5 h-5" />
-                    </button>
-                  )}
-                  {activeTooltip === `description-${index}` && (
-                    <div className="absolute z-50 right-0 top-[50px] w-80 bg-white rounded-lg shadow-xl transform transition-all duration-200 ease-in-out border border-gray-700">
-                      <div className="p-4 border-b border-gray-700">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-2">
-                            <AlertCircle className="w-5 h-5 text-red-400" />
-                            <span className="font-medium text-black">
-                              {t(
-                                "builder_forms.work_experience.descriptionSuggestions"
-                              )}
-                            </span>
-                          </div>
-
-                          <button
-                            type="button" // Ensure it's NOT a submit button
-                            onClick={(e) =>
-                              handleAutoFixDescription(e, index, experience)
-                            }
-                            onMouseDown={() => {
-                              if (!experience?.position) {
-                                toast.error(t("job_title_required"));
-                              }
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setActiveTooltip(null);
                             }}
-                            className="px-3 py-1 text-sm font-medium text-white bg-blue-600 rounded-md shadow hover:bg-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                            disabled={
-                              loadingStates[`description_${index}`] ||
-                              !experience?.position
-                            }
-                          >
-                            {loadingStates[`description_${index}`]
-                              ? t("builder_forms.personal_info.fixing")
-                              : t("builder_forms.personal_info.auto_fix")}
-                          </button>
-
-                          <button
-                            onClick={() => setActiveTooltip(null)}
                             className="text-black transition-colors"
                           >
                             <X className="w-5 h-5" />
@@ -1548,10 +1339,11 @@ const WorkExperience = () => {
               </div>
             )}
           </div>
-        ))}
+        ))
+      )}
 
       <FormButton
-        size={resumeData.workExperience.length}
+        size={(resumeData?.workExperience || []).length}
         add={addWorkExperience}
         remove={removeWorkExperience}
       />

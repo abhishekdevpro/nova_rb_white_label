@@ -1,60 +1,68 @@
+"use client";
+
 import React, { useContext, useState } from "react";
-import FormButton from "./FormButton";
 import { ResumeContext } from "../context/ResumeContext";
+import FormButton from "./FormButton";
+import { AlertCircle, X } from "lucide-react";
 import { useRouter } from "next/router";
-import { ChevronDown, ChevronUp, AlertCircle, X, Trash } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 
 const Certification = () => {
-  const { resumeData, setResumeData, resumeStrength } =
+  const { t } = useTranslation();
+  const { resumeData, setResumeData, resumeStrength, setResumeStrength } =
     useContext(ResumeContext);
-  const skillType = "certifications";
-  const title = "Certifications";
+  const [activeTooltip, setActiveTooltip] = useState(null);
   const router = useRouter();
   const { improve } = router.query;
-  const [activeTooltip, setActiveTooltip] = useState(null);
-  const { t } = useTranslation();
+  const [validationErrors, setValidationErrors] = useState({});
+  const skillType = "certifications";
 
-  const handleSkills = (e, index, skillType) => {
-    const newSkills = [...resumeData[skillType]];
-    newSkills[index] = e.target.value;
-    setResumeData({ ...resumeData, [skillType]: newSkills });
+  // Initialize certifications array if it doesn't exist
+  React.useEffect(() => {
+    if (!resumeData?.[skillType]) {
+      setResumeData({
+        ...resumeData,
+        [skillType]: [{
+          name: "",
+          issuer: "",
+          date: "",
+          description: ""
+        }]
+      });
+    }
+  }, []);
+
+  const handleCertification = (e, index) => {
+    const { name, value } = e.target;
+    const newCertifications = [...(resumeData?.[skillType] || [])];
+    newCertifications[index] = { ...newCertifications[index], [name]: value };
+    setResumeData({ ...resumeData, [skillType]: newCertifications });
   };
 
-  const addSkill = () => {
+  const addCertification = () => {
     setResumeData({
       ...resumeData,
-      [skillType]: [...resumeData[skillType], ""],
+      [skillType]: [
+        ...(resumeData?.[skillType] || []),
+        {
+          name: "",
+          issuer: "",
+          date: "",
+          description: ""
+        }
+      ]
     });
   };
 
-  const removeSkill = (index) => {
-    if (resumeData[skillType].length > 1) {
-      const newSkills = [...resumeData[skillType]];
-      newSkills.splice(-1, 1);
-      setResumeData({ ...resumeData, [skillType]: newSkills });
-    } else {
-      toast.error("At least one certification is required.");
-    }
-  };
-
-  //
-  const deleteCertification = (indexToDelete) => {
-    const currentLength = resumeData[skillType].length;
-
-    if (currentLength <= 1) {
-      toast.error("At least one certification is required.");
+  const removeCertification = (index) => {
+    if ((resumeData?.[skillType] || []).length <= 1) {
+      toast.warn(t("builder_forms.certification.errors.min_certification"));
       return;
     }
-
-    const newCertifications = resumeData[skillType].filter(
-      (_, index) => index !== indexToDelete
-    );
-    setResumeData({
-      ...resumeData,
-      [skillType]: newCertifications,
-    });
+    const newCertifications = [...(resumeData?.[skillType] || [])];
+    newCertifications.splice(index, 1);
+    setResumeData({ ...resumeData, [skillType]: newCertifications });
   };
 
   const hasErrors = (index, field) => {
@@ -74,90 +82,134 @@ const Certification = () => {
   };
 
   return (
-    <div className="flex-col flex gap-3 w-full  mt-10 px-10 max-h-[400px] overflow-y-auto ">
-      <h2 className="input-title text-black  text-3xl">
-        {t("resumeStrength.sections.certification")}
+    <div className="flex-col gap-3 w-full mt-10 px-10 max-h-[400px] overflow-y-auto">
+      <h2 className="input-title text-black text-3xl">
+        {t("resumeStrength.sections.certifications")}
       </h2>
-
-      {resumeData[skillType].map((skill, index) => (
+      {(resumeData?.[skillType] || []).map((certification, index) => (
         <div key={index} className="f-col justify-center">
           <div className="relative flex justify-center items-center gap-2">
             <input
               type="text"
-              placeholder={t("builder_forms.certification.placeholderTitle")}
-              name={title}
-              maxLength={150}
-              className={`w-full h-full px-4 py-2 rounded-md border  ${
-                improve && hasErrors(index, "certifications")
+              placeholder={t("builder_forms.certification.name")}
+              name="name"
+              className={`w-full other-input border ${
+                improve && hasErrors(index, "name")
                   ? "border-red-500"
                   : "border-black"
               }`}
-              value={skill}
-              onChange={(e) => handleSkills(e, index, skillType)}
+              value={certification.name}
+              onChange={(e) => handleCertification(e, index)}
             />
-            <button
-              onClick={() => deleteCertification(index)}
-              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
-              type="button"
-            >
-              <Trash />
-            </button>
-            {improve && hasErrors(index, "certifications") && (
+            {improve && hasErrors(index, "name") && (
               <button
                 type="button"
-                className="absolute right-20 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
                 onClick={() =>
                   setActiveTooltip(
-                    activeTooltip === `certifications-${index}`
+                    activeTooltip === `name-${index}`
                       ? null
-                      : `certifications-${index}`
+                      : `name-${index}`
                   )
                 }
               >
                 <AlertCircle className="w-5 h-5" />
               </button>
             )}
-
-            {activeTooltip === `certifications-${index}` && (
-              <div className="absolute z-50 right-0 mt-2 w-80 bg-white rounded-lg shadow-xl transform transition-all duration-200 ease-in-out border border-gray-700">
-                <div className="p-4 border-b border-gray-700">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <AlertCircle className="w-5 h-5 text-red-400" />
-                      <span className="font-medium text-black">
-                        {t(
-                          "builder_forms.certification.certificationSuggestion"
-                        )}
-                      </span>
-                    </div>
-                    <button
-                      onClick={() => setActiveTooltip(null)}
-                      className="text-black transition-colors"
-                    >
-                      <X className="w-5 h-5" />
-                    </button>
-                  </div>
-                </div>
-                <div className="p-4">
-                  {getErrorMessages(index, "certifications").map((msg, i) => (
-                    <div
-                      key={i}
-                      className="flex items-start space-x-3 mb-3 last:mb-0"
-                    >
-                      <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-400 mt-2"></div>
-                      <p className="text-black text-sm">{msg}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+          </div>
+          <div className="relative flex justify-center items-center gap-2">
+            <input
+              type="text"
+              placeholder={t("builder_forms.certification.issuer")}
+              name="issuer"
+              className={`w-full other-input border ${
+                improve && hasErrors(index, "issuer")
+                  ? "border-red-500"
+                  : "border-black"
+              }`}
+              value={certification.issuer}
+              onChange={(e) => handleCertification(e, index)}
+            />
+            {improve && hasErrors(index, "issuer") && (
+              <button
+                type="button"
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
+                onClick={() =>
+                  setActiveTooltip(
+                    activeTooltip === `issuer-${index}`
+                      ? null
+                      : `issuer-${index}`
+                  )
+                }
+              >
+                <AlertCircle className="w-5 h-5" />
+              </button>
+            )}
+          </div>
+          <div className="relative flex justify-center items-center gap-2">
+            <input
+              type="text"
+              placeholder={t("builder_forms.certification.date")}
+              name="date"
+              className={`w-full other-input border ${
+                improve && hasErrors(index, "date")
+                  ? "border-red-500"
+                  : "border-black"
+              }`}
+              value={certification.date}
+              onChange={(e) => handleCertification(e, index)}
+            />
+            {improve && hasErrors(index, "date") && (
+              <button
+                type="button"
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
+                onClick={() =>
+                  setActiveTooltip(
+                    activeTooltip === `date-${index}`
+                      ? null
+                      : `date-${index}`
+                  )
+                }
+              >
+                <AlertCircle className="w-5 h-5" />
+              </button>
+            )}
+          </div>
+          <div className="relative flex justify-center items-center gap-2">
+            <textarea
+              placeholder={t("builder_forms.certification.description")}
+              name="description"
+              className={`w-full other-input border ${
+                improve && hasErrors(index, "description")
+                  ? "border-red-500"
+                  : "border-black"
+              }`}
+              value={certification.description}
+              onChange={(e) => handleCertification(e, index)}
+              rows={4}
+            />
+            {improve && hasErrors(index, "description") && (
+              <button
+                type="button"
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
+                onClick={() =>
+                  setActiveTooltip(
+                    activeTooltip === `description-${index}`
+                      ? null
+                      : `description-${index}`
+                  )
+                }
+              >
+                <AlertCircle className="w-5 h-5" />
+              </button>
             )}
           </div>
         </div>
       ))}
       <FormButton
-        size={resumeData[skillType].length}
-        add={addSkill}
-        remove={removeSkill}
+        size={(resumeData?.[skillType] || []).length}
+        add={addCertification}
+        remove={removeCertification}
       />
     </div>
   );

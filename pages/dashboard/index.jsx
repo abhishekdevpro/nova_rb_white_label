@@ -112,7 +112,7 @@ export default function DashboardPage() {
       </div>
       <div className="flex flex-col max-w-7xl mx-auto md:flex-row min-h-screen bg-white p-4">
         {/* Sidebar */}
-        <Sidebar score={strength.resume_strenght} resumeId={resumeId} />
+        <Sidebar score={strength?.resume_strenght || 0} resumeId={resumeId} />
 
         {/* Main Content */}
         <main className="flex-1 p-6 overflow-y-auto">
@@ -121,7 +121,7 @@ export default function DashboardPage() {
           </h1>
           <CurrentPlan />
           <ResumeStrength
-            score={strength.resume_strenght || 0}
+            score={strength?.resume_strenght || 0}
             strength={strength || {}}
             resumeId={resumeId || null}
           />

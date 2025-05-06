@@ -103,24 +103,34 @@ export default function MobileBuilder() {
 
           if (response.data.status === "success") {
             const { data } = response.data;
-            const parsedData = JSON.parse(data.ai_resume_parse_data);
-
-            // Update state with fetched data
-            setResumeData(parsedData.templateData);
-            setResumeStrength(data.resume_strenght_details);
-            // Set background color and template
-            if (parsedData.templateData.templateDetails) {
-              setBgColor(
-                parsedData.templateData.templateDetails.backgroundColor || ""
-              );
-              setHeaderColor(
-                parsedData.templateData.templateDetails.backgroundColor
-              );
-              setSelectedTemplate(
-                parsedData.templateData.templateDetails.templateId ||
-                  "template1"
-              );
+            
+            if (!data?.ai_resume_parse_data) {
+              console.warn("No AI resume parse data found in response");
+              setResumeData({});
+              return;
             }
+
+            try {
+              // Check if data.ai_resume_parse_data is a string or already an object
+              const parsedData = typeof data.ai_resume_parse_data === 'string' 
+                ? JSON.parse(data.ai_resume_parse_data)
+                : data.ai_resume_parse_data;
+
+              if (parsedData?.templateData) {
+                setResumeData(parsedData.templateData);
+                console.log(">>>>>parse data", parsedData.templateData);
+              } else {
+                console.warn("No template data found in parsed AI data");
+                setResumeData({});
+              }
+            } catch (parseError) {
+              console.error("Error parsing AI resume data:", parseError);
+              toast.error("Error parsing resume data");
+              setResumeData({});
+            }
+          } else {
+            toast.error(response.data.message || "Failed to fetch resume data");
+            setResumeData({});
           }
         } catch (error) {
           console.error("Error fetching resume data:", error);
