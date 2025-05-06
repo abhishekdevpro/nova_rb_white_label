@@ -277,87 +277,110 @@ const TooltipContent = ({ improvements, resumeId, onClose }) => {
 };
 
 const ResumeStrength = ({ score, strength, resumeId }) => {
+  console.log("ResumeStrength received props:", {
+    score,
+    strength,
+    resumeId,
+    strengthKeys: strength ? Object.keys(strength) : [],
+    strengthValues: strength ? Object.entries(strength).map(([key, value]) => `${key}: ${value}`) : []
+  });
   const { selectedLang } = useContext(ResumeContext);
   const [showLoader, setShowLoader] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
-
-  // console.log(strength.ats_strenght, "strength");
   const { t } = useTranslation();
+
   const getSectionsList = (data) => {
-    if (!data) return [];
-    return [
+    console.log("getSectionsList received data:", data);
+    if (!data) {
+      console.log("No data provided to getSectionsList");
+      return [];
+    }
+
+    const sections = [
       {
         name: t("resumeStrength.sections.personalInformation"),
-        completed: data.is_personal_info,
-        score: data.personal_score,
+        completed: Boolean(data.is_personal_info),
+        score: Number(data.personal_score) || 0,
         max_score: 15,
         icon: User,
       },
       {
         name: t("resumeStrength.sections.socialLinks"),
-        completed: data.is_social,
-        score: data.social_score,
+        completed: Boolean(data.is_social),
+        score: Number(data.social_score) || 0,
         max_score: 5,
         icon: Share2,
       },
       {
         name: t("resumeStrength.sections.personalSummary"),
-        completed: data.is_personal_summery,
-        score: data.personal_summery_score,
+        completed: Boolean(data.is_personal_summery),
+        score: Number(data.personal_summery_score) || 0,
         max_score: 10,
         icon: FileText,
       },
       {
         name: t("resumeStrength.sections.education"),
-        completed: data.is_education,
-        score: data.education_score,
+        completed: Boolean(data.is_education),
+        score: Number(data.education_score) || 0,
         max_score: 10,
         icon: GraduationCap,
       },
       {
         name: t("resumeStrength.sections.workHistory"),
-        completed: data.is_work_history,
-        score: data.work_history_score,
+        completed: Boolean(data.is_work_history),
+        score: Number(data.work_history_score) || 0,
         max_score: 15,
         icon: Briefcase,
       },
       {
         name: t("resumeStrength.sections.projects"),
-        completed: data.is_project,
-        score: data.project_score,
+        completed: Boolean(data.is_project),
+        score: Number(data.project_score) || 0,
         max_score: 15,
         icon: FolderGit2,
       },
       {
         name: t("resumeStrength.sections.skills"),
-        completed: data.is_skills,
-        score: data.skills_score,
+        completed: Boolean(data.is_skills),
+        score: Number(data.skills_score) || 0,
         max_score: 10,
         icon: Code2,
       },
       {
         name: t("resumeStrength.sections.languages"),
-        completed: data.is_languages,
-        score: data.languages_score,
+        completed: Boolean(data.is_languages),
+        score: Number(data.languages_score) || 0,
         max_score: 5,
         icon: Languages,
       },
       {
         name: t("resumeStrength.sections.certification"),
-        completed: data.is_certifications,
-        score: data.certifications_score,
+        completed: Boolean(data.is_certifications),
+        score: Number(data.certifications_score) || 0,
         max_score: 5,
         icon: Award,
       },
       {
         name: "ATS",
-        completed: data.is_ats_friendly,
-        score: data.ats_score,
+        completed: Boolean(data.is_ats_friendly),
+        score: Number(data.ats_score) || 0,
         max_score: 10,
         icon: Search,
       },
     ];
+
+    console.log("Generated sections list:", sections);
+    return sections;
+  };
+
+  const sectionsList = getSectionsList(strength || {});
+  console.log("Final sectionsList:", sectionsList);
+
+  const getScoreColor = (score, maxScore) => {
+    const percentage = (score / maxScore) * 100;
+    if (percentage >= 50) return "bg-blue-500";
+    return "bg-red-600";
   };
 
   const handleImproveResume = async () => {
@@ -398,72 +421,30 @@ const ResumeStrength = ({ score, strength, resumeId }) => {
       setShowLoader(false);
     }
   };
-  const sectionsList = getSectionsList(strength);
 
-  const getScoreColor = (score, maxScore) => {
-    const percentage = (score / maxScore) * 100;
-    if (percentage >= 50) return "bg-blue-500";
-    return "bg-red-600";
-  };
+  // If no data is available, show a message
+  if (!strength) {
+    return (
+      <div className="bg-blue-50 p-6 rounded-lg mb-6">
+        <p className="text-gray-600 text-center">
+          {t("resumeStrength.noData") || "No resume strength data available"}
+        </p>
+      </div>
+    );
+  }
 
   return (
     <>
       {showLoader && <FullScreenLoader />}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <TooltipContent
-          improvements={strength?.ats_strenght}
+          improvements={strength?.ats_strenght || {}}
           resumeId={resumeId}
           onClose={() => setIsModalOpen(false)}
         />
       </Modal>
 
       <div className="bg-blue-50 p-6 rounded-lg mb-6">
-        {/* <div className="flex justify-between items-start mb-6">
-          <div>
-            <h2 className="text-xl font-semibold mb-1">
-              {" "}
-              {t("resumeStrength.resumeStrength")}
-            </h2>
-            <div className="flex items-center gap-2">
-              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-lg font-semibold">
-                {score}%
-              </span>
-            </div>
-          </div>
-
-          <div className="flex flex-col items-end">
-            <h3 className="text-xl font-semibold mb-1">
-              {" "}
-              {t("resumeStrength.fixResume")}
-            </h3>
-            <p className="text-gray-600">
-              {t("resumeStrength.foundErrors", {
-                errors: strength.total_errors,
-              })}{" "}
-            </p>
-            <p className="text-gray-600 mb-2">{t("resumeStrength.useTool")}</p>
-            <div className="flex gap-2">
-              <button
-                onClick={handleImproveResume}
-                disabled={!resumeId}
-                className={`px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors ${
-                  !resumeId ? "opacity-50 cursor-not-allowed" : ""
-                }`}
-              >
-                {t("resumeStrength.improveResume")}
-              </button>
-              <button
-                disabled={!resumeId}
-                onClick={() => setIsModalOpen(true)}
-                className={`px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors ${
-                  !resumeId ? "opacity-50 cursor-not-allowed" : ""
-                }`}
-              >
-                {t("resumeStrength.improveATS")}
-              </button>
-            </div>
-          </div>
-        </div> */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 md:gap-0">
           {/* Left Side: Score Display */}
           <div className="w-full md:w-auto">
@@ -472,7 +453,7 @@ const ResumeStrength = ({ score, strength, resumeId }) => {
             </h2>
             <div className="flex items-center gap-2">
               <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-lg font-semibold">
-                {score}%
+                {Number(score) || 0}%
               </span>
             </div>
           </div>
@@ -484,7 +465,7 @@ const ResumeStrength = ({ score, strength, resumeId }) => {
             </h3>
             <p className="text-gray-600">
               {t("resumeStrength.foundErrors", {
-                errors: strength.total_errors,
+                errors: Number(strength?.total_errors) || 0,
               })}
             </p>
             <p className="text-gray-600 mb-2">{t("resumeStrength.useTool")}</p>
@@ -515,7 +496,7 @@ const ResumeStrength = ({ score, strength, resumeId }) => {
         <div className="grid grid-cols-2 gap-6">
           {sectionsList.map((section) => {
             const Icon = section.icon;
-            const currentScore = section.score || 0;
+            const currentScore = Number(section.score) || 0;
             const scoreColor = getScoreColor(currentScore, section.max_score);
             const isATS = section.name === "ATS";
 
@@ -523,7 +504,6 @@ const ResumeStrength = ({ score, strength, resumeId }) => {
               <div
                 key={section.name}
                 className="flex items-center gap-4 relative"
-                // onClick={() => isATS && setIsModalOpen(true)}
                 style={{ cursor: isATS ? "pointer" : "default" }}
               >
                 <Icon className="w-5 h-5 text-gray-600 flex-shrink-0" />
@@ -534,9 +514,7 @@ const ResumeStrength = ({ score, strength, resumeId }) => {
                       {section.name}
                     </span>
                     <span className="text-sm font-medium text-gray-700">
-                      {`${((currentScore / section.max_score) * 100).toFixed(
-                        0
-                      )} %`}
+                      {`${((currentScore / section.max_score) * 100).toFixed(0)}%`}
                     </span>
                   </div>
 

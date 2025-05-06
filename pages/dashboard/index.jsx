@@ -120,6 +120,11 @@ export default function DashboardPage() {
             {t("dashboard_page.recommendedSteps")}
           </h1>
           <CurrentPlan />
+          {console.log("Data being passed to ResumeStrength:", {
+            score: strength?.resume_strenght || 0,
+            strength: strength || {},
+            resumeId: resumeId || null
+          })}
           <ResumeStrength
             score={strength?.resume_strenght || 0}
             strength={strength || {}}
