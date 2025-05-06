@@ -87,7 +87,7 @@
 //           <br />
 //           <div className="flex flex-wrap justify-around">
 //             <div className="w-full md:w-auto mb-6 md:mb-0" id="footer">
-//               <h2 className="text-lg font-bold text-[#1C2957]">Cibli Job </h2>
+//               <h2 className="text-lg font-bold text-[#1C2957]">nova job </h2>
 //               <ul>
 //                 <li>
 //                   <Link href="/footers/Aboutus">

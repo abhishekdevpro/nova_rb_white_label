@@ -128,7 +128,7 @@
       "get_our_weekly": "Recevez notre bulletin hebdomadaire",
       "type_your_email": "Saisissez votre e-mail...",
       "subscribe": "S'abonner",
-      "cibli_job": "Cibli Job",
+      "cibli_job": "nova job",
       "about_us": "À propos de nous",
       "careers": "Carrières",
       "resources": "Ressources",
@@ -450,7 +450,7 @@
                         {
                           "title": "5. Confidentialité",
                           "list": [
-                            "Cibli Job respecte la vie privée et la confidentialité de ses clients.",
+                            "nova job respecte la vie privée et la confidentialité de ses clients.",
                             "Toute information personnelle fournie sera utilisée uniquement pour la prestation des services et ne sera pas partagée avec des tiers sans consentement explicite.",
                             "Les clients s'engagent à ne pas divulguer les informations confidentielles obtenues via nos services."
                           ]
@@ -458,7 +458,7 @@
                         {
                           "title": "6. Limitation de responsabilité",
                           "list": [
-                            "Cibli Job ne sera pas responsable des dommages directs, indirects ou consécutifs résultant de l'utilisation de nos services.",
+                            "nova job ne sera pas responsable des dommages directs, indirects ou consécutifs résultant de l'utilisation de nos services.",
                             "Nous ne garantissons pas un emploi ou des résultats spécifiques après l'utilisation de nos services."
                           ]
                         },
@@ -472,7 +472,7 @@
                         {
                           "title": "8. Modifications des conditions générales",
                           "list": [
-                            "Cibli Job se réserve le droit de modifier ces conditions générales à tout moment sans préavis.",
+                            "nova job se réserve le droit de modifier ces conditions générales à tout moment sans préavis.",
                             "L'utilisation continue de nos services après toute modification implique l'acceptation des nouvelles conditions."
                           ]
                         },

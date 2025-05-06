@@ -80,7 +80,7 @@ function Placement() {
       your career goals. At Nova Job , we’re dedicated to your success and are
       here to support you every step of the way.
       <h2 className="text-sm font-bold my-2 mt-5 ">Contact Us</h2>
-      Reach out to us at [career@Cibli Job .ca](mailto:career@Cibli Job .ca) to
+      Reach out to us at [career@nova job .ca](mailto:career@nova job .ca) to
       to schedule a consultation. Let Nova Job be your partner in navigating
       the job market and securing the perfect role for your future.
     </div>
