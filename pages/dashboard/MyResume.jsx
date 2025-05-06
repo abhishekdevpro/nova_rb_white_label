@@ -28,47 +28,24 @@ const MyResume = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log("Token:", token);
     if (token) {
-      console.log("Fetching resumes with token:", token);
       axios
         .get(`${BASE_URL}/api/user/resume-list?lang=${selectedLang}`, {
           headers: { Authorization: token },
         })
         .then((response) => {
-          console.log("Full API Response:", response);
-          console.log("Response data:", response.data);
-          console.log("Response data.data:", response.data.data);
-          
-          // Check if response.data exists and has the expected structure
-          if (!response.data) {
-            console.error("No data in response");
-            return;
+          console.log("API Response:", response.data);
+          const resumeList = response?.data?.data || [];
+          console.log("Resume List:", resumeList);
+          if (resumeList.length === 0) {
+            toast.info(t("myresume.create_first_resume"));
           }
-
-          // Handle both possible response structures
-          const resumes = Array.isArray(response.data.data) 
-            ? response.data.data 
-            : Array.isArray(response.data.resumelist) 
-              ? response.data.resumelist 
-              : [];
-
-          console.log("Processed resumes:", resumes);
-          
-          if (resumes.length === 0) {
-            console.log("No resumes found");
-            toast.info("Create your first resume.");
-          }
-          
-          setResumes(resumes);
+          setResumes(resumeList);
         })
         .catch((error) => {
           console.error("Error fetching resume list:", error);
-          console.error("Error details:", error.response?.data);
-          toast.error("Failed to fetch resumes.");
+          toast.error(t("myresume.fetch_resume_error"));
         });
-    } else {
-      console.log("No token found in localStorage");
     }
   }, [selectedLang]);
 
@@ -77,70 +54,20 @@ const MyResume = () => {
     router.push(`/dashboard/aibuilder/${resumeId}`);
   };
 
-  // const handleDownload = async (resumeId) => {
-  //   setResumeId(resumeId);
-  //   const apiUrl = `${BASE_URL}/api/user/download-resume/${resumeId}`;
-
-  //   try {
-  //     const token = localStorage.getItem("token");
-  //     const response = await fetch(apiUrl, {
-  //       method: "GET",
-  //       headers: {
-  //         Authorization: token,
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-
-  //     if (!response.ok) throw new Error("Failed to download file");
-
-  //     const blob = await response.blob();
-  //     const url = window.URL.createObjectURL(blob);
-  //     const link = document.createElement("a");
-  //     link.href = url;
-  //     link.download = `resume_${resumeId}.pdf`;
-  //     document.body.appendChild(link);
-  //     link.click();
-  //     link.remove();
-  //   } catch (error) {
-  //     console.error("Error downloading file:", error);
-  //     toast.error("Failed to download the file. Please try again later.");
-  //   }
-  // };
-
   const handleopenDeleteModal = (resumeId) => {
     setDeleteresumeid(resumeId);
     setisDeleteModalOpen(true);
   };
+
   const handleCloseModal = () => {
     setisDeleteModalOpen(false);
   };
 
   const handleOpenEditModal = (resume) => {
     setCurrentResume(resume);
-    setNewResumeTitle(resume.resume_title || "");
+    setNewResumeTitle(resume.ai_resume_parse_data?.templateData?.name || "");
     setIsEditModalOpen(true);
   };
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (token) {
-  //     axios
-  //       .get(`${BASE_URL}/api/user/resume-list`, {
-  //         headers: { Authorization: token },
-  //       })
-  //       .then((response) => {
-  //         const resumes = response?.data?.resumelist || [];
-  //         if (resumes.length === 0) {
-  //           toast.info(t("myresume.create_first_resume"));
-  //         }
-  //         setResumes(resumes);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching resume list:", error);
-  //         toast.error(t("myresume.fetch_resume_error"));
-  //       });
-  //   }
-  // }, []);
 
   const handleDeleteResume = async () => {
     const token = localStorage.getItem("token");
@@ -155,7 +82,7 @@ const MyResume = () => {
         );
         toast.success(t("myresume.resume_deleted_success"));
         setisDeleteModalOpen(false);
-        setResumes(resumes.filter((resume) => resume.id !== deleteresumeid));
+        setResumes(resumes.filter((resume) => resume.resume_id !== deleteresumeid));
       } catch (error) {
         console.error("Error deleting resume:", error);
         toast.error(t("myresume.resume_deleted_error"));
@@ -170,7 +97,7 @@ const MyResume = () => {
     if (token && currentResume) {
       axios
         .put(
-          `${BASE_URL}/api/user/resume-details/${currentResume.id}`,
+          `${BASE_URL}/api/user/resume-details/${currentResume.resume_id}`,
           { resume_title: newResumeTitle },
           { headers: { Authorization: token } }
         )
@@ -179,8 +106,17 @@ const MyResume = () => {
           setIsEditModalOpen(false);
           setResumes((prevResumes) =>
             prevResumes.map((resume) =>
-              resume.id === currentResume.id
-                ? { ...resume, resume_title: newResumeTitle }
+              resume.resume_id === currentResume.resume_id
+                ? {
+                    ...resume,
+                    ai_resume_parse_data: {
+                      ...resume.ai_resume_parse_data,
+                      templateData: {
+                        ...resume.ai_resume_parse_data.templateData,
+                        name: newResumeTitle,
+                      },
+                    },
+                  }
                 : resume
             )
           );
@@ -234,67 +170,70 @@ const MyResume = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
+              {console.log("Rendering resumes:", resumes)}
               {resumes.length > 0 ? (
-                resumes.map((resume, index) => (
-                  <tr key={index} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {index + 1}.
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center space-x-2">
-                        <span className="text-sm text-gray-900">
-                          {resume.resume_title || "ABC"}
-                        </span>
-                        <button
-                          onClick={() => handleOpenEditModal(resume)}
-                          className="text-[#1C2957] hover:text-[#369984]"
-                        >
-                          🖍
-                        </button>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {new Date(resume.updated_at).toLocaleDateString()}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {new Date(resume.created_at).toLocaleDateString()}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <div className="flex items-center gap-2">
-                        {resume.resume_strenght_details?.resume_strenght ? (
-                          <span
-                            className={`px-3 py-1 rounded-full text-lg font-semibold ${
-                              resume.resume_strenght_details.resume_strenght >
-                              60
-                                ? "bg-blue-100 text-[#1C2957]"
-                                : "bg-red-100 text-red-800"
-                            }`}
-                          >
-                            {resume.resume_strenght_details.resume_strenght}
+                resumes.map((resume, index) => {
+                  console.log("Rendering resume:", resume);
+                  return (
+                    <tr key={index} className="hover:bg-gray-50">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {resume.s_no}.
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="flex items-center space-x-2">
+                          <span className="text-sm text-gray-900">
+                            {resume.ai_resume_parse_data?.templateData?.name || "Untitled Resume"}
                           </span>
-                        ) : (
-                          <span className="text-gray-500">_</span>
-                        )}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <div className="flex items-center space-x-3">
-                        <button
-                          onClick={() => handleEdit(resume.id)}
-                          className="text-[#1C2957] hover:text-[#369984] transition-colors duration-200"
-                        >
-                          <Edit className="w-5 h-5" />
-                        </button>
-                        <button
-                          onClick={() => handleopenDeleteModal(resume.id)}
-                          className="text-red-600 hover:text-red-800 transition-colors duration-200"
-                        >
-                          <Trash className="w-5 h-5" />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))
+                          <button
+                            onClick={() => handleOpenEditModal(resume)}
+                            className="text-[#1C2957] hover:text-[#369984]"
+                          >
+                            🖍
+                          </button>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {new Date(resume.created_at).toLocaleDateString()}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {new Date(resume.created_at).toLocaleDateString()}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <div className="flex items-center gap-2">
+                          {resume.ai_resume_parse_data?.resume_strenght_details?.resume_strenght ? (
+                            <span
+                              className={`px-3 py-1 rounded-full text-lg font-semibold ${
+                                resume.ai_resume_parse_data.resume_strenght_details.resume_strenght > 60
+                                  ? "bg-blue-100 text-[#1C2957]"
+                                  : "bg-red-100 text-red-800"
+                              }`}
+                            >
+                              {resume.ai_resume_parse_data.resume_strenght_details.resume_strenght}
+                            </span>
+                          ) : (
+                            <span className="text-gray-500">_</span>
+                          )}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <div className="flex items-center space-x-3">
+                          <button
+                            onClick={() => handleEdit(resume.resume_id)}
+                            className="text-[#1C2957] hover:text-[#369984] transition-colors duration-200"
+                          >
+                            <Edit className="w-5 h-5" />
+                          </button>
+                          <button
+                            onClick={() => handleopenDeleteModal(resume.resume_id)}
+                            className="text-red-600 hover:text-red-800 transition-colors duration-200"
+                          >
+                            <Trash className="w-5 h-5" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })
               ) : (
                 <tr>
                   <td
@@ -334,6 +273,8 @@ const MyResume = () => {
           </div>
         </div>
       )}
+
+      {/* Edit Resume Title Modal */}
       {isEditModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 max-w-sm mx-4">
