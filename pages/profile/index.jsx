@@ -462,7 +462,7 @@ const ProfileForm = () => {
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4 relative">
             {formData.photo && (
               <div className="relative">
-                <Image
+                <img
                   src={
                     formData.photo
                       ? `${BASE_URL}${formData.photo}`

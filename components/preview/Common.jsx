@@ -3,6 +3,7 @@ import Image from "next/image";
 import PropTypes from "prop-types";
 import { ResumeContext } from "../context/ResumeContext";
 import { useTranslation } from "react-i18next";
+import { BASE_URL } from "../Constant/constant";
 
 const ImageWrapper = ({
   src,
@@ -12,7 +13,30 @@ const ImageWrapper = ({
   border = "2px",
   borderColor = "black",
 }) => {
-  const finalSize = size || defaultSize; // Use dynamic size if provided, otherwise use default size
+  const finalSize = size || defaultSize;
+
+  // Function to handle the image source
+  const getImageSrc = (url) => {
+    if (!url) return null;
+
+    // If it's a base64 image, return it as is
+    if (url.startsWith('data:image')) {
+      return url;
+    }
+
+    // If it's a URL, ensure it's properly formatted
+    // If the URL already contains the base URL or https://, return it as is
+    if (url.includes(BASE_URL) || url.startsWith('https://')) {
+      return url;
+    }
+
+    // If it's a relative path, prepend the base URL
+    const cleanPath = url.replace(/^\/+/, '');
+    return `${BASE_URL}/${cleanPath}`;
+  };
+
+  // Get the formatted image source
+  const imageSrc = getImageSrc(src);
 
   return (
     <div
@@ -23,13 +47,14 @@ const ImageWrapper = ({
         border: `${border} solid ${borderColor}`,
       }}
     >
-      {src ? (
+      {imageSrc ? (
         <Image
-          src={src}
-          alt={alt}
+          src={imageSrc}
+          alt={alt || "Profile image"}
           width={finalSize}
           height={finalSize}
           className="object-cover w-full h-full"
+          unoptimized={true}
         />
       ) : (
         <div className="w-full h-full bg-gray-300 flex items-center justify-center">

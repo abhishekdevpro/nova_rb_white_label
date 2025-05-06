@@ -27,6 +27,7 @@ const Navbar = () => {
   const [photo, setPhoto] = useState("");
   const [user, setUser] = useState("");
   const router = useRouter();
+  const BASE_URL = "https://apiwl.novajobs.us/";
   // const axiosInstance = axios.create();
 
   // useEffect(() => {
@@ -209,7 +210,7 @@ const Navbar = () => {
                   <Image
                     src={
                       photo
-                        ? `https://apiwl.novajobs.us${photo}`
+                        ? `${BASE_URL}${photo}`
                         : "https://img.freepik.com/premium-vector/businessman-avatar-illustration-cartoon-user-portrait-user-profile-icon_118339-4382.jpg"
                     }
                     alt="User"

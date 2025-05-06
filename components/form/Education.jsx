@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 const Education = () => {
   const { i18n, t } = useTranslation();
   const language = i18n.language;
-  const { resumeData, setResumeData, resumeStrength } =
+  const { resumeData, setResumeData, resumeStrength, setResumeStrength } =
     useContext(ResumeContext);
   const [activeTooltip, setActiveTooltip] = useState(null);
   const [universitySuggestions, setUniversitySuggestions] = useState([]);
@@ -26,17 +26,36 @@ const Education = () => {
   });
   const router = useRouter();
   const { improve } = router.query;
+  const [validationErrors, setValidationErrors] = useState({});
+
+  // Initialize education array if it doesn't exist
+  React.useEffect(() => {
+    if (!resumeData?.education) {
+      setResumeData({
+        ...resumeData,
+        education: [{
+          school: "",
+          degree: "",
+          fieldOfStudy: "",
+          startDate: "",
+          endDate: "",
+          description: "",
+          location: ""
+        }]
+      });
+    }
+  }, []);
 
   const handleEducation = (e, index) => {
     const { name, value } = e.target;
-    const newEducation = [...resumeData.education];
-    newEducation[index][name] = value;
+    const newEducation = [...(resumeData?.education || [])];
+    newEducation[index] = { ...newEducation[index], [name]: value };
     setResumeData({ ...resumeData, education: newEducation });
 
     if (name === "school") {
       fetchUniversities(value, index);
     }
-    if (name == "degree") {
+    if (name === "degree") {
       fetchDegrees(value, index);
     }
     if (name === "location") {
@@ -59,19 +78,17 @@ const Education = () => {
         )}&lang=${language}`
       );
 
-      // ✅ Axios returns parsed data directly
       const data = response.data;
       const universityList = data?.data || [];
 
       setUniversitySuggestions(universityList.map((item) => item.name));
       setShowUniversityDropdown(true);
-      // setUniversitySuggestions(data.data.map((item) => item.name));
-      // setShowUniversityDropdown(true);
     } catch (error) {
       console.error("Error fetching universities:", error);
+      toast.error(t("builder_forms.education.errors.university_fetch"));
+    } finally {
+      setIsLoading((prev) => ({ ...prev, university: false }));
     }
-
-    setIsLoading((prev) => ({ ...prev, university: false }));
   };
 
   const fetchDegrees = async (keyword, index) => {
@@ -87,15 +104,17 @@ const Education = () => {
           keyword
         )}&lang=${language}`
       );
-      if (response.ok) {
-        const data = await response.json();
-        setDegreeSuggestions(data.data.map((item) => item.name));
+      
+      if (response.data?.data) {
+        setDegreeSuggestions(response.data.data.map((item) => item.name));
         setShowDegreeDropdown(true);
       }
     } catch (error) {
       console.error("Error fetching degrees:", error);
+      toast.error(t("builder_forms.education.errors.degree_fetch"));
+    } finally {
+      setIsLoading((prev) => ({ ...prev, degree: false }));
     }
-    setIsLoading((prev) => ({ ...prev, degree: false }));
   };
 
   const fetchLocations = async (keyword) => {
@@ -113,13 +132,15 @@ const Education = () => {
       );
 
       const data = response.data;
-      const locations = data.data.location_names.map((item) => item);
+      const locations = data?.data?.location_names || [];
       setLocationSuggestions(locations);
       setShowLocationDropdown(true);
     } catch (error) {
       console.error("Error fetching locations:", error);
+      toast.error(t("builder_forms.education.errors.location_fetch"));
+    } finally {
+      setIsLoading((prev) => ({ ...prev, location: false }));
     }
-    setIsLoading((prev) => ({ ...prev, location: false }));
   };
 
   const selectUniversity = (value, index) => {
@@ -358,7 +379,7 @@ const Education = () => {
       <h2 className="input-title text-black text-3xl">
         {t("resumeStrength.sections.education")}
       </h2>
-      {resumeData.education.map((education, index) => (
+      {(resumeData?.education || []).map((education, index) => (
         <div key={index} className="f-col">
           <div className="relative mb-4">
             <div className="flex items-center justify-between mt-4">
@@ -782,7 +803,7 @@ const Education = () => {
         </div>
       ))}
       <FormButton
-        size={resumeData.education.length}
+        size={(resumeData?.education || []).length}
         add={addEducation}
         remove={removeEducation}
       />

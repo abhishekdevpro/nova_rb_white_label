@@ -11,7 +11,7 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: ["avatars.githubusercontent.com"],
+    domains: ["avatars.githubusercontent.com", "novajobs.us", "img.freepik.com", "apiwl.novajobs.us"],
   },
   webpack(config) {
     config.module.rules.push({
