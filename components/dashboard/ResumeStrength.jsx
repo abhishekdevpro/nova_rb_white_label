@@ -277,13 +277,7 @@ const TooltipContent = ({ improvements, resumeId, onClose }) => {
 };
 
 const ResumeStrength = ({ score, strength, resumeId }) => {
-  console.log("ResumeStrength received props:", {
-    score,
-    strength,
-    resumeId,
-    strengthKeys: strength ? Object.keys(strength) : [],
-    strengthValues: strength ? Object.entries(strength).map(([key, value]) => `${key}: ${value}`) : []
-  });
+  console.log("ResumeStrength Props:", { score, strength, resumeId });
   const { selectedLang } = useContext(ResumeContext);
   const [showLoader, setShowLoader] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
