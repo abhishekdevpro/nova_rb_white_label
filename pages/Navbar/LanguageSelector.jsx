@@ -27,7 +27,7 @@ function LanguageSelector() {
 
   return (
     <div className="fixed top-12 right-4 z-50">
-      <button
+      {/* <button
         onClick={() => setIsOpen(!isOpen)}
         className="bg-white shadow-lg p-2 rounded-full border hover:bg-gray-100 transition"
       >
@@ -53,7 +53,7 @@ function LanguageSelector() {
             🇫🇷 French
           </button>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

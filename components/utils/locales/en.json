@@ -13,7 +13,7 @@
   "login": "Log in",
   "signup": "Sign up",
 "settings": "Settings",
- "resume_tool_live": "\"Cibli Job\" AI Powered Resume Tool is Live NOW!",
+ "resume_tool_live": "\"nova job\" AI Powered Resume Tool is Live NOW!",
     
 "resume_features": "Resume Score, Enhanced Resume & much more. Now Apply Job with confidence with our all-in-one solution under one roof.",
     
@@ -135,7 +135,7 @@
         "get_our_weekly": "Get Our Weekly",
         "type_your_email": "Type your email...",
         "subscribe": "Subscribe",
-        "cibli_job": "Cibli Job",
+        "cibli_job": "nova job",
         "about_us": "About Us",
         "careers": "Careers",
         "resources": "Resources",
@@ -457,7 +457,7 @@
                         {
                           "title": "5. Confidentiality",
                           "list": [
-                            "Cibli Job respects the privacy and confidentiality of its clients.",
+                            "nova job respects the privacy and confidentiality of its clients.",
                             "Any personal information provided by clients will be used solely for the purpose of delivering services and will not be shared with third parties without explicit consent.",
                             "Clients agree not to disclose any confidential information obtained through our services to third parties."
                           ]
@@ -465,7 +465,7 @@
                         {
                           "title": "6. Limitation of Liability",
                           "list": [
-                            "Cibli Job will not be liable for any direct, indirect, incidental, or consequential damages arising out of or in connection with the use of our services.",
+                            "nova job will not be liable for any direct, indirect, incidental, or consequential damages arising out of or in connection with the use of our services.",
                             "We do not guarantee employment or specific job outcomes as a result of using our services."
                           ]
                         },
@@ -479,7 +479,7 @@
                         {
                           "title": "8. Changes to Terms and Conditions",
                           "list": [
-                            "Cibli Job reserves the right to modify or update these terms and conditions at any time without prior notice.",
+                            "nova job reserves the right to modify or update these terms and conditions at any time without prior notice.",
                             "Continued use of our website and services after any changes signifies acceptance of the revised terms and conditions."
                           ]
                         },

@@ -82,135 +82,39 @@ const Certification = () => {
   };
 
   return (
-    <div className="flex-col gap-3 w-full mt-10 px-10 max-h-[400px] overflow-y-auto">
-      <h2 className="input-title text-black text-3xl">
-        {t("resumeStrength.sections.certifications")}
+    <div className="w-full min-h-[100vh] bg-[#3a3860] px-10 py-10 rounded-tl-3xl">
+      <h2 className="text-3xl font-bold text-white mb-6">
+        {t("Certifications")}
       </h2>
-      {(resumeData?.[skillType] || []).map((certification, index) => (
-        <div key={index} className="f-col justify-center">
-          <div className="relative flex justify-center items-center gap-2">
+      <div className="flex flex-col gap-4">
+        {(resumeData?.[skillType] || []).map((certification, index) => (
+          <div key={index} className="flex items-center gap-3">
             <input
               type="text"
               placeholder={t("builder_forms.certification.name")}
               name="name"
-              className={`w-full other-input border ${
-                improve && hasErrors(index, "name")
-                  ? "border-red-500"
-                  : "border-black"
-              }`}
+              className="w-full px-4 py-2 rounded-md bg-white text-black border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400 text-base"
               value={certification.name}
               onChange={(e) => handleCertification(e, index)}
             />
-            {improve && hasErrors(index, "name") && (
-              <button
-                type="button"
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
-                onClick={() =>
-                  setActiveTooltip(
-                    activeTooltip === `name-${index}`
-                      ? null
-                      : `name-${index}`
-                  )
-                }
-              >
-                <AlertCircle className="w-5 h-5" />
-              </button>
-            )}
+            <button
+              type="button"
+              className="bg-red-500 hover:bg-red-600 p-2 rounded-md flex items-center justify-center"
+              onClick={() => removeCertification(index)}
+              aria-label="Delete"
+            >
+              <X className="w-5 h-5 text-white" />
+            </button>
           </div>
-          <div className="relative flex justify-center items-center gap-2">
-            <input
-              type="text"
-              placeholder={t("builder_forms.certification.issuer")}
-              name="issuer"
-              className={`w-full other-input border ${
-                improve && hasErrors(index, "issuer")
-                  ? "border-red-500"
-                  : "border-black"
-              }`}
-              value={certification.issuer}
-              onChange={(e) => handleCertification(e, index)}
-            />
-            {improve && hasErrors(index, "issuer") && (
-              <button
-                type="button"
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
-                onClick={() =>
-                  setActiveTooltip(
-                    activeTooltip === `issuer-${index}`
-                      ? null
-                      : `issuer-${index}`
-                  )
-                }
-              >
-                <AlertCircle className="w-5 h-5" />
-              </button>
-            )}
-          </div>
-          <div className="relative flex justify-center items-center gap-2">
-            <input
-              type="text"
-              placeholder={t("builder_forms.certification.date")}
-              name="date"
-              className={`w-full other-input border ${
-                improve && hasErrors(index, "date")
-                  ? "border-red-500"
-                  : "border-black"
-              }`}
-              value={certification.date}
-              onChange={(e) => handleCertification(e, index)}
-            />
-            {improve && hasErrors(index, "date") && (
-              <button
-                type="button"
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
-                onClick={() =>
-                  setActiveTooltip(
-                    activeTooltip === `date-${index}`
-                      ? null
-                      : `date-${index}`
-                  )
-                }
-              >
-                <AlertCircle className="w-5 h-5" />
-              </button>
-            )}
-          </div>
-          <div className="relative flex justify-center items-center gap-2">
-            <textarea
-              placeholder={t("builder_forms.certification.description")}
-              name="description"
-              className={`w-full other-input border ${
-                improve && hasErrors(index, "description")
-                  ? "border-red-500"
-                  : "border-black"
-              }`}
-              value={certification.description}
-              onChange={(e) => handleCertification(e, index)}
-              rows={4}
-            />
-            {improve && hasErrors(index, "description") && (
-              <button
-                type="button"
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-red-500 hover:text-red-600 transition-colors"
-                onClick={() =>
-                  setActiveTooltip(
-                    activeTooltip === `description-${index}`
-                      ? null
-                      : `description-${index}`
-                  )
-                }
-              >
-                <AlertCircle className="w-5 h-5" />
-              </button>
-            )}
-          </div>
-        </div>
-      ))}
-      <FormButton
-        size={(resumeData?.[skillType] || []).length}
-        add={addCertification}
-        remove={removeCertification}
-      />
+        ))}
+      </div>
+      <button
+        type="button"
+        className="mt-6 flex items-center gap-2 bg-black text-white px-4 py-2 rounded-md font-semibold text-base hover:bg-gray-900 transition-colors"
+        onClick={addCertification}
+      >
+        <span className="text-lg font-bold">+</span> {t("builder_forms.certification.add_section", "Add section")}
+      </button>
     </div>
   );
 };
