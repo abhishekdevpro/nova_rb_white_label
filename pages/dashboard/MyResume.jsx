@@ -28,22 +28,47 @@ const MyResume = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    console.log("Token:", token);
     if (token) {
+      console.log("Fetching resumes with token:", token);
       axios
         .get(`${BASE_URL}/api/user/resume-list?lang=${selectedLang}`, {
           headers: { Authorization: token },
         })
         .then((response) => {
-          const resumes = response?.data?.resumelist || [];
+          console.log("Full API Response:", response);
+          console.log("Response data:", response.data);
+          console.log("Response data.data:", response.data.data);
+          
+          // Check if response.data exists and has the expected structure
+          if (!response.data) {
+            console.error("No data in response");
+            return;
+          }
+
+          // Handle both possible response structures
+          const resumes = Array.isArray(response.data.data) 
+            ? response.data.data 
+            : Array.isArray(response.data.resumelist) 
+              ? response.data.resumelist 
+              : [];
+
+          console.log("Processed resumes:", resumes);
+          
           if (resumes.length === 0) {
+            console.log("No resumes found");
             toast.info("Create your first resume.");
           }
+          
           setResumes(resumes);
         })
         .catch((error) => {
           console.error("Error fetching resume list:", error);
+          console.error("Error details:", error.response?.data);
           toast.error("Failed to fetch resumes.");
         });
+    } else {
+      console.log("No token found in localStorage");
     }
   }, [selectedLang]);
 
