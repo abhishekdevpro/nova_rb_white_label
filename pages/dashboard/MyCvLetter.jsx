@@ -204,7 +204,7 @@ const MyCvLetter = () => {
     //                   <div className="flex items-center space-x-3">
     //                     <button
     //                       onClick={() => handleEdit(coverletter.id)}
-    //                       className="text-[#1C2957] hover:text-[#369984] transition-colors duration-200"
+    //                       className="text-[#1C2957] hover:text-[#1C2957] transition-colors duration-200"
     //                     >
     //                       <Edit className="w-5 h-5" />
     //                     </button>
@@ -219,7 +219,7 @@ const MyCvLetter = () => {
     //                     </button>
     //                     <button
     //                       onClick={() => handleDownload(coverletter.id)}
-    //                       className="text-[#1C2957] hover:text-[#369984]  transition-colors duration-200"
+    //                       className="text-[#1C2957] hover:text-[#1C2957]  transition-colors duration-200"
     //                     >
     //                       <Download className="w-5 h-5" />
     //                     </button>
@@ -365,7 +365,7 @@ const MyCvLetter = () => {
                       <div className="flex items-center space-x-3">
                         <button
                           onClick={() => handleEdit(coverletter.id)}
-                          className="text-[#1C2957] hover:text-[#369984] transition-colors duration-200"
+                          className="text-[#1C2957] hover:text-[#1C2957] transition-colors duration-200"
                         >
                           <Edit className="w-5 h-5" />
                         </button>
@@ -380,7 +380,7 @@ const MyCvLetter = () => {
                         </button>
                         <button
                           onClick={() => handleDownload(coverletter.id)}
-                          className="text-[#1C2957] hover:text-[#369984] transition-colors duration-200"
+                          className="text-[#1C2957] hover:text-[#1C2957] transition-colors duration-200"
                         >
                           <Download className="w-5 h-5" />
                         </button>

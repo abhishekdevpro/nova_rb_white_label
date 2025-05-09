@@ -125,7 +125,7 @@ const Skills = () => {
         <div className="flex justify-center mt-5">
           <button
             onClick={handleCreateResume}
-            className="flex justify-center items-center px-4 py-2 w-full sm:w-auto bg-[#1C2957] text-white rounded-lg hover:bg-[#369984] transition-colors duration-200 font-medium shadow-sm"
+            className="flex justify-center items-center px-4 py-2 w-full sm:w-auto bg-[#1C2957] text-white rounded-lg hover:bg-[#1C2957] transition-colors duration-200 font-medium shadow-sm"
           >
             <Plus className="w-5 h-5 mr-2" /> {t("skill.create_new_resume")}
           </button>

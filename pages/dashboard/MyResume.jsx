@@ -82,7 +82,9 @@ const MyResume = () => {
         );
         toast.success(t("myresume.resume_deleted_success"));
         setisDeleteModalOpen(false);
-        setResumes(resumes.filter((resume) => resume.resume_id !== deleteresumeid));
+        setResumes(
+          resumes.filter((resume) => resume.resume_id !== deleteresumeid)
+        );
       } catch (error) {
         console.error("Error deleting resume:", error);
         toast.error(t("myresume.resume_deleted_error"));
@@ -136,7 +138,7 @@ const MyResume = () => {
           {t("myresume.title")}
         </h1>
         <Link href={"/dashboard/resume-builder"}>
-          <button className="flex mt-4 items-center px-4 py-2 bg-[#1C2957] text-white rounded-lg hover:bg-[#369984] transition-colors duration-200 font-medium shadow-sm">
+          <button className="flex mt-4 items-center px-4 py-2 bg-[#1C2957] text-white rounded-lg hover:bg-[#1C2957] transition-colors duration-200 font-medium shadow-sm">
             <Plus className="w-5 h-5 mr-2" />
             {t("myresume.create_new_resume")}
           </button>
@@ -182,11 +184,12 @@ const MyResume = () => {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center space-x-2">
                           <span className="text-sm text-gray-900">
-                            {resume.ai_resume_parse_data?.templateData?.name || "Untitled Resume"}
+                            {resume.ai_resume_parse_data?.templateData?.name ||
+                              "Untitled Resume"}
                           </span>
                           <button
                             onClick={() => handleOpenEditModal(resume)}
-                            className="text-[#1C2957] hover:text-[#369984]"
+                            className="text-[#1C2957] hover:text-[#1C2957]"
                           >
                             🖍
                           </button>
@@ -200,15 +203,20 @@ const MyResume = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         <div className="flex items-center gap-2">
-                          {resume.ai_resume_parse_data?.resume_strenght_details?.resume_strenght ? (
+                          {resume.ai_resume_parse_data?.resume_strenght_details
+                            ?.resume_strenght ? (
                             <span
                               className={`px-3 py-1 rounded-full text-lg font-semibold ${
-                                resume.ai_resume_parse_data.resume_strenght_details.resume_strenght > 60
+                                resume.ai_resume_parse_data
+                                  .resume_strenght_details.resume_strenght > 60
                                   ? "bg-blue-100 text-[#1C2957]"
                                   : "bg-red-100 text-red-800"
                               }`}
                             >
-                              {resume.ai_resume_parse_data.resume_strenght_details.resume_strenght}
+                              {
+                                resume.ai_resume_parse_data
+                                  .resume_strenght_details.resume_strenght
+                              }
                             </span>
                           ) : (
                             <span className="text-gray-500">_</span>
@@ -219,12 +227,14 @@ const MyResume = () => {
                         <div className="flex items-center space-x-3">
                           <button
                             onClick={() => handleEdit(resume.resume_id)}
-                            className="text-[#1C2957] hover:text-[#369984] transition-colors duration-200"
+                            className="text-[#1C2957] hover:text-[#1C2957] transition-colors duration-200"
                           >
                             <Edit className="w-5 h-5" />
                           </button>
                           <button
-                            onClick={() => handleopenDeleteModal(resume.resume_id)}
+                            onClick={() =>
+                              handleopenDeleteModal(resume.resume_id)
+                            }
                             className="text-red-600 hover:text-red-800 transition-colors duration-200"
                           >
                             <Trash className="w-5 h-5" />

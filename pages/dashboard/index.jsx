@@ -88,49 +88,51 @@ export default function DashboardPage() {
 
   return (
     <>
-      <Navbar />
-      <div className="flex flex-col sm:flex-row justify-center items-center mb-8 gap-4 mt-4 p-4">
-        <button
-          onClick={handleCreateResume}
-          className="flex justify-center items-center px-4 py-2 w-full sm:w-auto bg-[#1C2957] text-white rounded-lg hover:bg-[#369984] transition-colors duration-200 font-medium shadow-sm"
-        >
-          <Plus className="w-5 h-5 mr-2" /> {t("dashboard_page.createResume")}
-        </button>
-        <button
-          onClick={handleCreateCoverLetter}
-          className="flex justify-center items-center px-4 py-2 w-full sm:w-auto bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors duration-200 font-medium shadow-sm"
-        >
-          <Plus className="w-5 h-5 mr-2" />{" "}
-          {t("dashboard_page.createCoverLetter")}
-        </button>
-        <button
-          onClick={handleMyDashboard}
-          className="flex justify-center items-center px-4 py-2 w-full sm:w-auto bg-gray-400 text-white rounded-lg hover:bg-gray-500 transition-colors duration-200 font-medium shadow-sm"
-        >
-          {t("dashboard_page.myProfileDashboard")}
-        </button>
-      </div>
-      <div className="flex flex-col max-w-7xl mx-auto md:flex-row min-h-screen bg-white p-4">
-        {/* Sidebar */}
-        <Sidebar score={strength?.resume_strenght || 0} resumeId={resumeId} />
+      <div className="bg-gradient-to-b from-white to-blue-200">
+        <Navbar />
+        <div className="flex flex-col sm:flex-row justify-center items-center mb-8 gap-4 mt-4 p-4">
+          <button
+            onClick={handleCreateResume}
+            className="flex justify-center items-center px-4 py-2 w-full sm:w-auto bg-[#1C2957] text-white rounded-lg  transition-colors duration-200 font-medium shadow-sm"
+          >
+            <Plus className="w-5 h-5 mr-2" /> {t("dashboard_page.createResume")}
+          </button>
+          <button
+            onClick={handleCreateCoverLetter}
+            className="flex justify-center items-center px-4 py-2 w-full sm:w-auto bg-red-700 text-white rounded-lg hover:bg-red-800 transition-colors duration-200 font-medium shadow-sm"
+          >
+            <Plus className="w-5 h-5 mr-2" />{" "}
+            {t("dashboard_page.createCoverLetter")}
+          </button>
+          <button
+            onClick={handleMyDashboard}
+            className="flex justify-center items-center px-4 py-2 w-full sm:w-auto bg-gray-400 text-white rounded-lg hover:bg-gray-500 transition-colors duration-200 font-medium shadow-sm"
+          >
+            {t("dashboard_page.myProfileDashboard")}
+          </button>
+        </div>
+        <div className="flex flex-col max-w-7xl mx-auto md:flex-row min-h-screen bg-white p-4">
+          {/* Sidebar */}
+          <Sidebar score={strength?.resume_strenght || 0} resumeId={resumeId} />
 
-        {/* Main Content */}
-        <main className="flex-1 p-6 overflow-y-auto">
-          <h1 className="text-2xl font-bold mb-6">
-            {t("dashboard_page.recommendedSteps")}
-          </h1>
-          <CurrentPlan />
-          <ResumeStrength
-            score={strength?.resume_strenght || 0}
-            strength={strength || {}}
-            resumeId={resumeId || null}
-          />
-          <InterviewSection />
-          <CoverLetterSection />
-        </main>
+          {/* Main Content */}
+          <main className="flex-1 p-6 overflow-y-auto">
+            <h1 className="text-2xl font-bold mb-6">
+              {t("dashboard_page.recommendedSteps")}
+            </h1>
+            <CurrentPlan />
+            <ResumeStrength
+              score={strength?.resume_strenght || 0}
+              strength={strength || {}}
+              resumeId={resumeId || null}
+            />
+            <InterviewSection />
+            <CoverLetterSection />
+          </main>
+        </div>
+        <MyResume />
+        <JobSearch />
       </div>
-      <MyResume />
-      <JobSearch />
     </>
   );
 }

@@ -739,7 +739,7 @@ export default function PaymentPage() {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-6">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-white to-blue-200 p-6">
         <div className="max-w-5xl w-full bg-white shadow-lg rounded-lg p-6 md:flex">
           <div className=" p-6">
             <div className="md:w-1/3 bg-gray-100 p-6 rounded-lg mt-6 md:mt-0 ">

@@ -327,130 +327,94 @@ const CVSelector = ({ onNext, onBack, onChange, value }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            {t("cvSelector.title")}
-          </h2>
-          <p className="text-xl text-gray-600">{t("cvSelector.description")}</p>
+    <div className="min-h-screen bg-gradient-to-b from-white to-blue-200 flex flex-col">
+      <div className="bg-blue-700 text-white py-3 px-6 rounded-b-3xl mx-auto mt-4   items-center gap-3 shadow-md">
+        <h2 className="text-3xl font-bold text-white">
+          {t("cvSelector.title")}
+        </h2>
+        <p className="text-lg text-white mt-2">{t("cvSelector.description")}</p>
+      </div>
+
+      <div className="flex flex-col lg:flex-row gap-6 px-4 md:px-12 py-10 flex-1 overflow-hidden">
+        {/* Sidebar - Color Theme */}
+        <div className="bg-white rounded-2xl shadow-md p-6 h-fit sticky top-10 w-full lg:max-w-[250px]">
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">
+            {t("cvSelector.colorTheme")}
+          </h3>
+          <div className="grid grid-cols-5 gap-4">
+            {colors.map((color) => (
+              <button
+                key={color.name}
+                className={`
+                w-8 h-8 rounded-full ${color.class}
+                transform hover:scale-110 transition-all duration-200
+                ${
+                  selectedHexCode === color.hexCode
+                    ? `ring-2 ring-offset-2 ${color.selectedClass}`
+                    : "hover:ring-2 hover:ring-offset-2 hover:ring-gray-300"
+                }
+              `}
+                onClick={() => handleColorChange(color.hexCode, color.name)}
+                title={color.name}
+              />
+            ))}
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Sidebar */}
-          <div className="bg-white rounded-xl shadow-lg p-6 h-fit sticky top-8">
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                {t("cvSelector.colorTheme")}
-              </h3>
-              <div className="grid grid-cols-5 gap-4">
-                {colors.map((color) => (
-                  <div
-                    key={color.name}
-                    className="flex items-center justify-center"
-                  >
-                    <button
-                      className={`
-                        w-8 h-8 rounded-full ${color.class}
-                        transform hover:scale-110 transition-all duration-200
-                        ${
-                          selectedHexCode === color.hexCode
-                            ? `ring-2 ring-offset-2 ${color.selectedClass}`
-                            : "hover:ring-2 hover:ring-offset-2 hover:ring-gray-300"
-                        }
-                      `}
-                      onClick={() =>
-                        handleColorChange(color.hexCode, color.name)
-                      }
-                      title={color.name}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Categories */}
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                {t("cvSelector.categories")}
-              </h3>
-              <div className="space-y-2">
-                {Array.from(new Set(cvTemplates.map((t) => t.category))).map(
-                  (category) => (
-                    <button
-                      key={category}
-                      className={`
-                      w-full text-left px-4 py-2 rounded-lg
-                      ${
-                        value.category === category
-                          ? "bg-blue-50 text-[#1C2957]"
-                          : "text-gray-600 hover:bg-gray-50"
-                      }
-                    `}
-                      onClick={() => onChange({ ...value, category })}
-                    >
-                      {category}
-                    </button>
-                  )
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Templates Grid */}
-          <div className="lg:col-span-3">
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-              {cvTemplates
-                .filter((t) => !value.category || t.category === value.category)
-                .map((template) => (
-                  <button
-                    key={template.key}
-                    onClick={() => handleTemplateSelect(template)}
-                    className="group relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
-                    style={getHoverStyle(template.key)}
-                  >
-                    <div className="w-full">
-                      <div className="relative aspect-[3/4]">
-                        <Image
-                          src={template.imageUrl}
-                          alt={template.name}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                      </div>
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                        <p className="text-white font-medium text-lg">
-                          {template.name}
-                        </p>
-                        <p className="text-white/80 text-sm">
-                          {template.description}
-                        </p>
-                      </div>
+        {/* Templates Grid */}
+        <div className="flex-1 overflow-y-auto max-h-[calc(100vh-200px)] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {cvTemplates
+              // .filter((t) => !value.category || t.category === value.category)
+              .map((template) => (
+                <button
+                  key={template.key}
+                  onClick={() => handleTemplateSelect(template)}
+                  className="group bg-white rounded-xl shadow-md overflow-hidden border-2 transition-all duration-200 "
+                  style={getHoverStyle(template.key)}
+                >
+                  <div className="">
+                    <div className="relative aspect-[3/4]">
+                      <Image
+                        src={template.imageUrl}
+                        alt={template.name}
+                        layout="fill"
+                        objectFit="contain"
+                        className="transition-transform duration-200 group-hover:scale-105"
+                      />
                     </div>
-                  </button>
-                ))}
-            </div>
+                    {/* <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                      <p className="text-white font-medium text-lg">
+                        {template.name}
+                      </p>
+                      <p className="text-white/80 text-sm">
+                        {template.description}
+                      </p>
+                    </div> */}
+                  </div>
+                </button>
+              ))}
           </div>
         </div>
-
-        {/* Navigation Buttons */}
-        <div className="flex justify-between mt-12">
-          <button
-            onClick={onBack}
-            className="px-8 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-700 
-              font-medium hover:bg-gray-50 hover:border-gray-400 transition-colors"
-          >
-            {t("cvSelector.back")}
-          </button>
-          <button
-            onClick={handleSaveSelection}
-            disabled={loading}
-            style={{ backgroundColor: selectedHexCode }}
-            className="px-8 py-3 text-white rounded-xl font-medium
-              hover:opacity-90 transition-colors shadow-lg hover:shadow-xl disabled:opacity-50"
-          >
-            {loading ? t("cvSelector.saving") : t("cvSelector.next")}
-          </button>
-        </div>
+      </div>
+      {/* Navigation Buttons */}
+      <div className="sticky bottom-0 bg-white border-t border-gray-200 p-4 flex justify-between items-center shadow-md px-6">
+        <button
+          onClick={onBack}
+          className="px-8 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-700 
+            font-medium hover:bg-gray-50 hover:border-gray-400 transition-colors"
+        >
+          {t("cvSelector.back")}
+        </button>
+        <button
+          onClick={handleSaveSelection}
+          disabled={loading}
+          style={{ backgroundColor: selectedHexCode }}
+          className="px-8 py-3 text-white rounded-xl font-medium
+            hover:opacity-90 transition-colors shadow-lg hover:shadow-xl disabled:opacity-50"
+        >
+          {loading ? t("cvSelector.saving") : t("cvSelector.next")}
+        </button>
       </div>
     </div>
   );

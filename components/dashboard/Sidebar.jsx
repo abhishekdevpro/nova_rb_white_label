@@ -106,7 +106,7 @@
 //         <h2 className="text-lg font-semibold">{resumeTitle}</h2>
 //         <Link
 //           href="/dashboard/resumelist"
-//           className="text-[#1C2957] hover:text-[#369984]"
+//           className="text-[#1C2957] hover:text-[#1C2957]"
 //         >
 //           View All
 //         </Link>
@@ -207,14 +207,18 @@ const Sidebar = ({ score, resumeId }) => {
   const router = useRouter();
   const { t } = useTranslation();
 
-  const { resumeData, setResumeData, setHeaderColor, setBgColor ,selectedLang} =
-    useContext(ResumeContext);
+  const {
+    resumeData,
+    setResumeData,
+    setHeaderColor,
+    setBgColor,
+    selectedLang,
+  } = useContext(ResumeContext);
   const [selectedTemplate, setSelectedTemplate] = useState("template1");
   const [loading, setLoading] = useState(false);
   const [resumeTitle, setResumeTitle] = useState("");
-    const [showLoader, setShowLoader] = useState(false);
-  
-  
+  const [showLoader, setShowLoader] = useState(false);
+
   const handleEdit = () => {
     setShowLoader(true);
     setTimeout(() => {
@@ -271,7 +275,7 @@ const Sidebar = ({ score, resumeId }) => {
 
   useEffect(() => {
     fetchResumeData();
-  }, [resumeId,selectedLang]);
+  }, [resumeId, selectedLang]);
 
   const handleDownload = async () => {
     const apiUrl = `${BASE_URL}/api/user/download-resume/${resumeId}`;
@@ -306,87 +310,87 @@ const Sidebar = ({ score, resumeId }) => {
   };
 
   return (
-   <>
-         {showLoader && <FullScreenLoader />}
+    <>
+      {showLoader && <FullScreenLoader />}
 
-       <div className="w-full md:w-[400px] p-4 border-r border-gray-200">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-semibold">{resumeTitle}</h2>
-        <Link
-          href="/dashboard/resumelist"
-          className="text-[#1C2957] hover:text-[#369984]"
-        >
-          {t("dashboard_sidebar.viewAll")}
-        </Link>
-      </div>
+      <div className="w-full md:w-[400px] p-4 border-r border-gray-200">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-lg font-semibold">{resumeTitle}</h2>
+          <Link
+            href="/dashboard/resumelist"
+            className="text-[#1C2957] hover:text-[#1C2957]"
+          >
+            {t("dashboard_sidebar.viewAll")}
+          </Link>
+        </div>
 
-      {/* Resume Preview */}
-      <div className="border border-gray-200 rounded-lg shadow-sm p-2 mb-4 relative h-[500px]">
-        {loading ? (
-          <div className="flex items-center justify-center h-full">
-            {t("dashboard_sidebar.loading")}
-          </div>
-        ) : (
-          <DashboardPreview
-            ref={templateRef}
-            selectedTemplate={selectedTemplate}
-          />
-        )}
-      </div>
+        {/* Resume Preview */}
+        <div className="border border-gray-200 rounded-lg shadow-sm p-2 mb-4 relative h-[500px]">
+          {loading ? (
+            <div className="flex items-center justify-center h-full">
+              {t("dashboard_sidebar.loading")}
+            </div>
+          ) : (
+            <DashboardPreview
+              ref={templateRef}
+              selectedTemplate={selectedTemplate}
+            />
+          )}
+        </div>
 
-      {/* Action Buttons */}
-      <div className="flex gap-4 mb-6">
-        <button
-          onClick={handleEdit}
-          disabled={!resumeId}
-          className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 ${
-            !resumeId ? "opacity-50 cursor-not-allowed" : ""
-          }`}
-        >
-          <Edit />
-          {t("dashboard_sidebar.edit")}
-        </button>
-      </div>
+        {/* Action Buttons */}
+        <div className="flex gap-4 mb-6">
+          <button
+            onClick={handleEdit}
+            disabled={!resumeId}
+            className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 ${
+              !resumeId ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+          >
+            <Edit />
+            {t("dashboard_sidebar.edit")}
+          </button>
+        </div>
 
-      {/* Resume Strength */}
-      <div className="mb-6">
-        <div className="flex justify-between items-center mb-2">
-          <span className="text-sm font-medium">
-            {t("dashboard_sidebar.resumeStrength")}
-          </span>
-          <div className="flex items-center gap-2">
-            <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm">
-              {score}
+        {/* Resume Strength */}
+        <div className="mb-6">
+          <div className="flex justify-between items-center mb-2">
+            <span className="text-sm font-medium">
+              {t("dashboard_sidebar.resumeStrength")}
             </span>
-            <button className="text-[#1C2957] hover:text-blue-700 text-sm">
-              {t("dashboard_sidebar.improve")}
-            </button>
+            <div className="flex items-center gap-2">
+              <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm">
+                {score}
+              </span>
+              <button className="text-[#1C2957] hover:text-blue-700 text-sm">
+                {t("dashboard_sidebar.improve")}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Create New Resume Button */}
-      <button
-        onClick={handleCreate}
-        className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-[#1C2957] text-white rounded-lg hover:bg-[#1C2957]"
-      >
-        <svg
-          className="w-5 h-5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+        {/* Create New Resume Button */}
+        <button
+          onClick={handleCreate}
+          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-[#1C2957] text-white rounded-lg hover:bg-[#1C2957]"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-          />
-        </svg>
-        {t("dashboard_sidebar.createResume")}
-      </button>
-    </div>
-   </>
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+            />
+          </svg>
+          {t("dashboard_sidebar.createResume")}
+        </button>
+      </div>
+    </>
   );
 };
 

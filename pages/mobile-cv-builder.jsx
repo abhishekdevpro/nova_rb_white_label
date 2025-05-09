@@ -102,7 +102,7 @@ const MobileCoverLetterBuilder = ({
             </button>
             <button
               onClick={handleFinish}
-              className="w-full flex items-center justify-center gap-2 bg-[#369984] text-white px-6 py-3 rounded-lg"
+              className="w-full flex items-center justify-center gap-2 bg-[#1C2957] text-white px-6 py-3 rounded-lg"
             >
               <Save size={20} />
               {/* Save Cover Letter */}

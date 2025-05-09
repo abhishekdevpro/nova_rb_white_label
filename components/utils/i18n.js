@@ -9,12 +9,12 @@ import fr from "../utils/locales/fr.json";
 i18n.use(initReactI18next).init({
   resources: {
     en: { translation: en },
-    fr: { translation: fr },
+    // fr: { translation: fr },
     // es: { translation: es },
     // de: { translation: de },
   },
-  lng: "fr", // Default language
-  fallbackLng: "fr", // Fallback language
+  lng: "en", // Default language
+  fallbackLng: "en", // Fallback language
   interpolation: {
     escapeValue: false, // React already escapes by default
   },

@@ -57,9 +57,10 @@ export default function ExperienceStep({ onNext, onBack, onChange, value }) {
 
           try {
             // Check if response.data.data.ai_resume_parse_data is a string or already an object
-            const parsedAIData = typeof response.data.data.ai_resume_parse_data === 'string' 
-              ? JSON.parse(response.data.data.ai_resume_parse_data)
-              : response.data.data.ai_resume_parse_data;
+            const parsedAIData =
+              typeof response.data.data.ai_resume_parse_data === "string"
+                ? JSON.parse(response.data.data.ai_resume_parse_data)
+                : response.data.data.ai_resume_parse_data;
 
             if (parsedAIData?.templateData) {
               setResumeData(parsedAIData.templateData);
@@ -67,7 +68,8 @@ export default function ExperienceStep({ onNext, onBack, onChange, value }) {
 
               // Set initial experience value if it exists (from backend)
               if (parsedAIData.templateData.no_of_experience) {
-                const experienceValue = parsedAIData.templateData.no_of_experience;
+                const experienceValue =
+                  parsedAIData.templateData.no_of_experience;
                 onChange({
                   ...value,
                   experience: experienceValue,
@@ -169,63 +171,65 @@ export default function ExperienceStep({ onNext, onBack, onChange, value }) {
   console.log(exp, "no-of exp");
 
   return (
-    <div className="space-y-6">
-      <div className="text-center">
-        <h2 className="text-2xl font-bold text-gray-900">
-          {t("experienceStep.title")}
-        </h2>
-        <p className="mt-2 text-gray-600">{t("experienceStep.description")}</p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-b from-white to-blue-200 flex flex-col">
+      <main className="flex-1 flex flex-col items-center justify-center px-4 py-12">
+        <div className="max-w-xl text-center">
+          <h1 className="text-3xl md:text-4xl font-bold text-blue-700 mb-4">
+            {t("experienceStep.title")}
+          </h1>
+          <p className="text-md md:text-lg text-[#4b5563] mb-10">
+            {t("experienceStep.description")}
+          </p>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {experiences.map((experience) => (
-          <button
-            key={experience.id}
-            onClick={() => {
-              onChange({ ...value, experience: experience.id });
-              setExp(experience.id);
-              setHasClickedExperience(true); // ✅ Set true when user clicks
-            }}
-            className={`p-6 rounded-lg border-2 transition-all hover:shadow-md ${
-              value.experience === experience.id
-                ? "border-blue-600 bg-blue-50"
-                : "border-gray-200 hover:border-blue-400"
-            }`}
-          >
-            <span className="block text-lg font-medium">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-xl w-full">
+          {experiences.map((experience) => (
+            <button
+              key={experience.id}
+              onClick={() => {
+                onChange({ ...value, experience: experience.id });
+                setExp(experience.id);
+                setHasClickedExperience(true); // ✅ Set true when user clicks
+              }}
+              className={`w-full p-6 text-left rounded-xl border-2 flex items-center justify-between text-blue-700 font-semibold transition-all${
+                value.experience === experience.id
+                  ? "border-blue-700 bg-[#e6f0f5]"
+                  : "border-[#e5e7eb] hover:border-blue-700"
+              }`}
+            >
               {experience.label}
-            </span>
-          </button>
-        ))}
-      </div>
+              <span className="text-lg">→</span>
+            </button>
+          ))}
+        </div>
 
-      <div className="flex justify-between mt-12">
-        <Link href="/dashboard/resume-builder/">
+        <div className="mt-10 flex justify-center gap-4">
           <button
             onClick={onBack}
             className="px-8 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-700 
-              font-medium hover:bg-gray-50 hover:border-gray-400 transition-colors"
+           font-medium hover:bg-gray-50 hover:border-gray-400 transition-colors"
           >
             {t("experienceStep.back")}
           </button>
-        </Link>
-        <button
-          onClick={handleSaveExperience}
-          disabled={loading || isLoading} // ✅ Disable only if loading or saving
-          className={`px-8 py-3 bg-blue-600 text-white rounded-xl font-medium transition-all shadow-lg 
-            ${
-              loading || isLoading
-                ? "opacity-70 cursor-not-allowed"
-                : "hover:bg-blue-700 hover:shadow-xl"
-            }`}
-        >
-          {isLoading ? (
-            <SaveLoader loadingText={t("experienceStep.saving")} />
-          ) : (
-            t("experienceStep.next")
-          )}
-        </button>
-      </div>
+
+          <button
+            onClick={handleSaveExperience}
+            disabled={loading || isLoading} // ✅ Disable only if loading or saving
+            className={`px-8 py-3 rounded-lg font-medium transition-all shadow-md  
+         ${
+           loading || isLoading
+             ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+             : "bg-blue-700 text-white hover:bg-blue-800"
+         }`}
+          >
+            {isLoading ? (
+              <SaveLoader loadingText={t("experienceStep.saving")} />
+            ) : (
+              t("experienceStep.next")
+            )}
+          </button>
+        </div>
+      </main>
     </div>
   );
 }
