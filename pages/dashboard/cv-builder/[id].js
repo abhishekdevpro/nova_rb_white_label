@@ -26,7 +26,7 @@ export default function Home() {
     country: "",
   });
 
-  const totalSteps = 4;
+  const totalSteps = 5;
 
   const handleNext = () => {
     setCurrentStep((prev) => Math.min(prev + 1, totalSteps));
