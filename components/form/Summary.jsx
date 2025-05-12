@@ -323,7 +323,7 @@ const Summary = () => {
                     {isAutoFixLoading ? (
                       <Loader2 className="w-4 h-4 animate-spin" />
                     ) : (
-                      t("summarypersonal.suggestions.autoFix")
+                      t("summaryperosnal.suggestions.autoFix")
                     )}
                   </button>
                   <button
