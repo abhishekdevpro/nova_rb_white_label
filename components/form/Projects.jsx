@@ -70,15 +70,17 @@ const Projects = () => {
     if (!resumeData?.projects) {
       setResumeData({
         ...resumeData,
-        projects: [{
-          title: "",
-          link: "",
-          description: "",
-          keyAchievements: [],
-          startYear: "",
-          endYear: "",
-          name: ""
-        }]
+        projects: [
+          {
+            title: "",
+            link: "",
+            description: "",
+            keyAchievements: [],
+            startYear: "",
+            endYear: "",
+            name: "",
+          },
+        ],
       });
     }
   }, []);
@@ -126,7 +128,7 @@ const Projects = () => {
           keyAchievements: [],
           startYear: "",
           endYear: "",
-          name: ""
+          name: "",
         },
       ],
     });
@@ -519,7 +521,7 @@ const Projects = () => {
                   type="text"
                   placeholder={t("builder_forms.project.placeholderName")}
                   name="name"
-                  maxLength={150}
+                  maxLength={50}
                   className={`w-full other-input border  ${
                     improve && hasErrors(projectIndex, "name")
                       ? "border-red-500"
@@ -563,17 +565,15 @@ const Projects = () => {
                       </div>
                     </div>
                     <div className="p-4">
-                      {getErrorMessage(projectIndex, "name")?.map(
-                        (msg, i) => (
-                          <div
-                            key={i}
-                            className="flex items-start space-x-3 mb-3 last:mb-0"
-                          >
-                            <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-400 mt-2"></div>
-                            <p className="text-black text-sm">{msg}</p>
-                          </div>
-                        )
-                      )}
+                      {getErrorMessage(projectIndex, "name")?.map((msg, i) => (
+                        <div
+                          key={i}
+                          className="flex items-start space-x-3 mb-3 last:mb-0"
+                        >
+                          <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-400 mt-2"></div>
+                          <p className="text-black text-sm">{msg}</p>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 )}

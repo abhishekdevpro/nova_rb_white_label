@@ -80,7 +80,10 @@ const PersonalInformation = () => {
         )}&lang=${language}`
       );
 
-      if (response.data?.status === "success" && Array.isArray(response.data?.data)) {
+      if (
+        response.data?.status === "success" &&
+        Array.isArray(response.data?.data)
+      ) {
         const jobTitles = response.data.data.map((item) => item.name);
         setJobTitleSuggestions(jobTitles);
         setShowJobTitleDropdown(true);
@@ -113,7 +116,10 @@ const PersonalInformation = () => {
         )}&lang=${language}`
       );
 
-      if (response.data?.status === "success" && response.data?.data?.location_names) {
+      if (
+        response.data?.status === "success" &&
+        response.data?.data?.location_names
+      ) {
         const locations = response.data.data.location_names.map((item) => item);
         setLocationSuggestions(locations);
         setShowLocationDropdown(true);
@@ -219,7 +225,7 @@ const PersonalInformation = () => {
     const { name, value } = e.target;
     const maxLengths = {
       name: 30,
-      position: 20,
+      position: 40,
       contactInformation: 10,
       email: 50,
       address: 50,

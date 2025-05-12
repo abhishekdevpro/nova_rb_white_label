@@ -407,9 +407,9 @@ const WorkExperience = () => {
           endYear: "",
           location: "",
           description: "",
-          keyAchievements: []
-        }
-      ]
+          keyAchievements: [],
+        },
+      ],
     });
     setExpandedExperiences([...expandedExperiences, true]);
   };
@@ -665,15 +665,17 @@ const WorkExperience = () => {
     if (!resumeData?.workExperience) {
       setResumeData({
         ...resumeData,
-        workExperience: [{
-          company: "",
-          position: "",
-          startDate: "",
-          endDate: "",
-          description: "",
-          location: "",
-          keyAchievements: []
-        }]
+        workExperience: [
+          {
+            company: "",
+            position: "",
+            startDate: "",
+            endDate: "",
+            description: "",
+            location: "",
+            keyAchievements: [],
+          },
+        ],
       });
     }
   }, []);
@@ -702,7 +704,7 @@ const WorkExperience = () => {
         </button>
       </div>
 
-      {!resumeData?.is_fresher && (
+      {!resumeData?.is_fresher &&
         (resumeData?.workExperience || []).map((experience, index) => (
           <div key={index} className="mb-6 rounded-lg overflow-hidden">
             <div
@@ -833,6 +835,7 @@ const WorkExperience = () => {
                   </label>
                   <input
                     type="text"
+                    maxLength={40}
                     placeholder={t("builder_forms.work_experience.position")}
                     name="position"
                     className={`w-full other-input border ${
@@ -1339,8 +1342,7 @@ const WorkExperience = () => {
               </div>
             )}
           </div>
-        ))
-      )}
+        ))}
 
       <FormButton
         size={(resumeData?.workExperience || []).length}
