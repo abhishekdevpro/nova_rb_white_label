@@ -49,6 +49,7 @@ const Navbar = () => {
   //     axiosInstance.interceptors.response.eject(interceptor);
   //   };
   // }, []);
+  
 
   useEffect(() => {
     const token = localStorage.getItem("token");
