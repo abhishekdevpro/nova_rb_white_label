@@ -11,7 +11,7 @@ import axios from "axios";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
-
+// 
   useEffect(() => {
     const token = localStorage.getItem("token");
     const isDashboardRoute = router.pathname.startsWith("/dashboard");
