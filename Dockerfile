@@ -25,13 +25,13 @@ COPY --from=build /app/node_modules ./node_modules
 
 # Set environment variables (adjust as needed)
 ENV NODE_ENV=production
-ENV PORT=3000
+ENV PORT=3111
 
 # Expose the application port
-EXPOSE 3000
+EXPOSE 3111
 
 # Health check (optional)
-HEALTHCHECK CMD curl --fail http://localhost:3000/ || exit 1
+HEALTHCHECK CMD curl --fail http://localhost:3111/ || exit 1
 
 # Start the Next.js application
 CMD ["npm", "run", "start"]
