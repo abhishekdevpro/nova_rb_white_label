@@ -2,9 +2,9 @@ import Link from "next/link";
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import image1 from './Images/homeimage1.jpg'
-import image2 from './Images/homeimage2.jpg'
-import image3 from './Images/homeimage3.jpg'
+import image1 from '../../public/Images/homeimage1.jpg'
+import image2 from '../../public/Images/homeimage2.jpg'
+import image3 from '../../public/Images/homeimage3.jpg'
 import Image from "next/image";
 import Home_second from "./Home_second";
 import { useEffect, useState } from "react";

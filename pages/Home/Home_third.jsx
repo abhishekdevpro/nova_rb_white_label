@@ -180,17 +180,17 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import image from './Images/homeimage1.jpg';
-import icon1 from './Images/video_icon1.png';
-import icon2 from './Images/video_icon2.gif';
-import icon3 from './Images/video_icon3.gif';
-import icon4 from './Images/video_icon4.gif';
-import image1 from './Images/homeimage1.jpg';
-import image2 from './Images/resume3.jpg';
-import image3 from './Images/homeimage2.jpg';
-import cvimage1 from './Images/cv4.jpg';
-import cvimage2 from './Images/homeimage3.jpg';
-import cvimage3 from './Images/cv3.jpg';
+import image from '../../public/Images/homeimage1.jpg';
+import icon1 from '../../public/Images/video_icon1.png';
+import icon2 from '../../public/Images/video_icon2.gif';
+import icon3 from '../../public/Images/video_icon3.gif';
+import icon4 from '../../public/Images/video_icon4.gif';
+import image1 from '../../public/Images/homeimage1.jpg';
+import image2 from '../../public/Images/resume3.jpg';
+import image3 from '../../public/Images/homeimage2.jpg';
+import cvimage1 from '../../public/Images/cv4.jpg';
+import cvimage2 from '../../public/Images/homeimage3.jpg';
+import cvimage3 from '../../public/Images/cv3.jpg';
 import Home_fourth from "./Home_fourth";
 
 function Home_third() {
