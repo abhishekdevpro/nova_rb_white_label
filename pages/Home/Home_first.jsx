@@ -2,9 +2,9 @@ import Link from "next/link";
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import image1 from '../../public/Images/homeimage1.jpg'
-import image2 from '../../public/Images/homeimage2.jpg'
-import image3 from '../../public/Images/homeimage3.jpg'
+// import image1 from '../../public/Images/homeimage1.jpg'
+// import image2 from '../../public/Images/homeimage2.jpg'
+// import image3 from '../../public/Images/homeimage3.jpg'
 import Image from "next/image";
 import Home_second from "./Home_second";
 import { useEffect, useState } from "react";
@@ -28,9 +28,9 @@ function Home_first() {
     };
 
     const images = [
-        image1,
-        image2,
-        image3
+        image1:"https://airesume.novajobs.us/airesume/_next/image/?url=%2Fairesume%2F_next%2Fstatic%2Fmedia%2Fhomeimage2.03e664f8.jpg&w=3840&q=75",
+        image2:"https://airesume.novajobs.us/airesume/_next/image/?url=%2Fairesume%2F_next%2Fstatic%2Fmedia%2Fhomeimage2.03e664f8.jpg&w=3840&q=75",
+        image3:"https://airesume.novajobs.us/airesume/_next/image/?url=%2Fairesume%2F_next%2Fstatic%2Fmedia%2Fhomeimage2.03e664f8.jpg&w=3840&q=75"
     ];
 
 
