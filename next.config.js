@@ -38,7 +38,11 @@ const nextConfig = {
   basePath: '/airesume',
   trailingSlash: true,
   images: {
-    domains: ['avatars.githubusercontent.com', 'airesume.novajobs.us'], // ✅ added your image domain
+   domains: [
+      'avatars.githubusercontent.com',
+      'novajobs.us',              
+      'airesume.novajobs.us'       
+    ],
     remotePatterns: [
       {
         protocol: 'https',
