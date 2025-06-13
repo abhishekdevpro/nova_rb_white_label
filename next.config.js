@@ -41,7 +41,8 @@ const nextConfig = {
    domains: [
       'avatars.githubusercontent.com',
       'novajobs.us',              
-      'airesume.novajobs.us'       
+      'airesume.novajobs.us',
+      'marketplace.canva.com'      
     ],
     remotePatterns: [
       {
