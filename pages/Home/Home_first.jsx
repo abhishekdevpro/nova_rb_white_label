@@ -3,8 +3,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 // import image1 from "/Images/homeimage1.jpg"
-// import image2 from "../../public/Images/homeimage2.jpg";
-// import image3 from "../../public/Images/homeimage3.jpg";
+import image2 from "../../public/Images/homeimage2.jpg";
+import image3 from "../../public/Images/homeimage3.jpg";
 import Image from "next/image";
 import Home_second from "./Home_second";
 import { useEffect, useState } from "react";
@@ -27,7 +27,12 @@ function Home_first() {
     autoplaySpeed: 3000,
   };
 
-  const images = ["https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fcv3.9e0797cc.jpg&w=1080&q=75", "https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fcv3.9e0797cc.jpg&w=1080&q=75", "https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fcv3.9e0797cc.jpg&w=1080&q=75"];
+  const images = [
+    "https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fhomeimage1.279420aa.jpg&w=3840&q=75",
+    "https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fhomeimage2.03e664f8.jpg&w=3840&q=75",
+    "https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fhomeimage3.837b3f06.jpg&w=3840&q=75=75"
+    
+  ];
 
   return (
     <>
@@ -47,10 +52,11 @@ function Home_first() {
                 {images.map((image, index) => (
                   <div key={index}>
                     <img
-                    src={image}
-                    //   src="https://marketplace.canva.com/EAFszEvkM50/2/0/1131w/canva-simple-professional-cv-resume-36p5VOFVDxY.jpg"
-                      alt="checking links"
-                    
+                      src={image}
+                      //   src="https://marketplace.canva.com/EAFszEvkM50/2/0/1131w/canva-simple-professional-cv-resume-36p5VOFVDxY.jpg"
+                      alt="logo"
+                      width={800}
+                      height={600}
                       className=" md:h-auto md:w-80 transition-transform transform hover:scale-105"
                     />
                   </div>

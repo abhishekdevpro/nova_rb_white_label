@@ -201,18 +201,18 @@ function Home_third() {
           <div className='md:w-[78%] rounded-xl py-5 px-4' id='home_third'>
             <div className='flex flex-col gap-2 justify-evenly md:flex-row rounded-xl px-5 text-black'>
               <div>
-                <Image src={image} alt="logo" className='h-[400px] w-[400px] rounded-xl shadow-lg shadow-gray-600' />
+                <img src="https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fhomeimage1.279420aa.jpg&w=3840&q=75" alt="logo" className='h-[400px] w-[400px] rounded-xl shadow-lg shadow-gray-600' />
               </div>
               <div className='flex flex-col font-semibold px-3 gap-5'>
                 <h1 className='text-center font-bold text-4xl py-2 text-black'>How Our AI Resume Works For You</h1>
                 <div>
-                  {[{ icon: icon1, text: "Check Resume Score in few seconds with just a couple of clicks." },
-                    { icon: icon2, text: "Our AI does deep checks on your resume & suggests you edits." },
-                    { icon: icon3, text: "Land in Abroad Interviews with our AI technology." },
-                    { icon: icon4, text: "Improve Resume with our robust AI, in just a few clicks." }].map((item, index) => (
+                  {[{ icon: "https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fvideo_icon1.f54cbe8f.png&w=1080&q=75", text: "Check Resume Score in few seconds with just a couple of clicks." },
+                    { icon: "https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fvideo_icon2.addc407c.gif&w=1080&q=75", text: "Our AI does deep checks on your resume & suggests you edits." },
+                    { icon: "https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fvideo_icon3.9c3c7174.gif&w=1080&q=75", text: "Land in Abroad Interviews with our AI technology." },
+                    { icon: "https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fvideo_icon4.179e39fd.gif&w=1080&q=75", text: "Improve Resume with our robust AI, in just a few clicks." }].map((item, index) => (
                       <div key={index} className='flex items-center shadow-lg rounded-2xl px-3 py-2 shadow-gray-600 hover:border-b-2 hover:border-slate-500 hover:rounded-lg gap-2'>
                         <div>
-                          <Image src={item.icon} alt="logo" className='h-16 w-16' />
+                          <img src={item.icon} alt="logo" className='h-16 w-16' />
                         </div>
                         <div className='text-xl'>
                           <p>{item.text}</p>
@@ -242,12 +242,12 @@ function Home_third() {
 
           <div className='flex flex-col justify-center gap-5 items-center md:flex-row'>
             {[
-              { src: image1, alt: "Assistant Editor Resume Example", title: "Create Resume Template" },
-              { src: cvimage2, alt: "Farmer Resume Template", title: "Simple Resume Template" },
-              { src: image3, alt: "Doctor Resume Template", title: "Modern Resume Template" }
+              { src: "https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fhomeimage1.279420aa.jpg&w=3840&q=75", alt: "Assistant Editor Resume Example", title: "Create Resume Template" },
+              { src: "https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fhomeimage2.03e664f8.jpg&w=3840&q=75", alt: "Farmer Resume Template", title: "Simple Resume Template" },
+              { src: "https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fhomeimage3.837b3f06.jpg&w=3840&q=75=75", alt: "Doctor Resume Template", title: "Modern Resume Template" }
             ].map((template, index) => (
               <div key={index} className='relative group'>
-                <Image src={template.src} alt={template.alt} className='h-96 w-full rounded-xl' />
+                <Image src={template.src} alt={template.alt} height={500} width={100} className='h-96 w-full rounded-xl' />
                 <h1 className='font-bold text-xl text-center mt-2' id='homecard'>{template.title}</h1>
                 <Link href="/dashboard/profile">
                   <button className='absolute top-0 left-0 right-0 bottom-0 m-auto w-fit h-fit text-black bg-white font-bold py-2 px-4 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300' id='home_third'>Build Your Resume Now</button>
@@ -287,12 +287,12 @@ function Home_third() {
           </div>
           <div className='flex flex-col justify-center gap-5 items-center md:flex-row'>
             {[
-              { src: cvimage1, alt: "Cover Letter Example", title: "Cover Letter Example" },
-              { src: image2, alt: "Cover Letter Template", title: "Cover Letter Examples" },
-              { src: cvimage3, alt: "Cover Letter Sample", title: "Cover Letter Examples" }
+              { src: "https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fcv4.46620ed5.jpg&w=1920&q=75", alt: "Cover Letter Example", title: "Cover Letter Example" },
+              { src: "https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fresume3.e25ded83.jpg&w=1920&q=75", alt: "Cover Letter Template", title: "Cover Letter Examples" },
+              { src: "https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fcv3.9e0797cc.jpg&w=1920&q=75", alt: "Cover Letter Sample", title: "Cover Letter Examples" }
             ].map((template, index) => (
               <div key={index} className='relative group'>
-                <Image src={template.src} alt={template.alt} className='h-[400px] w-full border-2 rounded-lg shadow-xl shadow-gray-500' />
+                <Image src={template.src} alt={template.alt} width={100} height={400} className='h-[400px] w-full border-2 rounded-lg shadow-xl shadow-gray-500' />
                 <h1 className='font-bold text-xl text-center mt-2' id='homecard'>{template.title}</h1>
                 <Link href="/dashboard/profile">
                   <button className='absolute top-0 left-0 right-0 bottom-0 m-auto w-fit h-fit bg-blue-600 text-white font-bold py-2 px-4 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300' id='home_third'>Create Your CV</button>
