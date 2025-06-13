@@ -27,11 +27,12 @@ function Home_first() {
         autoplaySpeed: 3000,
     };
 
-    const images = [
-        image1:"https://airesume.novajobs.us/airesume/_next/image/?url=%2Fairesume%2F_next%2Fstatic%2Fmedia%2Fhomeimage2.03e664f8.jpg&w=3840&q=75",
-        image2:"https://airesume.novajobs.us/airesume/_next/image/?url=%2Fairesume%2F_next%2Fstatic%2Fmedia%2Fhomeimage2.03e664f8.jpg&w=3840&q=75",
-        image3:"https://airesume.novajobs.us/airesume/_next/image/?url=%2Fairesume%2F_next%2Fstatic%2Fmedia%2Fhomeimage2.03e664f8.jpg&w=3840&q=75"
-    ];
+  const images = {
+  image1: "https://airesume.novajobs.us/airesume/_next/image/?url=%2Fairesume%2F_next%2Fstatic%2Fmedia%2Fhomeimage2.03e664f8.jpg&w=3840&q=75",
+  image2: "https://airesume.novajobs.us/airesume/_next/image/?url=%2Fairesume%2F_next%2Fstatic%2Fmedia%2Fhomeimage2.03e664f8.jpg&w=3840&q=75",
+  image3: "https://airesume.novajobs.us/airesume/_next/image/?url=%2Fairesume%2F_next%2Fstatic%2Fmedia%2Fhomeimage2.03e664f8.jpg&w=3840&q=75",
+};
+
 
 
     return (
