@@ -32,25 +32,43 @@
 // module.exports = nextConfig;
 
 
-/** @type {import('next').NextConfig} */
+// /** @type {import('next').NextConfig} */
+// const nextConfig = {
+//   reactStrictMode: true,
+//   basePath: '/airesume',
+//   trailingSlash: true,
+//   images: {
+//    domains: [
+//       'avatars.githubusercontent.com',
+//       'novajobs.us',              
+//       'airesume.novajobs.us',
+//       'marketplace.canva.com'      
+//     ],
+//     remotePatterns: [
+//       {
+//         protocol: 'https',
+//         hostname: 'airesume.novajobs.us', // ✅ fix here
+//       },
+//     ],
+//   },
+// }
+
+// module.exports = nextConfig;
+
+
 const nextConfig = {
   reactStrictMode: true,
   basePath: '/airesume',
-  trailingSlash: true,
+  assetPrefix: '/airesume', // ✅ important
   images: {
-   domains: [
+    unoptimized: true, // ✅ Add this line
+    domains: [
       'avatars.githubusercontent.com',
-      'novajobs.us',              
+      'novajobs.us',
       'airesume.novajobs.us',
-      'marketplace.canva.com'      
-    ],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'airesume.novajobs.us', // ✅ fix here
-      },
+      'marketplace.canva.com',
     ],
   },
 }
 
-module.exports = nextConfig;
+module.exports = nextConfig
