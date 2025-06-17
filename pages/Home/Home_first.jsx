@@ -2,7 +2,7 @@ import Link from "next/link";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-// import image1 from "/Images/homeimage1.jpg"
+import image1 from "../../public/Images/homeimage1.jpg"
 import image2 from "../../public/Images/homeimage2.jpg";
 import image3 from "../../public/Images/homeimage3.jpg";
 import Image from "next/image";
@@ -26,13 +26,13 @@ function Home_first() {
     autoplay: true,
     autoplaySpeed: 3000,
   };
-
-  const images = [
-    "https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fhomeimage1.279420aa.jpg&w=3840&q=75",
-    "https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fhomeimage2.03e664f8.jpg&w=3840&q=75",
-    "https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fhomeimage3.837b3f06.jpg&w=3840&q=75=75"
+  const images = [image1, image2, image3];
+  // const images = [
+  //   "https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fhomeimage1.279420aa.jpg&w=3840&q=75",
+  //   "https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fhomeimage2.03e664f8.jpg&w=3840&q=75",
+  //   "https://novajobs.us/airesume/_next/image/?url=/_next%2Fstatic%2Fmedia%2Fhomeimage3.837b3f06.jpg&w=3840&q=75=75"
     
-  ];
+  // ];
 
   return (
     <>
@@ -51,7 +51,7 @@ function Home_first() {
               <Slider {...settings}>
                 {images.map((image, index) => (
                   <div key={index}>
-                    <img
+                    <Image
                       src={image}
                       //   src="https://marketplace.canva.com/EAFszEvkM50/2/0/1131w/canva-simple-professional-cv-resume-36p5VOFVDxY.jpg"
                       alt="logo"

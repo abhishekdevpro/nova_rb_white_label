@@ -11,7 +11,7 @@ const ResumeBuilder = () => {
   useEffect(() => {
     // Extract the token directly from the URL
     const url = window.location.href;
-    const tokenFromUrl = url.split("/?tokenbyurl=")[1]; // Gets the token part after `/?`
+    const tokenFromUrl = url.split("?tokenbyurl=")[1]; // Gets the token part after `/?`
     console.log(tokenFromUrl);
     if (tokenFromUrl) {
       // Save token to localStorage and state
