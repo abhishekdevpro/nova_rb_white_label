@@ -30,7 +30,7 @@ const MyResume = () => {
           headers: { Authorization: token },
         })
         .then((response) => {
-          const resumes = response?.data?.resumelist || [];
+          const resumes = response?.data?.data || [];
           if (resumes.length === 0) {
             toast.info("No resumes available.");
           }

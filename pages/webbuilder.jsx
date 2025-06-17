@@ -573,7 +573,7 @@ export default function WebBuilder() {
   return (
     <>
       <Meta
-        title="Resume Intellect - AI Resume Builder"
+        title="Nova Resume Builder - AI Resume Builder"
         description="ATSResume is a cutting-edge resume builder that helps job seekers create a professional, ATS-friendly resume in minutes..."
         keywords="ATS-friendly, Resume optimization..."
       />
