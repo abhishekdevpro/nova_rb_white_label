@@ -2,9 +2,7 @@ import React, { useState, useRef, useEffect, useContext } from "react";
 import Language from "../components/form/Language";
 import axios from "axios";
 import Meta from "../components/meta/Meta";
-
 import dynamic from "next/dynamic";
-
 import SocialMedia from "../components/form/SocialMedia";
 import WorkExperience from "../components/form/WorkExperience";
 import Skill from "../components/form/Skill";
@@ -13,18 +11,14 @@ import Summary from "../components/form/Summary";
 import Projects from "../components/form/Projects";
 import Education from "../components/form/Education";
 import Certification from "../components/form/certification";
-
 import ColorPickers from "./ColorPickers";
 import Preview from "../components/preview/Preview";
 import TemplateSelector from "../components/preview/TemplateSelector";
-import toast from "react-hot-toast";
-
 import { useRouter } from "next/router";
 import Sidebar from "./dashboard/Sidebar";
-
+import { toast } from "react-toastify";
 import LoaderButton from "../components/utility/LoaderButton";
 import useLoader from "../hooks/useLoader";
-
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import resumeImg from "./builderImages/GraphicDesignerResume.jpg";
@@ -33,6 +27,8 @@ import paypal from "./builderImages/paypal.png";
 import logo from "./builderImages/logo.jpg";
 import applepay from "./builderImages/apple-pay.png";
 import { ResumeContext } from "../components/context/ResumeContext";
+import PayAndDownload from "../components/PayDownload";
+import { SaveLoader } from "../components/ResumeLoader/SaveLoader";
 
 const Print = dynamic(() => import("../components/utility/WinPrint"), {
   ssr: false,
@@ -40,21 +36,19 @@ const Print = dynamic(() => import("../components/utility/WinPrint"), {
 
 export default function MobileBuilder() {
   const [currentSection, setCurrentSection] = useState(0);
-
   const [selectedTemplate, setSelectedTemplate] = useState("template1");
+  const [selectedPdfType, setSelectedPdfType] = useState("1");
   const [isFinished, setIsFinished] = useState(false);
-
   const [token, setToken] = useState(null);
   const [resumeId, setResumeId] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const router = useRouter();
-  const pdfExportComponent = useRef(null);
-  const [isLoading, handleAction] = useLoader();
-  const { PayerID } = router.query;
-  const [isSaved, setIsSaved] = useState(false);
+  const { token: paymentToken, improve } = router.query;
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
-  const [userId, setUserId] = useState(0);
+  const [orderId, setOrderId] = useState(null);
   const templateRef = useRef(null);
+  const [loading, setLoading] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
   const {
     resumeData,
     setResumeData,
@@ -63,15 +57,12 @@ export default function MobileBuilder() {
     setSelectedFont,
     selectedFont,
     backgroundColorss,
-    headerColor,
+    exp,
   } = useContext(ResumeContext);
   const [showModal, setShowModal] = useState(false);
 
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
-  useEffect(() => {
-    setUserId(localStorage.getItem("user_id"));
-  }, []);
 
   const toggleMobileSidebar = () => {
     setIsMobileSidebarOpen(!isMobileSidebarOpen);
@@ -93,20 +84,18 @@ export default function MobileBuilder() {
             }
           );
 
-          if (response.data.status === "success") {
+          if (response.data.status === "success" && response.data.data) {
             const { data } = response.data;
-            const parsedData = JSON.parse(data.ai_resume_parse_data);
+            const parsedData = (data.ai_resume_parse_data);
 
-            // Update state with fetched data
-            setResumeData(parsedData.templateData);
+            setResumeData(parsedData.templateData || {});
 
-            // Set background color and template
-            if (parsedData.templateData.templateDetails) {
+            if (parsedData.templateData?.templateDetails) {
               setBgColor(
                 parsedData.templateData.templateDetails.backgroundColor || ""
               );
               setHeaderColor(
-                parsedData.templateData.templateDetails.backgroundColor
+                parsedData.templateData.templateDetails.backgroundColor || ""
               );
               setSelectedTemplate(
                 parsedData.templateData.templateDetails.templateId ||
@@ -128,74 +117,8 @@ export default function MobileBuilder() {
     if (typeof window !== "undefined") {
       const storedToken = localStorage.getItem("token");
       setToken(storedToken);
-
-      const storedIsFinished = localStorage.getItem("isFinished");
-      const storedTemplate = localStorage.getItem("selectedTemplate");
-      const storedFont = localStorage.getItem("selectedFont");
-      const storedBgColor = localStorage.getItem("backgroundColor");
-      const storedCurrentSection = localStorage.getItem("currentSection");
-      // const storedResumeData = localStorage.getItem("resumeData");
-
-      if (storedIsFinished) setIsFinished(JSON.parse(storedIsFinished));
-      if (storedTemplate && !selectedTemplate)
-        setSelectedTemplate(storedTemplate);
-      if (storedFont) setSelectedFont(storedFont);
-      if (storedBgColor && !backgroundColorss) setBgColor(storedBgColor);
-      if (storedCurrentSection)
-        setCurrentSection(parseInt(storedCurrentSection));
-      // if (storedResumeData && !resumeData) setResumeData(JSON.parse(storedResumeData));
     }
   }, []);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("isFinished", JSON.stringify(isFinished));
-      localStorage.setItem("selectedTemplate", selectedTemplate);
-      localStorage.setItem("selectedFont", selectedFont);
-      localStorage.setItem("headerColor", headerColor);
-      localStorage.setItem("backgroundColor", backgroundColorss);
-      localStorage.setItem("currentSection", currentSection.toString());
-      localStorage.setItem("resumeData", JSON.stringify(resumeData));
-    }
-  }, [
-    isFinished,
-    selectedTemplate,
-    selectedFont,
-    headerColor,
-    backgroundColorss,
-    currentSection,
-    resumeData,
-  ]);
-
-  useEffect(() => {
-    const savedState = localStorage.getItem("isSaved");
-    if (savedState === "true") {
-      setIsSaved(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (isSaved) {
-      setIsSaved(false);
-      localStorage.setItem("isSaved", "false");
-    }
-  }, [resumeData]);
-
-  useEffect(() => {
-    const handleBeforeUnload = (e) => {
-      if (!isSaved) {
-        e.preventDefault();
-        e.returnValue =
-          "You have unsaved changes. Are you sure you want to leave?";
-      }
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, [isSaved]);
 
   useEffect(() => {
     const path = window.location.pathname;
@@ -203,6 +126,7 @@ export default function MobileBuilder() {
     setResumeId(id);
   }, []);
 
+  // sections in my resumes
   const sections = [
     { label: "Personal Details", component: <PersonalInformation /> },
     { label: "Social Links", component: <SocialMedia /> },
@@ -224,49 +148,23 @@ export default function MobileBuilder() {
     { label: "Certifications", component: <Certification /> },
   ];
 
+  // Naviagation Logic in sections
   const handleNext = () => {
-    handleFinish();
+    handleFinish(false);
     if (currentSection === sections.length - 1) {
-      localStorage.setItem("tempResumeData", JSON.stringify(resumeData));
-      localStorage.setItem("tempHeaderColor", headerColor);
-      localStorage.setItem("tempBgColor", backgroundColorss);
-      localStorage.setItem("tempFont", selectedFont);
       setIsFinished(true);
     } else {
       setCurrentSection((prev) => Math.min(prev + 1, sections.length - 1));
     }
   };
 
-  useEffect(() => {
-    if (isFinished) {
-      const tempResumeData = localStorage.getItem("tempResumeData");
-      const tempHeaderColor = localStorage.getItem("tempHeaderColor");
-      const tempBgColor = localStorage.getItem("tempBgColor");
-      const tempFont = localStorage.getItem("tempFont");
-
-      if (tempResumeData) setResumeData(JSON.parse(tempResumeData));
-      if (tempHeaderColor) setHeaderColor(tempHeaderColor);
-      if (tempBgColor) setBgColor(tempBgColor);
-      if (tempFont) setSelectedFont(tempFont);
-    }
-  }, [isFinished]);
-
-  useEffect(() => {
-    return () => {
-      localStorage.removeItem("tempResumeData");
-      localStorage.removeItem("tempHeaderColor");
-      localStorage.removeItem("tempBgColor");
-      localStorage.removeItem("tempFont");
-    };
-  }, []);
-
   const handlePrevious = () => {
-    handleFinish();
+    handleFinish(false);
     setCurrentSection((prev) => Math.max(prev - 1, 0));
   };
 
   const handleSectionClick = (index) => {
-    handleFinish();
+    handleFinish(false);
     setCurrentSection(index);
     setIsMobileMenuOpen(false);
   };
@@ -275,136 +173,195 @@ export default function MobileBuilder() {
     setSelectedFont(e.target.value);
   };
 
-  const downloadAsPDF = async () => {
-    handleFinish();
-    if (!templateRef.current) {
-      toast.error("Template reference not found");
-      return;
-    }
+  // Payment -> verify and Download Logic
+  const createPayment = async (e) => {
+    e.preventDefault(); // prevent form submit reload
 
+    // const amount = 49;
+    const id = router.query.id || localStorage.getItem("resumeId");
+    const token = localStorage.getItem("token");
     try {
-      // Step 1: Generate PDF
-      const htmlContent = templateRef.current.innerHTML;
+      const payload = {
+        plan_id: "1",
+        resume_id: id,
+        name: `${formData.first_name} ${formData.last_name}`.trim(),
+        email: formData.email,
+        phone: formData.phone,
+      };
 
-      // Full HTML content with Tailwind styles
-      const fullContent = `
-        <style>
-          @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
-        </style>
-        ${htmlContent}
-      `;
-
-      // API call to generate PDF
-      const pdfResponse = await axios.post(
-        "https://apiwl.novajobs.us/api/user/generate-pdf1",
-        { html: fullContent },
+      const response = await axios.post(
+        "https://apiwl.novajobs.us/api/user/paypal/create-payment",
+        payload,
         {
           headers: {
+            Authorization: token,
             "Content-Type": "application/json",
-            Authorization: token,
           },
         }
       );
 
-      if (pdfResponse.status === 200) {
-        toast.success("PDF generated successfully!");
-        // Call the payment process function
-        initiateCheckout();
+      const data = response.data;
+      console.log(response, "from create payment");
+
+      if (data && data.data) {
+        console.log(data.order_id);
+        setOrderId(data.order_id);
+        localStorage.setItem("orderId", data.order_id);
+
+        // Redirect to payment page
+        window.location.href = data.data;
       } else {
-        throw new Error("Failed to generate PDF.");
+        console.error("Payment URL not found");
       }
     } catch (error) {
-      console.error("Error during PDF generation:", error);
-      toast.error(error.response?.data?.message || "Failed to generate PDF.");
-    }
-  };
-
-  const initiateCheckout = async () => {
-    try {
-      // Ensure resumeId is a valid integer
-      const parsedResumeId = parseInt(resumeId, 10);
-      if (isNaN(parsedResumeId)) {
-        throw new Error("Invalid resume ID; unable to convert to an integer.");
-      }
-
-      // Step 2: Checkout API Call
-      const checkoutResponse = await axios.post(
-        "https://apiwl.novajobs.us/api/user/payment/checkout",
-        {
-          plan_id: 1,
-          resume_id: parsedResumeId, // Use integer here
-        },
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
-
-      // Check for successful response
-      const redirectUrl = checkoutResponse.data.data; // Adjust the key if necessary
-      if (redirectUrl) {
-        toast.success("Checkout successful! Redirecting...");
-        window.location.href = redirectUrl; // Redirects user to payment page
-      } else {
-        throw new Error("No redirect URL found in checkout response.");
-      }
-    } catch (error) {
-      console.error("Error during checkout:", error);
-      toast.error(
-        error.response?.data?.message ||
-          "Failed to initiate the payment process."
-      );
+      console.error("Payment Error:", error);
     }
   };
 
   useEffect(() => {
-    if (PayerID) {
+    const storedOrderId = localStorage.getItem("orderId");
+    if (storedOrderId) {
+      setOrderId(storedOrderId);
+    }
+
+    if (storedOrderId && paymentToken) {
+      console.log(
+        "Attempting to verify payment...",
+        storedOrderId,
+        paymentToken
+      );
       verifyPayment();
     }
-  }, [PayerID]);
+  }, [paymentToken]);
 
   const verifyPayment = async () => {
     try {
-      const orderId = localStorage.getItem("orderid");
-      const token = localStorage.getItem("token");
+      const authToken = localStorage.getItem("token");
 
-      if (orderId && token && PayerID) {
-        const response = await axios.get(
-          `https://apiwl.novajobs.us/api/user/paypal/verify-order?orderid=${orderId}`,
-          {
-            headers: {
-              Authorization: token,
-              "Content-Type": "application/json",
-            },
-          }
-        );
+      if (!orderId || !paymentToken) {
+        console.log("Missing order ID or payment token for verification");
+        return;
+      }
 
-        if (response.data.status === "success") {
-          setPaymentVerified(true);
-          toast.success("Payment verified successfully!");
+      console.log("Verifying payment with:", { orderId, paymentToken });
 
-          localStorage.removeItem("orderid");
-
-          if (pdfExportComponent.current) {
-            pdfExportComponent.current.save();
-          }
-        } else {
-          toast.error("Payment verification failed. Please try again.");
-          router.push("/payment-failed");
+      const response = await axios.get(
+        `https://apiwl.novajobs.us/api/user/paypal/verify-order?orderid=${orderId}&token=${paymentToken}`,
+        {
+          headers: {
+            Authorization: authToken,
+            "Content-Type": "application/json",
+          },
         }
+      );
+
+      console.log("Payment Verification Response:", response.status);
+
+      if (response.status === 200) {
+        toast.success("Payment verified successfully!");
+        await downloadAsPDF();
+        // localStorage.removeItem("orderId")
+        // Optionally redirect to success page or enable download
+        // router.push("/payment-success");
+      } else {
+        toast.error("Payment verification failed. Please try again.");
+        console.log("Verification failed response:", response.data);
+        router.push("/payment-failed");
       }
     } catch (error) {
       console.error("Payment Verification Error:", error);
       toast.error(
         error?.response?.data?.message || "Payment verification failed"
       );
-      router.push("/payment-failed");
+      //  localStorage.removeItem("orderId")
     }
   };
+  const downloadAsPDF = async () => {
+    setIsDownloading(true)
+    try {
+      await handleFinish();
 
-  const handleFinish = async () => {
-    handleFinish();
+      if (!resumeId) {
+        // toast.error("Missing resume ID");
+        return;
+      }
+
+      const token = localStorage.getItem("token");
+
+      const response = await axios.get(
+        `https://apiwl.novajobs.us/api/user/download-resume/${resumeId}`,
+        {
+          headers: {
+            Authorization: token,
+          },
+          responseType: "blob",
+        }
+      );
+
+      console.log("Response status:", response.status);
+      console.log("Response data type:", typeof response.data);
+      console.log(
+        "Response data instanceof Blob:",
+        response.data instanceof Blob
+      );
+      console.log("Blob size:", response.data.size);
+      console.log("Blob type:", response.data.type);
+
+      if (response.status === 200 && response.data instanceof Blob) {
+        // Check if blob is valid
+        if (response.data.size === 0) {
+          toast.error("Received empty PDF file");
+          return;
+        }
+
+        const url = window.URL.createObjectURL(response.data);
+        console.log("Created URL:", url);
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `resume_${resumeId}.pdf`;
+
+        console.log("Link created:", link);
+        console.log("Link href:", link.href);
+        console.log("Link download:", link.download);
+
+        document.body.appendChild(link);
+
+        // Try to trigger download
+        try {
+          link.click();
+          console.log("Link clicked successfully");
+        } catch (clickError) {
+          console.error("Click error:", clickError);
+          // Fallback: try programmatic click
+          const event = new MouseEvent("click", {
+            view: window,
+            bubbles: true,
+            cancelable: true,
+          });
+          link.dispatchEvent(event);
+        }
+
+        setTimeout(() => {
+          document.body.removeChild(link);
+          window.URL.revokeObjectURL(url);
+        }, 1000);
+
+        toast.success("Resume Downloaded Successfully");
+      } else {
+        console.error("Invalid response or blob");
+        toast.error("Invalid PDF response");
+      }
+    } catch (error) {
+      console.error("PDF generation error:", error?.response?.data?.message);
+      toast.error("Failed to download PDF");
+    }finally {
+    setIsDownloading(false); // Hide loader in all cases
+  }
+  };
+
+  // Logic to save and update the resume
+  const handleFinish = async (showToast = true) => {
     if (!resumeData) return;
 
     const templateData = {
@@ -412,6 +369,7 @@ export default function MobileBuilder() {
         name: resumeData.name || "",
         position: resumeData.position || "",
         contactInformation: resumeData.contactInformation || "",
+        phone_code: resumeData.phone_code || "",
         email: resumeData.email || "",
         address: resumeData.address || "",
         profilePicture: resumeData.profilePicture || "",
@@ -422,6 +380,7 @@ export default function MobileBuilder() {
             socialMedia: media.socialMedia || "",
           })) || [],
         summary: resumeData.summary || "",
+        is_fresher: resumeData.is_fresher || false,
         education:
           resumeData.education?.map((edu) => ({
             school: edu.school || "",
@@ -432,15 +391,15 @@ export default function MobileBuilder() {
           })) || [],
         workExperience:
           resumeData.workExperience?.map((exp) => ({
-            company: exp.company || "",
-            position: exp.position || "",
-            description: exp.description || "",
+            company: exp.company,
+            position: exp.position,
+            description: exp.description,
             KeyAchievements: Array.isArray(exp.keyAchievements)
               ? exp.keyAchievements
-              : [exp.keyAchievements || ""],
-            startYear: exp.startYear || "",
-            endYear: exp.endYear || "",
-            location: exp.location || "",
+              : [exp.keyAchievements],
+            startYear: exp.startYear,
+            endYear: exp.endYear,
+            location: exp.location,
           })) || [],
         projects:
           resumeData.projects?.map((project) => ({
@@ -449,9 +408,9 @@ export default function MobileBuilder() {
             description: project.description || "",
             keyAchievements: Array.isArray(project.keyAchievements)
               ? project.keyAchievements
-              : [project.keyAchievements || ""],
-            startYear: project.startYear || "",
-            endYear: project.endYear || "",
+              : [project.keyAchievements],
+            startYear: project.startYear,
+            endYear: project.endYear,
             name: project.name || "",
           })) || [],
         skills: Array.isArray(resumeData.skills)
@@ -467,37 +426,54 @@ export default function MobileBuilder() {
           backgroundColor: backgroundColorss || "",
           font: selectedFont || "Ubuntu",
         },
+        no_of_experience: exp,
       },
     };
 
-    await handleAction(async () => {
-      try {
-        const id = router.query.id || localStorage.getItem("resumeId");
-        if (!id) {
-          console.error("Resume ID not found.");
-          return;
-        }
+    const htmlContent = templateRef?.current?.innerHTML;
+    if (!htmlContent) {
+      // toast.error("Error: Template content is missing.");
+      return;
+    }
 
-        const url = `https://apiwl.novajobs.us/api/user/resume-update/${id}`;
-        const response = await axios.put(url, templateData, {
+    const resumeHtml = `
+      <style>
+        @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+      </style>
+      ${htmlContent}
+    `;
+
+    try {
+      const id = router.query.id || resumeId;
+      if (!id) {
+        console.error("Resume ID not found.");
+        toast.error("Error: Resume ID is missing.");
+        return;
+      }
+
+      const url = `https://apiwl.novajobs.us/api/user/resume-update/${id}`;
+      const response = await axios.put(
+        url,
+        { ...templateData, resume_html: resumeHtml },
+        {
           headers: {
             "Content-Type": "application/json",
             Authorization: token,
           },
-        });
-
-        if (response.data.code === 200 || response.data.status === "success") {
-          setIsSaved(true);
-          localStorage.setItem("isSaved", "true");
-          toast.success(response.data.message || "Resume saved Successfully");
-        } else {
-          toast.error(response.data.error || "Error while saving the Resume");
         }
-      } catch (error) {
-        toast.error(error?.message || "Error !!");
-        console.error("Error updating resume:", error);
+      );
+
+      if (response.data.code === 200 || response.data.status === "success") {
+        if (showToast) {
+          toast.success(response.data.message || "Resume saved successfully.");
+        }
+      } else {
+        toast.error(response.data.error || "Error while saving the resume.");
       }
-    });
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "An error occurred.");
+      console.error("Error updating resume:", error);
+    }
   };
 
   const MobileNavigation = () => (
@@ -513,6 +489,7 @@ export default function MobileBuilder() {
         <span className="text-sm font-medium">
           {sections[currentSection].label}
         </span>
+
         <button
           onClick={handleNext}
           className="px-4 py-2 bg-yellow-500 text-black rounded-lg"
@@ -523,6 +500,14 @@ export default function MobileBuilder() {
     </div>
   );
 
+  const handleClick = async () => {
+    setLoading(true);
+    try {
+      await handleFinish(); // Ensure handleFinish is an async function
+    } finally {
+      setLoading(false);
+    }
+  };
   const MobileMenu = () => (
     <div className="">
       {isMobileMenuOpen && (
@@ -548,10 +533,6 @@ export default function MobileBuilder() {
   );
 
   const handleBackToEditor = () => {
-    // localStorage.setItem("tempResumeData", JSON.stringify(resumeData));
-    localStorage.setItem("tempHeaderColor", headerColor);
-    localStorage.setItem("tempBgColor", backgroundColorss);
-    localStorage.setItem("tempFont", selectedFont);
     setIsFinished(false);
     setCurrentSection(0);
   };
@@ -598,51 +579,18 @@ export default function MobileBuilder() {
   return (
     <>
       <Meta
-        title="NovaJobs Us - AI Resume Builder"
+        title="Resume Intellect - AI Resume Builder"
         description="ATSResume is a cutting-edge resume builder that helps job seekers create a professional, ATS-friendly resume in minutes..."
         keywords="ATS-friendly, Resume optimization..."
       />
-
-      <div className="w-full bg-gray-50">
+      {isDownloading && (
+        <SaveLoader loadingText="Downoading your resume.Please Wait" />
+      )}
+      <div className="w-full bg-gray-50 min-h-screen overflow-x-hidden">
         {!isFinished ? (
           <div className="bg-gray-50 flex flex-col">
             <div className="flex flex-col md:flex-row flex-grow">
-              <button
-                onClick={toggleMobileSidebar}
-                className="fixed z-10 bottom-20 right-4 bg-blue-950 text-white p-3 rounded-full shadow-lg"
-              >
-                {isMobileSidebarOpen ? (
-                  <X className="h-6 w-6 stroke-2" />
-                ) : (
-                  <Menu className="h-6 w-6 stroke-2" />
-                )}
-              </button>
-
-              {isMobileSidebarOpen && (
-                <div
-                  className="fixed  bg-black  z-50"
-                  onClick={toggleMobileSidebar}
-                />
-              )}
-
-              <aside
-                className={`fixed md:static left-0 top-0 h-full z-10 transform 
-                                ${
-                                  isMobileSidebarOpen
-                                    ? "translate-x-0"
-                                    : "-translate-x-full"
-                                } 
-                                md:translate-x-0 transition-transform duration-300 ease-in-out 
-                                w-64 bg-gray-100 border-r`}
-              >
-                <div className="sticky top-20 p-4 overflow-y-auto h-full">
-                  <div className="mt-12 md:mt-0">
-                    <Sidebar />
-                  </div>
-                </div>
-              </aside>
-
-              <main className="flex-1 max-w-2xl mx-auto md:p-4">
+              <main className="flex-1 h-full w-full mx-auto p-4 pb-10 mb-8 overflow-visible">
                 <form>{sections[currentSection].component}</form>
               </main>
             </div>
@@ -670,6 +618,8 @@ export default function MobileBuilder() {
               <TemplateSelector
                 selectedTemplate={selectedTemplate}
                 setSelectedTemplate={setSelectedTemplate}
+                setSelectedPdfType={setSelectedPdfType}
+                selectedPdfType={selectedPdfType}
               />
             </div>
             <div className="">
@@ -677,13 +627,17 @@ export default function MobileBuilder() {
             </div>
 
             <div className="flex items-center justify-center gap-4 p-2 fixed bottom-0 left-0 right-0 bg-white shadow-lg">
-              <LoaderButton
-                isLoading={isLoading}
-                onClick={handleFinish}
-                className="text-white px-4 py-2 rounded-lg bottom-btns"
+              <button
+                onClick={handleClick}
+                className={`px-6 py-2 rounded-lg flex items-center justify-center gap-2 ${
+                  loading
+                    ? "bg-blue-800 cursor-not-allowed"
+                    : "bg-blue-950 hover:bg-blue-900 active:bg-blue-800"
+                } text-white transition-colors duration-200`}
+                disabled={loading}
               >
-                Save
-              </LoaderButton>
+                {loading ? <SaveLoader /> : "Save"}
+              </button>
               {/* <PayAndDownload
                 resumeId={resumeId}
                 token={token}
@@ -694,9 +648,9 @@ export default function MobileBuilder() {
                 // onClick={handleShowModal}
                 className="bg-yellow-500 text-black px-6 py-2 rounded-lg"
               >
-                Pay & Download
+                Download
               </button>
-              {/* {showModal && (
+              {showModal && (
                 <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
                   <div className=" w-full max-w-4xl bg-white rounded-lg shadow-lg ">
                     <div className="flex justify-between items-center p-2">
@@ -783,7 +737,7 @@ export default function MobileBuilder() {
 
                           <div className="flex justify-center mt-6">
                             <button
-                              onClick={downloadAsPDF}
+                              onClick={createPayment}
                               type="submit"
                               className="w-full bg-yellow-400 text-blue-800 font-bold  rounded-[50px] hover:bg-yellow-500 transition duration-200"
                             >
@@ -815,7 +769,7 @@ export default function MobileBuilder() {
                     </div>
                   </div>
                 </div>
-              )} */}
+              )}
               <button
                 onClick={handleBackToEditor}
                 className="bg-blue-950 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors bottom-btns"
@@ -828,241 +782,4 @@ export default function MobileBuilder() {
       </div>
     </>
   );
-  //   return (
-  //     <>
-  //       <Meta
-  //         title="NovaJobs.US - AI Resume Builder"
-  //         description="ATSResume is a cutting-edge resume builder that helps job seekers create a professional, ATS-friendly resume in minutes..."
-  //         keywords="ATS-friendly, Resume optimization..."
-  //       />
-
-  //       <div className=" w-full bg-gray-50">
-
-  //         {!isFinished ? (
-  //           <div className=" bg-gray-50 flex flex-col">
-
-  //             <div className="flex flex-col md:flex-row flex-grow ">
-  //               <button
-  //                 onClick={toggleMobileSidebar}
-  //                 className="fixed z-10 bottom-20 right-4  bg-blue-950 text-white p-3 rounded-full shadow-lg"
-  //               >
-  //                 {isMobileSidebarOpen ? (
-  //                   <X className="h-6 w-6 stroke-2" />
-  //                 ) : (
-  //                   <Menu className="h-6 w-6 stroke-2" />
-  //                 )}
-  //               </button>
-
-  //               {isMobileSidebarOpen && (
-  //                 <div
-  //                   className="fixed inset-0 bg-black bg-opacity-50 z-40 "
-  //                   onClick={toggleMobileSidebar}
-  //                 />
-  //               )}
-
-  //               <aside
-  //                 className={`fixed md:static left-0 top-0 h-full z-10 transform
-  //                                 ${
-  //                                   isMobileSidebarOpen
-  //                                     ? "translate-x-0"
-  //                                     : "-translate-x-full"
-  //                                 }
-  //                                 md:translate-x-0 transition-transform duration-300 ease-in-out
-  //                                 w-64 bg-gray-100 border-r`}
-  //               >
-  //                 <div className="sticky top-20 p-4 overflow-y-auto h-full">
-  //                   <div className="mt-12 md:mt-0">
-  //                     <Sidebar />
-  //                   </div>
-  //                 </div>
-  //               </aside>
-
-  //               <main className="flex-1 max-w-2xl mx-auto md:p-4">
-  //                 <form>{sections[currentSection].component}</form>
-  //               </main>
-
-  //             </div>
-
-  //             <MobileNavigation />
-  //           </div>
-  //         ) : (
-  //           <>
-  //               <div className="flex items-center absolute justify-center gap-2 p-2  top-26 left-0 right-0 bg-white shadow-lg ">
-  //               <ColorPickers
-  //                       selectmultiplecolor={backgroundColorss}
-  //                       onChange={setBgColor}
-  //                     />
-  //           <select
-  //                     value={selectedFont}
-  //                     onChange={handleFontChange}
-  //                     className="rounded-lg border-2 border-blue-800 px-5 py-2 font-bold  bg-white text-blue-800"
-  //                   >
-  //                     <option value="Ubuntu">Ubuntu</option>
-  //                     <option value="Calibri">Calibri</option>
-  //                     <option value="Georgia">Georgia</option>
-  //                     <option value="Roboto">Roboto</option>
-  //                     <option value="Poppins">Poppins</option>
-  //                   </select>
-
-  // <TemplateSelector   selectedTemplate={selectedTemplate}
-  //                       setSelectedTemplate={setSelectedTemplate}/>
-
-  //           </div>
-  //            <div className=" ">
-  //           <Preview ref={templateRef} selectedTemplate={selectedTemplate} />
-  //           </div>
-
-  //           <div className="flex items-center justify-center gap-4 p-2 fixed bottom-0 left-0 right-0 bg-white shadow-lg ">
-
-  //               <LoaderButton
-  //                 isLoading={isLoading}
-  //                 onClick={handleFinish}
-  //                 className=" text-white px-4 py-2 rounded-lg bottom-btns"
-  //               >
-
-  //               Save
-  //               </LoaderButton>
-
-  //               <button
-  //                 onClick={downloadAsPDF}
-  //                 className=" bg-yellow-500 text-black px-4 py-2 rounded-lg bottom-btns"
-  //               >
-  //              Pay & Download
-  //               </button>
-  //               {showModal && (
-  //                 <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-  //                   <div className="w-full max-w-[90%] sm:max-w-4xl bg-white rounded-lg shadow-lg overflow-hidden max-h-screen overflow-y-auto">
-  //                     <div className="flex justify-between items-center p-4 border-b">
-  //                       <Image src={logo} alt="logo" className="h-8 w-auto" />
-  //                       <button
-  //                         className="text-gray-600 hover:text-gray-800"
-  //                         onClick={handleCloseModal}
-  //                       >
-  //                         <svg
-  //                           xmlns="http://www.w3.org/2000/svg"
-  //                           fill="none"
-  //                           viewBox="0 0 24 24"
-  //                           strokeWidth="2"
-  //                           stroke="currentColor"
-  //                           className="w-6 h-6"
-  //                         >
-  //                           <path
-  //                             strokeLinecap="round"
-  //                             strokeLinejoin="round"
-  //                             d="M6 18L18 6M6 6l12 12"
-  //                           />
-  //                         </svg>
-  //                       </button>
-  //                     </div>
-
-  //                     <div className="flex flex-col md:flex-row">
-  //                       <div className="w-full md:w-1/2 p-4 flex justify-center">
-  //                         <div className=" sm:w-80 sm:h-80">
-  //                           <Image
-  //                             src={resumeImg}
-  //                             alt="resumeimg"
-  //                             className="w-full h-full object-cover rounded-lg"
-  //                           />
-  //                         </div>
-  //                       </div>
-
-  //                       <div className="w-full md:w-1/2 p-4">
-  //                         <div className="text-center mb-6">
-  //                           <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
-  //                             $49
-  //                           </h2>
-  //                           <p className="text-sm text-gray-500">Total Amount</p>
-  //                         </div>
-
-  //                         <form>
-  //                           <div className="mb-4">
-  //                             <label className="block text-gray-800 mb-2">
-  //                               👨🏻‍💼 Name
-  //                             </label>
-  //                             <input
-  //                               type="text"
-  //                               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
-  //                               value={`${formData.first_name} ${formData.last_name}`.trim()}
-  //                               name="full name"
-  //                               required
-  //                               disabled
-  //                             />
-  //                           </div>
-
-  //                           <div className="mb-4">
-  //                             <label className="block text-gray-800 mb-2">
-  //                               📧 Email
-  //                             </label>
-  //                             <input
-  //                               type="email"
-  //                               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
-  //                               value={formData.email}
-  //                               name="email"
-  //                               required
-  //                               disabled
-  //                             />
-  //                           </div>
-
-  //                           <div className="mb-4">
-  //                             <label className="block text-gray-800 mb-2">
-  //                               ☎️ Phone
-  //                             </label>
-  //                             <input
-  //                               type="number"
-  //                               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
-  //                               name="phone"
-  //                               value={formData.phone}
-  //                               required
-  //                               disabled
-  //                             />
-  //                           </div>
-
-  //                           <div className="flex justify-center mt-6">
-  //                             <button
-  //                               onClick={handleDownload}
-  //                               type="submit"
-  //                               className="w-full bg-yellow-400 text-blue-800 font-bold  rounded-[50px] hover:bg-yellow-500 transition duration-200 flex items-center justify-center"
-  //                             >
-  //                               <Image
-  //                                 src={paypal}
-  //                                 alt="paypal"
-  //                                 className="h-10 w-auto m-auto "
-  //                               />
-  //                             </button>
-  //                           </div>
-  //                           <div className="flex justify-center mt-6">
-  //                             <button className="w-full bg-black text-white font-bold  rounded-[50px] transition duration-200  ">
-  //                               <Image
-  //                                 src={applepay}
-  //                                 alt="apple pay"
-  //                                 className=" w-auto m-auto h-10"
-  //                               />
-  //                             </button>
-  //                           </div>
-  //                           <div className="flex justify-center mt-6">
-  //                             <Image
-  //                               src={poweredbypaypal}
-  //                               alt="poweredbypaypal"
-  //                               className="h-8 w-auto"
-  //                             />
-  //                           </div>
-  //                         </form>
-  //                       </div>
-  //                     </div>
-  //                   </div>
-  //                 </div>
-  //               )}
-  //               <button
-  //                 onClick={handleBackToEditor}
-  //                 className="bg-blue-950 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors bottom-btns"
-  //               >
-  //              Back
-  //               </button>
-  //             </div>
-  //           </>
-
-  //         )}
-  //       </div>
-  //     </>
-  //   );
 }

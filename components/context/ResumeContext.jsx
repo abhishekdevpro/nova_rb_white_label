@@ -1,3 +1,4 @@
+
 import React, { createContext, useState } from 'react';
 import DefaultResumeData from '../utility/DefaultResumeData';
 
@@ -5,6 +6,8 @@ export const ResumeContext = createContext();
 
 export const ResumeProvider = ({ children }) => {
   const [resumeData, setResumeData] = useState(DefaultResumeData);
+  const [resumeStrength,setResumeStrength] = useState({})
+  const [exp,setExp] = useState("")
   const [headerColor, setHeaderColor] = useState("");
   const [backgroundColorss, setBgColor] = useState("");
   const [selectedFont, setSelectedFont] = useState("Ubuntu");
@@ -18,6 +21,11 @@ export const ResumeProvider = ({ children }) => {
       };
       reader.readAsDataURL(file);
     }
+  };
+
+  const deleteProfilePicture = (e) => {
+    e.preventDefault()
+    setResumeData({ ...resumeData, profilePicture: "" });
   };
 
   const handleChange = (e) => {
@@ -37,6 +45,10 @@ export const ResumeProvider = ({ children }) => {
         setBgColor,
         selectedFont,
         setSelectedFont,
+        resumeStrength,
+        setResumeStrength,
+        deleteProfilePicture,
+        exp,setExp,
       }}
     >
       {children}

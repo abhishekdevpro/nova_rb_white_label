@@ -1,29 +1,39 @@
+
 import React, { useContext, useState } from "react";
 import axios from "axios";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import { ResumeContext } from "../context/ResumeContext";
-import { AlertCircle, X } from "lucide-react";
+import { AlertCircle, Loader, Loader2, X } from "lucide-react";
 import { useRouter } from "next/router";
-
+import { toast } from "react-toastify";
+import ErrorPopup from "../utility/ErrorPopup";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const Summary = () => {
-  const { resumeData, setResumeData, resumeStrength } = useContext(ResumeContext);
+  const { resumeData, setResumeData, resumeStrength, setResumeStrength } =
+    useContext(ResumeContext);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [summaries, setSummaries] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [selectedSummaryIndex, setSelectedSummaryIndex] = useState(null);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [isAutoFixLoading, setIsAutoFixLoading] = useState(false);
+  const [errorPopup, setErrorPopup] = useState({
+    show: false,
+    message: "",
+  });
   const router = useRouter();
-  const { improve} = router.query;
-
+  const { id,improve } = router.query;
+  // console.log(resumeStrength.personal_summery_strenght.summery, ">>>>");
   const hasErrors = () => {
-    return resumeStrength?.personal_summery_strenght?.suggestions !== null ||
-           resumeStrength?.personal_summery_strenght?.summery !== null;
+    return (
+      resumeStrength?.personal_summery_strenght?.suggestions !== null ||
+      resumeStrength?.personal_summery_strenght?.summery !== null
+    );
   };
-
+// console.log(id,"dddd");
   const getSuggestions = () => {
     const suggestions = [];
     if (resumeStrength?.personal_summery_strenght?.suggestions) {
@@ -35,6 +45,63 @@ const Summary = () => {
     return suggestions;
   };
 
+  const handleAutoFix = async () => {
+    if (!resumeData.summary) return;
+
+    setIsAutoFixLoading(true);
+
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        "https://apiwl.novajobs.us/api/user/ai-summery",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `${token}`,
+          },
+          body: JSON.stringify({
+            key: "summary",
+            keyword: "auto improve",
+            content: resumeData.summary,
+            job_title: resumeData.position,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+
+        if (data.data.resume_analysis) {
+          const updatedSummary = data.data.resume_analysis.professional_summary;
+
+          if (updatedSummary) {
+            setResumeData({
+              ...resumeData,
+              summary: updatedSummary,
+            });
+
+            // Clear errors
+            if (resumeStrength?.personal_summery_strenght) {
+              const updatedStrength = {
+                ...resumeStrength,
+                personal_summery_strenght: {
+                  suggestions: null,
+                  summery: null,
+                },
+              };
+              setResumeStrength(updatedStrength);
+            }
+            setShowSuggestions(false);
+          }
+        }
+      }
+    } catch (error) {
+      console.error("Error auto-fixing summary:", error);
+    } finally {
+      setIsAutoFixLoading(false);
+    }
+  };
   const handleAIAssist = async () => {
     setLoading(true);
     setError(null);
@@ -43,7 +110,7 @@ const Summary = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "https://apiwl.novajobs.us/api/user/ai-resume-summery-data",
+        `https://apiwl.novajobs.us/api/user/ai-resume-summery-data/${id}`,
         {
           key: "resumesummery",
           keyword: `professional summary in manner of description - ${Date.now()}`,
@@ -68,6 +135,12 @@ const Summary = () => {
       }
     } catch (error) {
       console.error("Error getting AI summaries:", error);
+      setErrorPopup({
+        show: true,
+        message:
+          error.response?.data?.message ||
+          "Your API Limit is Exhausted. Please upgrade your plan.",
+      });
       setError("An error occurred while fetching summaries. Please try again.");
     } finally {
       setLoading(false);
@@ -96,7 +169,7 @@ const Summary = () => {
   };
 
   return (
-    <div className="flex-col gap-3 w-full mt-10 px-10">
+    <div className="flex-col gap-3 w-full md:mt-10 md:px-10">
       <div className="flex flex-col gap-2">
         <div className="flex justify-between mb-2 items-center">
           <div className="flex items-center gap-2">
@@ -114,36 +187,23 @@ const Summary = () => {
           </div>
           <button
             type="button"
-            className={`border px-4 py-2 rounded-3xl transition-colors ${
+            className={` bg-black text-white px-3 py-2 rounded-lg ${
               loading
                 ? "bg-gray-400 text-white cursor-not-allowed"
                 : "bg-black text-white hover:bg-gray-800"
             }`}
-            onClick={handleAIAssist}
+            onClick={() => {
+              if (resumeData?.position) {
+                handleAIAssist();
+              } else {
+                toast.error("Job Title is required in Detail Information");
+              }
+            }}
             disabled={loading}
           >
             {loading ? (
               <span className="flex items-center gap-2">
-                <svg
-                  className="animate-spin h-4 w-4 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
+                <Loader />
                 Loading...
               </span>
             ) : (
@@ -153,34 +213,58 @@ const Summary = () => {
         </div>
 
         {error && <div className="text-red-500 text-sm mb-2">{error}</div>}
-        
+
         {/* Suggestions Tooltip */}
         {showSuggestions && hasErrors() && (
-     
           <div className="absolute z-50 left-8 mt-10 w-80 bg-white rounded-lg shadow-xl transform transition-all duration-200 ease-in-out border border-gray-700">
-          <div className="p-4 border-b border-gray-700">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <AlertCircle className="w-5 h-5 text-red-400" />
-                <span className="font-medium text-black">Summary Suggestions</span>
+            <div className="p-4 border-b border-gray-700">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <AlertCircle className="w-5 h-5 text-red-400" />
+                  <span className="font-medium text-black">
+                    Summary Suggestions
+                  </span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={handleAutoFix}
+                    disabled={isAutoFixLoading}
+                    className="px-3 py-1 text-sm font-medium text-white bg-blue-600 rounded-md shadow hover:bg-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isAutoFixLoading ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      "Auto Fix"
+                    )}
+                  </button>
+                  <button
+                    onClick={() => setShowSuggestions(false)}
+                    className="text-black transition-colors"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
-              <button
-                 onClick={() => setShowSuggestions(false)}
-                className="text-black  transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
+            </div>
+            <div className="p-4">
+              {/* {getSuggestions().map((msg, i) => (
+                <div key={i} className="flex items-start space-x-3 mb-3 last:mb-0">
+                  <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-400 mt-2"></div>
+                  <p className="text-black text-sm">{msg}</p>
+                </div>
+              ))} */}
+              <ul className="space-y-3">
+                {resumeStrength.personal_summery_strenght.summery.map(
+                  (msg, i) => (
+                    <li key={i} className="flex items-start space-x-3">
+                      <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-400 mt-2"></span>
+                      <p className="text-black text-sm">{msg}</p>
+                    </li>
+                  )
+                )}
+              </ul>
             </div>
           </div>
-          <div className="p-4">
-            {getSuggestions().map((msg, i) => (
-              <div key={i} className="flex items-start space-x-3 mb-3 last:mb-0">
-                <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-400 mt-2"></div>
-                <p className="text-black text-sm">{msg}</p>
-              </div>
-            ))}
-          </div>
-        </div>
         )}
       </div>
 
@@ -197,7 +281,7 @@ const Summary = () => {
           }}
         />
         <div className="text-sm text-gray-500 mt-1 text-right">
-          {resumeData.summary?.length || 0}/500
+          {/* {resumeData.summary?.length || 0}/500 */}
         </div>
       </div>
 
@@ -237,6 +321,12 @@ const Summary = () => {
             </div>
           </div>
         </div>
+      )}
+       {errorPopup.show && (
+        <ErrorPopup
+          message={errorPopup.message}
+          onClose={() => setErrorPopup({ show: false, message: "" })}
+        />
       )}
     </div>
   );

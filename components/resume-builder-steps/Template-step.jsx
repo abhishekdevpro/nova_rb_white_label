@@ -22,14 +22,7 @@ const TemplateStep = ({ onNext, onBack, onChange, value }) => {
   const [selectedHexCode, setSelectedHexCode] = useState('#2563EB');
   const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
 
-  // const colors = [
-  //   { name: 'Gray', class: 'bg-gray-200', selectedClass: 'ring-gray-400', hexCode: '#6D7278' },
-  //   { name: 'Blue', class: 'bg-blue-600', selectedClass: 'ring-blue-400', hexCode: '#2563EB' },
-  //   { name: 'Purple', class: 'bg-purple-600', selectedClass: 'ring-purple-400', hexCode: '#9333EA' },
-  //   { name: 'Green', class: 'bg-green-600', selectedClass: 'ring-green-400', hexCode: '#16A34A' },
-  //   { name: 'Red', class: 'bg-red-600', selectedClass: 'ring-red-400', hexCode: '#DC2626' },
-  //   { name: 'Yellow', class: 'bg-yellow-500', selectedClass: 'ring-yellow-400', hexCode: '#EAB308' }
-  // ];
+
   const colors = [
     { name: 'Gray', class: 'bg-gray-200', selectedClass: 'ring-gray-400', hexCode: '#6D7278' },
     { name: 'Blue', class: 'bg-blue-600', selectedClass: 'ring-blue-400', hexCode: '#2563EB' },
@@ -114,7 +107,8 @@ const TemplateStep = ({ onNext, onBack, onChange, value }) => {
         );
 
         if (response.data.code == 200 || response.data.status == "success") {
-          const parsedAIData = JSON.parse(response.data.data.ai_resume_parse_data);
+          console.log('Resume data fetched successfully:', response.data.data,typeof (response.data.data.ai_resume_parse_data));
+          const parsedAIData = (response.data.data.ai_resume_parse_data);
           setResumeData(parsedAIData.templateData);
           
           if (parsedAIData.templateData.templateDetails) {
