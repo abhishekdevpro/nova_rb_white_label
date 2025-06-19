@@ -1,10 +1,10 @@
-import React, { useState, useRef } from 'react';
-import { ArrowLeft, Download, Save } from 'lucide-react';
-import TemplateSelector from '../components/cv/coverletter/CvSelector';
-import CoverLetterEditor from '../components/cv/coverletterform/CoverLetterEditor';
-import Navbar from './Navbar/Navbar';
+import React, { useState, useRef } from "react";
+import { ArrowLeft, Download, Save } from "lucide-react";
+import TemplateSelector from "../components/cv/coverletter/CvSelector";
+import CoverLetterEditor from "../components/cv/coverletterform/CoverLetterEditor";
+import Navbar from "./Navbar/Navbar";
 import ColorPickers from "./ColorPickers";
-import CoverLetterPreview from '../components/cv/coverletter/CoverLetterPreview';
+import CoverLetterPreview from "../components/cv/coverletter/CoverLetterPreview";
 
 const MobileCoverLetterBuilder = ({
   selectedFont,
@@ -15,10 +15,10 @@ const MobileCoverLetterBuilder = ({
   setSelectedTemplate,
   handleFinish,
   downloadAsPDF,
-  templateRef
+  templateRef,
 }) => {
   const [isPreviewMode, setIsPreviewMode] = useState(false);
-
+  const [selectedPdfType, setSelectedPdfType] = useState("1");
   const togglePreviewMode = () => {
     // handleFinish()
     setIsPreviewMode(!isPreviewMode);
@@ -66,6 +66,17 @@ const MobileCoverLetterBuilder = ({
                 <option value="Georgia">Georgia</option>
                 <option value="Roboto">Roboto</option>
                 <option value="Poppins">Poppins</option>
+                <option value="Arial">Arial</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Helvetica">Helvetica</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Tahoma">Tahoma</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Trebuchet MS">Trebuchet MS</option>
+                <option value="Lucida Console">Lucida Console</option>
+                <option value="Comic Sans MS">Comic Sans MS</option>
+                <option value="Source Sans Pro">Source Sans Pro</option>
+                <option value="Inter">Inter</option>
               </select>
 
               {/* Color Picker */}
@@ -78,6 +89,8 @@ const MobileCoverLetterBuilder = ({
               <TemplateSelector
                 selectedTemplate={selectedTemplate}
                 setSelectedTemplate={setSelectedTemplate}
+                selectedPdfType={selectedPdfType}
+                setSelectedPdfType={setSelectedPdfType}
               />
             </div>
           </div>
@@ -92,30 +105,30 @@ const MobileCoverLetterBuilder = ({
 
           {/* Fixed Bottom Actions */}
           {/* <div className="sticky bottom-0 w-full bg-white shadow-t p-4"> */}
-            <div className="flex items-center justify-center gap-4 p-2 fixed bottom-0 left-0 right-0 bg-white shadow-lg">
-              <button
-                onClick={togglePreviewMode}
-                className="w-full flex items-center justify-center gap-2 bg-gray-200 text-gray-800 px-6 py-3 rounded-lg"
-              >
-                <ArrowLeft size={20} />
-                {/* Back to Editor */}
-              </button>
-              <button
-                onClick={handleFinish}
-                className="w-full flex items-center justify-center gap-2 bg-blue-950 text-white px-6 py-3 rounded-lg"
-              >
-                <Save size={20} />
-                {/* Save Cover Letter */}
-              </button>
-              <button
-                onClick={downloadAsPDF}
-                className="w-full flex items-center justify-center gap-2 bg-yellow-500 text-white px-6 py-3 rounded-lg"
-              >
-                <Download size={20}/>
-                {/* Download */}
-              </button>
-            </div>
+          <div className="flex items-center justify-center gap-4 p-2 fixed bottom-0 left-0 right-0 bg-white shadow-lg">
+            <button
+              onClick={togglePreviewMode}
+              className="w-full flex items-center justify-center gap-2 bg-gray-200 text-gray-800 px-6 py-3 rounded-lg"
+            >
+              <ArrowLeft size={20} />
+              {/* Back to Editor */}
+            </button>
+            <button
+              onClick={handleFinish}
+              className="w-full flex items-center justify-center gap-2 bg-blue-950 text-white px-6 py-3 rounded-lg"
+            >
+              <Save size={20} />
+              {/* Save Cover Letter */}
+            </button>
+            <button
+              onClick={downloadAsPDF}
+              className="w-full flex items-center justify-center gap-2 bg-yellow-500 text-white px-6 py-3 rounded-lg"
+            >
+              <Download size={20} />
+              {/* Download */}
+            </button>
           </div>
+        </div>
         // </div>
       )}
     </div>

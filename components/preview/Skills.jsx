@@ -1,81 +1,8 @@
-// // import React, { useContext } from "react";
-// // import { ResumeContext } from "../context/ResumeContext";
-// // // import { ResumeContext } from "../../pages/builder";
-
-// // const Skills = ({ title, skills, color }) => {
-// //   const { resumeData, setResumeData} = useContext(ResumeContext);
-
-// //   const handleTitleChange = (e) => {
-// //     const newSkills = [...resumeData.skills];
-// //     newSkills.find((skillType) => skillType.title === title).title = e.target.innerText;
-// //     setResumeData({ ...resumeData, skills: newSkills });
-// //   };
-// // // console.log(color,"llll");
-// //   return (
-// //     skills.length > 0 && (
-// //       <>
-// //         <h2
-// //          style={{ color: color }}
-// //         className="text-md font-semibold mb-1  editable " contentEditable suppressContentEditableWarning onBlur={handleTitleChange}>
-// //           {title}
-// //         </h2>
-// //         <p
-// //          style={{ color: color }}
-// //         className="" >{skills.join(", ")}</p>
-// //       </>
-// //     )
-// //   );
-// // };
-
-// // export default Skills;
-
-// // // import React, { useContext } from "react";
-// // // import { ResumeContext } from "../context/ResumeContext";
-
-// // // const Skills = ({ title, skills }) => {
-// // //   const { resumeData, setResumeData } = useContext(ResumeContext);
-
-// // //   const handleTitleChange = (e) => {
-// // //     const newSkills = [...resumeData.skills];
-// // //     const skillType = newSkills.find((skillType) => skillType.title === title);
-// // //     if (skillType) {
-// // //       skillType.title = e.target.innerText;
-// // //     }
-// // //     setResumeData({ ...resumeData, skills: newSkills });
-// // //   };
-
-// // //   return (
-// // //     skills.length > 0 && (
-// // //       <div className="skills-section">
-// // //         <h2
-// // //           className="text-md font-semibold mb-2 editable"
-// // //           contentEditable
-// // //           suppressContentEditableWarning
-// // //           onBlur={handleTitleChange}
-// // //         >
-// // //           {title}
-// // //         </h2>
-// // //         <ul className="list-disc ml-6">
-// // //           {skills.map((skill, index) => (
-// // //             <li key={index} className="text-sm">
-// // //               {skill}
-// // //             </li>
-// // //           ))}
-// // //         </ul>
-// // //       </div>
-// // //     )
-// // //   );
-// // // };
-
-// // // export default Skills;
-
-
 // import React, { useContext } from "react";
 // import { ResumeContext } from "../context/ResumeContext";
 
-// const Skills = ({ title, skills, color="black", layout }) => {
-//   const { resumeData, setResumeData } = useContext(ResumeContext);
-
+// const Skills = ({ title, skills, color = "black", layout }) => {
+//   const { resumeData, setResumeData, backgroundColorss } = useContext(ResumeContext);
 //   const handleTitleChange = (e) => {
 //     const newSkills = [...resumeData.skills];
 //     const skillType = newSkills.find((skillType) => skillType.title === title);
@@ -84,15 +11,14 @@
 //     }
 //     setResumeData({ ...resumeData, skills: newSkills });
 //   };
-// console.log(color,"jhhj");
-
-//   // const newColor = color === "black" ? "white" : "black";
 
 //   return (
 //     skills.length > 0 && (
 //       <div className="">
 //         <h2
-//           style={{ color: color }}
+//            style={{
+//             color: layout === "row" || !backgroundColorss ? "black" : color,
+//           }}
 //           className="text-md font-semibold mb-2 editable"
 //           contentEditable
 //           suppressContentEditableWarning
@@ -100,16 +26,16 @@
 //         >
 //           {title}
 //         </h2>
-//         {layout === "row" ? (
+//         {layout === "row"  ? (
 //           <div
-//             style={{ color: color }}
+//             style={{ color: "black" }} // Explicitly set color to black for row layout
 //             className=""
 //           >
 //             {skills.join(", ")}
 //           </div>
 //         ) : (
 //           <ul
-//             style={{ color: color }}
+//             style={{ color: backgroundColorss? color:"black" }}
 //             className="list-disc ml-6"
 //           >
 //             {skills.map((skill, index) => (
@@ -124,14 +50,16 @@
 //   );
 // };
 
-// // export default Skills;
-
+// export default Skills;
 import React, { useContext } from "react";
 import { ResumeContext } from "../context/ResumeContext";
 
-const Skills = ({ title, skills, color = "black", layout }) => {
-  const { resumeData, setResumeData, backgroundColorss } = useContext(ResumeContext);
-  //  console.log(backgroundColorss,"backgroundColorss");
+const Skills = ({ title, skills, color = "black", layout, textColor }) => {
+  const { resumeData, setResumeData, backgroundColorss } =
+    useContext(ResumeContext);
+
+  // console.log(backgroundColorss, "backgroundColorss");
+
   const handleTitleChange = (e) => {
     const newSkills = [...resumeData.skills];
     const skillType = newSkills.find((skillType) => skillType.title === title);
@@ -141,35 +69,55 @@ const Skills = ({ title, skills, color = "black", layout }) => {
     setResumeData({ ...resumeData, skills: newSkills });
   };
 
+  const handleSkillChange = (index, newValue) => {
+    const newSkills = [...resumeData.skills];
+    const skillType = newSkills.find((skillType) => skillType.title === title);
+    if (skillType && skillType.skills) {
+      skillType.skills[index] = newValue;
+      setResumeData({ ...resumeData, skills: newSkills });
+    }
+  };
+
   return (
     skills.length > 0 && (
-      <div className="">
+      <div className={`mb-4 text-${textColor}`}>
         <h2
-           style={{
-            color: layout === "row" || !backgroundColorss ? "black" : color,
-          }}
-          className="text-md font-semibold mb-2 editable"
+          // style={{
+          //   color: layout === "row" || !backgroundColorss ? "black" : color,
+          // }}
+          className="text-lg font-medium  editable"
           contentEditable
           suppressContentEditableWarning
           onBlur={handleTitleChange}
         >
           {title}
         </h2>
-        {layout === "row"  ? (
+        {layout === "row" ? (
           <div
-            style={{ color: "black" }} // Explicitly set color to black for row layout
-            className=""
+            style={{ color: "black" }}
+            className="hover:outline-dashed hover:outline-2 hover:outline-gray-400 font-light text-sm mb-4"
+            contentEditable
+            suppressContentEditableWarning
           >
             {skills.join(", ")}
           </div>
         ) : (
           <ul
-            style={{ color: backgroundColorss? color:"black" }}
-            className="list-disc ml-6"
+            style={{ color: backgroundColorss ? color : "black" }}
+            className="list-disc pl-4 font-light text-sm"
           >
             {skills.map((skill, index) => (
-              <li key={index} className="">
-                {skill}
+              <li
+                key={index}
+                className={`hover:outline-dashed hover:outline-2 hover:outline-gray-400 hover:scale-105 transition-transform duration-300 font-light text-sm  text-${textColor}`}
+              >
+                <span
+                  contentEditable
+                  suppressContentEditableWarning
+                  onBlur={(e) => handleSkillChange(index, e.target.innerText)}
+                >
+                  {skill}
+                </span>
               </li>
             ))}
           </ul>

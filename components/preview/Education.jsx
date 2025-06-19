@@ -1,48 +1,90 @@
-// import React from "react";
+// import React, { useContext } from "react";
 // import DateRange from "../utility/DateRange";
+// import { ResumeContext } from "../context/ResumeContext";
 
 // const EducationSection = ({
 //   educationData,
 //   headerColor,
-//   hassidebar,
 //   className = "",
-//   style = {},
-//   itemClassNames = {}, 
 //   layout = "column", // "column" or "row"
 // }) => {
+//   const { backgroundColorss } = useContext(ResumeContext);
 //   if (!educationData || educationData.length === 0) return null;
-// console.log(headerColor,"");
+
 //   return (
-//     <div className={`mb-1 ${className}`} 
-//     >
-//        <h2
-//          style={{
-//           color: headerColor,
-//           borderBottom: `2px solid ${headerColor}`,
+//     <div className={`mb-1 ${className}`}>
+//       <h2
+//         style={{
+//           color: `${
+//             headerColor == "black" ? `${backgroundColorss}` : headerColor
+//           }`,
+//           borderBottom: `1px solid ${
+//             headerColor == "black" ? `${backgroundColorss}` : headerColor
+//           }`,
 //         }}
-//         className="text-xl font-bold mb-1 "
+//         className="text-lg font-semibold mb-1"
+//         contentEditable
+//         suppressContentEditableWarning
 //       >
 //         Education
 //       </h2>
 //       {educationData.map((item, index) => (
-//         <div key={index}  className={`flex  mb-1${
-//           layout === "row" ? "flex-row items-center flex-wrap gap-2" : "flex-col gap-2 justify-between"
-//         }`}> 
+//         <div
+//           key={index}
+//           className={`flex mb-1 ${
+//             layout === "row"
+//               ? "flex-row items-center justify-between flex-wrap gap-2"
+//               : "flex-col gap-2 justify-between"
+//           }`}
+//         >
 //           <div>
-//           <p className={` font-semibold}`}>
-//             {item.degree}
-//           </p>
-//           <p className={``}>{item.school}</p>
+//             <p
+//               contentEditable
+//               suppressContentEditableWarning
+//               className="font-medium"
+//               style={{
+//                 color:
+//                   layout === "row" || headerColor == "black"
+//                     ? "black"
+//                     : "white",
+//               }}
+//             >
+//               {item.degree}
+//             </p>
+//             <p
+//               contentEditable
+//               suppressContentEditableWarning
+//               className="font-medium"
+//               style={{
+//                 color:
+//                   layout === "row" || headerColor == "black"
+//                     ? "black"
+//                     : "white",
+//               }}
+//             >
+//               {item.school}
+//             </p>
 //           </div>
 //           <div>
-//           <DateRange
-//             startYear={item.startYear}
-//             endYear={item.endYear}
-//             // id={`education-start-end-date-${index}`}
-//           />
-//           <p className={``}>
-//             {item.location}
-//           </p>
+//             <DateRange
+//               layout={layout}
+//               startYear={item.startYear}
+//               endYear={item.endYear}
+//               // className="font-normal"
+//             />
+//             <p
+//               // className="font-normal"
+//               contentEditable
+//               suppressContentEditableWarning
+//               style={{
+//                 color:
+//                   layout === "row" || headerColor == "black"
+//                     ? "black"
+//                     : "white",
+//               }}
+//             >
+//               {item.location}
+//             </p>
 //           </div>
 //         </div>
 //       ))}
@@ -51,6 +93,7 @@
 // };
 
 // export default EducationSection;
+
 import React, { useContext } from "react";
 import DateRange from "../utility/DateRange";
 import { ResumeContext } from "../context/ResumeContext";
@@ -61,17 +104,23 @@ const EducationSection = ({
   className = "",
   layout = "column", // "column" or "row"
 }) => {
-  const {backgroundColorss}= useContext(ResumeContext)
+  const { backgroundColorss } = useContext(ResumeContext);
   if (!educationData || educationData.length === 0) return null;
 
   return (
     <div className={`mb-1 ${className}`}>
       <h2
         style={{
-          color: `${headerColor == "black" ? `${backgroundColorss}` : headerColor}`,
-          borderBottom: `2px solid ${headerColor == "black" ? `${backgroundColorss}` : headerColor}`,
+          color: `${
+            headerColor == "black" ? `${backgroundColorss}` : headerColor
+          }`,
+          borderBottom: `1px solid ${
+            headerColor == "black" ? `${backgroundColorss}` : headerColor
+          }`,
         }}
-        className="text-xl font-bold mb-1"
+        className="text-xl font-semibold mb-1"
+        contentEditable
+        suppressContentEditableWarning
       >
         Education
       </h2>
@@ -86,24 +135,53 @@ const EducationSection = ({
         >
           <div>
             <p
-              className="font-semibold"
-              style={{ color: layout === "row" || headerColor == "black" ? "black" : "white" }}
+              contentEditable
+              suppressContentEditableWarning
+              className="font-normal text-base"
+              style={{
+                color:
+                  layout === "row" || headerColor == "black"
+                    ? "black"
+                    : "white",
+              }}
             >
               {item.degree}
             </p>
             <p
-              style={{ color: layout === "row" || headerColor == "black" ? "black" : "white" }}
+              contentEditable
+              suppressContentEditableWarning
+              className="font-light text-sm"
+              style={{
+                color:
+                  layout === "row" || headerColor == "black"
+                    ? "black"
+                    : "white",
+              }}
             >
               {item.school}
             </p>
           </div>
           <div>
-            <DateRange layout={layout} startYear={item.startYear} endYear={item.endYear} />
             <p
-              style={{ color: layout === "row" || headerColor == "black" ? "black" : "white" }}
+              className="font-normal text-base"
+              contentEditable
+              suppressContentEditableWarning
+              style={{
+                color:
+                  layout === "row" || headerColor == "black"
+                    ? "black"
+                    : "white",
+              }}
             >
-              {item.location}
+              {/* {item.location} */}
+              {item.location?.split(",")[0]?.trim()}
             </p>
+            <DateRange
+              layout={layout}
+              startYear={item.startYear}
+              endYear={item.endYear}
+              className="font-light text-sm"
+            />
           </div>
         </div>
       ))}

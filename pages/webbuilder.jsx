@@ -24,7 +24,7 @@ import logo from "./builderImages/logo.jpg";
 import { ResumeContext } from "../components/context/ResumeContext";
 // import PaymentButton from "./paymentbutton";
 import { SaveLoader } from "../components/ResumeLoader/SaveLoader";
-
+import Highlightmenubar from "../components/preview/highlightmenu";
 const Print = dynamic(() => import("../components/utility/WinPrint"), {
   ssr: false,
 });
@@ -77,7 +77,7 @@ export default function WebBuilder() {
 
           if (response.data.status === "success") {
             const { data } = response.data;
-            const parsedData = (data.ai_resume_parse_data);
+            const parsedData = data.ai_resume_parse_data;
             // console.log(parsedData, "parsedData");
 
             setResumeData(parsedData?.templateData);
@@ -313,90 +313,62 @@ export default function WebBuilder() {
       );
     }
   };
+
   const downloadAsPDF = async () => {
-    setIsDownloading(true)
+    handleFinish();
+    if (!templateRef.current) {
+      toast.error("Template reference not found");
+      return;
+    }
+
+    // setisDownloading(true); // Start loading before the async operation
+
     try {
-      await handleFinish();
-
-      if (!resumeId) {
-        // toast.error("Missing resume ID");
-        return;
-      }
-
       const token = localStorage.getItem("token");
+      const htmlContent = templateRef.current.innerHTML;
+
+      const fullContent = `
+            <style>
+                @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+            </style>
+            ${htmlContent}
+        `;
 
       const response = await axios.get(
-        `https://apiwl.novajobs.us/api/user/download-resume/${resumeId}`,
+        `https://apiwl.novajobs.us/api/user/download-resume/${resumeId}?pdf_type=${selectedPdfType}`,
+
         {
           headers: {
             Authorization: token,
+            "Content-Type": "application/pdf",
           },
           responseType: "blob",
         }
       );
-
-      console.log("Response status:", response.status);
-      console.log("Response data type:", typeof response.data);
-      console.log(
-        "Response data instanceof Blob:",
-        response.data instanceof Blob
+      const url = window.URL.createObjectURL(
+        new Blob([response.data], { type: "application/pdf" })
       );
-      console.log("Blob size:", response.data.size);
-      console.log("Blob type:", response.data.type);
+      const link = document.createElement("a");
+      link.href = url;
 
-      if (response.status === 200 && response.data instanceof Blob) {
-        // Check if blob is valid
-        if (response.data.size === 0) {
-          toast.error("Received empty PDF file");
-          return;
-        }
+      link.setAttribute("download", `resume.pdf`);
+      document.body.appendChild(link);
+      link.click();
 
-        const url = window.URL.createObjectURL(response.data);
-        console.log("Created URL:", url);
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
 
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = `resume_${resumeId}.pdf`;
-
-        console.log("Link created:", link);
-        console.log("Link href:", link.href);
-        console.log("Link download:", link.download);
-
-        document.body.appendChild(link);
-
-        // Try to trigger download
-        try {
-          link.click();
-          console.log("Link clicked successfully");
-        } catch (clickError) {
-          console.error("Click error:", clickError);
-          // Fallback: try programmatic click
-          const event = new MouseEvent("click", {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-          });
-          link.dispatchEvent(event);
-        }
-
-        setTimeout(() => {
-          document.body.removeChild(link);
-          window.URL.revokeObjectURL(url);
-        }, 1000);
-
-        toast.success("Resume Downloaded Successfully");
-      } else {
-        console.error("Invalid response or blob");
-        toast.error("Invalid PDF response");
-      }
+      // downloadPDF();
+      // initiateCheckout(); // Call this only if the request is successful
     } catch (error) {
-      console.error("PDF generation error:", error?.response.status);
-      toast.error(error?.response.status === 403? "Limit exhausted, please upgrade your plan"  :"Failed to download PDF");
-    }finally {
-    setIsDownloading(false); // Hide loader in all cases
-  }
+      console.error("PDF generation error:", error);
+      toast.error(
+        error.response?.data?.message || "Failed to generate and open PDF"
+      );
+    } finally {
+      // setisDownloading(false); // Ensure loading is stopped after success or failure
+    }
   };
-
   // Logic to save and update the Resume
   const handleFinish = async (showToast = true) => {
     if (!resumeData) return;
@@ -445,7 +417,7 @@ export default function WebBuilder() {
             title: project.title || "",
             link: project.link || "",
             description: project.description || "",
-          keyAchievements: Array.isArray(exp.keyAchievements)
+            keyAchievements: Array.isArray(exp.keyAchievements)
               ? exp.keyAchievements.filter((item) => item?.trim?.()) // filter out empty strings or undefined
               : exp.keyAchievements && exp.keyAchievements.trim?.()
               ? [exp.keyAchievements.trim()]
@@ -577,7 +549,9 @@ export default function WebBuilder() {
         description="ATSResume is a cutting-edge resume builder that helps job seekers create a professional, ATS-friendly resume in minutes..."
         keywords="ATS-friendly, Resume optimization..."
       />
-      {isDownloading && <SaveLoader loadingText="Downoading your resume.Please Wait" />}
+      {isDownloading && (
+        <SaveLoader loadingText="Downoading your resume.Please Wait" />
+      )}
 
       <div className="min-h-screen bg-gray-50 ">
         {!isFinished ? (
@@ -606,13 +580,24 @@ export default function WebBuilder() {
                   <select
                     value={selectedFont}
                     onChange={handleFontChange}
-                    className="w-40 h-10 rounded-lg border border-blue-800 px-4 font-bold text-blue-800 bg-white focus:ring-2 focus:ring-blue-800"
+                    className="w-40 h-11 rounded-lg border-2 border-blue-800 px-4   font-bold text-blue-800 bg-white focus:ring-2 focus:ring-blue-800"
                   >
                     <option value="Ubuntu">Ubuntu</option>
                     <option value="Calibri">Calibri</option>
                     <option value="Georgia">Georgia</option>
                     <option value="Roboto">Roboto</option>
                     <option value="Poppins">Poppins</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Helvetica">Helvetica</option>
+                    <option value="Courier New">Courier New</option>
+                    <option value="Tahoma">Tahoma</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Trebuchet MS">Trebuchet MS</option>
+                    <option value="Lucida Console">Lucida Console</option>
+                    <option value="Comic Sans MS">Comic Sans MS</option>
+                    <option value="Source Sans Pro">Source Sans Pro</option>
+                    <option value="Inter">Inter</option>
                   </select>
 
                   <div className="flex items-center gap-4">
@@ -711,13 +696,24 @@ export default function WebBuilder() {
                 <select
                   value={selectedFont}
                   onChange={handleFontChange}
-                  className="px-4 py-2 border rounded-lg"
+                  className="w-40 h-11 rounded-lg border-2 border-blue-800 px-4 mt-2  font-bold text-blue-800 bg-white focus:ring-2 focus:ring-blue-800"
                 >
                   <option value="Ubuntu">Ubuntu</option>
                   <option value="Calibri">Calibri</option>
                   <option value="Georgia">Georgia</option>
                   <option value="Roboto">Roboto</option>
                   <option value="Poppins">Poppins</option>
+                  <option value="Arial">Arial</option>
+                  <option value="Times New Roman">Times New Roman</option>
+                  <option value="Helvetica">Helvetica</option>
+                  <option value="Courier New">Courier New</option>
+                  <option value="Tahoma">Tahoma</option>
+                  <option value="Verdana">Verdana</option>
+                  <option value="Trebuchet MS">Trebuchet MS</option>
+                  <option value="Lucida Console">Lucida Console</option>
+                  <option value="Comic Sans MS">Comic Sans MS</option>
+                  <option value="Source Sans Pro">Source Sans Pro</option>
+                  <option value="Inter">Inter</option>
                 </select>
                 <ColorPickers
                   selectmultiplecolor={backgroundColorss}
@@ -752,134 +748,7 @@ export default function WebBuilder() {
                     "Pay & Download"
                   )}
                 </button>
-                {showModal && (
-                  <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-                    <div className=" w-full max-w-4xl bg-white rounded-lg shadow-lg ">
-                      <div className="flex justify-between items-center p-2">
-                        <Image src={logo} alt="logo" className="h-10 w-auto" />
-                        <button
-                          className=" text-gray-600 hover:text-gray-800 z-20"
-                          onClick={handleCloseModal}
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth="2"
-                            stroke="currentColor"
-                            className="w-6 h-6"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M6 18L18 6M6 6l12 12"
-                            />
-                          </svg>
-                        </button>
-                      </div>
-                      <div className="flex flex-col md:flex-row">
-                        <div className="md:w-1/2 w-full p-4  ">
-                          <div className="w-[400px] h-[400px]">
-                            <Image
-                              src={resumeImg}
-                              alt="resumeimg"
-                              className="w- full h-full rounded-l-lg"
-                            />
-                          </div>
-                        </div>
 
-                        <div className="md:w-1/2 w-full p-4 ">
-                          <div className="text-center mb-6">
-                            <h2 className="text-2xl font-bold text-gray-900">
-                              $49
-                            </h2>
-                            <p className="text-sm text-gray-500">
-                              Total Amount
-                            </p>
-                          </div>
-
-                          <form>
-                            <div className="mb-4">
-                              <label className="block text-gray-800 mb-2">
-                                👨🏻‍💼 Name
-                              </label>
-                              <input
-                                type="text"
-                                className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
-                                value={`${formData.first_name} ${formData.last_name}`.trim()}
-                                name="full name"
-                                required
-                                disabled
-                              />
-                            </div>
-                            <div className="mb-4">
-                              <label className="block text-gray-800 mb-2">
-                                📧 Email
-                              </label>
-                              <input
-                                type="email"
-                                className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
-                                value={formData.email}
-                                required
-                                name="email"
-                                disabled
-                              />
-                            </div>
-                            <div className="mb-4">
-                              <label className="block text-gray-800 mb-2">
-                                ☎️ Phone
-                              </label>
-                              <input
-                                className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
-                                required
-                                disabled
-                                type="number"
-                                name="phone"
-                                value={formData.phone}
-                              />
-                            </div>
-                            {/* <PaymentButton /> */}
-
-                            <div className="flex justify-center mt-6">
-                              <button
-                                onClick={createPayment}
-                                type="button"
-                                className="w-full bg-yellow-400 text-blue-800 font-bold  rounded-[50px] hover:bg-yellow-500 transition duration-200"
-                              >
-                                {loading == "download" ? (
-                                  <SaveLoader loadingText="Downloading" />
-                                ) : (
-                                  <Image
-                                    src={paypal}
-                                    alt="paypal"
-                                    className="h-10 w-auto m-auto"
-                                  />
-                                )}
-                              </button>
-                            </div>
-                            {/* 
-                            <div className="flex justify-center mt-6">
-                              <button className="w-full bg-black text-white font-bold  rounded-[50px] transition duration-200  ">
-                                <Image
-                                  src={applepay}
-                                  alt="apple pay"
-                                  className=" w-auto m-auto h-10"
-                                />
-                              </button>
-                            </div> */}
-                            {/* <div className="flex justify-center mt-6 ">
-                              <Image
-                                src={poweredbypaypal}
-                                alt="poweredbypaypal"
-                                className="h-10 w-auto"
-                              />
-                            </div> */}
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
                 {/* <PayAndDownload resumeId={resumeId} token={token} PayerID={PayerID} userId={userId}/> */}
                 <button
                   onClick={handleBackToEditor}
@@ -891,6 +760,7 @@ export default function WebBuilder() {
             </div>
 
             <div className="z-10">
+              <Highlightmenubar />
               <Preview ref={templateRef} selectedTemplate={selectedTemplate} />
             </div>
           </div>

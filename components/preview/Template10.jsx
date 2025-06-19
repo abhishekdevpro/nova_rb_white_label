@@ -256,7 +256,6 @@
 
 // export default Template10;
 
-
 // import React from "react";
 import { useContext, useRef } from "react";
 // import { ResumeContext } from "../../pages/builder";
@@ -313,8 +312,13 @@ const Draggable = dynamic(
   { ssr: false }
 );
 const Template10 = () => {
-  const { resumeData, setResumeData, headerColor, backgroundColorss } =
-    useContext(ResumeContext);
+  const {
+    resumeData,
+    setResumeData,
+    headerColor,
+    backgroundColorss,
+    selectedFont,
+  } = useContext(ResumeContext);
   const templateRef = useRef(null);
 
   const extractHtml = () => {
@@ -335,30 +339,31 @@ const Template10 = () => {
   return (
     <div
       ref={templateRef}
-      className="max-w-4xl mx-auto bg-white p-8 border border-gray-200 rounded-lg shadow-lg"
+      className=""
+      style={{ fontFamily: `${selectedFont}` }}
     >
       <div className="header text-center mb-6">
-       
         <TextWrapper
           name={resumeData.name}
           position={resumeData.position}
           headerColor={backgroundColorss}
           orientation="column" // Use "column" for stacked layout
         />
-        {/* <h1 className="text-2xl mb-1.5" style={{ color: headerColor }}>{resumeData.name}</h1> */}
-        <ContactAndSocialMedia
-          contactData={{
-            teldata: resumeData.contactInformation,
-            emaildata: resumeData.email,
-            addressdata: resumeData.address,
-          }}
-          socialMediaData={resumeData.socialMedia}
-          icons={icons}
-          layout="row" // or "row"
-          contactClass=""
-          socialMediaClass=""
-          className="justify-center gap-4"
-        />
+        <div className="mt-6">
+          <ContactAndSocialMedia
+            contactData={{
+              teldata: resumeData.contactInformation,
+              emaildata: resumeData.email,
+              addressdata: resumeData.address,
+            }}
+            socialMediaData={resumeData.socialMedia}
+            icons={icons}
+            layout="row" // or "row"
+            contactClass=""
+            socialMediaClass=""
+            className="justify-center gap-4"
+          />
+        </div>
       </div>
 
       <SummaryWrapper
@@ -383,7 +388,10 @@ const Template10 = () => {
             resumeData={resumeData}
             headerColor={backgroundColorss}
           />
-          <ProjectsSection resumeData={resumeData} headerColor={backgroundColorss} />
+          <ProjectsSection
+            resumeData={resumeData}
+            headerColor={backgroundColorss}
+          />
         </div>
       </section>
 
@@ -415,47 +423,32 @@ const Template10 = () => {
       </section>
 
       <section className="skills mb-6">
-        {/* <Droppable droppableId="skills" type="SKILLS"> */}
-        {/* {(provided) => (
-          <ul
-            className="pl-5 "
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-          >
-            {resumeData.skills.map((skill, index) => (
-              <Draggable
-                key={`SKILLS-${index}`}
-                draggableId={`SKILLS-${index}`}
-                index={index}
-              >
-                {(provided, snapshot) => (
-                  <li
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    className={`hover:scale-105 transition-transform duration-300 text-sm mb-1.5 ${snapshot.isDragging &&
-                      "outline-dashed outline-2 outline-gray-400 bg-white"
-                      }`}
-                  >
-                    <Skills title={skill.title} skills={skill.skills} />
-                  </li>
-                )}
-              </Draggable>
-            ))}
-            {provided.placeholder}
-          </ul> */}
         <SkillsWrapper
           skills={resumeData.skills}
           headerColor={backgroundColorss}
           droppableId="skills-section-1"
           className="mt-4"
           layout="row"
+          textColor="black"
+        />
+      </section>
+      <section className="certification mb-6">
+        <Certification
+          title="Certifications"
+          certifications={resumeData.certifications}
+          hasBullet={false}
+          headerColor={"black"}
+        />
+      </section>
+      <section className="language mb-6">
+        <Language
+          title="Languages"
+          languages={resumeData.languages}
+          headerColor={"black"}
         />
       </section>
     </div>
   );
 };
-
-
 
 export default Template10;
