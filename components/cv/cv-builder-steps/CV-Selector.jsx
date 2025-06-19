@@ -8,11 +8,14 @@ import cvletter1 from "../coverletter/cvimgs/cvletter1.png";
 import cvletter2 from "../coverletter/cvimgs/cvletter2.png";
 import cvletter3 from "../coverletter/cvimgs/cvletter3.png";
 import cvletter4 from "../coverletter/cvimgs/cvletter4.png";
+import cvletter5 from "../coverletter/cvimgs/cvletter5.png";
 import { CoverLetterContext } from "../../context/CoverLetterContext";
+import { SaveLoader } from "../../ResumeLoader/SaveLoader";
 const CVSelector = ({ onNext, onBack, onChange, value }) => {
   const [selectedHexCode, setSelectedHexCode] = useState("#2563EB");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   // const [coverLetterData, setCoverLetterData] = useState(null);
   const { coverLetterData, setCoverLetterData } =
     useContext(CoverLetterContext);
@@ -20,16 +23,144 @@ const CVSelector = ({ onNext, onBack, onChange, value }) => {
     typeof window !== "undefined" ? localStorage.getItem("token") : null;
   const colors = [
     {
+      name: "Black",
+      class: "bg-black",
+      selectedClass: "ring-black",
+      hexCode: "#000000",
+    },
+    {
+      name: "Navy Blue",
+      class: "bg-blue-900",
+      selectedClass: "ring-blue-900",
+      hexCode: "#00008B",
+    },
+    {
+      name: "Dark Gray",
+      class: "bg-gray-800",
+      selectedClass: "ring-gray-800",
+      hexCode: "#333333",
+    },
+    {
+      name: "Purple",
+      class: "bg-purple-700",
+      selectedClass: "ring-purple-700",
+      hexCode: "#6A0DAD",
+    },
+    {
+      name: "Brown",
+      class: "bg-[#8B3A3A]",
+      selectedClass: "ring-[#8B3A3A]",
+      hexCode: "#8B3A3A",
+    },
+    {
+      name: "Periwinkle",
+      class: "bg-[#6666FF]",
+      selectedClass: "ring-[#6666FF]",
+      hexCode: "#6666FF",
+    },
+
+    {
+      name: "Red",
+      class: "bg-red-600",
+      selectedClass: "ring-red-600",
+      hexCode: "#FF0000",
+    },
+    {
+      name: "Teal Green",
+      class: "bg-[#3B8070]",
+      selectedClass: "ring-[#3B8070]",
+      hexCode: "#3B8070",
+    },
+    {
+      name: "Slate Gray",
+      class: "bg-gray-600",
+      selectedClass: "ring-gray-600",
+      hexCode: "#666666",
+    },
+    {
+      name: "Olive",
+      class: "bg-[#999900]",
+      selectedClass: "ring-[#999900]",
+      hexCode: "#999900",
+    },
+    {
+      name: "Orange Red",
+      class: "bg-[#F2542D]",
+      selectedClass: "ring-[#F2542D]",
+      hexCode: "#F2542D",
+    },
+    {
+      name: "Bright Blue",
+      class: "bg-[#3399FF]",
+      selectedClass: "ring-[#3399FF]",
+      hexCode: "#3399FF",
+    },
+
+    {
+      name: "Coral Pink",
+      class: "bg-[#F88379]",
+      selectedClass: "ring-[#F88379]",
+      hexCode: "#F88379",
+    },
+    {
+      name: "Brown Orange",
+      class: "bg-[#D2691E]",
+      selectedClass: "ring-[#D2691E]",
+      hexCode: "#D2691E",
+    },
+    {
+      name: "Lavender Pink",
+      class: "bg-[#DA70D6]",
+      selectedClass: "ring-[#DA70D6]",
+      hexCode: "#DA70D6",
+    },
+    {
+      name: "Steel Blue",
+      class: "bg-[#6A7BA2]",
+      selectedClass: "ring-[#6A7BA2]",
+      hexCode: "#6A7BA2",
+    },
+    {
+      name: "Light Coral",
+      class: "bg-[#F08080]",
+      selectedClass: "ring-[#F08080]",
+      hexCode: "#F08080",
+    },
+    {
+      name: "Bright Orange",
+      class: "bg-[#FFA500]",
+      selectedClass: "ring-[#FFA500]",
+      hexCode: "#FFA500",
+    },
+    {
       name: "Gray",
       class: "bg-gray-200",
       selectedClass: "ring-gray-400",
       hexCode: "#6D7278",
     },
     {
+      name: "Charcoal Gray",
+      class: "bg-[#374151]",
+      selectedClass: "ring-[#4B5563]",
+      hexCode: "#374151",
+    },
+    {
       name: "Blue",
-      class: "bg-blue-600",
+      class: "bg-[#00b38d]",
       selectedClass: "ring-blue-400",
-      hexCode: "#2563EB",
+      hexCode: "#00b38d",
+    },
+    {
+      name: "Navy Blue",
+      class: "bg-[#1E3A8A]",
+      selectedClass: "ring-[#1E3A8A]",
+      hexCode: "#1E3A8A",
+    },
+    {
+      name: "Slate Blue",
+      class: "bg-[#475569]",
+      selectedClass: "ring-[#64748B]",
+      hexCode: "#475569",
     },
     {
       name: "Purple",
@@ -38,10 +169,22 @@ const CVSelector = ({ onNext, onBack, onChange, value }) => {
       hexCode: "#9333EA",
     },
     {
-      name: "Green",
-      class: "bg-green-600",
-      selectedClass: "ring-green-400",
-      hexCode: "#16A34A",
+      name: "Classic Blue",
+      class: "bg-[#2563EB]",
+      selectedClass: "ring-[#3B82F6]",
+      hexCode: "#2563EB",
+    },
+    {
+      name: "Forest Green",
+      class: "bg-[#166534]",
+      selectedClass: "ring-[#22C55E]",
+      hexCode: "#166534",
+    },
+    {
+      name: "Deep Teal",
+      class: "bg-[#0F766E]",
+      selectedClass: "ring-[#0D9488]",
+      hexCode: "#0F766E",
     },
     {
       name: "Red",
@@ -108,14 +251,8 @@ const CVSelector = ({ onNext, onBack, onChange, value }) => {
     },
     {
       key: "template5",
-      imageUrl: cvletter1,
+      imageUrl: cvletter5,
       name: "Technical CV",
-      hasPhoto: true,
-    },
-    {
-      key: "template6",
-      imageUrl: cvletter2,
-      name: "Graduate CV",
       hasPhoto: true,
     },
   ];
@@ -140,7 +277,7 @@ const CVSelector = ({ onNext, onBack, onChange, value }) => {
     onChange({
       ...value,
       template: template.key,
-      category: template.category,
+      // category: template.category,
       style: template.style,
     });
   };
@@ -223,9 +360,11 @@ const CVSelector = ({ onNext, onBack, onChange, value }) => {
       },
       personalDetails: {
         name: data.personalDetails?.name || "",
+        position: data.personalDetails?.position || "",
         address: data.personalDetails?.address || "",
         email: data.personalDetails?.email || "",
         contact: data.personalDetails?.contact || "",
+        photo: data.photo,
       },
     };
   };
@@ -240,7 +379,7 @@ const CVSelector = ({ onNext, onBack, onChange, value }) => {
       toast.error("Please select a CV template before proceeding");
       return;
     }
-
+    setIsLoading(true);
     try {
       const coverletterId = router.query.id || localStorage.getItem("id");
       if (!coverletterId) {
@@ -270,6 +409,8 @@ const CVSelector = ({ onNext, onBack, onChange, value }) => {
     } catch (error) {
       toast.error(error?.message || "Error updating resume!");
       console.error("Error updating resume:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -285,132 +426,105 @@ const CVSelector = ({ onNext, onBack, onChange, value }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Choose Your CV Letter Template
-          </h2>
-          <p className="text-xl text-gray-600">
-            Select a professional template that matches your career goals
-          </p>
+    <div className="min-h-screen bg-gradient-to-b from-white to-blue-100 flex flex-col">
+      <div className="bg-[#002a48] text-white py-3 px-6 rounded-b-3xl mx-auto mt-4   items-center gap-3 shadow-md">
+        <h2 className="text-3xl font-bold text-white">
+          Choose Your Perfect Cover Letter
+        </h2>
+        <p className="text-lg text-white mt-2">
+          Select a design that best represents your professional style
+        </p>
+      </div>
+
+      <div className="flex flex-col lg:flex-row gap-6 px-4 md:px-12 py-10 flex-1 overflow-hidden">
+        {/* Sidebar - Color Theme */}
+        <div className="bg-white rounded-2xl shadow-md p-6 h-fit sticky top-10 w-full lg:max-w-[250px]">
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">
+            Color Theme
+          </h3>
+          <div className="grid grid-cols-5 gap-4">
+            {colors.map((color) => (
+              <button
+                key={color.name}
+                className={`
+                  w-8 h-8 rounded-full ${color.class}
+                  transform hover:scale-110 transition-all duration-200
+                  ${
+                    selectedHexCode === color.hexCode
+                      ? `ring-2 ring-offset-2 ${color.selectedClass}`
+                      : "hover:ring-2 hover:ring-offset-2 hover:ring-gray-300"
+                  }
+                `}
+                onClick={() => handleColorChange(color.hexCode, color.name)}
+                title={color.name}
+              />
+            ))}
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Sidebar */}
-          <div className="bg-white rounded-xl shadow-lg p-6 h-fit sticky top-8">
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                Color Theme
-              </h3>
-              <div className="grid grid-cols-5 gap-4">
-                {colors.map((color) => (
-                  <div
-                    key={color.name}
-                    className="flex items-center justify-center"
-                  >
-                    <button
-                      className={`
-                        w-8 h-8 rounded-full ${color.class}
-                        transform hover:scale-110 transition-all duration-200
-                        ${
-                          selectedHexCode === color.hexCode
-                            ? `ring-2 ring-offset-2 ${color.selectedClass}`
-                            : "hover:ring-2 hover:ring-offset-2 hover:ring-gray-300"
-                        }
-                      `}
-                      onClick={() =>
-                        handleColorChange(color.hexCode, color.name)
-                      }
-                      title={color.name}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Categories */}
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                Categories
-              </h3>
-              <div className="space-y-2">
-                {Array.from(new Set(cvTemplates.map((t) => t.category))).map(
-                  (category) => (
-                    <button
-                      key={category}
-                      className={`
-                      w-full text-left px-4 py-2 rounded-lg
-                      ${
-                        value.category === category
-                          ? "bg-blue-50 text-blue-600"
-                          : "text-gray-600 hover:bg-gray-50"
-                      }
-                    `}
-                      onClick={() => onChange({ ...value, category })}
-                    >
-                      {category}
-                    </button>
-                  )
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Templates Grid */}
-          <div className="lg:col-span-3">
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-              {cvTemplates
-                .filter((t) => !value.category || t.category === value.category)
-                .map((template) => (
-                  <button
-                    key={template.key}
-                    onClick={() => handleTemplateSelect(template)}
-                    className="group relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
-                    style={getHoverStyle(template.key)}
-                  >
-                    <div className="w-full">
-                      <div className="relative aspect-[3/4]">
-                        <Image
-                          src={template.imageUrl}
-                          alt={template.name}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                      </div>
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+        {/* Templates Grid */}
+        <div className="flex-1 overflow-y-auto max-h-[calc(100vh-200px)] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {cvTemplates
+              // .filter((t) => !value.category || t.category === value.category)
+              .map((template) => (
+                <button
+                  key={template.key}
+                  onClick={() => handleTemplateSelect(template)}
+                  className="group bg-white rounded-xl shadow-md overflow-hidden border-2 transition-all duration-200 "
+                  style={getHoverStyle(template.key)}
+                >
+                  <div className="">
+                    <div className="relative aspect-[3/4]">
+                      <Image
+                        src={template.imageUrl}
+                        alt={template.name}
+                        layout="fill"
+                        objectFit="contain"
+                        className="transition-transform duration-200 group-hover:scale-105"
+                      />
+                    </div>
+                    {/* <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                         <p className="text-white font-medium text-lg">
                           {template.name}
                         </p>
                         <p className="text-white/80 text-sm">
                           {template.description}
                         </p>
-                      </div>
-                    </div>
-                  </button>
-                ))}
-            </div>
+                      </div> */}
+                  </div>
+                </button>
+              ))}
           </div>
         </div>
+      </div>
 
-        {/* Navigation Buttons */}
-        <div className="flex justify-between mt-12">
-          <button
-            onClick={onBack}
-            className="px-8 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-700 
-              font-medium hover:bg-gray-50 hover:border-gray-400 transition-colors"
-          >
-            Back
-          </button>
-          <button
-            onClick={handleSaveSelection}
-            disabled={loading}
-            style={{ backgroundColor: selectedHexCode }}
-            className="px-8 py-3 text-white rounded-xl font-medium
-              hover:opacity-90 transition-colors shadow-lg hover:shadow-xl disabled:opacity-50"
-          >
-            {loading ? "Saving..." : "Next"}
-          </button>
-        </div>
+      {/* Navigation Buttons */}
+
+      <div className="sticky bottom-0 bg-white border-t border-gray-200 p-4 flex justify-between items-center shadow-md px-6">
+        <button
+          onClick={onBack}
+          className="text-blue-600 hover:underline text-base font-medium"
+        >
+          Back
+        </button>
+        <button
+          onClick={handleSaveSelection}
+          disabled={loading}
+          style={{ backgroundColor: selectedHexCode }}
+          className={`px-6 py-2 text-white rounded-xl font-semibold shadow-md transition-all
+                    ${
+                      loading
+                        ? "opacity-70 cursor-not-allowed"
+                        : "hover:opacity-90"
+                    }`}
+        >
+          {isLoading ? (
+            <SaveLoader loadingText="Saving" />
+          ) : (
+            "Choose Cover Letter"
+          )}
+        </button>
       </div>
     </div>
   );

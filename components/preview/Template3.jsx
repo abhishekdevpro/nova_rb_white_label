@@ -50,7 +50,13 @@ const Draggable = dynamic(
   { ssr: false }
 );
 const Template3 = () => {
-  const { resumeData, setResumeData, headerColor,backgroundColorss } = useContext(ResumeContext);
+  const {
+    resumeData,
+    setResumeData,
+    headerColor,
+    backgroundColorss,
+    selectedFont,
+  } = useContext(ResumeContext);
   const icons = [
     { name: "github", icon: <FaGithub /> },
     { name: "linkedin", icon: <FaLinkedin /> },
@@ -62,70 +68,62 @@ const Template3 = () => {
   ];
 
   return (
-    <div className="max-w-3xl mx-auto border-2 p-2 ">
-      <header className="mb-6">
-        <TextWrapper
-          name={resumeData.name}
-          position={resumeData.position}
-          headerColor={backgroundColorss}
-          orientation="column" // Use "column" for stacked layout
-        />
-        <ContactAndSocialMedia
-          contactData={{
-            teldata: resumeData.contactInformation,
-            emaildata: resumeData.email,
-            addressdata: resumeData.address,
-          }}
-          socialMediaData={resumeData.socialMedia}
-          icons={icons}
-          layout="row" // or "row"
-          contactClass=""
-          socialMediaClass=""
-          className="items-start justify-start"
-        />
-      </header>
+    <div
+      className="flex flex-col gap-4"
+      style={{ fontFamily: `${selectedFont}` }}
+    >
+      <TextWrapper
+        name={resumeData.name}
+        position={resumeData.position}
+        headerColor={backgroundColorss}
+        orientation="column" // Use "column" for stacked layout
+      />
+      <ContactAndSocialMedia
+        contactData={{
+          teldata: resumeData.contactInformation,
+          emaildata: resumeData.email,
+          addressdata: resumeData.address,
+        }}
+        socialMediaData={resumeData.socialMedia}
+        icons={icons}
+        layout="row" // or "row"
+        contactClass=""
+        socialMediaClass=""
+        className="items-start justify-start"
+      />
 
-      <section className="mb-6">
-        <SummaryWrapper
-          summary={resumeData.summary}
-          headerColor={"black"}
-          editable={true} // Set to false if editing is not required
-          className="mt-4"
-        />
-      </section>
+      <SummaryWrapper
+        summary={resumeData.summary}
+        headerColor={"black"}
+        editable={true} // Set to false if editing is not required
+        className="mt-4"
+      />
 
-      <section className="mb-6">
-       
-        <div className="col-span-2 space-y-2">
-          <WorkExperience
-            itemClassNames={{
-              title:
-                "text-lg font-bold mb-1 border-b-2 border-gray-300 editable",
-              company: "font-semibold",
-              position: "",
-              location: "",
-            }}
-            resumeData={resumeData}
-            headerColor={backgroundColorss}
-          />
+      <WorkExperience
+        itemClassNames={{
+          title: "text-lg font-bold mb-1 border-b-2 border-gray-300 editable",
+          company: "font-semibold",
+          position: "",
+          location: "",
+        }}
+        resumeData={resumeData}
+        headerColor={backgroundColorss}
+      />
+      <ProjectsSection
+        resumeData={resumeData}
+        headerColor={backgroundColorss}
+      />
 
-          <ProjectsSection resumeData={resumeData} headerColor={backgroundColorss} />
-        </div>
-      </section>
-      <section className="mb-6">
-        
-
-        <EducationSection
-          itemClassNames={{
-            school: "text-gray-600",
-            degree: "text-xl font-semibold text-gray-800",
-            location: "text-gray-800",
-          }}
-          headerColor={backgroundColorss}
-          educationData={resumeData?.education}
-          layout="row"
-        />
-      </section>
+      <EducationSection
+        itemClassNames={{
+          school: "text-gray-600",
+          degree: "text-xl font-semibold text-gray-800",
+          location: "text-gray-800",
+        }}
+        headerColor={backgroundColorss}
+        educationData={resumeData?.education}
+        layout="row"
+      />
 
       <SkillsWrapper
         skills={resumeData.skills}
@@ -133,36 +131,21 @@ const Template3 = () => {
         droppableId="skills-section-1"
         className="mt-4"
         layout="row"
+        textColor="black"
       />
-      {console.log(backgroundColorss,"fhgjh")}
-      <Language title="Languages" languages={resumeData.languages}
-             headerColor= {"black"}
-            />
-            
 
-            <Certification
-              title="Certifications"
-              certifications={resumeData.certifications}
-              hasBullet={false}
-              headerColor= {"black"}
-            />
-    </div>
-  );
-};
+      <Language
+        title="Languages"
+        languages={resumeData.languages}
+        headerColor={"black"}
+      />
 
-const A4PageWrapper = ({ children }) => {
-  const alertA4Size = () => {
-    const preview = document.querySelector(".preview");
-    const previewHeight = preview.offsetHeight;
-    console.log(previewHeight);
-    if (previewHeight > 1122) {
-      alert("A4 size exceeded");
-    }
-  };
-
-  return (
-    <div className="w-8.5in border p-3" onLoad={alertA4Size}>
-      {children}
+      <Certification
+        title="Certifications"
+        certifications={resumeData.certifications}
+        hasBullet={false}
+        headerColor={"black"}
+      />
     </div>
   );
 };

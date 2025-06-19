@@ -9,23 +9,35 @@ const SkillsWrapper = ({
   headerColor = "black",
   droppableId = "skills",
   className = "",
+  textColor = "white",
+
   layout,
 }) => {
-  const {backgroundColorss} =  useContext(ResumeContext)
+  const { backgroundColorss } = useContext(ResumeContext);
   return (
-    <div className={`skills-section ${className}`}>
+    <div className={`skills-section `}>
       <h2
-         style={{
-          color: `${headerColor == "black" ? `${backgroundColorss}` : headerColor}`,
-          borderBottom: `2px solid ${headerColor == "black" ? `${backgroundColorss}` : headerColor}`,
+        style={{
+          color: `${
+            headerColor == "black" ? `${backgroundColorss}` : headerColor
+          }`,
+          borderBottom: `1px solid ${
+            headerColor == "black" ? `${backgroundColorss}` : headerColor
+          }`,
         }}
-        className="text-xl font-bold mb-1 "
+        className="text-xl font-semibold mb-1 "
+        contentEditable
+        suppressContentEditableWarning
       >
         Skills
       </h2>
       <Droppable droppableId={droppableId} type="SKILLS">
         {(provided) => (
-          <div {...provided.droppableProps} ref={provided.innerRef}>
+          <div
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+            className={`${className}`}
+          >
             {Array.isArray(skills) ? (
               skills.map((skill, index) => (
                 <Draggable
@@ -38,17 +50,18 @@ const SkillsWrapper = ({
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
-                      className={`hover:scale-105 transition-transform duration-300 mb-1 ${
+                      className={`hover:scale-105 transition-transform duration-300 mb-1  ${
                         snapshot.isDragging
-                          ? "outline-dashed outline-2 outline-gray-400 bg-white"
+                          ? "outline-dashed outline-2 outline-gray-400 bg-white text-base"
                           : ""
                       }`}
                     >
                       <Skills
                         title={skill.title}
                         skills={skill.skills}
-                        color={headerColor= "white"}
+                        color={(headerColor = "white")}
                         layout={layout}
+                        textColor={textColor}
                       />
                     </div>
                   )}

@@ -3,7 +3,14 @@ import Image from "next/image";
 import PropTypes from "prop-types";
 import { ResumeContext } from "../context/ResumeContext";
 
-const ImageWrapper = ({ src, alt, defaultSize = 100, size, border = "2px", borderColor = "black" }) => {
+const ImageWrapper = ({
+  src,
+  alt,
+  defaultSize = 100,
+  size,
+  border = "2px",
+  borderColor = "black",
+}) => {
   const finalSize = size || defaultSize; // Use dynamic size if provided, otherwise use default size
 
   return (
@@ -48,31 +55,14 @@ ImageWrapper.defaultProps = {
   borderColor: "black",
 };
 
-// const TextWrapper = ({
-//   name,
-//   position,
-//   headerColor = "black",
-//   orientation = "column",
-//   className = "",
-// }) => {
-//   return (
-//     <div
-//       className={`flex ${orientation === "row" ? "flex-row items-center " : "flex-col justify-center items-center"} ${className}`}
-//     >
-//       <h1 className="text-2xl font-bold" style={{ color: headerColor }}>
-//         {name}
-//       </h1>
-//       <p className="text-lg text-gray-700">{position}</p>
-//     </div>
-//   );
-// };
-
 const TextWrapper = ({
   name,
   position,
   headerColor = "black",
   orientation = "column",
   className = "",
+  nameclassName = "",
+  positionclassName = "",
 }) => {
   return (
     <div
@@ -80,14 +70,24 @@ const TextWrapper = ({
         orientation === "row" ? "flex-row " : "flex-col "
       }  ${className}`}
     >
-      <h1 className="text-2xl font-bold" style={{ color: headerColor }}>
+      <h1
+        contentEditable
+        suppressContentEditableWarning
+        className={`text-5xl font-extrabold  ${nameclassName}`}
+        style={{ color: headerColor }}
+      >
         {name}
       </h1>
-      <p className="text-lg font-semibold text-gray-700">{position}</p>
+      <p
+        contentEditable
+        suppressContentEditableWarning
+        className={`text-3xl font-bold text-gray-700 ${positionclassName}`}
+      >
+        {position}
+      </p>
     </div>
   );
 };
-
 
 TextWrapper.propTypes = {
   name: PropTypes.string.isRequired,
@@ -104,66 +104,45 @@ TextWrapper.defaultProps = {
   className: "",
 };
 
-// const SummaryWrapper = ({ summary, headerColor = "black", editable = true, className = "" }) => {
-//  const {backgroundColorss}= useContext(ResumeContext)
-//   return (
-//     summary && summary.length > 0 && (
-//       <div className={`mb-1 ${className}`}>
-//         <h2
-//           style={{
-//             color: `${headerColor == "black" ? `${backgroundColorss}` : headerColor}`,
-//             borderBottom: `2px solid ${headerColor == "black" ? `${backgroundColorss}` : headerColor}`,
-//           }}
-//           className="text-lg font-bold mb-1 "
-//         >
-//           Summary
-//         </h2>
-//         <p
-//         style={{color:headerColor}}
-//           className="break-words hover:outline-dashed hover:scale-105 hover:outline-2 hover:outline-gray-400"
-//           // contentEditable={editable}
-//           // suppressContentEditableWarning={true}
-//         >
-//           {summary}
-//         </p>
-//       </div>
-//     )
-//   );
-// };
-const SummaryWrapper = ({ summary, headerColor = "black", editable = true, className = "" }) => {
-  const {backgroundColorss}= useContext(ResumeContext)
-   return (
-     summary && summary.length > 0 && (
-       <div className={`mb-1 ${className}`}>
-         <h2
-           style={{
-             color: `${headerColor == "black" ? `${backgroundColorss}` : headerColor}`,
-             borderBottom: `2px solid ${headerColor == "black" ? `${backgroundColorss}` : headerColor}`,
-           }}
-           className="text-lg font-bold mb-1 "
-         >
-           Summary
-         </h2>
-         {/* <p
-         style={{color:headerColor}}
-           className="break-words hover:outline-dashed hover:scale-105 hover:outline-2 hover:outline-gray-400"
-           contentEditable={editable}
-           suppressContentEditableWarning={true}
-         >
-           {summary}
-         </p> */}
-         <p
-   style={{ color: headerColor }}
-   className="break-words hover:outline-dashed hover:scale-105 hover:outline-2 hover:outline-gray-400"
-   contentEditable={editable}
-   suppressContentEditableWarning={true}
-   dangerouslySetInnerHTML={{ __html: summary }}
- ></p>
- 
-       </div>
-     )
-   );
- };
+const SummaryWrapper = ({
+  summary,
+  headerColor = "black",
+  editable = true,
+  className = "",
+  summaryclassName = "",
+}) => {
+  const { backgroundColorss } = useContext(ResumeContext);
+  return (
+    summary &&
+    summary.length > 0 && (
+      <div className={`mb-1 ${className}`}>
+        <h2
+          style={{
+            color: `${
+              headerColor == "black" ? `${backgroundColorss}` : headerColor
+            }`,
+            borderBottom: `1px solid ${
+              headerColor == "black" ? `${backgroundColorss}` : headerColor
+            }`,
+          }}
+          contentEditable
+          suppressContentEditableWarning
+          className="text-xl font-semibold mb-1 "
+        >
+          Summary
+        </h2>
+
+        <div
+          style={{ color: headerColor }}
+          className={` hover:outline-dashed hover:scale-105 hover:outline-2 hover:outline-gray-400 font-light mt-2 text-sm  `}
+          contentEditable
+          suppressContentEditableWarning
+          dangerouslySetInnerHTML={{ __html: summary }}
+        ></div>
+      </div>
+    )
+  );
+};
 
 SummaryWrapper.propTypes = {
   summary: PropTypes.string,

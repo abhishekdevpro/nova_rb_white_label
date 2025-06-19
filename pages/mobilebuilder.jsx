@@ -29,6 +29,7 @@ import applepay from "./builderImages/apple-pay.png";
 import { ResumeContext } from "../components/context/ResumeContext";
 import PayAndDownload from "../components/PayDownload";
 import { SaveLoader } from "../components/ResumeLoader/SaveLoader";
+import Highlightmenubar from "../components/preview/highlightmenu";
 
 const Print = dynamic(() => import("../components/utility/WinPrint"), {
   ssr: false,
@@ -86,7 +87,7 @@ export default function MobileBuilder() {
 
           if (response.data.status === "success" && response.data.data) {
             const { data } = response.data;
-            const parsedData = (data.ai_resume_parse_data);
+            const parsedData = data.ai_resume_parse_data;
 
             setResumeData(parsedData.templateData || {});
 
@@ -277,87 +278,59 @@ export default function MobileBuilder() {
     }
   };
   const downloadAsPDF = async () => {
-    setIsDownloading(true)
+    handleFinish();
+    if (!templateRef.current) {
+      toast.error("Template reference not found");
+      return;
+    }
+
+    // setisDownloading(true); // Start loading before the async operation
+
     try {
-      await handleFinish();
-
-      if (!resumeId) {
-        // toast.error("Missing resume ID");
-        return;
-      }
-
       const token = localStorage.getItem("token");
+      const htmlContent = templateRef.current.innerHTML;
+
+      const fullContent = `
+            <style>
+                @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+            </style>
+            ${htmlContent}
+        `;
 
       const response = await axios.get(
-        `https://apiwl.novajobs.us/api/user/download-resume/${resumeId}`,
+        `https://apiwl.novajobs.us/api/user/download-resume/${resumeId}?pdf_type=${selectedPdfType}`,
+
         {
           headers: {
             Authorization: token,
+            "Content-Type": "application/pdf",
           },
           responseType: "blob",
         }
       );
-
-      console.log("Response status:", response.status);
-      console.log("Response data type:", typeof response.data);
-      console.log(
-        "Response data instanceof Blob:",
-        response.data instanceof Blob
+      const url = window.URL.createObjectURL(
+        new Blob([response.data], { type: "application/pdf" })
       );
-      console.log("Blob size:", response.data.size);
-      console.log("Blob type:", response.data.type);
+      const link = document.createElement("a");
+      link.href = url;
 
-      if (response.status === 200 && response.data instanceof Blob) {
-        // Check if blob is valid
-        if (response.data.size === 0) {
-          toast.error("Received empty PDF file");
-          return;
-        }
+      link.setAttribute("download", `resume.pdf`);
+      document.body.appendChild(link);
+      link.click();
 
-        const url = window.URL.createObjectURL(response.data);
-        console.log("Created URL:", url);
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
 
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = `resume_${resumeId}.pdf`;
-
-        console.log("Link created:", link);
-        console.log("Link href:", link.href);
-        console.log("Link download:", link.download);
-
-        document.body.appendChild(link);
-
-        // Try to trigger download
-        try {
-          link.click();
-          console.log("Link clicked successfully");
-        } catch (clickError) {
-          console.error("Click error:", clickError);
-          // Fallback: try programmatic click
-          const event = new MouseEvent("click", {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-          });
-          link.dispatchEvent(event);
-        }
-
-        setTimeout(() => {
-          document.body.removeChild(link);
-          window.URL.revokeObjectURL(url);
-        }, 1000);
-
-        toast.success("Resume Downloaded Successfully");
-      } else {
-        console.error("Invalid response or blob");
-        toast.error("Invalid PDF response");
-      }
+      // downloadPDF();
+      // initiateCheckout(); // Call this only if the request is successful
     } catch (error) {
-      console.error("PDF generation error:", error?.response?.data?.message);
-      toast.error("Failed to download PDF");
-    }finally {
-    setIsDownloading(false); // Hide loader in all cases
-  }
+      console.error("PDF generation error:", error);
+      toast.error(
+        error.response?.data?.message || "Failed to generate and open PDF"
+      );
+    } finally {
+      // setisDownloading(false); // Ensure loading is stopped after success or failure
+    }
   };
 
   // Logic to save and update the resume
@@ -623,6 +596,7 @@ export default function MobileBuilder() {
               />
             </div>
             <div className="">
+              <Highlightmenubar />
               <Preview ref={templateRef} selectedTemplate={selectedTemplate} />
             </div>
 

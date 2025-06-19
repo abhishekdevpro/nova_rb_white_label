@@ -66,13 +66,11 @@
 //           >{resumeData.summary}</p>
 //         </div>
 
-     
-
 //         <div className="mb-5">
-          
+
 //           <div className="text-lg font-semibold text-red-800 border-b-2 border-red-800 pb-1 mb-3" style={{ color: headerColor ,borderColor: backgroundColorss}}>Skills</div>
 //           <ul className="list-disc ml-5">
-         
+
 //           <Droppable droppableId="skills" type="SKILLS">
 //                   {(provided) => (
 //                     <div {...provided.droppableProps} ref={provided.innerRef}>
@@ -100,7 +98,7 @@
 //                     </div>
 //                   )}
 //                 </Droppable>
-        
+
 //           </ul>
 //         </div>
 
@@ -111,7 +109,7 @@
 //                   <Droppable droppableId="work-experience" type="WORK_EXPERIENCE">
 //                     {(provided) => (
 //                       <div {...provided.droppableProps} ref={provided.innerRef}>
-                       
+
 //                         {resumeData.workExperience.map((item, index) => (
 //                           <Draggable
 //                             key={`${item.company}-${index}`}
@@ -136,7 +134,7 @@
 //                                   />
 //                                 </div>
 //                                 <p className="font-medium">{item.position}</p>
-//                                 <p 
+//                                 <p
 //                                 contentEditable="true"
 //                                 suppressContentEditableWarning={true}
 //                                 className=" text-sm hover:outline-dashed hover:outline-2 hover:outline-gray-400">
@@ -321,7 +319,7 @@
 //           <div className="text-lg font-semibold text-red-800 border-b-2 border-red-800 pb-1 mb-3" style={{ color: headerColor }}>Languages/Certifications</div>
 //           <Language  languages={resumeData.languages} />
 //                 <Certification
-                  
+
 //                   certifications={resumeData.certifications}
 //                 />
 //         </div>
@@ -348,7 +346,6 @@
 // };
 
 // export default Template13;
-
 
 // import React from "react";
 import { useContext, useRef } from "react";
@@ -406,8 +403,13 @@ const Draggable = dynamic(
   { ssr: false }
 );
 const Template13 = () => {
-  const { resumeData, setResumeData, headerColor, backgroundColorss } =
-    useContext(ResumeContext);
+  const {
+    resumeData,
+    setResumeData,
+    headerColor,
+    backgroundColorss,
+    selectedFont,
+  } = useContext(ResumeContext);
   const templateRef = useRef(null);
 
   const extractHtml = () => {
@@ -428,10 +430,10 @@ const Template13 = () => {
   return (
     <div
       ref={templateRef}
-      className="max-w-4xl mx-auto bg-white p-8 border border-gray-200 rounded-lg shadow-lg"
+      className=""
+      style={{ fontFamily: `${selectedFont}` }}
     >
       <div className="header text-start mb-6">
-       
         <TextWrapper
           name={resumeData.name}
           position={resumeData.position}
@@ -450,7 +452,7 @@ const Template13 = () => {
           layout="row" // or "row"
           contactClass=""
           socialMediaClass=""
-          className="justify-start gap-4"
+          className="justify-start gap-4 mt-6"
         />
       </div>
 
@@ -460,42 +462,14 @@ const Template13 = () => {
         editable={true} // Set to false if editing is not required
         className="mt-4"
       />
- <section className="skills mb-6">
-        {/* <Droppable droppableId="skills" type="SKILLS"> */}
-        {/* {(provided) => (
-          <ul
-            className="pl-5 "
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-          >
-            {resumeData.skills.map((skill, index) => (
-              <Draggable
-                key={`SKILLS-${index}`}
-                draggableId={`SKILLS-${index}`}
-                index={index}
-              >
-                {(provided, snapshot) => (
-                  <li
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    className={`hover:scale-105 transition-transform duration-300 text-sm mb-1.5 ${snapshot.isDragging &&
-                      "outline-dashed outline-2 outline-gray-400 bg-white"
-                      }`}
-                  >
-                    <Skills title={skill.title} skills={skill.skills} />
-                  </li>
-                )}
-              </Draggable>
-            ))}
-            {provided.placeholder}
-          </ul> */}
+      <section className="skills mb-6">
         <SkillsWrapper
           skills={resumeData.skills}
           headerColor={backgroundColorss}
           droppableId="skills-section-1"
           className="mt-4"
           layout="row"
+          textColor="black"
         />
       </section>
       <section className="experience mb-6">
@@ -513,23 +487,16 @@ const Template13 = () => {
             resumeData={resumeData}
             headerColor={backgroundColorss}
           />
-          <ProjectsSection resumeData={resumeData} headerColor={backgroundColorss} />
+          <ProjectsSection
+            resumeData={resumeData}
+            headerColor={backgroundColorss}
+          />
         </div>
       </section>
 
       <section className="education mb-6">
         {resumeData.education.length > 0 && (
           <div className="mb-1">
-            {/* <h2 className="text-lg font-bold mb-2.5 uppercase border-b border-black pb-0.5" style={{ color: headerColor }}>Education</h2> */}
-            {/* {resumeData.education.map((item, index) => (
-            <div key={index} className="mb-1">
-              <div className="flex justify-end text-sm italic">
-                <span>{item.startYear} - {item.endYear}</span>
-              </div>
-              <p className="font-semibold">{item.degree}</p>
-              <p className="">{item.school}</p>
-            </div>
-          ))} */}
             <EducationSection
               itemClassNames={{
                 school: "",
@@ -543,12 +510,23 @@ const Template13 = () => {
           </div>
         )}
       </section>
-
-     
+      <section className="certification mb-6">
+        <Certification
+          title="Certifications"
+          certifications={resumeData.certifications}
+          hasBullet={false}
+          headerColor={"black"}
+        />
+      </section>
+      <section className="language mb-6">
+        <Language
+          title="Languages"
+          languages={resumeData.languages}
+          headerColor={"black"}
+        />
+      </section>
     </div>
   );
 };
-
-
 
 export default Template13;

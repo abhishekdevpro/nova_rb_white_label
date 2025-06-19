@@ -81,7 +81,7 @@ export default function DashboardPage() {
 
       if (response.data?.code === 200 || response.data?.status === "success") {
         setStrength(response.data.data?.resume_strenght_details || null);
-        setResumeId(response.data.data?.id || null);
+        setResumeId(response.data.data?.resume_id || null);
       } else {
         setStrength(null);
         setResumeId(null);

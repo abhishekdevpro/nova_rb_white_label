@@ -54,8 +54,13 @@ const Draggable = dynamic(
   { ssr: false }
 );
 const Template14 = () => {
-  const { resumeData, setResumeData, headerColor, backgroundColorss } =
-    useContext(ResumeContext);
+  const {
+    resumeData,
+    setResumeData,
+    headerColor,
+    backgroundColorss,
+    selectedFont,
+  } = useContext(ResumeContext);
   const templateRef = useRef(null);
 
   const extractHtml = () => {
@@ -76,7 +81,8 @@ const Template14 = () => {
   return (
     <div
       ref={templateRef}
-      className="max-w-4xl mx-auto bg-white p-8 border border-gray-200 rounded-lg shadow-lg"
+      className=""
+      style={{ fontFamily: `${selectedFont}` }}
     >
       <div className="header text-start mb-6">
         <div className="flex justify-between items-center gap-4">
@@ -86,14 +92,14 @@ const Template14 = () => {
               alt="Profile Picture"
             />
           )}
-           <TextWrapper
-          name={resumeData.name}
-          position={resumeData.position}
-          headerColor={backgroundColorss}
-          orientation="column" // Use "column" for stacked layout
-        />
+          <TextWrapper
+            name={resumeData.name}
+            position={resumeData.position}
+            headerColor={backgroundColorss}
+            orientation="column" // Use "column" for stacked layout
+          />
         </div>
-       
+
         {/* <h1 className="text-2xl mb-1.5" style={{ color: headerColor }}>{resumeData.name}</h1> */}
         <ContactAndSocialMedia
           contactData={{
@@ -106,10 +112,10 @@ const Template14 = () => {
           layout="row" // or "row"
           contactClass=""
           socialMediaClass=""
-          className="justify-center gap-4 mt-4"
+          className="justify-center gap-4 mt-6"
         />
       </div>
-      
+
       <SummaryWrapper
         summary={resumeData.summary}
         headerColor={"black"}
@@ -117,9 +123,8 @@ const Template14 = () => {
         className="mt-4"
       />
 
-     
       <section className="education mb-6">
-        {resumeData.education?.length > 0 && (
+        {resumeData.education.length > 0 && (
           <div className="mb-1">
             {/* <h2 className="text-lg font-bold mb-2.5 uppercase border-b border-black pb-0.5" style={{ color: headerColor }}>Education</h2> */}
             {/* {resumeData.education.map((item, index) => (
@@ -146,41 +151,13 @@ const Template14 = () => {
       </section>
 
       <section className="skills mb-6">
-        {/* <Droppable droppableId="skills" type="SKILLS"> */}
-        {/* {(provided) => (
-          <ul
-            className="pl-5 "
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-          >
-            {resumeData.skills.map((skill, index) => (
-              <Draggable
-                key={`SKILLS-${index}`}
-                draggableId={`SKILLS-${index}`}
-                index={index}
-              >
-                {(provided, snapshot) => (
-                  <li
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    className={`hover:scale-105 transition-transform duration-300 text-sm mb-1.5 ${snapshot.isDragging &&
-                      "outline-dashed outline-2 outline-gray-400 bg-white"
-                      }`}
-                  >
-                    <Skills title={skill.title} skills={skill.skills} />
-                  </li>
-                )}
-              </Draggable>
-            ))}
-            {provided.placeholder}
-          </ul> */}
         <SkillsWrapper
           skills={resumeData.skills}
           headerColor={backgroundColorss}
           droppableId="skills-section-1"
           className="mt-4"
           layout="row"
+          textColor="black"
         />
       </section>
       <section className="experience mb-6">
@@ -198,14 +175,29 @@ const Template14 = () => {
             resumeData={resumeData}
             headerColor={backgroundColorss}
           />
-          <ProjectsSection resumeData={resumeData} headerColor={backgroundColorss} />
+          <ProjectsSection
+            resumeData={resumeData}
+            headerColor={backgroundColorss}
+          />
         </div>
+        <section className="certification mb-6">
+          <Certification
+            title="Certifications"
+            certifications={resumeData.certifications}
+            hasBullet={false}
+            headerColor={"black"}
+          />
+        </section>
+        <section className="language mb-6">
+          <Language
+            title="Languages"
+            languages={resumeData.languages}
+            headerColor={"black"}
+          />
+        </section>
       </section>
-
     </div>
   );
 };
-
-
 
 export default Template14;
