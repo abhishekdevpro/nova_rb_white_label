@@ -49,7 +49,9 @@ export default function MobileBuilder() {
   const [orderId, setOrderId] = useState(null);
   const templateRef = useRef(null);
   const [loading, setLoading] = useState(false);
-  const [isDownloading, setIsDownloading] = useState(false);
+
+  const [isDownloading, setisDownloading] = useState(false);
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const {
     resumeData,
     setResumeData,
@@ -277,60 +279,74 @@ export default function MobileBuilder() {
       //  localStorage.removeItem("orderId")
     }
   };
-  const downloadAsPDF = async () => {
-    handleFinish();
+  const downloadAsBackend = async () => {
+    setisDownloading(true);
+
     if (!templateRef.current) {
       toast.error("Template reference not found");
+      setisDownloading(false);
       return;
     }
-
-    // setisDownloading(true); // Start loading before the async operation
 
     try {
       const token = localStorage.getItem("token");
       const htmlContent = templateRef.current.innerHTML;
 
-      const fullContent = `
-            <style>
-                @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
-            </style>
-            ${htmlContent}
-        `;
+      const fullHtml = `
+      <style>
+        @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+      </style>
+      ${htmlContent}
+    `;
 
-      const response = await axios.get(
+      const response = await axios.post(
         `https://apiwl.novajobs.us/api/user/download-resume/${resumeId}?pdf_type=${selectedPdfType}`,
-
+        {
+          html: fullHtml,
+          pdf_type: selectedPdfType, // ✅ Move pdf_type here
+        },
         {
           headers: {
             Authorization: token,
-            "Content-Type": "application/pdf",
+            "Content-Type": "application/json",
           },
           responseType: "blob",
         }
       );
+
       const url = window.URL.createObjectURL(
         new Blob([response.data], { type: "application/pdf" })
       );
       const link = document.createElement("a");
       link.href = url;
-
       link.setAttribute("download", `resume.pdf`);
       document.body.appendChild(link);
       link.click();
-
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
-
-      // downloadPDF();
-      // initiateCheckout(); // Call this only if the request is successful
     } catch (error) {
       console.error("PDF generation error:", error);
-      toast.error(
-        error.response?.data?.message || "Failed to generate and open PDF"
-      );
+
+      const apiError = error.response?.data;
+      const statusCode = error.response?.status;
+
+      if (statusCode === 403) {
+        setShowUpgradeModal(true); // Show upgrade popup
+      } else if (apiError?.error) {
+        toast.error(apiError.error);
+      } else if (apiError?.message) {
+        toast.error(apiError.message);
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
     } finally {
-      // setisDownloading(false); // Ensure loading is stopped after success or failure
+      setisDownloading(false);
     }
+  };
+
+  const downloadAsPDF = () => {
+    downloadAsBackend();
+    handleFinish();
   };
 
   // Logic to save and update the resume
@@ -622,8 +638,13 @@ export default function MobileBuilder() {
                 // onClick={handleShowModal}
                 className="bg-yellow-500 text-black px-6 py-2 rounded-lg"
               >
-                Download
+                {isDownloading ? (
+                  <SaveLoader loadingText="Downloading" />
+                ) : (
+                  "Download"
+                )}
               </button>
+
               {showModal && (
                 <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
                   <div className=" w-full max-w-4xl bg-white rounded-lg shadow-lg ">
@@ -754,6 +775,33 @@ export default function MobileBuilder() {
           </>
         )}
       </div>
+      {showUpgradeModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full text-center">
+            <h2 className="text-xl font-semibold mb-4 text-gray-800">
+              Upgrade Required
+            </h2>
+            <p className="text-gray-600 mb-6">
+              You’ve reached your download limit. Please upgrade your plan to
+              continue.
+            </p>
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={() => setShowUpgradeModal(false)}
+                className="px-4 py-2 border border-gray-400 rounded-md text-gray-700 hover:bg-gray-100"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => router.push("/payment")}
+                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+              >
+                Upgrade Plan
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
