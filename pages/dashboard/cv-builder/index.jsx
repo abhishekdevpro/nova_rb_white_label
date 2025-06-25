@@ -100,12 +100,43 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  // const handleCreateCvLetter = async () => {
+  //   setLoading(true);
+  //   setError("");
+
+  //   try {
+  //     // Replace this with your actual token
+  //     const token = localStorage.getItem("token");
+
+  //     const response = await axios.post(
+  //       "https://apiwl.novajobs.us/api/user/coverletter",
+  //       {},
+  //       {
+  //         headers: {
+  //           Authorization: ` ${token}`,
+  //         },
+  //       }
+  //     );
+
+  //     // Assuming the response contains the ID
+  //     console.log(response);
+  //     const { id } = response.data.data;
+
+  //     // Navigate to the dynamic route
+  //     router.push(`/dashboard/cv-builder/${id}`);
+  //   } catch (err) {
+  //     console.error("Error creating resume:", err);
+  //     setError("Failed to create cover letter. Please try again.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const handleCreateCvLetter = async () => {
     setLoading(true);
     setError("");
 
     try {
-      // Replace this with your actual token
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
@@ -113,20 +144,25 @@ export default function Home() {
         {},
         {
           headers: {
-            Authorization: ` ${token}`,
+            Authorization: `Bearer ${token}`, // add Bearer if your backend expects it
           },
         }
       );
 
-      // Assuming the response contains the ID
       console.log(response);
       const { id } = response.data.data;
-
-      // Navigate to the dynamic route
       router.push(`/dashboard/cv-builder/${id}`);
     } catch (err) {
-      console.error("Error creating resume:", err);
-      setError("Failed to create resume. Please try again.");
+      console.error("Error creating cover letter:", err);
+
+      // ✅ Check for specific API error message
+      if (err.response && err.response.data && err.response.data.message) {
+        setError(err.response.data.message);
+      } else if (err.message) {
+        setError(err.message); // fallback to generic error
+      } else {
+        setError("Failed to create cover letter. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
