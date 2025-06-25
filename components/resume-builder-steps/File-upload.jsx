@@ -1,16 +1,14 @@
+"use client";
 
-
-'use client'
-
-import { useRouter } from 'next/router';
-import { useState, useCallback, useContext } from 'react';
-import { useDropzone } from 'react-dropzone';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import Image from 'next/image';
-import { Upload, File } from 'lucide-react'; // Replaced SVG with lucide-react icons
+import { useRouter } from "next/router";
+import { useState, useCallback, useContext } from "react";
+import { useDropzone } from "react-dropzone";
+import axios from "axios";
+import { toast } from "react-toastify";
+import Image from "next/image";
+import { Upload, File } from "lucide-react"; // Replaced SVG with lucide-react icons
 import drive from "../../public/assets/google-drive.png";
-import { ResumeContext } from '../context/ResumeContext';
+import { ResumeContext } from "../context/ResumeContext";
 
 export default function FileUploadStep({ onNext, onBack, onChange, value }) {
   const [isUploading, setIsUploading] = useState(false);
@@ -48,8 +46,8 @@ export default function FileUploadStep({ onNext, onBack, onChange, value }) {
       }
 
       const response = await axios.post(
-        `https://apiwl.novajobs.us/api/user/resume-upload/${id}`, 
-        formData, 
+        `https://apiwl.novajobs.us/api/user/resume-upload/${id}`,
+        formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -77,8 +75,11 @@ export default function FileUploadStep({ onNext, onBack, onChange, value }) {
       setResumeId(resumeData.id);
       const parsedData = JSON.parse(resumeData.resume_parse_data);
       setResumeData(parsedData.templateData);
-      
-      localStorage.setItem("resumeData", JSON.stringify(parsedData.templateData));
+
+      localStorage.setItem(
+        "resumeData",
+        JSON.stringify(parsedData.templateData)
+      );
       localStorage.setItem("resumeId", resumeData.id);
       localStorage.setItem("location", resumeData.file_path);
 
@@ -104,7 +105,7 @@ export default function FileUploadStep({ onNext, onBack, onChange, value }) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
-      'application/pdf': ['.pdf']
+      "application/pdf": [".pdf"],
     },
     maxFiles: 1,
   });
@@ -112,9 +113,7 @@ export default function FileUploadStep({ onNext, onBack, onChange, value }) {
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 space-y-8">
       <div className="text-center">
-        <h2 className="text-3xl font-bold text-gray-900">
-          Upload Your Resume
-        </h2>
+        <h2 className="text-3xl font-bold text-gray-900">Upload Your Resume</h2>
         <p className="mt-3 text-gray-600">
           We accept PDF files for better parsing accuracy
         </p>
@@ -123,19 +122,23 @@ export default function FileUploadStep({ onNext, onBack, onChange, value }) {
       <div
         {...getRootProps()}
         className={`border-2 border-dashed rounded-xl p-12 text-center cursor-pointer transition-all
-          ${isDragActive ? 'border-blue-400 bg-blue-50' : 'border-gray-300 hover:border-blue-400'}
-          ${isUploading ? 'cursor-not-allowed opacity-75' : ''}`}
+          ${
+            isDragActive
+              ? "border-blue-400 bg-blue-50"
+              : "border-gray-300 hover:border-blue-400"
+          }
+          ${isUploading ? "cursor-not-allowed opacity-75" : ""}`}
       >
         <input {...getInputProps()} disabled={isUploading} />
         <div className="w-20 h-20 mx-auto mb-6 bg-blue-100 rounded-full flex items-center justify-center">
           <Upload className="w-10 h-10 text-blue-600" />
         </div>
-        
+
         {isUploading ? (
           <div className="space-y-4">
             <div className="text-lg font-medium">Uploading your resume...</div>
             <div className="w-64 h-3 bg-gray-200 rounded-full mx-auto overflow-hidden">
-              <div 
+              <div
                 className="h-full bg-blue-600 rounded-full transition-all duration-300"
                 style={{ width: `${uploadProgress}%` }}
               />
@@ -145,7 +148,7 @@ export default function FileUploadStep({ onNext, onBack, onChange, value }) {
         ) : (
           <>
             <p className="text-xl font-medium mb-4">
-              {value ? value.name : 'Drag and drop your resume here'}
+              {value ? value.name : "Drag and drop your resume here"}
             </p>
             <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
               Select PDF File
@@ -157,18 +160,18 @@ export default function FileUploadStep({ onNext, onBack, onChange, value }) {
         )}
       </div>
 
-      <div className="flex items-center justify-center space-x-6">
+      {/* <div className="flex items-center justify-center space-x-6">
         <div className="h-px bg-gray-300 w-24"></div>
         <span className="text-gray-500 font-medium">OR</span>
         <div className="h-px bg-gray-300 w-24"></div>
-      </div>
-
+      </div> */}
+      {/* 
       <div className="flex items-center justify-center space-x-6">
         <button className="flex items-center px-6 py-3 border rounded-lg hover:bg-gray-50 transition-colors">
           <Image src={drive} alt="Google Drive" className="w-6 h-6 mr-3" />
           <span className="font-medium">Google Drive</span>
         </button>
-      </div>
+      </div> */}
 
       <div className="flex justify-between mt-12">
         <button
