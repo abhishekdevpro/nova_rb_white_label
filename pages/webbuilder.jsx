@@ -450,7 +450,7 @@ export default function WebBuilder() {
         certifications: resumeData.certifications || [],
         templateDetails: {
           templateId: selectedTemplate,
-          backgroundColor: backgroundColorss || "",
+          backgroundColor: backgroundColorss || "#000",
           font: selectedFont || "Ubuntu",
         },
         no_of_experience: exp,
