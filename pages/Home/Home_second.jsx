@@ -15,7 +15,7 @@ function Home_second() {
 
   const handlePayment = (e) => {
     e.preventDefault();
-    const amount = 19;
+    const amount = 9.85;
 
     // const payload = {
     //   amount,
@@ -103,7 +103,7 @@ function Home_second() {
               <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-white bg-gray-800 rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
                 <h3 className="mb-4 text-2xl font-bold">Resume Builder</h3>
                 <p className="font-light text-white sm:text-lg dark:text-white">
-                  Relevant for automation &amp; one time download.
+                  For basic resume needs with AI support and ATS compatibility
                 </p>
                 <div className="flex justify-center items-baseline my-8 gap-3">
                   <span className="text-white dark:text-white">Starting </span>
@@ -125,7 +125,9 @@ function Home_second() {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span>Create optimized resumes</span>
+                    <span>
+                      Access to 2 professional, ATS-friendly templates
+                    </span>
                   </li>
                   <li className="flex items-center space-x-3">
                     {/* Icon */}
@@ -141,7 +143,7 @@ function Home_second() {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span>Copy and paste content from site</span>
+                    <span>Unlimited edits — update anytime</span>
                   </li>
                   <li className="flex items-center space-x-3">
                     {/* Icon */}
@@ -157,7 +159,7 @@ function Home_second() {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span>Unlimited resume edits</span>
+                    <span>Download as PDF</span>
                   </li>
                   <li className="flex items-center space-x-3">
                     {/* Icon */}
@@ -173,7 +175,9 @@ function Home_second() {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span>Save resume as pdf and docs</span>
+                    <span>
+                      100 AI credits for resume and summary suggestions
+                    </span>
                   </li>
                   <li className="flex items-center space-x-3">
                     {/* Icon */}
@@ -189,10 +193,44 @@ function Home_second() {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span>Download fully formatted Resume</span>
+                    <span>Cover letter included</span>
                   </li>
-                  <li className="flex items-center space-x-3">{/* Icon */}</li>
-                  <li className="flex items-center space-x-3">{/* Icon */}</li>
+                  <li className="flex items-center space-x-3">
+                    {/* Icon */}
+                    <svg
+                      className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <span>
+                      Built-in ATS-compliant formatting for better job match
+                    </span>
+                  </li>
+                  <li className="flex items-center space-x-3">
+                    {/* Icon */}
+                    <svg
+                      className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <span>
+                      Best for entry-level job seekers or quick applications.
+                    </span>
+                  </li>
                 </ul>
                 <Link
                   href="/dashboard"
@@ -207,10 +245,10 @@ function Home_second() {
                 <p className="font-light text-white sm:text-lg dark:text-white">
                   {/* Best for large scale uses and extended redistribution
                     rights. */}
-                  Built by expert resume writers
+                  Professional templates, custom styling, and AI-powered support
                 </p>
                 <div className="flex justify-center items-baseline my-8">
-                  <span className="mr-2 text-5xl font-extrabold">$19</span>
+                  <span className="mr-2 text-5xl font-extrabold">$9.85</span>
                   <span className="text-white dark:text-white">/Resume</span>
                 </div>
                 {/* List */}
@@ -229,7 +267,7 @@ function Home_second() {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span>Create optimized resumes</span>
+                    <span>Unlock 20 premium ATS-friendly resume templates</span>
                   </li>
 
                   <li className="flex items-center space-x-3">
@@ -246,9 +284,44 @@ function Home_second() {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span>Receive resume in pdf and docs</span>
+                    <span>Choose from 20+ color options</span>
                   </li>
 
+                  <li className="flex items-center space-x-3">
+                    {/* Icon */}
+                    <svg
+                      className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <span>Pick from 15+ modern fonts</span>
+                  </li>
+
+                  <li className="flex items-center space-x-3">
+                    {/* Icon */}
+                    <svg
+                      className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <span>
+                      250 AI credits for writing support and optimization
+                    </span>
+                  </li>
                   <li className="flex items-center space-x-3">
                     {/* Icon */}
                     <svg
@@ -265,7 +338,6 @@ function Home_second() {
                     </svg>
                     <span>Cover letter included</span>
                   </li>
-
                   <li className="flex items-center space-x-3">
                     {/* Icon */}
                     <svg
@@ -280,7 +352,7 @@ function Home_second() {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span>3 revisions included</span>
+                    <span>Download in PDF and DOC formats</span>
                   </li>
                   <li className="flex items-center space-x-3">
                     {/* Icon */}
@@ -296,7 +368,10 @@ function Home_second() {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span>Speak one on one with writer</span>
+                    <span>
+                      All formats are optimized for ATS (Applicant Tracking
+                      Systems)
+                    </span>
                   </li>
                   <li className="flex items-center space-x-3">
                     {/* Icon */}
@@ -312,7 +387,9 @@ function Home_second() {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span>Final Delivery 1 week</span>
+                    <span>
+                      Perfect for job seekers who want strong first impressions.
+                    </span>
                   </li>
                 </ul>
                 <button
@@ -370,7 +447,7 @@ function Home_second() {
                         <input
                           type="number"
                           className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
-                          value={"19"}
+                          value={"9.85"}
                           readOnly
                         />
                       </div>

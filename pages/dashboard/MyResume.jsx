@@ -91,7 +91,9 @@ const MyResume = () => {
         );
         toast.success("Your Resume Deleted Successfully");
         setisDeleteModalOpen(false);
-        setResumes(resumes.filter((resume) => resume.id !== deleteresumeid));
+        setResumes(
+          resumes.filter((resume) => resume.resume_id !== deleteresumeid)
+        );
       } catch (error) {
         console.error("Error deleting resume:", error);
         toast.error("Failed to Delete your Resume");
@@ -119,7 +121,7 @@ const MyResume = () => {
     if (token && currentResume) {
       axios
         .put(
-          `${BASE_URL}/api/user/resume-details/${currentResume.id}`,
+          `${BASE_URL}/api/user/resume-details/${currentResume.resume_id}`,
           { resume_title: newResumeTitle },
           { headers: { Authorization: token } }
         )
@@ -128,7 +130,7 @@ const MyResume = () => {
           setIsEditModalOpen(false);
           setResumes((prevResumes) =>
             prevResumes.map((resume) =>
-              resume.id === currentResume.id
+              resume.resume_id === currentResume.resume_id
                 ? { ...resume, resume_title: newResumeTitle }
                 : resume
             )
@@ -251,13 +253,15 @@ const MyResume = () => {
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <div className="flex items-center space-x-3">
                         <button
-                          onClick={() => handleEdit(resume.id)}
+                          onClick={() => handleEdit(resume.resume_id)}
                           className="text-blue-600 hover:text-blue-800 transition-colors duration-200"
                         >
                           <Edit className="w-5 h-5" />
                         </button>
                         <button
-                          onClick={() => handleopenDeleteModal(resume.id)}
+                          onClick={() =>
+                            handleopenDeleteModal(resume.resume_id)
+                          }
                           className="text-red-600 hover:text-red-800 transition-colors duration-200"
                         >
                           <Trash className="w-5 h-5" />

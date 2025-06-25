@@ -522,7 +522,7 @@ const Navbar = () => {
                     >
                       Cover Letter
                     </Link>
-                    <button
+                    {/* <button
                       onClick={() => {
                         handleLogout();
                         setIsDropdownOpen(false);
@@ -530,18 +530,18 @@ const Navbar = () => {
                       className="block w-full text-left px-4 py-2 hover:bg-gray-200"
                     >
                       Logout
-                    </button>
+                    </button> */}
                   </div>
                 )}
               </div>
             ) : (
               <>
-                <Link
+                {/* <Link
                   href="https://novajobs.us/user/login"
                   className="text-black px-4 py-2 text-md font-semibold border-2 rounded-xl"
                 >
                   Log in
-                </Link>
+                </Link> */}
                 {/* <Link
                   href="/signup"
                   className="text-black px-4 py-2 text-md font-semibold border-2 rounded-xl"
@@ -713,7 +713,7 @@ const Navbar = () => {
                     Profile
                   </MenuLink>
 
-                  <button
+                  {/* <button
                     onClick={() => {
                       handleLogout();
                       handleLinkClick();
@@ -724,16 +724,17 @@ const Navbar = () => {
                     <span className="font-medium group-hover:text-blue-600">
                       Logout
                     </span>
-                  </button>
+                  </button> */}
                 </>
               ) : (
-                <MenuLink
-                  href="https://novajobs.us/user/login"
-                  icon={<LogIn />}
-                  onClick={handleLinkClick}
-                >
-                  Log in
-                </MenuLink>
+                // <MenuLink
+                //   href="https://novajobs.us/user/login"
+                //   icon={<LogIn />}
+                //   onClick={handleLinkClick}
+                // >
+                //   Log in
+                // </MenuLink>
+                <></>
               )}
             </nav>
           </div>
