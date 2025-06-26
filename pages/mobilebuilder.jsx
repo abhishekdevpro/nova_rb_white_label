@@ -30,6 +30,7 @@ import { ResumeContext } from "../components/context/ResumeContext";
 import PayAndDownload from "../components/PayDownload";
 import { SaveLoader } from "../components/ResumeLoader/SaveLoader";
 import Highlightmenubar from "../components/preview/highlightmenu";
+import FontSelector from "./FontSelector";
 
 const Print = dynamic(() => import("../components/utility/WinPrint"), {
   ssr: false,
@@ -568,7 +569,7 @@ export default function MobileBuilder() {
   return (
     <>
       <Meta
-        title="Resume Intellect - AI Resume Builder"
+        title="NovaJobs - AI Resume Builder"
         description="ATSResume is a cutting-edge resume builder that helps job seekers create a professional, ATS-friendly resume in minutes..."
         keywords="ATS-friendly, Resume optimization..."
       />
@@ -593,17 +594,7 @@ export default function MobileBuilder() {
                 selectmultiplecolor={backgroundColorss}
                 onChange={setBgColor}
               />
-              <select
-                value={selectedFont}
-                onChange={handleFontChange}
-                className="rounded-lg border-2 border-blue-800 px-1 py-2 font-bold bg-white text-blue-800"
-              >
-                <option value="Ubuntu">Ubuntu</option>
-                <option value="Calibri">Calibri</option>
-                <option value="Georgia">Georgia</option>
-                <option value="Roboto">Roboto</option>
-                <option value="Poppins">Poppins</option>
-              </select>
+              <FontSelector />
               <TemplateSelector
                 selectedTemplate={selectedTemplate}
                 setSelectedTemplate={setSelectedTemplate}

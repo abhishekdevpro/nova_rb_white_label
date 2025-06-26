@@ -1,7 +1,9 @@
-import { Palette } from "lucide-react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const colors = [
+import axios from "axios";
+
+import { Palette } from "lucide-react";
+const allColors = [
   {
     name: "Black",
     class: "bg-black",
@@ -203,9 +205,37 @@ const colors = [
     value: "#4F46E5",
   },
 ];
-
+const freeColors = allColors.slice(1, 3);
 const ColorPicker = ({ selectedColor, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [userPlan, setUserPlan] = useState(null);
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          console.error("Unauthorized. Please log in.");
+          return;
+        }
+
+        const response = await axios.get(
+          `https://apiwl.novajobs.us/api/jobseeker/user-profile`,
+          {
+            headers: { Authorization: token },
+          }
+        );
+
+        if (response.data?.status === "success") {
+          setUserPlan(response.data.data.plan_id);
+        }
+      } catch (err) {
+        console.error("Error fetching user profile:", err);
+      }
+    };
+
+    fetchUserProfile();
+  }, []);
 
   const handleToggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -213,81 +243,72 @@ const ColorPicker = ({ selectedColor, onChange }) => {
 
   const handleColorSelect = (color) => {
     onChange(color);
-    setIsOpen(false); // Close the dropdown after selection
+    setIsOpen(false); // Close dropdown after selection
   };
 
-  return (
-    // <div className="relative flex items-center m-2 z-20">
-    //   <button
-    //     onClick={handleToggleDropdown}
-    //     className="hidden sm:block rounded-lg border-2 border-blue-800 px-8 p-1 font-bold bg-white text-blue-800"
-    //     style={{ backgroundColor: selectedColor || "transparent" }}
-    //   >
-    //     <span className="">Background Color</span>
-    //   </button>
-    //   <button
-    //     onClick={handleToggleDropdown}
-    //     className="sm:hidden rounded-lg border-2 border-blue-800 px-5 py-2 font-bold bg-white text-blue-800"
-    //     style={{ backgroundColor: selectedColor || "transparent" }}
-    //   >
-    //     Color
-    //   </button>
-    //   {isOpen && (
-    //     <div className="absolute top-10 mt-2 bg-white border rounded-3xl shadow-lg z-50">
-    //       <div className="grid grid-cols-5 gap-4 p-5 bg-white rounded-3xl">
-    //         {colors.map((color, index) => {
-    //           const isSelected = selectedColor === color.value;
-    //           const hoverStyle = {
-    //             backgroundColor: color.value,
-    //             borderColor: isSelected ? "black" : "gray",
-    //           };
+  const colors = userPlan === 1 ? freeColors : allColors;
 
-    //           return (
-    //             <div
-    //               key={index}
-    //               onClick={() => handleColorSelect(color.value)}
-    //               className={`w-8 h-8 rounded-full cursor-pointer border transition-all duration-300 ease-in-out ${
-    //                 isSelected
-    //                   ? "border-blue-800 shadow-lg shadow-blue-500"
-    //                   : "border-gray-300"
-    //               } hover:border-black`}
-    //               style={hoverStyle}
-    //             />
-    //           );
-    //         })}
-    //       </div>
-    //     </div>
-    //   )}
-    // </div>
-    <div className="relative flex items-center m-2 z-20">
-      {/* Desktop Button */}
+  return (
+    <div className="relative flex items-center m-2 z-20 ">
       <button
         onClick={handleToggleDropdown}
-        className="rounded-lg border-2 border-blue-800 px-4 py-2 bg-white text-blue-800 font-medium 
-    transition-transform duration-200 ease-in-out hover:scale-[1.02] hover:bg-blue-50 hover:text-blue-900 flex items-center gap-2"
+        className="rounded-lg border-2 border-blue-900 px-4 py-2 bg-white text-blue-900 font-medium 
+    transition-transform duration-200 ease-in-out hover:scale-[1.02] hover:bg-teal-50 hover:text-blue-800 flex items-center gap-2"
       >
         <Palette size={18} />
         <span className="hidden md:inline">Color Theme</span>
       </button>
-
-      {/* Color Dropdown */}
+      {/* <button
+        onClick={handleToggleDropdown}
+        className="sm:hidden rounded-lg border-2 border-teal-500 px-5 py-2 font-bold  bg-white text-black"
+        style={{ backgroundColor: selectedColor || "transparent" }}
+      >
+        {t("backgroundColor.labelMobile")}
+      </button> */}
       {isOpen && (
-        <div className="absolute top-full mt-2 w-64 sm:w-80 bg-white border rounded-3xl shadow-xl z-50 overflow-auto max-h-60">
-          <div className="grid grid-cols-5 gap-4 p-4">
+        // <div className="absolute top-10 mt-2  bg-white border rounded-3xl shadow-lg z-50">
+        //   <div className="flex  p-5 space-x-4 bg-white rounded-3xl">
+        //     {colors.map((color, index) => {
+        //       const isSelected = selectedColor === color.value;
+        //       const hoverStyle = {
+        //         backgroundColor: color.value,
+        //         borderColor: isSelected ? "black" : "gray",
+        //       };
+
+        //       return (
+        //         <div
+        //           key={index}
+        //           onClick={() => handleColorSelect(color.value)}
+        //           className={`w-6 h-6 rounded-full cursor-pointer border transition-all duration-300 ease-in-out ${
+        //             isSelected
+        //               ? "border-blue-80 shadow-lg shadow-blue-500"
+        //               : "border-gray-300"
+        //           } hover:border-black`}
+        //           style={hoverStyle}
+        //         />
+        //       );
+        //     })}
+        //   </div>
+        // </div>
+        <div className="absolute top-10 mt-2 bg-white border rounded-3xl shadow-lg z-50 w-64 sm:w-auto">
+          <div className="flex flex-wrap p-4 gap-3 bg-white rounded-3xl justify-center sm:justify-start">
             {colors.map((color, index) => {
               const isSelected = selectedColor === color.value;
+              const hoverStyle = {
+                backgroundColor: color.value,
+                borderColor: isSelected ? "black" : "gray",
+              };
+
               return (
                 <div
                   key={index}
                   onClick={() => handleColorSelect(color.value)}
                   className={`w-8 h-8 rounded-full cursor-pointer border transition-all duration-300 ease-in-out ${
                     isSelected
-                      ? "border-blue-800 shadow-lg shadow-blue-500"
+                      ? "border-blue-500 shadow-md shadow-blue-500 scale-110"
                       : "border-gray-300"
                   } hover:border-black`}
-                  style={{
-                    backgroundColor: color.value,
-                  }}
+                  style={hoverStyle}
                 />
               );
             })}
