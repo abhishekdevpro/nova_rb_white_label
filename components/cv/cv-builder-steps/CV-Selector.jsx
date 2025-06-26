@@ -15,6 +15,7 @@ const CVSelector = ({ onNext, onBack, onChange, value }) => {
   const [selectedHexCode, setSelectedHexCode] = useState("#2563EB");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const [userData, setUserData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   // const [coverLetterData, setCoverLetterData] = useState(null);
   const { coverLetterData, setCoverLetterData } =
@@ -256,7 +257,34 @@ const CVSelector = ({ onNext, onBack, onChange, value }) => {
       hasPhoto: true,
     },
   ];
+  const isBasicUser = userData?.plan_id === 1;
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          console.error("Unauthorized. Please log in.");
+          return;
+        }
 
+        const response = await axios.get(
+          `https://apiwl.novajobs.us/api/jobseeker/user-profile`,
+          {
+            headers: { Authorization: token },
+          }
+        );
+
+        if (response.data?.status === "success") {
+          const user = response.data.data;
+          setUserData(user);
+        }
+      } catch (err) {
+        console.error("Error fetching user profile:", err);
+      }
+    };
+
+    fetchUserProfile();
+  }, []);
   useEffect(() => {
     if (!value.hexCode) {
       const defaultColor = colors.find((c) => c.name === "Blue");
@@ -443,36 +471,71 @@ const CVSelector = ({ onNext, onBack, onChange, value }) => {
             Color Theme
           </h3>
           <div className="grid grid-cols-5 gap-4">
-            {colors.map((color) => (
+            {colors.map((color, index) => {
+              const isDisabled = isBasicUser && index > 1;
+              return (
+                <button
+                  key={color.name}
+                  className={`
+        w-8 h-8 rounded-full ${color.class}
+        transform transition-all duration-200
+        ${
+          selectedHexCode === color.hexCode
+            ? `ring-2 ring-offset-2 ${color.selectedClass}`
+            : "hover:ring-2 hover:ring-offset-2 hover:ring-gray-300"
+        }
+        ${isDisabled ? "opacity-50 cursor-not-allowed" : "hover:scale-110"}
+      `}
+                  onClick={() => {
+                    {
+                      isDisabled && (
+                        <div className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-white text-sm font-semibold">
+                          🔒 Upgrade to use
+                        </div>
+                      );
+                    }
+                    handleColorChange(color.hexCode, color.name);
+                  }}
+                  title={color.name}
+                  disabled={isDisabled}
+                />
+              );
+            })}
+            {isBasicUser && (
               <button
-                key={color.name}
-                className={`
-                  w-8 h-8 rounded-full ${color.class}
-                  transform hover:scale-110 transition-all duration-200
-                  ${
-                    selectedHexCode === color.hexCode
-                      ? `ring-2 ring-offset-2 ${color.selectedClass}`
-                      : "hover:ring-2 hover:ring-offset-2 hover:ring-gray-300"
-                  }
-                `}
-                onClick={() => handleColorChange(color.hexCode, color.name)}
-                title={color.name}
-              />
-            ))}
+                onClick={() => router.push("/payment")}
+                className="mt-4 w-full bg-blur-600 hover:bg-blue-700 text-white text-sm font-semibold py-2 px-4 rounded-lg shadow-md transition duration-200"
+              >
+                Upgrade Your Plan to Unlock All Templates & Colors
+              </button>
+            )}
           </div>
         </div>
 
         {/* Templates Grid */}
         <div className="flex-1 overflow-y-auto max-h-[calc(100vh-200px)] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {cvTemplates
-              // .filter((t) => !value.category || t.category === value.category)
-              .map((template) => (
+            {cvTemplates.map((template, index) => {
+              const isDisabled = isBasicUser && index > 1;
+              const isSelected = value.template === template.key;
+
+              return (
                 <button
                   key={template.key}
-                  onClick={() => handleTemplateSelect(template)}
-                  className="group bg-white rounded-xl shadow-md overflow-hidden border-2 transition-all duration-200 "
-                  style={getHoverStyle(template.key)}
+                  onClick={() => {
+                    if (isDisabled) {
+                      toast.info("Upgrade your plan to use premium templates.");
+                      return;
+                    }
+                    handleTemplateSelect(template);
+                  }}
+                  className={`group bg-white rounded-xl shadow-md overflow-hidden border-2 transition-all duration-200
+            ${isSelected ? "border-blue-500" : "border-transparent"}
+            ${isDisabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
+          `}
+                  style={{
+                    ...getHoverStyle(template.key),
+                  }}
                 >
                   <div className="">
                     <div className="relative aspect-[3/4]">
@@ -483,18 +546,25 @@ const CVSelector = ({ onNext, onBack, onChange, value }) => {
                         objectFit="contain"
                         className="transition-transform duration-200 group-hover:scale-105"
                       />
+
+                      {isDisabled && (
+                        <div className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-white text-sm font-semibold">
+                          🔒 Upgrade to use
+                        </div>
+                      )}
+
+                      {!isDisabled && (
+                        <div className="absolute inset-0 flex items-end justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-t from-black/60 to-transparent p-4">
+                          <span className="bg-white text-black font-semibold px-4 py-2 rounded-full shadow-md">
+                            Use This Template
+                          </span>
+                        </div>
+                      )}
                     </div>
-                    {/* <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                        <p className="text-white font-medium text-lg">
-                          {template.name}
-                        </p>
-                        <p className="text-white/80 text-sm">
-                          {template.description}
-                        </p>
-                      </div> */}
                   </div>
                 </button>
-              ))}
+              );
+            })}
           </div>
         </div>
       </div>

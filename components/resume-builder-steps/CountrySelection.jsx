@@ -1,14 +1,15 @@
 import Image from "next/image";
-import usflag from "../../../public/assets/uslogo.png";
-import canadaflag from "../../../public/assets/canada.png";
-import indiaflag from "../../../public/assets/indiaflag.png";
-import unitedkingdomflag from "../../../public/assets/unitedkingdomflag.png";
-import germanyflag from "../../../public/assets/germanyflag.png";
-import australiaflag from "../../../public/assets/australiaflag.png";
-import franceflag from "../../../public/assets/franceflag.png";
-import netherlandsflag from "../../../public/assets/netherlandsflag.png";
-import irelandflag from "../../../public/assets/irelandflag.png";
-import singaporeflag from "../../../public/assets/singaporeflag.png";
+import usflag from "../../public/assets/uslogo.png";
+import canadaflag from "../../public/assets/canada.png";
+import indiaflag from "../../public/assets/indiaflag.png";
+import unitedkingdomflag from "../../public/assets/unitedkingdomflag.png";
+import germanyflag from "../../public/assets/germanyflag.png";
+import australiaflag from "../../public/assets/australiaflag.png";
+import franceflag from "../../public/assets/franceflag.png";
+import netherlandsflag from "../../public/assets/netherlandsflag.png";
+import irelandflag from "../../public/assets/irelandflag.png";
+import singaporeflag from "../../public/assets/singaporeflag.png";
+
 const countries = [
   { id: "us", name: "United States", flag: usflag },
   { id: "ca", name: "Canada", flag: canadaflag },
@@ -68,7 +69,7 @@ export default function CountrySelection({ onBack, onSelectCountry }) {
             <button
               onClick={onBack}
               className="px-8 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-700 
-                 font-medium hover:bg-gray-50 hover:border-gray-400 transition-colors"
+              font-medium hover:bg-gray-50 hover:border-gray-400 transition-colors"
             >
               Back
             </button>

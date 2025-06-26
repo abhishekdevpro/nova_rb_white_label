@@ -291,7 +291,16 @@ import logo from "../Navbar/logo.jpg";
 import Image from "next/image";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { FileText, Home, LogIn, LogOut, Mail, User, X } from "lucide-react";
+import {
+  FileText,
+  Home,
+  LogIn,
+  LogOut,
+  Mail,
+  Settings,
+  User,
+  X,
+} from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -531,6 +540,16 @@ const Navbar = () => {
                     >
                       Logout
                     </button> */}
+                    <Link
+                      href="/settings"
+                      className="flex items-center px-4 py-3 hover:bg-gray-100 transition-colors duration-200 group"
+                      onClick={() => setIsDropdownOpen(false)}
+                    >
+                      <Settings className="mr-3 w-5 h-5 text-gray-500 group-hover:text-black" />
+                      <span className="text-gray-800 group-hover:text-black">
+                        Settings
+                      </span>
+                    </Link>
                   </div>
                 )}
               </div>
@@ -711,6 +730,13 @@ const Navbar = () => {
                     onClick={handleLinkClick}
                   >
                     Profile
+                  </MenuLink>
+                  <MenuLink
+                    icon={<Settings />}
+                    href="/settings"
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    Settings
                   </MenuLink>
 
                   {/* <button

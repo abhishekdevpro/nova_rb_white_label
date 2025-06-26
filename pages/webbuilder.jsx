@@ -25,6 +25,7 @@ import { ResumeContext } from "../components/context/ResumeContext";
 // import PaymentButton from "./paymentbutton";
 import { SaveLoader } from "../components/ResumeLoader/SaveLoader";
 import Highlightmenubar from "../components/preview/highlightmenu";
+import FontSelector from "./FontSelector";
 const Print = dynamic(() => import("../components/utility/WinPrint"), {
   ssr: false,
 });
@@ -559,7 +560,7 @@ export default function WebBuilder() {
   return (
     <>
       <Meta
-        title="Nova Resume Builder - AI Resume Builder"
+        title="NovaJobs- AI Resume Builder"
         description="ATSResume is a cutting-edge resume builder that helps job seekers create a professional, ATS-friendly resume in minutes..."
         keywords="ATS-friendly, Resume optimization..."
       />
@@ -591,28 +592,7 @@ export default function WebBuilder() {
                 </div>
 
                 <div className="hidden lg:flex items-center gap-4">
-                  <select
-                    value={selectedFont}
-                    onChange={handleFontChange}
-                    className="w-40 h-11 rounded-lg border-2 border-blue-800 px-4   font-bold text-blue-800 bg-white focus:ring-2 focus:ring-blue-800"
-                  >
-                    <option value="Ubuntu">Ubuntu</option>
-                    <option value="Calibri">Calibri</option>
-                    <option value="Georgia">Georgia</option>
-                    <option value="Roboto">Roboto</option>
-                    <option value="Poppins">Poppins</option>
-                    <option value="Arial">Arial</option>
-                    <option value="Times New Roman">Times New Roman</option>
-                    <option value="Helvetica">Helvetica</option>
-                    <option value="Courier New">Courier New</option>
-                    <option value="Tahoma">Tahoma</option>
-                    <option value="Verdana">Verdana</option>
-                    <option value="Trebuchet MS">Trebuchet MS</option>
-                    <option value="Lucida Console">Lucida Console</option>
-                    <option value="Comic Sans MS">Comic Sans MS</option>
-                    <option value="Source Sans Pro">Source Sans Pro</option>
-                    <option value="Inter">Inter</option>
-                  </select>
+                  <FontSelector />
 
                   <div className="flex items-center gap-4">
                     <ColorPickers
@@ -706,29 +686,25 @@ export default function WebBuilder() {
         ) : (
           <div className="flex flex-col">
             <div className="hidden md:flex w-screen px-8 py-4 justify-between items-center bg-white shadow">
-              <div className="flex gap-4">
-                <select
+              <div className="flex gap-4 ">
+                {/* <select
                   value={selectedFont}
                   onChange={handleFontChange}
-                  className="w-40 h-11 rounded-lg border-2 border-blue-800 px-4 mt-2  font-bold text-blue-800 bg-white focus:ring-2 focus:ring-blue-800"
+                  className="w-40 h-10 rounded-lg border-2 border-teal-600 px-8 p-1 font-bold  bg-white text-black mt-2"
                 >
                   <option value="Ubuntu">Ubuntu</option>
                   <option value="Calibri">Calibri</option>
                   <option value="Georgia">Georgia</option>
                   <option value="Roboto">Roboto</option>
                   <option value="Poppins">Poppins</option>
-                  <option value="Arial">Arial</option>
-                  <option value="Times New Roman">Times New Roman</option>
-                  <option value="Helvetica">Helvetica</option>
-                  <option value="Courier New">Courier New</option>
-                  <option value="Tahoma">Tahoma</option>
-                  <option value="Verdana">Verdana</option>
-                  <option value="Trebuchet MS">Trebuchet MS</option>
-                  <option value="Lucida Console">Lucida Console</option>
-                  <option value="Comic Sans MS">Comic Sans MS</option>
-                  <option value="Source Sans Pro">Source Sans Pro</option>
-                  <option value="Inter">Inter</option>
-                </select>
+                </select> */}
+                <div className="mt-3">
+                  <FontSelector />
+                </div>
+                {/* <ColorPicker
+                  selectedColor={headerColor}
+                  onChange={setHeaderColor}
+                /> */}
                 <ColorPickers
                   selectmultiplecolor={backgroundColorss}
                   onChange={setBgColor}
@@ -736,10 +712,11 @@ export default function WebBuilder() {
                 <TemplateSelector
                   selectedTemplate={selectedTemplate}
                   setSelectedTemplate={setSelectedTemplate}
-                  setSelectedPdfType={setSelectedPdfType}
                   selectedPdfType={selectedPdfType}
+                  setSelectedPdfType={setSelectedPdfType}
                 />
               </div>
+
               <div className="flex gap-4">
                 <button
                   onClick={handleClick}

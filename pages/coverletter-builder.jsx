@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import MobileCoverLetterBuilder from "./mobile-cv-builder";
 import { SaveLoader } from "../components/ResumeLoader/SaveLoader";
+import CoverLetterFontSelector from "./CoverLetterFontSelector";
 function CoverLetterBuilder() {
   const {
     coverLetterData,
@@ -282,28 +283,7 @@ function CoverLetterBuilder() {
               <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
                 {/* Font Selector and Options */}
                 <div className="flex items-center gap-4">
-                  <select
-                    value={selectedFont}
-                    onChange={handleFontChange}
-                    className="w-40 h-10 rounded-lg border-2 border-blue-800 px-4 font-bold text-blue-800 bg-white focus:ring-2 focus:ring-blue-800"
-                  >
-                    <option value="Ubuntu">Ubuntu</option>
-                    <option value="Calibri">Calibri</option>
-                    <option value="Georgia">Georgia</option>
-                    <option value="Roboto">Roboto</option>
-                    <option value="Poppins">Poppins</option>
-                    <option value="Arial">Arial</option>
-                    <option value="Times New Roman">Times New Roman</option>
-                    <option value="Helvetica">Helvetica</option>
-                    <option value="Courier New">Courier New</option>
-                    <option value="Tahoma">Tahoma</option>
-                    <option value="Verdana">Verdana</option>
-                    <option value="Trebuchet MS">Trebuchet MS</option>
-                    <option value="Lucida Console">Lucida Console</option>
-                    <option value="Comic Sans MS">Comic Sans MS</option>
-                    <option value="Source Sans Pro">Source Sans Pro</option>
-                    <option value="Inter">Inter</option>
-                  </select>
+                  <CoverLetterFontSelector />
 
                   <ColorPickers
                     selectmultiplecolor={backgroundColorss}
@@ -330,7 +310,7 @@ function CoverLetterBuilder() {
                     onClick={downloadAsPDF}
                     className="bg-yellow-500 text-black px-6 py-2 rounded-lg"
                   >
-                    Pay & Download
+                    Download
                   </button>
                 </div>
               </div>

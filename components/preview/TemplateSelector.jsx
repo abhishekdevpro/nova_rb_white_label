@@ -28,6 +28,9 @@ import template24 from "./template/template24.png";
 import template25 from "./template/template25.png";
 import template26 from "./template/template26.png";
 import template27 from "./template/template27.png";
+
+import axios from "axios";
+import Link from "next/link";
 const TemplateSelector = ({
   selectedTemplate,
   setSelectedTemplate,
@@ -37,9 +40,10 @@ const TemplateSelector = ({
   const [isOpen, setIsOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [templateId, setTemplateId] = useState(selectedTemplate);
+  const [userData, setUserData] = useState(null);
   // Default PDF type
 
-  const templates = [
+  const allTemplates = [
     { key: "template1", imageUrl: template1, pdfType: 1 },
     { key: "template2", imageUrl: template2, pdfType: 3 },
     { key: "template3", imageUrl: template3, pdfType: 3 },
@@ -67,9 +71,40 @@ const TemplateSelector = ({
     // { key: "template25", imageUrl: template25, pdfType: 1 },
     // { key: "template26", imageUrl: template26, pdfType: 3 },
     // { key: "template27", imageUrl: template27, pdfType: 3 },
-    // { key: "template28", imageUrl: template28, pdfType: 2 },
+    // { key: "template28", imageUrl: template21, pdfType: 2 },
   ];
 
+  const templates = allTemplates;
+  const isBasicUser = userData?.plan_id === 1;
+  const [showUpgradeMessage, setShowUpgradeMessage] = useState(false);
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          console.error("Unauthorized. Please log in.");
+          return;
+        }
+
+        const response = await axios.get(
+          `https://apiwl.novajobs.us/api/jobseeker/user-profile`,
+          {
+            headers: { Authorization: token },
+          }
+        );
+
+        if (response.data?.status === "success") {
+          const user = response.data.data;
+          setUserData(user);
+        }
+      } catch (err) {
+        console.error("Error fetching user profile:", err);
+      }
+    };
+
+    fetchUserProfile();
+  }, []);
   useEffect(() => {
     const selectedIndex = templates.findIndex(
       (template) => template.key === selectedTemplate
@@ -83,7 +118,20 @@ const TemplateSelector = ({
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
+  // const handleTemplateClick = (template) => {
+  //   setSelectedTemplate(template.key);
+  //   setTemplateId(template.key);
+  //   setSelectedPdfType(template.pdfType);
+  //   closeModal();
+  // };
   const handleTemplateClick = (template) => {
+    const templateIndex = templates.findIndex((t) => t.key === template.key);
+    if (isBasicUser && templateIndex > 1) {
+      setShowUpgradeMessage(true);
+      setTimeout(() => setShowUpgradeMessage(false), 2500);
+      return;
+    }
+
     setSelectedTemplate(template.key);
     setTemplateId(template.key);
     setSelectedPdfType(template.pdfType);
@@ -117,13 +165,14 @@ const TemplateSelector = ({
       behavior: "smooth",
     });
   };
+
   return (
-    <div className=" ">
+    <div className="font-sans ">
       <div className="flex flex-col md:flex-row gap-2 m-2">
         <button
           onClick={openModal}
-          className="flex items-center gap-2 rounded-lg border-2 border-blue-800 px-5 py-2 bg-white text-blue-800 font-medium 
-    transition-transform duration-200 ease-in-out hover:scale-[1.02] hover:bg-blue-50 hover:text-blue-8000"
+          className="flex items-center gap-2 rounded-lg border-2 border-blue-900 px-5 py-2 bg-white text-blue-900 font-medium 
+    transition-transform duration-200 ease-in-out hover:scale-[1.02] hover:bg-blue-50 hover:text-blue-6000"
         >
           <FileText size={18} />
           <span className="hidden md:inline">
@@ -136,49 +185,83 @@ const TemplateSelector = ({
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/75 p-4 ">
           <div className="bg-gradient-to-b from-white to-blue-100 rounded-xl p-6 w-full max-w-5xl relative shadow-2xl ">
-            <div className="text-lg font-bold mb-4 text-center border rounded-3xl py-2 text-white bg-blue-800">
+            <button
+              onClick={closeModal}
+              className="absolute top-3 right-3 text-gray-600 hover:text-black text-xl font-bold"
+              aria-label="Close"
+            >
+              &times;
+            </button>
+            <div className="text-lg font-bold mb-4 text-center border rounded-3xl py-2 text-white bg-blue-600">
               Select a Template
             </div>
 
             <div className="max-h-[70vh] overflow-y-auto px-4 py-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {templates.map((template) => (
-                <div
-                  key={template.key}
-                  onClick={() => handleTemplateClick(template)}
-                  className={`cursor-pointer transition-transform duration-200 ${
-                    template.key === templateId
-                      ? "scale-105"
-                      : "hover:scale-105"
-                  }`}
-                >
-                  <div
-                    className={`rounded-xl p-2 border-2 transition-colors duration-300 ${
-                      template.key === templateId
-                        ? "border-blue-800 bg-blue-100"
-                        : "border-transparent hover:border-blue-300"
-                    }`}
-                  >
-                    <div className="relative w-full h-full  aspect-[3/4] overflow-hidden rounded-lg shadow-md">
-                      <Image
-                        src={template.imageUrl}
-                        alt={template.key}
-                        fill
-                        className="object-fill"
-                      />
+              {templates.map((template, index) => {
+                const isLocked = isBasicUser && index > 1;
+
+                {
+                  showUpgradeMessage && (
+                    <div className="fixed top-5 left-1/2 -translate-x-1/2 bg-red-600 text-white px-4 py-2 rounded shadow-lg z-[9999]">
+                      Please upgrade your plan to use this template.
                     </div>
+                  );
+                }
+                return (
+                  <div
+                    key={template.key}
+                    onClick={() => handleTemplateClick(template)}
+                    className={`cursor-pointer transition-transform duration-200 ${
+                      template.key === templateId
+                        ? "scale-105"
+                        : "hover:scale-105"
+                    } ${isLocked ? "opacity-50 pointer-events-auto" : ""}`}
+                  >
                     <div
-                      className={`text-center mt-2 font-medium ${
+                      className={`rounded-xl p-2 border-2 relative transition-colors duration-300 ${
                         template.key === templateId
-                          ? "text-blue-800"
-                          : "text-gray-600"
+                          ? "border-blue-600 bg-blue-100"
+                          : "border-transparent hover:border-blue-300"
                       }`}
                     >
-                      {template.key}
+                      <div className="relative w-full h-full aspect-[3/4] overflow-hidden rounded-lg shadow-md">
+                        <Image
+                          src={template.imageUrl}
+                          alt={template.key}
+                          fill
+                          className="object-fill"
+                        />
+                        {isLocked && (
+                          <Link href={"/payment"}>
+                            <div className="absolute inset-0 bg-white bg-opacity-70 flex items-center justify-center text-center text-sm font-semibold text-red-600 px-2">
+                              🔒 Upgrade to use
+                            </div>
+                          </Link>
+                        )}
+                      </div>
+                      <div
+                        className={`text-center mt-2 font-medium ${
+                          template.key === templateId
+                            ? "text-blue-600"
+                            : "text-gray-600"
+                        }`}
+                      >
+                        {template.key}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
+            {isBasicUser && (
+              <div className="text-center mt-6">
+                <Link href={"/payment"}>
+                  <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition">
+                    Upgrade Your Plan to Unlock All Templates
+                  </button>
+                </Link>
+              </div>
+            )}
             <button
               onClick={closeModal}
               className="w-full sm:w-auto px-6 py-2.5 my-4 bg-gray-800 text-white font-semibold rounded-lg hover:bg-gray-700 transition-colors duration-200 flex items-center justify-center mx-auto"
