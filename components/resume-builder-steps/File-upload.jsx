@@ -181,7 +181,7 @@ export default function FileUploadStep({ onNext, onBack, onChange, value }) {
           Back
         </button>
         <button
-          onClick={() => router.push(`/dashboard/aibuilder/${resumeId}`)}
+          onClick={() => router.push(`/dashboard/aibuilder/${id}`)}
           disabled={!value && !isUploading}
           className="px-8 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors
             disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600"

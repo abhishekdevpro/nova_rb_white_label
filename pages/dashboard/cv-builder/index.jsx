@@ -94,6 +94,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function Home() {
   const router = useRouter();
@@ -157,6 +158,7 @@ export default function Home() {
 
       // ✅ Check for specific API error message
       if (err.response && err.response.data && err.response.data.message) {
+        toast.error(err.response.data.message || "Upgrade your plan")
         setError(err.response.data.message);
       } else if (err.message) {
         setError(err.message); // fallback to generic error
