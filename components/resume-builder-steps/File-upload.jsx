@@ -9,6 +9,7 @@ import Image from "next/image";
 import { Upload, File } from "lucide-react"; // Replaced SVG with lucide-react icons
 import drive from "../../public/assets/google-drive.png";
 import { ResumeContext } from "../context/ResumeContext";
+import { SaveLoader } from "../ResumeLoader/SaveLoader";
 
 export default function FileUploadStep({ onNext, onBack, onChange, value }) {
   const [isUploading, setIsUploading] = useState(false);
@@ -58,7 +59,7 @@ export default function FileUploadStep({ onNext, onBack, onChange, value }) {
               (progressEvent.loaded * 100) / progressEvent.total
             );
             setUploadProgress(percentCompleted);
-            toast.info(`Upload progress: ${percentCompleted}%`);
+            // toast.info(`Upload progress: ${percentCompleted}%`);
           },
         }
       );
@@ -76,20 +77,21 @@ export default function FileUploadStep({ onNext, onBack, onChange, value }) {
       const parsedData = JSON.parse(resumeData.resume_parse_data);
       setResumeData(parsedData.templateData);
 
-      localStorage.setItem(
-        "resumeData",
-        JSON.stringify(parsedData.templateData)
-      );
+      // localStorage.setItem(
+      //   "resumeData",
+      //   JSON.stringify(parsedData.templateData)
+      // );
       localStorage.setItem("resumeId", resumeData.id);
-      localStorage.setItem("location", resumeData.file_path);
+      // localStorage.setItem("location", resumeData.file_path);
 
       toast.success("File uploaded successfully");
       onChange(file);
-      setIsUploading(false);
-      setShowLoadingAnimation(false);
+      
     } catch (error) {
       console.error("Upload error:", error);
       toast.error(error.response?.data?.message || "File upload failed");
+      
+    }finally{
       setIsUploading(false);
       setShowLoadingAnimation(false);
     }
@@ -144,6 +146,7 @@ export default function FileUploadStep({ onNext, onBack, onChange, value }) {
               />
             </div>
             <p className="text-sm text-gray-500">{uploadProgress}% complete</p>
+            <SaveLoader loadingText='Uploading your resume'/>
           </div>
         ) : (
           <>
@@ -182,7 +185,7 @@ export default function FileUploadStep({ onNext, onBack, onChange, value }) {
         </button>
         <button
           onClick={() => router.push(`/dashboard/aibuilder/${id}`)}
-          disabled={!value && !isUploading}
+          disabled={!resumeId || !value && !isUploading}
           className="px-8 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors
             disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600"
         >

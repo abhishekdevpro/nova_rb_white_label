@@ -91,11 +91,13 @@ import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import DefaultResumeData from "../utility/DefaultResumeData";
 import { ResumeContext } from "../context/ResumeContext";
+import FullScreenLoader from '../ResumeLoader/Loader';
 
 export default function UploadStep({ onNext, onBack, onChange, value }) {
   const router = useRouter();
   const [showLoadingAnimation, setShowLoadingAnimation] = useState(false);
   const { setResumeData } = useContext(ResumeContext);
+  const [showLoader, setShowLoader] = useState(false);
   const resumeId = router.query.id || localStorage.getItem("resumeId");
   if (!resumeId) {
     toast.error("Resume ID or token not found");
@@ -136,12 +138,18 @@ export default function UploadStep({ onNext, onBack, onChange, value }) {
   //   }
   // };
 
-  const handleStartFromScratch = () => {
-    setResumeData(DefaultResumeData);
-    router.push(`/dashboard/aibuilder/${resumeId}`);
-  };
+  const handleStartFromScratch =()=>{
+  setShowLoader(true)
+  setResumeData(DefaultResumeData);
+  setTimeout(()=>{
+    router.push(`/dashboard/aibuilder/${resumeId}`)
+  },3000)
+  
+}
 
   return (
+    <>
+    {showLoader && <FullScreenLoader />}
     <div className="space-y-6 bg-gradient-to-b from-white to-blue-200">
       <div className="text-center bg-blue-700 pt-4 pb-4 mb-4">
         <h2 className="text-2xl font-bold text-white">
@@ -193,5 +201,6 @@ export default function UploadStep({ onNext, onBack, onChange, value }) {
         </button>
       </div>
     </div>
+    </>
   );
 }

@@ -62,13 +62,13 @@ const PersonalInformation = () => {
           onChange={handleProfilePicture}
         />
       </div>
-      <h2 className="text-2xl font-bold mb-6 mt-4 text-white">
+      <h2 className="text-2xl font-bold mb-6 mt-4 text-black">
         Personal Information
       </h2>
       <div className="space-y-4">
         {/* Name Field */}
         <div>
-          <label className="block text-white font-medium mb-2">Name</label>
+          <label className="block text-black font-medium mb-2">Name</label>
           <input
             type="text"
             value={coverLetterData.personalDetails.name}
@@ -90,7 +90,7 @@ const PersonalInformation = () => {
 
         {/* Email Field */}
         <div>
-          <label className="block text-white font-medium mb-2">Email</label>
+          <label className="block text-black font-medium mb-2">Email</label>
           <input
             type="email"
             value={coverLetterData.personalDetails.email}
@@ -102,7 +102,7 @@ const PersonalInformation = () => {
 
         {/* Address Field */}
         <div>
-          <label className="block text-white font-medium mb-2">Address</label>
+          <label className="block text-black font-medium mb-2">Address</label>
           <textarea
             value={coverLetterData.personalDetails.address}
             onChange={(e) => handleChange("address", e.target.value)}
@@ -114,7 +114,7 @@ const PersonalInformation = () => {
 
         {/* Contact Field */}
         <div>
-          <label className="block text-white font-medium mb-2">Contact</label>
+          <label className="block text-black font-medium mb-2">Contact</label>
           <input
             type="tel"
             value={coverLetterData.personalDetails.contact}

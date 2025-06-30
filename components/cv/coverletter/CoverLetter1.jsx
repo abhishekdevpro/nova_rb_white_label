@@ -18,7 +18,8 @@ const CoverLetter1 = () => {
     console.log(htmlContent);
     return htmlContent;
   };
-  console.log(coverLetterData, ">>>>>cv1.jsx");
+  // console.log(coverLetterData, ">>>>>cv1.jsx");
+  console.log(backgroundColorss, "backgroundColorss");
   return (
     <div
       ref={templateRef}

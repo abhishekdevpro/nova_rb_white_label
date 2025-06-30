@@ -71,12 +71,13 @@ function CoverLetterBuilder() {
             // console.log(data,"rnd");
 
             const parsedData = data.cover_letter_obj;
+            console.log(parsedData,parsedData.coverletterInfo?.templateDetails?.backgroundColor,"parsedData");
 
             setCoverLetterData(parsedData.coverletterInfo);
 
-            if (parsedData.templateDetails) {
+            if (parsedData?.coverletterInfo?.templateDetails) {
               setBgColor(
-                parsedData.coverletterInfo.templateDetails.backgroundColor || ""
+                parsedData.coverletterInfo?.templateDetails?.backgroundColor || ""
               );
               setHeaderColor(
                 parsedData.coverletterInfo.templateDetails.backgroundColor || ""

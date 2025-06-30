@@ -573,23 +573,7 @@ export default function WebBuilder() {
           <div className="min-h-screen bg-gray-50 flex flex-col">
             <div className="w-full bg-gray-200 p-4 shadow-sm ">
               <div className="hidden md:flex flex-col lg:flex-row items-center justify-between gap-4">
-                <div className="flex w-full lg:w-auto gap-4">
-                  <button
-                    type="button"
-                    onClick={handlePrevious}
-                    disabled={currentSection === 0}
-                    className="w-40 h-10 rounded-lg bg-blue-950 text-white font-medium transition hover:bg-blue-900 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    Previous
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleNext}
-                    className="w-40 h-10 rounded-lg bg-yellow-500 text-black font-medium transition hover:bg-yellow-400"
-                  >
-                    {currentSection === sections.length - 1 ? "Finish" : "Next"}
-                  </button>
-                </div>
+                
 
                 <div className="hidden lg:flex items-center gap-4">
                   <FontSelector />
@@ -606,6 +590,24 @@ export default function WebBuilder() {
                       selectedPdfType={selectedPdfType}
                     />
                   </div>
+                </div>
+
+                <div className="flex w-full lg:w-auto gap-4">
+                  <button
+                    type="button"
+                    onClick={handlePrevious}
+                    disabled={currentSection === 0}
+                    className="w-40 h-10 rounded-lg bg-blue-950 text-white font-medium transition hover:bg-blue-900 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Previous
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleNext}
+                    className="w-40 h-10 rounded-lg bg-yellow-500 text-black font-medium transition hover:bg-yellow-400"
+                  >
+                    {currentSection === sections.length - 1 ? "Finish" : "Next"}
+                  </button>
                 </div>
               </div>
             </div>

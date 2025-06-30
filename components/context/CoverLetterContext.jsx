@@ -32,7 +32,7 @@ export const CoverLetterProvider = ({ children }) => {
     e.preventDefault();
     setCoverLetterData({ ...coverLetterData, photo: "" });
   };
-
+console.log(backgroundColorss, "backgroundColorss form context");
   return (
     <CoverLetterContext.Provider
       value={{
