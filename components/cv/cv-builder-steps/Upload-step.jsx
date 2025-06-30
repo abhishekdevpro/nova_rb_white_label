@@ -8,23 +8,31 @@ import { toast } from "react-toastify";
 // import { ResumeContext } from '../context/ResumeContext';
 import { CoverLetterContext } from "../../context/CoverLetterContext";
 import DefaultCoverLetterData from "../../utility/DefaultCoverLetterData";
+import FullScreenLoader from '../../ResumeLoader/Loader';
 
 export default function UploadStep({ onNext, onBack, onChange, value }) {
   const router = useRouter();
   const [showLoadingAnimation, setShowLoadingAnimation] = useState(false);
   const { setCoverLetterData } = useContext(CoverLetterContext);
+  const [showLoader, setShowLoader] = useState(false)
   const coverletterId = router.query.id || localStorage.getItem("id");
   if (!coverletterId) {
     toast.error("CoverLetter ID or token not found");
     return;
   }
   const handleStartFromScratch = () => {
+    setShowLoader(true)
     setCoverLetterData(DefaultCoverLetterData);
+    
+    setTimeout(()=>{
     router.push(`/dashboard/cvaibuilder/${coverletterId}`);
+  },3000)
   };
 
   return (
-    <div className="space-y-6 bg-gradient-to-b from-white to-blue-100">
+   <>
+   {showLoader && <FullScreenLoader />}
+     <div className="space-y-6 bg-gradient-to-b from-white to-blue-100">
       <div className="text-center bg-[#002a48] pt-4 pb-4 mb-4">
         <h2 className="text-2xl font-bold text-white">
           Are you uploading an existing cover letter?
@@ -88,5 +96,6 @@ export default function UploadStep({ onNext, onBack, onChange, value }) {
         </button>
       </div>
     </div>
+   </>
   );
 }

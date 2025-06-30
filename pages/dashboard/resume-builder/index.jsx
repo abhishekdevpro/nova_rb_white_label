@@ -45,7 +45,9 @@ export default function Home() {
         setError("Failed to create cover letter. Please try again.");
       }
     } finally {
+      setTimeout(() => {
       setLoading(false);
+    }, 3000);
     }
   };
 

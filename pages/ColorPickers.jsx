@@ -291,7 +291,7 @@ const ColorPicker = ({ selectedColor, onChange }) => {
         //   </div>
         // </div>
         <div className="absolute top-10 mt-2 bg-white border rounded-3xl shadow-lg z-50 w-64 sm:w-auto">
-          <div className="flex flex-wrap p-4 gap-3 bg-white rounded-3xl justify-center sm:justify-start">
+          <div className=" w-64 mx-auto md:flex flex-wrap p-4 gap-3 bg-white rounded-3xl justify-center sm:justify-start">
             {colors.map((color, index) => {
               const isSelected = selectedColor === color.value;
               const hoverStyle = {

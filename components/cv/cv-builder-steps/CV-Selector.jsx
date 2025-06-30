@@ -438,7 +438,9 @@ const CVSelector = ({ onNext, onBack, onChange, value }) => {
       toast.error(error?.message || "Error updating resume!");
       console.error("Error updating resume:", error);
     } finally {
-      setIsLoading(false);
+      setTimeout(() => {
+      setLoading(false);
+    }, 2000);
     }
   };
 

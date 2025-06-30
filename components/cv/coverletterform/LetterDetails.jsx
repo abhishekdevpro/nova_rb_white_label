@@ -17,11 +17,11 @@
 
 //   return (
 //     <div className="p-4 md:p-8  rounded-lg shadow-md">
-//       <h2 className="text-2xl font-bold mb-6 text-white">Letter Details</h2>
+//       <h2 className="text-2xl font-bold mb-6 text-black">Letter Details</h2>
 //       <div className="space-y-4">
 //         {/* Date */}
 //         <div>
-//           <label className="block text-white font-medium mb-2">Date</label>
+//           <label className="block text-black font-medium mb-2">Date</label>
 //           <input
 //             type="date"
 //             value={coverLetterData.letterDetails.date}
@@ -33,7 +33,7 @@
 
 //         {/* Job Title */}
 //         <div>
-//           <label className="block text-white font-medium mb-2">Job Title</label>
+//           <label className="block text-black font-medium mb-2">Job Title</label>
 //           <input
 //             type="text"
 //             value={coverLetterData.letterDetails.jobTitle}
@@ -45,7 +45,7 @@
 
 //         {/* Reference */}
 //         <div>
-//           <label className="block text-white font-medium mb-2">Reference</label>
+//           <label className="block text-black font-medium mb-2">Reference</label>
 //           <input
 //             type="text"
 //             value={coverLetterData.letterDetails.reference}
@@ -57,7 +57,7 @@
 
 //         {/* Company Name */}
 //         <div>
-//           <label className="block text-white font-medium mb-2">
+//           <label className="block text-black font-medium mb-2">
 //             Company Name
 //           </label>
 //           <input
@@ -71,7 +71,7 @@
 
 //         {/* Salutation */}
 //         <div>
-//           <label className="block text-white font-medium mb-2">
+//           <label className="block text-black font-medium mb-2">
 //             Salutation
 //           </label>
 //           <input
@@ -120,11 +120,11 @@ const LetterDetails = () => {
 
   return (
     <div className="p-4 md:p-8 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-6 text-white">Letter Details</h2>
+      <h2 className="text-2xl font-bold mb-6 text-black">Letter Details</h2>
       <div className="space-y-4">
         {/* Date */}
         <div>
-          <label className="block text-white font-medium mb-2">Date</label>
+          <label className="block text-black font-medium mb-2">Date</label>
           <DatePicker
             selected={
               coverLetterData.letterDetails.date
@@ -140,7 +140,7 @@ const LetterDetails = () => {
 
         {/* Job Title */}
         <div>
-          <label className="block text-white font-medium mb-2">Job Title</label>
+          <label className="block text-black font-medium mb-2">Job Title</label>
           <input
             type="text"
             value={coverLetterData.letterDetails.jobTitle}
@@ -160,7 +160,7 @@ const LetterDetails = () => {
 
         {/* Reference */}
         <div>
-          <label className="block text-white font-medium mb-2">
+          <label className="block text-black font-medium mb-2">
             Reference (Optional){" "}
           </label>
           <input
@@ -182,7 +182,7 @@ const LetterDetails = () => {
 
         {/* Company Name */}
         <div>
-          <label className="block text-white font-medium mb-2">
+          <label className="block text-black font-medium mb-2">
             Company Name
           </label>
           <input
@@ -204,7 +204,7 @@ const LetterDetails = () => {
 
         {/* Salutation */}
         <div>
-          <label className="block text-white font-medium mb-2">
+          <label className="block text-black font-medium mb-2">
             Salutation
           </label>
           <input
