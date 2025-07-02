@@ -26,6 +26,7 @@ import { ResumeContext } from "../components/context/ResumeContext";
 import { SaveLoader } from "../components/ResumeLoader/SaveLoader";
 import Highlightmenubar from "../components/preview/highlightmenu";
 import FontSelector from "./FontSelector";
+import ErrorPopup from "../components/utility/ErrorPopup";
 const Print = dynamic(() => import("../components/utility/WinPrint"), {
   ssr: false,
 });
@@ -42,6 +43,10 @@ export default function WebBuilder() {
   const [orderId, setOrderId] = useState(null);
   const [isDownloading, setisDownloading] = useState(false);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  const [errorPopup, setErrorPopup] = useState({
+    show: false,
+    message: "",
+  });
   const templateRef = useRef(null);
   const {
     resumeData,
@@ -363,26 +368,26 @@ export default function WebBuilder() {
       window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error("PDF generation error:", error);
-
-      const apiError = error.response?.data;
-      const statusCode = error.response?.status;
-
-      if (statusCode === 403) {
-        setShowUpgradeModal(true); // Show upgrade popup
-      } else if (apiError?.error) {
-        toast.error(apiError.error);
-      } else if (apiError?.message) {
-        toast.error(apiError.message);
-      } else {
-        toast.error("Something went wrong. Please try again.");
+      console.log(error?.response?.status,"error?.response?.status");
+      if(error?.response?.status === 403){
+        setErrorPopup({
+        show: true,
+        message:
+          error.response?.data?.message ||
+          "Your API Limit is Exhausted. Please upgrade your plan.",
+      });
+      }
+      else{
+        toast.error(error.response?.data?.message || "server error ")
       }
     } finally {
       setisDownloading(false);
     }
   };
   const downloadAsPDF = () => {
-    downloadAsBackend();
     handleFinish();
+    downloadAsBackend();
+    
   };
   // Logic to save and update the Resume
   const handleFinish = async (showToast = true) => {
@@ -759,6 +764,12 @@ export default function WebBuilder() {
           </div>
         )}
       </div>
+      {errorPopup.show && (
+        <ErrorPopup
+          message={errorPopup.message}
+          onClose={() => setErrorPopup({ show: false, message: "" })}
+        />
+      )}
       {showUpgradeModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full text-center">
