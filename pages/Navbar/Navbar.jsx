@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -7,13 +6,16 @@ import Image from "next/image";
 import { toast } from "react-toastify";
 import axios from "axios";
 import {
+  File,
   FileText,
   Home,
+  LayoutDashboard,
   LogIn,
   LogOut,
   Mail,
   Settings,
   User,
+  User2,
   X,
 } from "lucide-react";
 
@@ -131,7 +133,15 @@ const Navbar = () => {
       router.push("https://novajobs.us/user/login");
     }
   };
+  const planName = {
+    1: "Free",
+    2: "Explore",
+    3: "Elevate",
+    4: "Excel",
+    5: "Elite",
+  };
 
+  const currentPlan = user?.plan_id ? planName[String(user.plan_id)] : "Free";
   return (
     <nav className="bg-white border-b border-gray-200">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
@@ -206,7 +216,7 @@ const Navbar = () => {
                   <img
                     src={
                       photo
-                        ? `https://apiwl.novajobs.us${photo}`
+                        ? `${photo}`
                         : "https://img.freepik.com/premium-vector/businessman-avatar-illustration-cartoon-user-portrait-user-profile-icon_118339-4382.jpg"
                     }
                     alt="User"
@@ -217,44 +227,62 @@ const Navbar = () => {
                     {user ? user : "profile"}
                   </span>
                 </button>
-                {isDropdownOpen && (
+                {/* {isDropdownOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md text-black z-50">
+                     <div className="px-4 py-3 border-b border-gray-100">
+                      <p className="text-sm text-gray-600">
+                        Current Plan:{" "}
+                        <span
+                          className={`px-2 py-1 rounded text-sm ${
+                            currentPlan === "Free"
+                              ? "bg-red-100 text-red-600"
+                              : "bg-green-100 text-green-600"
+                          }`}
+                        >
+                          {currentPlan}
+                        </span>
+                      </p>
+                    </div>
                     <Link
                       href="https://novajobs.us/user/jobs-profile"
                       className="block px-4 py-2 hover:bg-gray-200"
                       onClick={() => setIsDropdownOpen(false)}
                     >
-                      Profile
+                       <User2 className="mr-3 w-5 h-5 text-gray-500 group-hover:text-black" />
+                      <span className="text-gray-800 group-hover:text-black">
+                        Profile
+                      </span>
                     </Link>
                     <Link
                       href="/dashboard"
                       className="block px-4 py-2 hover:bg-gray-200"
                       onClick={() => setIsDropdownOpen(false)}
                     >
-                      Dashboard
+                       <LayoutDashboard className="mr-3 w-5 h-5 text-gray-500 group-hover:text-black" />
+                      <span className="text-gray-800 group-hover:text-black">
+                        Dashboard
+                      </span>
                     </Link>
 
                     <Link
                       href="/dashboard/resumelist"
                       className="block px-4 py-2 hover:bg-gray-200"
                     >
-                      My Resumes
+                      <File className="mr-3 w-5 h-5 text-gray-500 group-hover:text-black" />
+                      <span className="text-gray-800 group-hover:text-black">
+                        My Resumes
+                      </span>
                     </Link>
                     <Link
                       href="/dashboard/cvletterlist"
                       className="block px-4 py-2 hover:bg-gray-200"
                     >
-                      Cover Letter
+                     <File className="mr-3 w-5 h-5 text-gray-500 group-hover:text-black" />
+                      <span className="text-gray-800 group-hover:text-black">
+                        My CoverLetters
+                      </span>
                     </Link>
-                    {/* <button
-                      onClick={() => {
-                        handleLogout();
-                        setIsDropdownOpen(false);
-                      }}
-                      className="block w-full text-left px-4 py-2 hover:bg-gray-200"
-                    >
-                      Logout
-                    </button> */}
+                    
                     <Link
                       href="/settings"
                       className="flex items-center px-4 py-3 hover:bg-gray-100 transition-colors duration-200 group"
@@ -265,6 +293,83 @@ const Navbar = () => {
                         Settings
                       </span>
                     </Link>
+                  </div>
+                )} */}
+                {isDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-64 bg-white shadow-xl rounded-lg z-50 border border-gray-200 overflow-hidden">
+                    {/* Current Plan */}
+                    <div className="px-4 py-3 bg-gray-50 border-b border-gray-200">
+                      <p className="text-sm text-gray-600">
+                        Current Plan:
+                        <span
+                          className={`ml-2 inline-block px-2 py-1 rounded-full text-xs font-semibold ${
+                            currentPlan === "Free"
+                              ? "bg-red-100 text-red-600"
+                              : "bg-green-100 text-green-600"
+                          }`}
+                        >
+                          {currentPlan}
+                        </span>
+                      </p>
+                    </div>
+
+                    {/* Menu Links */}
+                    <div className="flex flex-col py-1">
+                      <Link
+                        href="https://novajobs.us/user/jobs-profile"
+                        onClick={() => setIsDropdownOpen(false)}
+                        className="flex items-center px-4 py-2 hover:bg-gray-100 transition-colors duration-200 group"
+                      >
+                        <User2 className="w-5 h-5 text-gray-500 group-hover:text-gray-700 mr-3" />
+                        <span className="text-gray-700 group-hover:text-black">
+                          Profile
+                        </span>
+                      </Link>
+
+                      <Link
+                        href="/dashboard"
+                        onClick={() => setIsDropdownOpen(false)}
+                        className="flex items-center px-4 py-2 hover:bg-gray-100 transition-colors duration-200 group"
+                      >
+                        <LayoutDashboard className="w-5 h-5 text-gray-500 group-hover:text-gray-700 mr-3" />
+                        <span className="text-gray-700 group-hover:text-black">
+                          Dashboard
+                        </span>
+                      </Link>
+
+                      <Link
+                        href="/dashboard/resumelist"
+                        onClick={() => setIsDropdownOpen(false)}
+                        className="flex items-center px-4 py-2 hover:bg-gray-100 transition-colors duration-200 group"
+                      >
+                        <File className="w-5 h-5 text-gray-500 group-hover:text-gray-700 mr-3" />
+                        <span className="text-gray-700 group-hover:text-black">
+                          My Resumes
+                        </span>
+                      </Link>
+
+                      <Link
+                        href="/dashboard/cvletterlist"
+                        onClick={() => setIsDropdownOpen(false)}
+                        className="flex items-center px-4 py-2 hover:bg-gray-100 transition-colors duration-200 group"
+                      >
+                        <File className="w-5 h-5 text-gray-500 group-hover:text-gray-700 mr-3" />
+                        <span className="text-gray-700 group-hover:text-black">
+                          My Cover Letters
+                        </span>
+                      </Link>
+
+                      <Link
+                        href="/settings"
+                        onClick={() => setIsDropdownOpen(false)}
+                        className="flex items-center px-4 py-2 hover:bg-gray-100 transition-colors duration-200 group"
+                      >
+                        <Settings className="w-5 h-5 text-gray-500 group-hover:text-gray-700 mr-3" />
+                        <span className="text-gray-700 group-hover:text-black">
+                          Settings
+                        </span>
+                      </Link>
+                    </div>
                   </div>
                 )}
               </div>

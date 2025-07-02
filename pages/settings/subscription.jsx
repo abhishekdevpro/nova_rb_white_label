@@ -87,10 +87,12 @@ export default function Subscription() {
   }, []);
   const planName = {
     1: "Free",
-    2: "Single Pass",
-    3: "AI Pro Month",
-    4: "AI Pro Yearly",
+    2: "Explore",
+    3: "Elevate",
+    4: "Excel",
+    5: "Elite",
   };
+
 
   const currentPlan = userData?.plan_id
     ? planName[String(userData.plan_id)]
@@ -122,7 +124,7 @@ export default function Subscription() {
                   </p>
                   <p className="mt-2 text-gray-700">Contact us at:</p>
                   <ul className="list-disc ml-5 text-gray-700">
-                    <li className="text-[15px]">📧 contact@novausjobs.us</li>
+                    <li className="text-[15px]">📧 contact@novajobs.us</li>
                   </ul>
                 </div>
 
@@ -208,11 +210,11 @@ export default function Subscription() {
                   For more information or changes to your subscription, contact
                   us at
                   <a
-                    href="mailto: contact@novausjobs.us"
+                    href="mailto: contact@novajobs.us"
                     className="text-blue-600 cursor-pointer"
                   >
                     {" "}
-                    contact@novausjobs.us
+                    contact@novajobs.us
                   </a>
                   .
                 </p>

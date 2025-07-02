@@ -248,15 +248,18 @@ console.log(resumeData.position,"kkksksk");
       setPopupIndex(index);
       setPopupType("keyAchievements");
       setShowPopup(true);
-    } catch (err) {
-      setError(err.message);
+    } catch (error) {
+      setError(error.message);
       // toast.error(err.response?.data?.message || "Limit Exhausted")
-      setErrorPopup({
-        show: true,
-        message:
-          err.response?.data?.message ||
-          "Your API Limit is Exhausted. Please upgrade your plan.",
-      });
+      if(error?.response?.status === 403){
+              setErrorPopup({
+              show: true,
+              message:
+                error.response?.data?.message ||
+                "Your API Limit is Exhausted. Please upgrade your plan.",
+            });
+            }
+            else toast.error(error.response?.data?.message || "server error")
     } finally {
       setLoadingStates((prev) => ({
         ...prev,
@@ -485,15 +488,18 @@ console.log(resumeData.position,"kkksksk");
       setPopupIndex(projectIndex);
       setPopupType("description");
       setShowPopup(true);
-    } catch (err) {
-      setError(err.message);
+    } catch (error) {
+      setError(error.message);
       // toast.error(err.response?.data?.message || "Limit Exhausted")
-      setErrorPopup({
-        show: true,
-        message:
-          err.response?.data?.message ||
-          "Your API Limit is Exhausted. Please upgrade your plan.",
-      });
+     if(error?.response?.status === 403){
+             setErrorPopup({
+             show: true,
+             message:
+               error.response?.data?.message ||
+               "Your API Limit is Exhausted. Please upgrade your plan.",
+           });
+           }
+           else toast.error(error.response?.data?.message || "server error")
     } finally {
       setLoadingStates((prev) => ({
         ...prev,

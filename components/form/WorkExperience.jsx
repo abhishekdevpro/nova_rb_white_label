@@ -41,7 +41,7 @@ const WorkExperience = () => {
   const [popupType, setPopupType] = useState(""); // Track popup type
   const [descriptions, setDescriptions] = useState([]); // Stores descriptions
   const [keyAchievements, setKeyAchievements] = useState([]); // Stores key achievements
-
+  
   const [selectedDescriptions, setSelectedDescriptions] = useState([]); // Stores selected descriptions
   const [selectedKeyAchievements, setSelectedKeyAchievements] = useState([]); // Stores selected key achievements
   const [errorPopup, setErrorPopup] = useState({
@@ -278,15 +278,20 @@ const WorkExperience = () => {
       setPopupIndex(index);
       setPopupType("description");
       setShowPopup(true);
-    } catch (err) {
-      setError(err.message);
+    } catch (error) {
+      setError(error.message);
+      console.log(error.response,"err.response?");
       // toast.error(err.response?.data?.message || "Limit Exhausted")
-      setErrorPopup({
+
+       if(error?.response?.status === 403){
+        setErrorPopup({
         show: true,
         message:
-          err.response?.data?.message ||
+          error.response?.data?.message ||
           "Your API Limit is Exhausted. Please upgrade your plan.",
       });
+      }
+      else toast.error(error.response?.data?.message || "server error")
     } finally {
       setLoadingStates((prev) => ({
         ...prev,
@@ -334,14 +339,17 @@ const WorkExperience = () => {
       setPopupIndex(index);
       setPopupType("keyAchievements");
       setShowPopup(true);
-    } catch (err) {
-      setError(err.message);
-      setErrorPopup({
+    } catch (error) {
+      setError(error.message);
+     if(error?.response?.status === 403){
+        setErrorPopup({
         show: true,
         message:
-          err.response?.data?.message ||
+          error.response?.data?.message ||
           "Your API Limit is Exhausted. Please upgrade your plan.",
       });
+      }
+      else toast.error(error.response?.data?.message || "server error")
     } finally {
       setLoadingStates((prev) => ({
         ...prev,
