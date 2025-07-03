@@ -56,6 +56,7 @@ import MyResume from "./MyResume";
 import FullScreenLoader from "../../components/ResumeLoader/Loader";
 import { Plus } from "lucide-react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 // import MyJobs from "./myjobs";
 // import JobSearch from "./jobsearch";
 
@@ -119,11 +120,7 @@ export default function DashboardPage() {
       router.push("/dashboard/resume-builder");
     }, 2000);
   };
-  const handleMyDashboard = () => {
-    setTimeout(() => {
-      router.push("https://novajobs.us/user/jobs-profile");
-    }, 2000);
-  };
+
   return (
     <>
       <Navbar />
@@ -147,12 +144,11 @@ export default function DashboardPage() {
         </button>
 
         {/* My Profile Dashboard Button */}
-        <button
-          onClick={handleMyDashboard}
-          className="flex items-center px-6 py-3 justify-center bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium shadow-md w-full md:w-auto"
-        >
-          My Profile Dashboard
-        </button>
+        <Link href="https://novajobs.us/user/jobs-profile">
+          <button className="flex items-center px-6 py-3 justify-center bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium shadow-md w-full md:w-auto">
+            My Profile Dashboard
+          </button>
+        </Link>
       </div>
       <div className="flex flex-col max-w-7xl mx-auto md:flex-row min-h-screen bg-white border p-4">
         {/* Sidebar */}

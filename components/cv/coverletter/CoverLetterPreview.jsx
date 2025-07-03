@@ -2,10 +2,11 @@ import React, { useContext, forwardRef } from "react";
 
 import CoverLetter1 from "./CoverLetter1";
 import CoverLetter3 from "./CoverLetter3";
-import CoverLetter2 from "./CoverLetter2";
+
 import CoverLetter4 from "./CoverLetter4";
 import { CoverLetterContext } from "../../context/CoverLetterContext";
 import CoverLetter5 from "./CoverLetter5";
+import CoverLetter2 from "./CoverLetter2";
 
 // function CoverLetterPreview({ selectedTemplate }) {
 const CoverLetterPreview = forwardRef(({ selectedTemplate }, ref) => {
