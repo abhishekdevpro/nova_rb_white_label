@@ -108,16 +108,14 @@ const TooltipContent = ({ improvements, resumeId, onClose }) => {
     } catch (error) {
       console.error(error);
       toast.error(error.response?.data || "Something went wrong");
-      if(error?.response?.status === 403){
+      if (error?.response?.status === 403) {
         setErrorPopup({
-        show: true,
-        message:
-          error.response?.data?.message ||
-          "Your API Limit is Exhausted. Please upgrade your plan.",
-      });
-      }
-      else toast.error(error.response?.data?.message)
-      
+          show: true,
+          message:
+            error.response?.data?.message ||
+            "Your API Limit is Exhausted. Please upgrade your plan.",
+        });
+      } else toast.error(error.response?.data?.message);
     } finally {
       setLoading(false);
     }
@@ -436,7 +434,7 @@ const ResumeStrength = ({ score, strength, resumeId }) => {
               >
                 Improve Resume
               </button>
-              <button
+              {/* <button
                 disabled={
                   strength.ats_score === 10  || !resumeId
                 }
@@ -454,7 +452,7 @@ const ResumeStrength = ({ score, strength, resumeId }) => {
                 }`}
               >
                 Improve ATS
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
