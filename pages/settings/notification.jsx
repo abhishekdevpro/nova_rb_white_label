@@ -122,7 +122,7 @@ export default function Notification() {
         }
 
         const response = await axios.get(
-          "https://apiwl.novajobs.us/api/jobseeker/notification-permission",
+          "https://apiwl.novajobs.us/api/user/notification-permission",
           {
             headers: { Authorization: token },
           }
@@ -160,7 +160,7 @@ export default function Notification() {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        "https://apiwl.novajobs.us/api/jobseeker/notification-permission",
+        "https://apiwl.novajobs.us/api/user/notification-permission",
         updatedSettings,
         {
           headers: { Authorization: token },
