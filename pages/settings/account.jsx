@@ -3,21 +3,25 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "./Sidebar";
 import axios from "axios";
+import { UserCheck2Icon } from "lucide-react";
 
 const Account = () => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [token,setToken]= useState(null)
+  //  const token = localStorage.getItem("token");
   useEffect(() => {
+    setToken(localStorage.getItem("token"))
     const fetchUserProfile = async () => {
+ 
+
       try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          setError("Unauthorized. Please log in.");
-          setLoading(false);
-          return;
-        }
+        // if (!token) {
+        //   setError("Unauthorized. Please log in.");
+        //   setLoading(false);
+        //   return;
+        // }
 
         const response = await axios.get(
           "https://apiwl.novajobs.us/api/jobseeker/user-profile",
@@ -28,24 +32,25 @@ const Account = () => {
 
         if (response.data?.status === "success") {
           setUserData(response.data.data);
-        } else {
-          setError("Failed to load user data.");
-        }
+          localStorage.setItem("ID", response.data.data.account_id);
+        } 
       } catch (err) {
-        console.error("Error fetching user profile:", err);
-        setError("Failed to load user data.");
+        console.log("Error fetching user profile:", err);
+        // setError("Failed to load user data.");
       } finally {
         setLoading(false);
       }
     };
 
     fetchUserProfile();
-  }, []);
+  }, [token]);
+
+  console.log(userData, "udddd");
 
   if (loading) return <p className="text-center text-gray-500">Loading...</p>;
-  if (error) return <p className="text-center text-red-500">{error}</p>;
+  // if (error) return <p className="text-center text-red-500">{error}</p>;
   //  console.log(userData,"///");
-  localStorage.setItem("ID", userData.account_id);
+  // localStorage.setItem("ID", userData.account_id);
   return (
     <>
       <Navbar />
