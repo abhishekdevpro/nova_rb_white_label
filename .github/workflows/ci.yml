@@ -39,3 +39,6 @@ jobs:
           sudo docker pull abhishekdevpro/novarbwl_fe:latest
           sudo docker compose down || true
           sudo docker compose up -d
+
+          echo "✅ Cleaning up old Docker images..."
+          sudo docker image prune -af
