@@ -36,6 +36,6 @@ jobs:
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
           cd /root/baj-deployment/nova_us_jobs/deployment_rb_fe
-          docker pull abhishekdevpro/novarbwl_fe:latest
-          docker compose down || true
-          docker compose up -d
+          sudo docker pull abhishekdevpro/novarbwl_fe:latest
+          sudo docker compose down || true
+          sudo docker compose up -d
