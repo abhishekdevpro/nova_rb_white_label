@@ -8,6 +8,7 @@ import {
   Briefcase,
   Send,
   Zap,
+  Star,
 } from "lucide-react";
 import Link from "next/link";
 import { pricingData } from "../../components/Data/PlanData";
@@ -15,8 +16,7 @@ import { useRouter } from "next/router";
 import Navbar from "../Navbar/Navbar";
 
 export default function Payment() {
-  const [selectedPlan, setSelectedPlan] = useState("singlePass");
-  const plans = ["freePlan", "singlePass"];
+  const [selectedPlan, setSelectedPlan] = useState("freemium");
   const router = useRouter();
 
   const handlePlanSelection = (planId) => {
@@ -31,119 +31,139 @@ export default function Payment() {
     });
   };
 
-  const getPlanFeatures = (planId) => {
-    const plan = pricingData[planId];
-    const features = [];
-
-    for (let i = 1; i <= 11; i++) {
-      const featureKey = `feature${i}`;
-      if (plan[featureKey]) {
-        features.push(plan[featureKey]);
-      }
-    }
-
-    return features;
-  };
   return (
     <>
       <Navbar />
-      <div className="p-6 max-w-7xl w-full mx-auto font-sans  bg-gradient-to-b from-white to-blue-200">
-        {/* Intro Section */}
-        <div className="bg-blue-100 p-4 rounded-lg text-center">
-          <h2 className="text-lg md:text-xl font-semibold">
-            ✨ Get Noticed – Apply Smarter, Not Harder
-          </h2>
-          <p className="text-gray-600 text-sm md:text-base">
-            Our AI-powered platform helps you discover and apply to the most
-            relevant jobs — automatically and effortlessly, so you can land
-            interviews faster.
-          </p>
-        </div>
-
-        <h2 className="text-xl md:text-2xl font-bold mt-6 text-center">
-          🎉 Great Job! You’re almost resume-ready 🎉
-        </h2>
-        <p className="text-gray-600 text-sm md:text-base text-center mt-2">
-          {" "}
-          Choose the perfect plan to unlock professional resume tools, cover
-          letter support, and job tracking — all in one place.
-        </p>
-        {/* Pricing Section Title */}
-        <div className="text-center my-8">
-          <h2 className="text-2xl font-bold">Plans & Pricing</h2>
-          <p className="text-gray-600 mt-2">
-            Select a plan that fits your career goals.
-          </p>
-
-          <p className="text-gray-500 mt-1 max-w-xl mx-auto">
-            Our flexible pricing is designed to support every stage of your job
-            journey &mdash; whether you&apos;re starting fresh or leveling up.
-          </p>
-        </div>
-
-        <div className="flex flex-col justify-between gap-2">
-          <div>
-            <div className="flex flex-col md:flex-row justify-center gap-4 flex-wrap">
-              {plans.map((planId) => {
-                const plan = pricingData[planId];
-                //  {console.log(plan,"plan")}
-                if (plan.title === "Free Plan") return null;
-                return (
-                  <div
-                    key={planId}
-                    className={`border rounded-lg p-4 flex flex-col w-full md:w-64 relative ${
-                      selectedPlan === planId
-                        ? "border-blue-500 bg-blue-50"
-                        : "bg-white"
-                    }`}
-                    onClick={() => handlePlanSelection(planId)}
-                  >
-                    {/* {plan.bestValue === "true" && (
-                      <div className="absolute -top-3 right-4 bg-yellow-400 text-xs font-bold px-3 py-1 rounded-full">
-                        {t(pricingData.bestValueLabel)}
-                      </div>
-                    )} */}
-
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="font-bold text-lg">{plan.title}</h3>
-                      <input
-                        type="checkbox"
-                        checked={selectedPlan === planId}
-                        onChange={() => {}}
-                        className="h-5 w-5 text-blue-500"
-                      />
-                    </div>
-
-                    <div className="text-2xl font-bold mb-1">
-                      {plan.price === "0"
-                        ? pricingData.freeLabel
-                        : `$${plan.price}${
-                            plan.billingCycle !== "single"
-                              ? `/${plan.billingCycle === "signle" ? "" : ""}`
-                              : ""
-                          }`}
-                    </div>
-
-                    <div className="text-sm text-gray-500 mb-4">
-                      {plan.billingCycle}
-                    </div>
-
-                    <div className="flex-grow">
-                      <ul className="space-y-2 text-sm">
-                        {getPlanFeatures(planId).map((feature, idx) => (
-                          <li key={idx} className="flex items-start">
-                            <CheckCircle className="h-4 w-4 text-blue-500 mr-2 mt-1 flex-shrink-0" />
-                            <span>{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+      <div className="min-h-screen bg-gradient-to-b from-white to-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="bg-blue-100 p-4 rounded-lg text-center">
+            <h2 className="text-lg md:text-xl font-semibold">
+              ✨ Get Noticed – Apply Smarter, Not Harder
+            </h2>
+            <p className="text-gray-600 text-sm md:text-base">
+              Our AI-powered platform helps you discover and apply to the most
+              relevant jobs — automatically and effortlessly, so you can land
+              interviews faster.
+            </p>
           </div>
 
+          <h2 className="text-xl md:text-2xl font-bold mt-6 text-center">
+            🎉 Great Job! You’re almost resume-ready 🎉
+          </h2>
+          <p className="text-gray-600 text-sm md:text-base text-center mt-2">
+            {" "}
+            Choose the perfect plan to unlock professional resume tools, cover
+            letter support, and job tracking — all in one place.
+          </p>
+          {/* Pricing Section Title */}
+          <div className="text-center my-8">
+            <h2 className="text-2xl font-bold">Plans & Pricing</h2>
+            <p className="text-gray-600 mt-2">
+              Select a plan that fits your career goals.
+            </p>
+
+            <p className="text-gray-500 mt-1 max-w-xl mx-auto">
+              Our flexible pricing is designed to support every stage of your
+              job journey &mdash; whether you&apos;re starting fresh or leveling
+              up.
+            </p>
+          </div>
+
+          {/* Pricing Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            {pricingData.map((plan) => (
+              <div
+                key={plan.id}
+                className={`relative rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl cursor-pointer ${
+                  selectedPlan === plan.id
+                    ? "ring-4 ring-blue-500 ring-opacity-50 transform scale-105"
+                    : ""
+                } ${
+                  plan.isDark
+                    ? "bg-gray-900 text-white border-2 "
+                    : "bg-white text-gray-900 border-2 border-gray-200"
+                }`}
+                onClick={() => handlePlanSelection(plan.id)}
+              >
+                {/* Popular Badge */}
+                {plan.isPopular && (
+                  <div className="absolute -top-4 right-[-60px] transform -translate-x-1/2">
+                    <div className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-1">
+                      {plan.id === "ultraelite" ? "Unlimited" : "Most Popular"}
+                    </div>
+                  </div>
+                )}
+
+                <div className="p-8">
+                  {/* Plan Name */}
+                  <div className="text-center mb-6">
+                    <h3
+                      className={`text-2xl font-bold mb-2 ${
+                        plan.isDark ? "text-white" : "text-gray-900"
+                      }`}
+                    >
+                      {plan.name}
+                    </h3>
+                    <div className="flex items-baseline justify-center">
+                      <span
+                        className={`text-4xl font-bold ${
+                          plan.isDark ? "text-white" : "text-gray-900"
+                        }`}
+                      >
+                        ${plan.price}
+                      </span>
+                      <span
+                        className={`ml-2 text-lg ${
+                          plan.isDark ? "text-gray-300" : "text-gray-600"
+                        }`}
+                      >
+                        /month
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Features */}
+                  <ul className="space-y-4 mb-8">
+                    {plan.features.map((feature, index) => (
+                      <li key={index} className="flex items-start">
+                        <CheckCircle
+                          className={`h-5 w-5 mr-3 mt-0.5 flex-shrink-0 ${
+                            plan.isDark ? "text-green-400" : "text-green-500"
+                          }`}
+                        />
+                        <span
+                          className={`text-sm ${
+                            plan.isDark ? "text-gray-300" : "text-gray-600"
+                          }`}
+                        >
+                          {typeof feature === "string" ? feature : feature}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Selection Indicator */}
+                  <div className="text-center">
+                    <div
+                      className={`w-6 h-6 rounded-full border-2 mx-auto ${
+                        selectedPlan === plan.id
+                          ? "bg-blue-600 border-blue-600"
+                          : plan.isDark
+                          ? "border-gray-400"
+                          : "border-gray-300"
+                      }`}
+                    >
+                      {selectedPlan === plan.id && (
+                        <CheckCircle className="w-6 h-6 text-white" />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Features & Payment Section */}
           {/* Features & Payment Section */}
           <div className="flex flex-col md:flex-row gap-6 mt-8">
             {/* Features List */}
@@ -224,11 +244,11 @@ export default function Payment() {
 // Feature Component
 function Feature({ icon, title, description }) {
   return (
-    <div className="flex space-x-3 items-start">
-      <div className="mt-1">{icon}</div>
+    <div className="flex space-x-4 items-start  rounded-lg hover:bg-gray-50 transition-colors duration-200">
+      <div className="mt-1 flex-shrink-0">{icon}</div>
       <div>
-        <p className="font-semibold">{title}</p>
-        <p className="text-gray-600 text-sm">{description}</p>
+        <h4 className="font-semibold text-gray-900 mb-2">{title}</h4>
+        <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
       </div>
     </div>
   );

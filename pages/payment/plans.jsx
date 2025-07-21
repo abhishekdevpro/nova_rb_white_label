@@ -1,6 +1,13 @@
 import Link from "next/link";
 import Navbar from "../Navbar/Navbar";
-import { ArrowLeft, CheckCircle, Loader, Lock } from "lucide-react";
+import {
+  ArrowLeft,
+  CheckCircle,
+  Loader,
+  Lock,
+  Star,
+  ArrowRight,
+} from "lucide-react";
 import { useRouter } from "next/router";
 import { pricingData } from "../../components/Data/PlanData";
 import { toast } from "react-toastify";
@@ -9,29 +16,15 @@ import { useState } from "react";
 
 export default function PaymentPage() {
   const router = useRouter();
-  const { selectedPlan } = router.query;
+  const { plan: selectedPlan } = router.query;
   const [loading, setLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
 
-  // Convert features from the individual properties to an array
-  const getFeatureArray = (plan) => {
-    const features = [];
-    for (let i = 1; i <= 10; i++) {
-      const featureKey = `feature${i}`;
-      if (plan[featureKey]) {
-        features.push(plan[featureKey]);
-      }
-    }
-    return features;
-  };
-
-  // Default to 'aiProYearly' if no plan is selected or plan doesn't exist
-  const planKey =
-    selectedPlan && pricingData[selectedPlan] ? selectedPlan : "singlePass";
-  const plan = pricingData[planKey];
+  // Find the selected plan from the new array structure
+  const plan = pricingData.find((p) => p.id === selectedPlan) || pricingData[0];
 
   // Format price with currency
-  const formattedPrice = plan.price === 0 ? "Free" : `$${plan.price}`;
+  const formattedPrice = `$${plan.price}`;
 
   const handleConfirmClick = () => {
     setShowPopup(true);
@@ -76,101 +69,172 @@ export default function PaymentPage() {
     }
   };
 
-  // Get features as array
-  const features = getFeatureArray(plan);
-
   return (
     <>
       <Navbar />
-      <div className="flex flex-col items-center justify-center bg-gradient-to-b from-white to-blue-100 p-6">
-        <button
-          onClick={() => router.back()}
-          className="flex items-start text-gray-600 hover:text-blue-600 mb-6 transition duration-200"
-        >
-          <ArrowLeft size={16} className="mr-2" />
-          Back to plans
-        </button>
-        <div className="max-w-5xl w-full bg-white shadow-lg rounded-xl p-6 md:flex">
-          {/* Right Section: Review Order */}
-          <div className="w-full bg-gray-100 p-6 rounded-xl mt-6 md:mt-0">
-            <h3 className="font-semibold text-lg">Review your order</h3>
-            <p className="text-gray-600 mt-2">
-              <strong>Plan:</strong> {plan.title}
-            </p>
+      <div className="min-h-screen bg-gradient-to-b from-white to-blue-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <button
+            onClick={() => router.back()}
+            className="flex items-center text-gray-600 hover:text-blue-600 mb-8 transition duration-200"
+          >
+            <ArrowLeft size={16} className="mr-2" />
+            Back to plans
+          </button>
 
-            {plan.bestValue === "true" && (
-              <div className="bg-blue-100 text-blue-600 text-xs font-medium px-2 py-1 rounded mt-1 inline-block">
-                {pricingData.bestValueLabel}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Left Section: Plan Details */}
+            <div className="bg-white rounded-2xl shadow-xl p-8">
+              <div className="text-center mb-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                  {plan.name} Plan
+                </h2>
+                <div className="flex items-baseline justify-center mb-2">
+                  <span className="text-5xl font-bold text-blue-600">
+                    ${plan.price}
+                  </span>
+                  <span className="text-xl text-gray-600 ml-2">/month</span>
+                </div>
+                {plan.isPopular && (
+                  <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold">
+                    <Star className="w-4 h-4" />
+                    Most Popular
+                  </div>
+                )}
               </div>
-            )}
 
-            <ul className="mt-4 space-y-2">
-              {features.map((feature, index) => (
-                <li key={index} className="flex items-center text-sm">
-                  <CheckCircle className="text-blue-600 mr-2" size={16} />
-                  {feature}
-                </li>
-              ))}
-            </ul>
-
-            {/* Total Price */}
-            <div className="mt-6 bg-blue-600 text-white p-4 rounded-xl text-center text-lg font-semibold">
-              Total due today <br />
-              <span className="text-2xl">{formattedPrice}</span>
+              {/* Features */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  What&apos;s included:
+                </h3>
+                <ul className="space-y-3">
+                  {plan.features.map((feature, index) => (
+                    <li key={index} className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">
+                        {typeof feature === "string" ? feature : feature}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
-            {/* Checkout button */}
-            <button
-              onClick={handleConfirmClick}
-              disabled={loading}
-              className={`w-full mt-6 bg-[#002a48] hover:bg-[#234d6b] text-white py-4 px-4 rounded-lg font-medium transition duration-200 flex items-center justify-center ${
-                loading ? "opacity-75" : ""
-              }`}
-            >
-              {loading ? (
-                <span className="flex items-center">
-                  <Loader className="mr-2 animate-spin" size={18} />
-                  Processing...
-                </span>
-              ) : (
-                <>
-                  <Lock className="mr-2" size={18} />
-                  Proceed to Secure Checkout
-                </>
-              )}
-            </button>
+            {/* Right Section: Review Order */}
+            <div className="bg-white rounded-2xl shadow-xl p-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                Review your order
+              </h3>
 
-            {/* Money-back Guarantee */}
-            <p className="mt-4 text-gray-600 text-sm">
-              <strong>Money-back guarantee:</strong> 14-day satisfaction
-              guarantee. If you are not satisfied, contact us for a full refund.
-            </p>
+              <div className="bg-gray-50 rounded-xl p-6 mb-6">
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-gray-600">Selected Plan:</span>
+                  <span className="font-semibold text-gray-900">
+                    {plan.name}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-gray-600">Billing Cycle:</span>
+                  <span className="font-semibold text-gray-900">Monthly</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Price:</span>
+                  <span className="text-2xl font-bold text-blue-600">
+                    ${plan.price}
+                  </span>
+                </div>
+              </div>
+
+              {/* Total Price */}
+              <div className="bg-blue-600 text-white p-6 rounded-xl text-center mb-6">
+                <p className="text-lg font-semibold mb-2">Total due today</p>
+                <span className="text-3xl font-bold">{formattedPrice}</span>
+              </div>
+
+              {/* Checkout button */}
+              <button
+                onClick={handleConfirmClick}
+                disabled={loading}
+                className={`w-full bg-blue-600 hover:bg-blue-700 text-white py-4 px-6 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center ${
+                  loading
+                    ? "opacity-75 cursor-not-allowed"
+                    : "transform hover:scale-105"
+                }`}
+              >
+                {loading ? (
+                  <span className="flex items-center">
+                    <Loader className="mr-2 animate-spin" size={18} />
+                    Processing...
+                  </span>
+                ) : (
+                  <>
+                    <Lock className="mr-2" size={18} />
+                    Proceed to Secure Checkout
+                    <ArrowRight className="ml-2" size={18} />
+                  </>
+                )}
+              </button>
+
+              {/* Money-back Guarantee */}
+              <div className="mt-6 p-4 bg-green-50 rounded-xl">
+                <div className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="font-semibold text-green-800 mb-1">
+                      Money-back guarantee
+                    </p>
+                    <p className="text-sm text-green-700">
+                      14-day satisfaction guarantee. If you are not satisfied,
+                      contact us for a full refund.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Additional Info */}
+              <div className="mt-6 text-center">
+                <p className="text-gray-600 text-sm">
+                  <strong>Questions?</strong> Contact our support team at{" "}
+                  <a
+                    href="mailto:contact@novausjobs.us"
+                    className="text-blue-600 hover:underline font-semibold"
+                  >
+                    contact@novausjobs.us
+                  </a>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Confirmation Popup */}
       {showPopup && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl p-6 max-w-md mx-4 shadow-xl">
-            <h3 className="text-xl font-semibold mb-4">Confirm Payment</h3>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              Confirm Payment
+            </h3>
             <p className="text-gray-700 mb-6">
-              You are about to proceed with the payment for {plan.title} plan
-              for {formattedPrice}. Would you like to continue?
+              You are about to proceed with the payment for the{" "}
+              <strong>{plan.name}</strong> plan for{" "}
+              <strong>{formattedPrice}</strong>. Would you like to continue?
             </p>
-            <div className="flex flex-col sm:flex-row sm:justify-end gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               <button
                 onClick={handleCancelPopup}
-                className="py-2 px-4 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition duration-200"
+                className="flex-1 py-3 px-6 border-2 border-gray-300 rounded-xl text-gray-700 hover:bg-gray-50 transition duration-200 font-semibold"
               >
                 Cancel
               </button>
               <button
                 onClick={handleCheckout}
-                className="py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-[#002a48] transition duration-200 flex items-center justify-center"
+                className="flex-1 py-3 px-6 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition duration-200 font-semibold flex items-center justify-center"
               >
                 <Lock className="mr-2" size={16} />
                 Proceed
+                <ArrowRight className="ml-2" size={16} />
               </button>
             </div>
           </div>
