@@ -1,55 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Check } from "lucide-react";
-
 import { useRouter } from "next/router";
-const pricingData = {
-  title: "Pricing Plans",
-  subtitle: "Choose the plan that works best for you",
-  intro:
-    "Our pricing plans are designed to accommodate all your resume building needs.",
-  bestValueLabel: "Best Value",
-  freeLabel: "$0",
-
-  plans: {
-    freePlan: {
-      title: "Free Plan",
-      billingCycle: "Free Plan",
-      subtitle: "For basic resume needs with AI support and ATS compatibility",
-      price: 0,
-      bestValue: false,
-      buttonText: "Get Started",
-      features: [
-        "Access to 2 professional, ATS-friendly templates",
-        "Unlimited edits — update anytime",
-        "Download as PDF",
-        "100 AI credits for resume and summary suggestions",
-        "Cover letter included",
-        "Built-in ATS-compliant formatting for better job match",
-        "Best for entry-level job seekers or quick applications.",
-      ],
-    },
-    singlePass: {
-      title: "Single Pass",
-      subtitle:
-        "Professional templates, custom styling, and AI-powered support",
-      price: 9.85,
-      billingCycle: "Resume",
-      bestValue: false,
-      buttonText: "Get Started",
-      features: [
-        "Unlock 20 premium ATS-friendly resume templates",
-        "Choose from 20+ color options",
-        "Pick from 15+ modern fonts",
-        "250 AI credits for writing support and optimization",
-        "Cover letter included",
-        "Download in PDF and DOC formats",
-        "All formats are optimized for ATS (Applicant Tracking Systems)",
-        "Perfect for job seekers who want strong first impressions.",
-      ],
-    },
-  },
-};
+import { pricingData } from "../Data/PlanData";
 
 const PricingSection = () => {
   const router = useRouter();
@@ -59,9 +12,9 @@ const PricingSection = () => {
     setIsMounted(true);
   }, []);
 
-  const handleClick = (planType) => {
+  const handleClick = (planId) => {
     const token = localStorage.getItem("token");
-    if (planType === "freePlan") {
+    if (planId === "freemium") {
       token
         ? router.push(`/dashboard`)
         : window.open(`https://novajobs.us/user/login`);
@@ -72,53 +25,94 @@ const PricingSection = () => {
     }
   };
 
-  if (!isMounted) {
-    return null;
-  }
+  if (!isMounted) return null;
 
   return (
-    <section className="py-8">
-      <div className="max-w-5xl mx-auto px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-items-center">
-          {Object.entries(pricingData.plans).map(([planType, plan]) => (
+    <section className="py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Pricing Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {pricingData.map((plan) => (
             <div
-              key={planType}
-              className="w-full max-w-md rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden bg-gray-800"
+              key={plan.id}
+              className={`relative flex flex-col justify-between h-full rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl ${
+                plan.isDark
+                  ? "bg-gray-900 text-white border-2"
+                  : "bg-white text-gray-900 border-2 border-gray-200"
+              } ${
+                plan.isPopular ? "ring-4 ring-blue-500 ring-opacity-50" : ""
+              }`}
             >
-              <div className="p-6 border-b border-gray-100 text-center flex flex-col items-center justify-center">
-                <div className="flex items-baseline justify-center mb-1">
-                  <span className="text-3xl font-bold text-white">
-                    {plan.price === 0
-                      ? pricingData.freeLabel
-                      : `$${plan.price}`}
-                  </span>
-                  {plan.billingCycle && (
-                    <span className="text-white ml-1 text-sm">
-                      /{plan.billingCycle}
-                    </span>
-                  )}
+              {/* Popular Badge */}
+              {plan.isPopular && (
+                <div className="absolute -top-4 right-[-60px] transform -translate-x-1/2">
+                  <div className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-1">
+                    {plan.id === "ultraelite" ? "Unlimited" : "Most Popular"}
+                  </div>
                 </div>
-                <p className="text-base font-normal text-white mb-2">
-                  {plan.subtitle}
-                </p>
-              </div>
+              )}
 
-              <div className="p-6">
-                <ul className="space-y-3">
+              <div className="p-8 flex flex-col flex-1">
+                {/* Plan Name */}
+                <div className="text-center mb-6">
+                  <h3
+                    className={`text-2xl font-bold mb-2 ${
+                      plan.isDark ? "text-white" : "text-gray-900"
+                    }`}
+                  >
+                    {plan.name}
+                  </h3>
+                  <div className="flex items-baseline justify-center">
+                    <span
+                      className={`text-4xl font-bold ${
+                        plan.isDark ? "text-white" : "text-gray-900"
+                      }`}
+                    >
+                      ${plan.price}
+                    </span>
+                    <span
+                      className={`ml-2 text-lg ${
+                        plan.isDark ? "text-gray-300" : "text-gray-600"
+                      }`}
+                    >
+                      /month
+                    </span>
+                  </div>
+                </div>
+
+                {/* Features */}
+                <ul className="space-y-4 mb-8 flex-1">
                   {plan.features.map((feature, index) => (
                     <li key={index} className="flex items-start">
-                      <Check className="h-5 w-5 text-green-500 mr-2 mt-1 flex-shrink-0" />
-                      <span className="text-white text-sm">{feature}</span>
+                      <Check
+                        className={`h-5 w-5 mr-3 mt-0.5 flex-shrink-0 ${
+                          plan.isDark ? "text-green-400" : "text-green-500"
+                        }`}
+                      />
+                      <span
+                        className={`text-sm ${
+                          plan.isDark ? "text-gray-300" : "text-gray-600"
+                        }`}
+                      >
+                        {typeof feature === "string" ? feature : feature}
+                      </span>
                     </li>
                   ))}
                 </ul>
 
-                <button
-                  className="w-full mt-8 text-white border-2 border-white  bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium py-3 px-4 rounded-lg transition duration-300"
-                  onClick={() => handleClick(planType)}
-                >
-                  {plan.buttonText}
-                </button>
+                {/* CTA Button */}
+                <div className="mt-auto">
+                  <button
+                    onClick={() => handleClick(plan.id)}
+                    className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${
+                      plan.isDark
+                        ? "bg-blue-600 text-white hover:bg-blue-700"
+                        : "bg-blue-600 text-white hover:bg-blue-700"
+                    }`}
+                  >
+                    Get Started
+                  </button>
+                </div>
               </div>
             </div>
           ))}
