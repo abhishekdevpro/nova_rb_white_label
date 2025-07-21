@@ -46,7 +46,7 @@ import { FaInfoCircle } from "react-icons/fa";
 
 export const pricingData = [
   {
-    planId: 1,
+    planId: 2,
     id: "freemium",
     name: "Explore",
     price: "18.95",
@@ -87,7 +87,7 @@ export const pricingData = [
     ],
   },
   {
-    planId: 2,
+    planId: 3,
     id: "elevate",
     name: "Elevate",
     price: "38.95",
@@ -129,7 +129,7 @@ export const pricingData = [
     ],
   },
   {
-    planId: 3,
+    planId: 4,
     id: "promax",
     name: "Excel",
     price: "78.95",
@@ -168,7 +168,7 @@ export const pricingData = [
     ],
   },
   {
-    planId: 4,
+    planId: 5,
     id: "ultraelite",
     name: "Elite ",
     price: "148.95",
