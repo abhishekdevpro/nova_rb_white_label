@@ -27,6 +27,7 @@ const Navbar = () => {
   const [isApiSuccess, setIsApiSuccess] = useState(false);
   const [photo, setPhoto] = useState("");
   const [user, setUser] = useState("");
+  const [userPlan, setUserPlan] = useState("");
   const router = useRouter();
   // const axiosInstance = axios.create();
 
@@ -70,6 +71,7 @@ const Navbar = () => {
           if (response.data.status === "success") {
             setIsApiSuccess(true);
             setUser(response.data.data.first_name);
+            setUserPlan(response.data.data);
             setPhoto(response.data.data.photo);
           } else {
             setIsApiSuccess(false);
@@ -141,7 +143,9 @@ const Navbar = () => {
     5: "Elite",
   };
 
-  const currentPlan = user?.plan_id ? planName[String(user.plan_id)] : "Free";
+  const currentPlan = userPlan?.plan_id
+    ? planName[String(userPlan.plan_id)]
+    : "Free";
   return (
     <nav className="bg-white border-b border-gray-200">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">

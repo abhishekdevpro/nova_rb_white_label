@@ -74,7 +74,7 @@ export default function Subscription() {
 
         if (response.data?.status === "success") {
           const userData = response.data.data; // Get user data from API
-          setUserData(userData.personal_details); // Store user data
+          setUserData(userData); // Store user data
           setStatus(userData.is_active_plan ? "Active" : "Inactive"); // Set status correctly
         }
       } catch (err) {
@@ -92,7 +92,6 @@ export default function Subscription() {
     4: "Excel",
     5: "Elite",
   };
-
 
   const currentPlan = userData?.plan_id
     ? planName[String(userData.plan_id)]
