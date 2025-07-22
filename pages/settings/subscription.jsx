@@ -123,7 +123,7 @@ export default function Subscription() {
                   </p>
                   <p className="mt-2 text-gray-700">Contact us at:</p>
                   <ul className="list-disc ml-5 text-gray-700">
-                    <li className="text-[15px]">📧 contact@novajobs.us</li>
+                    <li className="text-[15px]">📧 support@novajobs.us</li>
                   </ul>
                 </div>
 
@@ -135,8 +135,8 @@ export default function Subscription() {
                     Available days a week:
                   </p>
                   <ul className="list-disc ml-5 text-gray-700">
-                    <li>Monday-Friday: 8 AM - 8 PM (IST)</li>
-                    <li>Saturday: 8 AM - 5 PM (IST)</li>
+                    <li>Monday-Friday: 9 AM - 6 PM (EST)</li>
+                    <li>Saturday: 9 AM - 6 PM (EST)</li>
                   </ul>
                 </div>
               </div>
@@ -209,11 +209,11 @@ export default function Subscription() {
                   For more information or changes to your subscription, contact
                   us at
                   <a
-                    href="mailto: contact@novajobs.us"
+                    href="mailto: support@novajobs.us"
                     className="text-blue-600 cursor-pointer"
                   >
                     {" "}
-                    contact@novajobs.us
+                    support@novajobs.us
                   </a>
                   .
                 </p>
