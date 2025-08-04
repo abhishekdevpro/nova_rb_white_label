@@ -50,7 +50,7 @@ const WorkExperience = () => {
   });
   const token = localStorage.getItem("token");
   const router = useRouter();
-  const { improve } = router.query;
+  const { id,improve } = router.query;
   const months = [
     "Jan",
     "Feb",
@@ -253,7 +253,7 @@ const WorkExperience = () => {
 
     try {
       const response = await axios.post(
-        "https://apiwl.novajobs.us/api/user/ai-resume-profexp-summery-data",
+        `https://apiwl.novajobs.us/api/user/ai-resume-profexp-summery-data/${id}`,
         {
           key: "professional_experience",
           keyword:
@@ -316,7 +316,7 @@ const WorkExperience = () => {
 
     try {
       const response = await axios.post(
-        "https://apiwl.novajobs.us/api/user/ai-resume-profexp-key-data",
+        `https://apiwl.novajobs.us/api/user/ai-resume-profexp-key-data/${id}`,
         {
           key: "professional_experience",
           keyword:
@@ -439,7 +439,7 @@ const WorkExperience = () => {
       setIsLoading(true);
       try {
         const response = await axios.post(
-          "https://apiwl.novajobs.us/api/user/ai-resume-profexp-data",
+          `https://apiwl.novajobs.us/api/user/ai-resume-profexp-data/${id}`,
           {
             key: "professional_experience",
             keyword: value,
