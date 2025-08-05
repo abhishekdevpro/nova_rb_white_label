@@ -27,7 +27,7 @@ const Skill = ({ title, currentSkillIndex }) => {
     message: "",
   });
   const router = useRouter();
-  const { improve } = router.query;
+  const { id,improve } = router.query;
   const suggestionsRef = useRef(null);
 
   useEffect(() => {
@@ -254,7 +254,7 @@ const Skill = ({ title, currentSkillIndex }) => {
       }
 
       const response = await axios.post(
-        "https://apiwl.novajobs.us/api/user/ai-skills-data",
+        `https://apiwl.novajobs.us/api/user/ai-skills-data/${id}`,
         {
           key: "skills",
           keyword: title,
