@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import { Plus, X } from "lucide-react";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -17,7 +18,7 @@ const IntroductionAndBodyForm = () => {
   const [popupContent, setPopupContent] = useState("");
   const [activeIndex, setActiveIndex] = useState(null);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(0);
-
+  const {id} = useRouter()
   const handleBodyChange = (index, value) => {
     setCoverLetterData((prevData) => {
       const updatedBody = [...prevData.body];
@@ -39,7 +40,7 @@ const IntroductionAndBodyForm = () => {
 
     if (index === 0) {
       endpoint =
-        "https://apiwl.novajobs.us/api/user/aisummery-section1-coverletter";
+        `https://apiwl.novajobs.us/api/user/aisummery-section1-coverletter/${id}`;
       payload = {
         name: personalDetails.name,
         target_role: personalDetails.position,
@@ -48,13 +49,13 @@ const IntroductionAndBodyForm = () => {
       };
     } else if (index === 1) {
       endpoint =
-        "https://apiwl.novajobs.us/api/user/aisummery-section2-coverletter";
+        `https://apiwl.novajobs.us/api/user/aisummery-section2-coverletter/${id}`;
       payload = {
         target_role: personalDetails.position,
       };
     } else if (index === 2) {
       endpoint =
-        "https://apiwl.novajobs.us/api/user/aisummery-section3-coverletter";
+        `https://apiwl.novajobs.us/api/user/aisummery-section3-coverletter/${id}`;
       payload = {
         name: personalDetails.name,
         target_role: personalDetails.position,
