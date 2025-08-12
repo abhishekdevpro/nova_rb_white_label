@@ -50,7 +50,7 @@ export const pricingData = [
     id: "freemium",
     name: "Explore",
     price: "18.95",
-    isPopular: false,
+    isPopular: true,
     isDark: false,
     features: [
       // "Discover your potential",
@@ -133,7 +133,7 @@ export const pricingData = [
     id: "promax",
     name: "Excel",
     price: "78.95",
-    isPopular: true,
+    isPopular: false,
     isDark: false,
     features: [
       // "Master your skills. Dominate your field",
@@ -172,7 +172,7 @@ export const pricingData = [
     id: "ultraelite",
     name: "Elite ",
     price: "148.95",
-    isPopular: true,
+    isPopular: false,
     isDark: true,
     features: [
       "Excel Plus Unlimited",
