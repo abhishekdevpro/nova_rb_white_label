@@ -151,7 +151,7 @@ const Navbar = () => {
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0 flex items-center">
-            <Link href="/">
+            <Link href="https://novajobs.us/user/jobs-profile">
               <img
                 src="https://novajobs.us/static/media/NovaUS.649f79957e5090a75022.png"
                 alt="logo"
