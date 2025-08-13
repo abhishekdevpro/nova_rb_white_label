@@ -192,6 +192,10 @@ import cvimage1 from '../../public/Images/cv4.jpg';
 import cvimage2 from '../../public/Images/homeimage3.jpg';
 import cvimage3 from '../../public/Images/cv3.jpg';
 import Home_fourth from "./Home_fourth";
+import sample_resume_1 from '../../public/Images/sample_resume_1.png';
+import sample_resume_2 from '../../public/Images/sample_resume_2.png';
+import sample_resume_3 from '../../public/Images/sample_resume_3.png';
+import sample_resume_4 from '../../public/Images/sample_resume_4.png';
 
 function Home_third() {
   return (
@@ -260,15 +264,20 @@ function Home_third() {
 
         <div className='flex flex-col gap-5 px-9 py-7 rounded-xl md:mx-auto'>
           <div className='flex flex-col items-center max-w-7xl mx-auto text-center'>
-            <h1 className='text-3xl font-bold text-center py-6'>Make Your Resume Using Real-World Examples</h1>
-            <p className='text-xl'>Browse <span className='font-semibold text-blue-600'>350+ popular resume</span> examples covering all types of jobs, industries, and levels of experience. Every example has been reviewed and approved by a Certified Professional Resume Writer (CPRW).</p>
+            <h1 className='text-3xl font-bold text-center py-6'>Build your Resume with Real-World Examples from Nova Jobs</h1>
+            <p className='text-xl'>Browse <span className='font-semibold text-blue-600'>20+ professional resume </span> templates and expertly written examples covering all types of jobs, industries, and experience levels. Every sample has been reviewed and crafted by dedicated Resume Experts to help you create a standout resume.</p>
           </div>
           <div className='flex flex-col justify-center gap-5 items-center md:flex-row'>
             {[
-              { src: "https://www.resume-now.com/sapp/uploads/2023/11/resume-example-teacher.svg", alt: "Teacher Resume Example", title: "Teacher Resume" },
-              { src: "https://www.resume-now.com/sapp/uploads/2023/11/resume-example-registered-nurse.svg", alt: "Registered Nurse Resume Example", title: "Registered Nurse Resume" },
-              { src: "https://www.resume-now.com/sapp/uploads/2023/11/resume-example-college-student.svg", alt: "College Student Resume Example", title: "College Resume" },
-              { src: "https://www.resume-now.com/sapp/uploads/2023/11/resume-example-administrative-assistant.svg", alt: "Administrative Assistant Resume Example", title: "Administrative Assistant Resume" }
+              // { src: "https://www.resume-now.com/sapp/uploads/2023/11/resume-example-teacher.svg", alt: "Teacher Resume Example", title: "Teacher Resume" },
+              // { src: "https://www.resume-now.com/sapp/uploads/2023/11/resume-example-registered-nurse.svg", alt: "Registered Nurse Resume Example", title: "Registered Nurse Resume" },
+              // { src: "https://www.resume-now.com/sapp/uploads/2023/11/resume-example-college-student.svg", alt: "College Student Resume Example", title: "College Resume" },
+              // { src: "https://www.resume-now.com/sapp/uploads/2023/11/resume-example-administrative-assistant.svg", alt: "Administrative Assistant Resume Example", title: "Administrative Assistant Resume" }
+              { src: sample_resume_1},
+              { src: sample_resume_2},
+              { src: sample_resume_3},
+              { src: sample_resume_4}
+
             ].map((template, index) => (
               <div key={index} className='relative group'>
                 <Image src={template.src} alt={template.alt} width={400} height={400} className='h-[400px] w-full rounded-xl object-cover' />
