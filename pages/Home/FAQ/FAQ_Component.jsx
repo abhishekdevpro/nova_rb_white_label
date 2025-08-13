@@ -5,7 +5,7 @@ import { useState } from "react";
 const FAQ = () => {
   const faqs = [
     {
-      question: "What is **NovaJobs.us and how does your resume builder help me?",
+      question: "What is NovaJobs.us and how does your resume builder help me?",
       answer:
         "NovaJobs.us offers an advanced resume building service that enables job seekers to create professional, ATS-friendly resumes tailored for the US job market. Our platform provides expert-written templates and tools to help you showcase your experience and skills effectively.",
     },
@@ -146,9 +146,9 @@ const FAQ = () => {
   };
 
   return (
-    <div id="faq" className=" bg-gray-100">
-      <div className=" max-w-4xl mt-2  mx-auto p-4">
-        <h2 className="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
+    <div id="faq" className="bg-gray-100">
+      <div className=" max-w-4xl mx-auto p-4">
+        <h2 className="text-3xl font-bold mb-4 text-center">Frequently Asked Questions</h2>
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <FAQItem key={index} question={faq.question} answer={faq.answer} />
