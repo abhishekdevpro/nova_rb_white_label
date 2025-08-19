@@ -28,6 +28,7 @@ import template24 from "./template/template24.png";
 import template25 from "./template/template25.png";
 import template26 from "./template/template26.png";
 import template27 from "./template/template27.png";
+import template29 from "./template/template29.png";
 
 import axios from "axios";
 import Link from "next/link";
@@ -72,6 +73,7 @@ const TemplateSelector = ({
     // { key: "template26", imageUrl: template26, pdfType: 3 },
     // { key: "template27", imageUrl: template27, pdfType: 3 },
     // { key: "template28", imageUrl: template21, pdfType: 2 },
+    { key: "template29", imageUrl: template29, pdfType: 3 }
   ];
 
   const templates = allTemplates;

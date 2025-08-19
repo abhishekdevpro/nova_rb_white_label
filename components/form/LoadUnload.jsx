@@ -361,7 +361,7 @@
 //                   class="flex items-center space-x-3 rtl:space-x-reverse"
 //                 >
 //                   <img
-//                     src="https://abroadiumlandingemployee.vercel.app/assets/logo-c5bcd0df.png"
+//                     src="https://Nova Jobslandingemployee.vercel.app/assets/logo-c5bcd0df.png"
 //                     class="h-8"
 //                     alt="Flowbite Logo"
 //                   />
@@ -870,7 +870,7 @@ const LoadUnload = () => {
                   className="flex items-center space-x-3 rtl:space-x-reverse"
                 >
                   <img
-                    src="https://abroadiumlandingemployee.vercel.app/assets/logo-c5bcd0df.png"
+                    src="https://Nova Jobslandingemployee.vercel.app/assets/logo-c5bcd0df.png"
                     className="h-8"
                     alt="Flowbite Logo"
                   />

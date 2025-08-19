@@ -169,6 +169,12 @@ const Skill = ({ title, currentSkillIndex }) => {
         (skillType) => skillType.title === title
       );
       if (!skillType) return prevData;
+      if(skillType.skills.length >= 10){
+        toast.warn("You can add upto 10 skills only")
+        return prevData;
+      }
+        
+      console.log(skillType,"skillType")
 
       const newSkills = [...skillType.skills, ""];
       const updatedSkills = prevData.skills.map((skill) =>
@@ -330,6 +336,7 @@ console.log(resumeData.skills,skillType,"skills");
   return (
     <div className="flex-col-gap-3 w-full md:mt-10 md:px-10">
       <h2 className="input-title text-black text-3xl">{title}</h2>
+      <p className="text-sm !font-light text-gray-500">You can add upto 10 skills only</p>
       { resumeData.skills && resumeData.skills.length>0 ?
       (skillType?.skills.map((skill, index) => (
         <div key={index} className="relative flex items-center space-x-2">

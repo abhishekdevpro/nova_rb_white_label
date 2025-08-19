@@ -32,6 +32,7 @@ import template24 from "../preview/template/template24.png";
 import template25 from "../preview/template/template25.png";
 import template26 from "../preview/template/template26.png";
 import template27 from "../preview/template/template27.png";
+import template29 from "../preview/template/template29.png";
 import { SaveLoader } from "../ResumeLoader/SaveLoader";
 // import template28 from "../preview/template/template28.png";
 const TemplateStep = ({ onNext, onBack, onChange, value }) => {
@@ -389,6 +390,12 @@ const TemplateStep = ({ onNext, onBack, onChange, value }) => {
       name: "Contemporary",
       hasPhoto: false,
     },
+    {
+      key: "template29",
+      imageUrl: template20,
+      name: "Contemporary",
+      hasPhoto: false,
+    }
   ];
 
   // Filter templates based on photo preference
