@@ -6,6 +6,7 @@ import cvletter2 from "./cvimgs/cvletter2.png";
 import cvletter3 from "./cvimgs/cvletter3.png";
 import cvletter4 from "./cvimgs/cvletter4.png";
 import cvletter5 from "./cvimgs/cvletter5.png";
+import cvletter6 from "./cvimgs/cvletter6.png";
 
 import axios from "axios";
 import Link from "next/link";
@@ -27,6 +28,7 @@ const TemplateSelector = ({
     { key: "template3", imageUrl: cvletter3, pdfType: 3 },
     { key: "template4", imageUrl: cvletter4, pdfType: 3 },
     { key: "template5", imageUrl: cvletter5, pdfType: 4 },
+    { key: "template6", imageUrl: cvletter6, pdfType: 4 },
   ];
   useEffect(() => {
     const fetchUserProfile = async () => {

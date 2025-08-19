@@ -9,6 +9,7 @@ import cvletter2 from "../coverletter/cvimgs/cvletter2.png";
 import cvletter3 from "../coverletter/cvimgs/cvletter3.png";
 import cvletter4 from "../coverletter/cvimgs/cvletter4.png";
 import cvletter5 from "../coverletter/cvimgs/cvletter5.png";
+import cvletter6 from "../coverletter/cvimgs/cvletter6.png";
 import { CoverLetterContext } from "../../context/CoverLetterContext";
 import { SaveLoader } from "../../ResumeLoader/SaveLoader";
 const CVSelector = ({ onNext, onBack, onChange, value }) => {
@@ -256,6 +257,12 @@ const CVSelector = ({ onNext, onBack, onChange, value }) => {
       name: "Technical CV",
       hasPhoto: true,
     },
+    {
+      key: "template6",
+      imageUrl: cvletter6,
+      name: "Technical CV",
+      hasPhoto: true,
+    }
   ];
   const isBasicUser = userData?.plan_id === 1;
   useEffect(() => {

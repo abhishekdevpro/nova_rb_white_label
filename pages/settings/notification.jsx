@@ -104,9 +104,9 @@ import Sidebar from "./Sidebar";
 import Navbar from "../Navbar/Navbar";
 
 export default function Notification() {
-  const [emailNotifications, setEmailNotifications] = useState(false);
-  const [smsNotifications, setSmsNotifications] = useState(false);
-  const [marketingNotifications, setMarketingNotifications] = useState(false);
+  const [emailNotifications, setEmailNotifications] = useState(true);
+  const [smsNotifications, setSmsNotifications] = useState(true);
+  const [marketingNotifications, setMarketingNotifications] = useState(true);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -192,7 +192,7 @@ export default function Notification() {
               <div className="mb-6">
                 <h4 className="font-semibold">Product notifications</h4>
                 <p className="text-gray-600 text-sm mb-4">
-                  Stay ahead in your job search with Abroadium Resume Builder!
+                  Stay ahead in your job search with Nova Resume Builder!
                   Get notified about new job matches and applications requiring
                   your attention, ensuring you are among the first to apply and
                   increasing your chances of landing your dream job.

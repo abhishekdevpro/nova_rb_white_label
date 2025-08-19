@@ -8,6 +8,7 @@ const WorkExperience = ({
   className = "",
   style = {},
   itemClassNames = {},
+  title = "Work Experience"
 }) => {
   if (
     resumeData.is_fresher ||
@@ -35,7 +36,7 @@ const WorkExperience = ({
               borderBottom: `1px solid ${headerColor}`,
             }}
           >
-            Work Experience
+            {title}
           </h2>
 
           {resumeData.workExperience.map((item, index) => (
