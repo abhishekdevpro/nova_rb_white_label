@@ -20,7 +20,7 @@ const PDFViewer = ({ isOpen, onClose, filePath, title = "PDF Viewer" }) => {
         <div className="p-4 h-full">
           {filePath ? (
             <iframe
-              src={`${BASE_URL}${filePath}#toolbar=0`}
+              src={`https://apiwl.novajobs.us${filePath}#toolbar=0`}
               className="w-full h-full border-0"
               title={title}
             />

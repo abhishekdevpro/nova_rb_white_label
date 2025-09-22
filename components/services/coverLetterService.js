@@ -5,7 +5,7 @@ import { BASE_URL } from "../Constant/constant";
 // Fetch all cover letters
 export const fetchCoverLetters = async (token, lang) => {
   const response = await axios.get(
-    `${BASE_URL}/api/user/coverletter?lang=${lang}`,
+    `https://apiwl.novajobs.us/api/user/coverletter?lang=${lang}`,
     { headers: { Authorization: token } }
   );
   return response?.data?.data || [];
@@ -14,7 +14,7 @@ export const fetchCoverLetters = async (token, lang) => {
 // Delete a cover letter
 export const deleteCoverLetter = async (id, token, lang) => {
   const response = await axios.delete(
-    `${BASE_URL}/api/user/coverletter/${id}?lang=${lang}`,
+    `https://apiwl.novajobs.us/api/user/coverletter/${id}?lang=${lang}`,
     { headers: { Authorization: token } }
   );
   return response.data;
@@ -23,7 +23,7 @@ export const deleteCoverLetter = async (id, token, lang) => {
 // Update cover letter title
 export const updateCoverLetterTitle = async (id, title, token, lang) => {
   const response = await axios.put(
-    `${BASE_URL}/api/user/coverletter-details/${id}?lang=${lang}`,
+    `https://apiwl.novajobs.us/api/user/coverletter-details/${id}?lang=${lang}`,
     { cover_letter_title: title },
     { headers: { Authorization: token } }
   );
@@ -32,7 +32,7 @@ export const updateCoverLetterTitle = async (id, title, token, lang) => {
 
 // Download cover letter
 export const downloadCoverLetter = async (id, token, lang) => {
-  const apiUrl = `${BASE_URL}/api/user/download-coverletter/${id}?lang=${lang}`;
+  const apiUrl = `https://apiwl.novajobs.us/api/user/download-coverletter/${id}?lang=${lang}`;
   const response = await fetch(apiUrl, {
     method: "GET",
     headers: {

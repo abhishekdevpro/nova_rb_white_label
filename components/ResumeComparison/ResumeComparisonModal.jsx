@@ -1,7 +1,7 @@
 "use client";
 import { X } from "lucide-react";
 import { useState } from "react";
-import { BASE_URL } from "../Constant/constant";
+// import { BASE_URL } from "../Constant/constant";
 
 export default function ResumeComparisonModal({
   isOpen,
@@ -83,7 +83,7 @@ export default function ResumeComparisonModal({
                   </div>
                 )}
                 <img
-                  src={`${BASE_URL}${beforeData?.imageUrl}`}
+                  src={`https://apiwl.novajobs.us${beforeData?.imageUrl}`}
                   alt="Before Resume"
                   className={`w-full h-auto rounded-lg object-contain transition-opacity duration-300 ${
                     beforeLoading ? "opacity-0" : "opacity-100"
@@ -118,7 +118,7 @@ export default function ResumeComparisonModal({
                 )}
                 {console.log(`${BASE_URL}${afterData?.imageUrl}`,"${BASE_URL}${afterData?.imageUrl}")}
                 <img
-                  src={`${BASE_URL}${afterData?.imageUrl}`}
+                  src={`https://apiwl.novajobs.us${afterData?.imageUrl}`}
                   alt="After Resume"
                   className={`w-full h-auto rounded-lg object-contain transition-opacity duration-300 ${
                     afterLoading ? "opacity-0" : "opacity-100"
