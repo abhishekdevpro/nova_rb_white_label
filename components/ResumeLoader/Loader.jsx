@@ -1,171 +1,122 @@
+"use client";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import logo from "../../public/logo.png";
 
-'use client';
+/**
+ * FullPageLoader
+ * Props:
+ *  - isLoading: boolean
+ *  - mode: "builder" | "scanner" | "comparing"  (defaults to "scanner")
+ *
+ * A clean, theme-consistent loader with blue/white design
+ * showing animated logo, bouncing dots, and step messages.
+ */
+export default function FullPageLoader({
+  isLoading = false,
+  mode = "builder",
+}) {
+  const [stepIndex, setStepIndex] = useState(0);
 
-import { useEffect } from 'react';
+  const configs = {
+    builder: {
+      steps: [
+        "Building Resume...",
+        "Applying Templates...",
+        "Finalizing your resume...",
+      ],
+    },
+    scanner: {
+      steps: [
+        "Analyzing Resume...",
+        "Scanning Job Description...",
+        "Matching Skills...",
+        "Generating Results...",
+      ],
+    },
+    comparing: {
+      steps: [
+        "Comparing Resume with previous one...",
+        "Calculating Match Score...",
+        "Generating comparison...",
+      ],
+    },
+  };
 
-const FullScreenLoader = () => {
+  const { steps } = configs[mode] || configs.scanner;
+
   useEffect(() => {
-    // Inject the animation styles when the component is mounted
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes progress {
-        0% { width: 0%; }
-        50% { width: 70%; }
-        100% { width: 100%; }
-      }
-      
-      .animate-progress {
-        animation: progress 3s linear infinite;
-      }
-    `;
-    document.head.appendChild(style);
+    if (!isLoading) {
+      setStepIndex(0);
+      return;
+    }
 
-    return () => {
-      // Clean up the style when the component is unmounted
-      document.head.removeChild(style);
-    };
-  }, []);
+    if (!steps || steps.length === 0) return;
+    const t = setInterval(() => {
+      setStepIndex((s) => (s + 1) % steps.length);
+    }, 2000);
+
+    return () => clearInterval(t);
+  }, [isLoading, steps]);
+
+  if (!isLoading) return null;
+
+  const dotVariants = {
+    bounce: {
+      y: [0, -6, 0],
+      transition: { repeat: Infinity, duration: 0.8 },
+    },
+  };
 
   return (
-    <div className="fixed inset-0 bg-white flex items-center justify-center z-50">
-      <div className="text-center max-w-md w-full px-4">
-        {/* Resume Preview Card */}
-        <div className="bg-white shadow-lg rounded-lg p-6 mx-auto mb-8 relative">
-          {/* Blue header bar */}
-          <div className="bg-blue-500 h-12 absolute top-0 left-0 right-0 rounded-t-lg"></div>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+      <div className="w-full max-w-sm text-center text-white">
+        {/* Logo with pulse animation */}
+        <motion.img
+          src={logo.src} // replace with your company logo path
+          alt="Company Logo"
+          className=" h-20 mx-auto mb-6"
+          initial={{ opacity: 0.8, scale: 0.9 }}
+          animate={{ opacity: [0.8, 1, 0.8], scale: [0.9, 1, 0.9] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+        />
 
-          {/* Resume Content Preview */}
-          <div className="mt-16 space-y-4">
-            {/* Animated lines */}
-            <div className="h-4 bg-gray-100 rounded animate-pulse w-1/4"></div>
-            <div className="h-4 bg-gray-100 rounded animate-pulse w-3/4"></div>
-            <div className="h-4 bg-gray-100 rounded animate-pulse w-2/3"></div>
-            <div className="h-4 bg-gray-100 rounded animate-pulse w-1/2"></div>
-            <div className="h-4 bg-gray-100 rounded animate-pulse w-3/4"></div>
-          </div>
+        {/* Animated dots */}
+        <div className="flex items-center justify-center gap-3 mb-6">
+          <motion.span
+            variants={dotVariants}
+            animate="bounce"
+            className="bg-white w-3 h-3 rounded-full"
+          />
+          <motion.span
+            variants={dotVariants}
+            animate="bounce"
+            transition={{ delay: 0.12 }}
+            className="bg-white w-3 h-3 rounded-full"
+          />
+          <motion.span
+            variants={dotVariants}
+            animate="bounce"
+            transition={{ delay: 0.24 }}
+            className="bg-white w-3 h-3 rounded-full"
+          />
         </div>
 
-        {/* Loading Indicator */}
-        <div className="space-y-4">
-          {/* Progress Bar */}
-          <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-            <div className="h-full bg-blue-500 rounded-full animate-progress"></div>
-          </div>
+        {/* Step text */}
+        <motion.p
+          key={stepIndex}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="text-lg font-semibold"
+        >
+          {steps && steps.length > 0 ? steps[stepIndex] : "Please wait..."}
+        </motion.p>
 
-          {/* Loading Text */}
-          <h2 className="text-xl font-semibold text-gray-800">Analyzing Resume...</h2>
-          <p className="text-gray-600">Please wait while we process your document</p>
-        </div>
+        <p className="mt-2 text-sm text-white/80">
+          This may take a few seconds...
+        </p>
       </div>
     </div>
   );
-};
-
-export default FullScreenLoader;
-
-// 'use client'
-
-// const FullScreenLoader = () => {
-//   return (
-//     <div className="fixed inset-0 bg-white flex items-center justify-center z-50">
-//       <div className="text-center max-w-md w-full px-4">
-//         {/* Resume Preview Card */}
-//         <div className="bg-white shadow-lg rounded-lg p-6 mx-auto mb-8 relative">
-//           {/* Blue header bar */}
-//           <div className="bg-blue-500 h-12 absolute top-0 left-0 right-0 rounded-t-lg"></div>
-          
-//           {/* Resume Content Preview */}
-//           <div className="mt-16 space-y-4">
-//             {/* Animated lines */}
-//             <div className="h-4 bg-gray-100 rounded animate-pulse w-1/4"></div>
-//             <div className="h-4 bg-gray-100 rounded animate-pulse w-3/4"></div>
-//             <div className="h-4 bg-gray-100 rounded animate-pulse w-2/3"></div>
-//             <div className="h-4 bg-gray-100 rounded animate-pulse w-1/2"></div>
-//             <div className="h-4 bg-gray-100 rounded animate-pulse w-3/4"></div>
-           
-//           </div>
-//         </div>
-
-//         {/* Loading Indicator */}
-//         <div className="space-y-4">
-//           {/* Progress Bar */}
-//           <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-//             <div className="h-full bg-blue-500 rounded-full animate-progress"></div>
-//           </div>
-          
-//           {/* Loading Text */}
-//           <h2 className="text-xl font-semibold text-gray-800">Analyzing Resume...</h2>
-//           <p className="text-gray-600">Please wait while we process your document</p>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default FullScreenLoader;
-
-
-
-// const style = {
-// style.textContent = `
-//   @keyframes progress {
-//     0% { width: 0%; }
-//     50% { width: 70%; }
-//     100% { width: 100%; }
-//   }
-  
-//   .animate-progress {
-//     animation: progress 5s linear;
-//   }
-// `};
-// document.head.appendChild(style);
-
-// import React from 'react';
-// import Template1 from '../preview/template/template1.png';
-// import Image from 'next/image';
-
-// const FullScreenLoader = () => {
-//   return (
-//     <div className="fixed inset-0 bg-white flex items-center justify-center z-50">
-//       <div className="text-center max-w-md w-full px-4">
-//         {/* Resume Preview Card */}
-//         <div className="bg-white shadow-lg rounded-lg p-6 mx-auto mb-8 relative">
-//           {/* Blue header bar */}
-//           <div className="bg-blue-500 h-12 absolute top-0 left-0 right-0 rounded-t-lg"></div>
-
-//           {/* Resume Content Preview */}
-//           <div className="mt-16 space-y-4 flex justify-center items-center">
-//             <Image
-//               src={Template1}
-//               alt="Resume Preview"
-//               className="w-full max-w-[200px] rounded shadow-md"
-//             />
-//           </div>
-//         </div>
-
-//         {/* Loading Indicator */}
-//         <div className="space-y-4">
-//           {/* Progress Bar */}
-//           <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-//             <div className="h-full bg-blue-500 rounded-full animate-progress"></div>
-//           </div>
-
-//           {/* Loading Text */}
-//           <h2 className="text-xl font-semibold text-gray-800">Analyzing Resume...</h2>
-//           <p className="text-gray-600">Please wait while we process your document</p>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default FullScreenLoader;
-
-// // Tailwind CSS keyframes for progress bar
-// const style = `
-//   @keyframes loader {
-//     0% { width: 0%; }
-//     50% { width: 75%; }
-//     100% { width: 0%; }
-//   }
-// `;
+}

@@ -193,6 +193,7 @@ import { ResumeContext } from "../../components/context/ResumeContext";
 import DashboardPreview from "../preview/DashboardPreview";
 import axios from "axios";
 import FullScreenLoader from "../ResumeLoader/Loader";
+import Button from "../ui/Button";
 
 const Sidebar = ({ score, resumeId }) => {
   const templateRef = useRef(null);
@@ -323,7 +324,7 @@ const Sidebar = ({ score, resumeId }) => {
 
         {/* Action Buttons */}
         <div className="flex gap-4 mb-6">
-          <Link
+          {/* <Link
             href={resumeId ? `/dashboard/aibuilder/${resumeId}` : "#"}
             className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-lg 
       ${
@@ -334,21 +335,21 @@ const Sidebar = ({ score, resumeId }) => {
           >
             <Edit />
             Edit
-          </Link>
-          {/* <button
-            onClick={handleDownload}
+          </Link> */}
+          <Button
+            variant="outline"
+            onClick={handleEdit}
             disabled={!resumeId}
-            className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 ${
-              !resumeId ? "opacity-50 cursor-not-allowed" : ""
-            }`}
+            startIcon={<Edit />}
+            className="w-full"
           >
-            <Download />
-            Download
-          </button> */}
+            {/* <Edit /> */}
+            Edit
+          </Button>
         </div>
 
         {/* Resume Strength */}
-        <div className="mb-6">
+        {/* <div className="mb-6">
           <div className="flex justify-between items-center mb-2">
             <span className="text-sm font-medium">Resume Strength:</span>
             <div className="flex items-center gap-2">
@@ -360,16 +361,16 @@ const Sidebar = ({ score, resumeId }) => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Create New Resume Button */}
-        <button
+        <Button
+          startIcon={<Plus />}
           onClick={handleCreate}
-          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-brandBlue text-white  hover:bg-darkBlue"
         >
-          <Plus />
-          Create New Resume
-        </button>
+          Create new Resume
+        </Button>
       </div>
     </>
   );
