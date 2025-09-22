@@ -31,6 +31,7 @@
     "i18next": "^25.2.1",
     "jspdf": "^2.5.2",
     "lucide-react": "^0.469.0",
+    "motion": "^12.23.18",
     "next": "13.1.6",
     "next-i18next": "^15.4.2",
     "next-videos": "^1.4.1",

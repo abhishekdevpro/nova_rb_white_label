@@ -1,12 +1,12 @@
 
 "use client";
 
-import MyCvLetter from "../../components/ProfileDasboard/MyCvLetter";
-import Navbar from "../Navbar/Navbar";
-import Sidebar from "./Sidebar";
+import ScanHistory from "../../../components/ProfileDasboard/ScanHistory";
+import Navbar from "../../Navbar/Navbar";
+import Sidebar from "../Sidebar";
 
 
-export default function DashboardPage() {
+export default function index() {
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-brand-lightblue">
@@ -17,8 +17,7 @@ export default function DashboardPage() {
         {/* <Sidebar /> */}
 
         <div className="h-[calc(100vh-70px)] overflow-y-auto scrollbar-thin flex-1 w-full max-w-8xl py-4 px-4 overflow-auto ">
-          {/* <ScanHistory /> */}
-          <MyCvLetter />
+          <ScanHistory />
         </div>
       </div>
     </div>

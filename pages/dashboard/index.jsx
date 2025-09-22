@@ -51,12 +51,16 @@ import ResumeStrength from "../../components/dashboard/ResumeStrength";
 import Sidebar from "../../components/dashboard/Sidebar";
 import Navbar from "../Navbar/Navbar";
 import axios from "axios";
-import MyResume from "./MyResume";
+// import MyResume from "./MyResume";
 
 import FullScreenLoader from "../../components/ResumeLoader/Loader";
-import { Plus } from "lucide-react";
+import { LayoutDashboard, Loader2, Plus } from "lucide-react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { BASE_URL } from "../../components/constant/constant";
+import Button from "../../components/ui/Button";
+import { createResume } from "../../components/services/resumeService";
+import MyResume from "../../components/ProfileDasboard/MyResume";
 // import MyJobs from "./myjobs";
 // import JobSearch from "./jobsearch";
 
@@ -64,6 +68,8 @@ export default function DashboardPage() {
   const [strength, setStrength] = useState(null);
   const [resumeId, setResumeId] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [scaning, setScaning] = useState(false);
+  const [creating, setCreating] = useState(false);
   const [error, setError] = useState(null);
   const router = useRouter();
 
@@ -115,40 +121,93 @@ export default function DashboardPage() {
       router.push("/dashboard/cv-builder");
     }, 2000);
   };
-  const handleCreateResume = () => {
+  const handleCreateResume = async () => {
+    setCreating(true);
+    setError("");
+    try {
+      const res = await createResume(selectedLang);
+      if (res.code === 200 || res.status === "success") {
+        router.push(`/dashboard/resume-builder/${res.data.id}`);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message || "Error while creating resume");
+    } finally {
+      setTimeout(() => {
+        setCreating(false);
+      }, 5000);
+    }
+  };
+
+  const handleResumeScan = async () => {
+    setScaning(true);
+    try {
+      const res = await axios.post(
+        `${BASE_URL}/api/user/resume-create`,
+        {
+          is_resume_analysis: true,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      );
+
+      if (res.data.code === 200 || res.data.status === "success") {
+        // console.log(res.data.data ," data from scan post")
+        router.push(`/dashboard/resume-scan/${res.data.data?.id}`);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setScaning(false);
+    }
+  };
+
+  const handleMyDashboard = () => {
     setTimeout(() => {
-      router.push("/dashboard/resume-builder");
+      router.push("/dashboard/page");
     }, 2000);
   };
 
   return (
     <>
       <Navbar />
-      <div className="flex flex-col md:flex-row justify-center items-center gap-4 w-full p-4">
-        {/* Create New Resume Button */}
-        <button
+      <div className="flex flex-col sm:flex-row justify-center items-center mb-8 gap-4 mt-4 p-4 max-w-7xl mx-auto">
+        <Button
           onClick={handleCreateResume}
-          className="flex  items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium shadow-md w-full md:w-auto"
+          // className="flex justify-center items-center w-full  bg-brandBlue text-white   "
+          startIcon={creating ? <Loader2 /> : <Plus />}
+          className="w-full md:w-auto"
         >
-          <Plus className="w-5 h-5 mr-2" />
-          Create New Resume
-        </button>
-
-        {/* Create New Cover Letter Button */}
-        <button
+          {creating ? "creating..." : "Create Resume"}
+        </Button>
+        <Button
+          onClick={() => handleResumeScan()}
+          startIcon={scaning ? <Loader2 /> : <Plus />}
+          className="w-full md:w-auto"
+          // className="flex justify-center items-center w-full  bg-darkBlue text-white   "
+        >
+          {scaning ? "Analyzing..." : "Resume Analysis"}
+        </Button>
+        <Button
           onClick={handleCreateCoverLetter}
-          className="flex items-center px-6 py-3 justify-center bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium shadow-md w-full md:w-auto"
+          startIcon={<Plus />}
+          className="w-full md:w-auto"
+          // className="flex justify-center items-center w-full  bg-black text-white   "
         >
-          <Plus className="w-5 h-5 mr-2" />
-          Create New Cover Letter
-        </button>
-
-        {/* My Profile Dashboard Button */}
-        <Link href="https://novajobs.us/user/jobs-profile">
-          <button className="flex items-center px-6 py-3 justify-center bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium shadow-md w-full md:w-auto">
-            My Profile Dashboard
-          </button>
-        </Link>
+          {/* <Plus className="w-5 h-5 mr-2" />{" "} */}
+          Create Cover Letter
+        </Button>
+        <Button
+          onClick={handleMyDashboard}
+          startIcon={<LayoutDashboard />}
+          className="w-full md:w-auto"
+          // className="flex justify-center items-center w-full  bg-secondaryYellow text-white   "
+        >
+          My Profile
+        </Button>
       </div>
       <div className="flex flex-col max-w-7xl mx-auto md:flex-row min-h-screen bg-white border p-4">
         {/* Sidebar */}

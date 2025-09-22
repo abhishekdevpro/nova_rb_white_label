@@ -14,6 +14,7 @@ import {
   Check,
   X,
   Circle,
+  Sparkles,
 } from "lucide-react";
 import FullScreenLoader from "../ResumeLoader/Loader";
 import axios from "axios";
@@ -21,6 +22,7 @@ import { toast } from "react-toastify";
 import { SaveLoader } from "../ResumeLoader/SaveLoader";
 import { ResumeContext } from "../context/ResumeContext";
 import ErrorPopup from "../utility/ErrorPopup";
+import Button from "../ui/Button";
 
 const Modal = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
@@ -425,15 +427,16 @@ const ResumeStrength = ({ score, strength, resumeId }) => {
               Use our Resume Check tool to fix them.
             </p>
             <div className="flex flex-col md:flex-row gap-2">
-              <button
+              <Button
                 onClick={handleImproveResume}
                 disabled={!resumeId}
-                className={`px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors ${
-                  !resumeId ? "opacity-50 cursor-not-allowed" : ""
-                }`}
+                startIcon={<Sparkles />}
+                // className={`px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors ${
+                //   !resumeId ? "opacity-50 cursor-not-allowed" : ""
+                // }`}
               >
                 Improve Resume
-              </button>
+              </Button>
               {/* <button
                 disabled={
                   strength.ats_score === 10  || !resumeId
