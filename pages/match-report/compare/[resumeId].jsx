@@ -11,7 +11,7 @@ import ResumeComparisonModal from "../../../components/ResumeComparison/ResumeCo
 import Button from "../../../components/ui/Button";
 import { ArrowLeft, ArrowLeftIcon, Eye } from "lucide-react";
 import Navbar from "../../Navbar/Navbar";
-import { BASE_URL } from "../../../components/Constant/constant";
+// import { BASE_URL } from "../../../components/Constant/constant";
 
 
 const ResumeComparison = () => {
@@ -44,7 +44,7 @@ const ResumeComparison = () => {
         console.log("Using token:", token.substring(0, 20) + "...");
 
         const response = await axios.get(
-          `${BASE_URL}/api/user/resume-list/${resumeId}?lang=en`,
+          `https://apiwl.novajobs.us/api/user/resume-list/${resumeId}?lang=en`,
           {
             headers: {
               Authorization: token,
@@ -193,7 +193,7 @@ const ResumeComparison = () => {
       const filePath = resumeData.file_path;
 
       // Create download link
-      const downloadUrl = `${BASE_URL}${filePath}`;
+      const downloadUrl = `https://apiwl.novajobs.us${filePath}`;
       const link = document.createElement("a");
       link.href = downloadUrl;
       link.setAttribute("download", `resume-previous-version.pdf`);
