@@ -60,7 +60,7 @@ export const CreateCV = async () => {
     return response.data;
   } catch (err) {
     console.error("Error creating resume:", err);
-    throw error;
+    throw err;
   }
 };
 
