@@ -14,7 +14,7 @@ import Button from "../../components/ui/Button";
 import FullPageLoader from "../../components/ResumeLoader/Loader";
 import { useModal } from "../../hooks/useModal";
 import FormModal from "../../components/ui/FormModal";
-import { BASE_URL } from "../../components/constant/constant";
+import { BASE_URL } from "../../components/Constant/constant";
 import Navbar from "../Navbar/Navbar";
 
 const Index = () => {

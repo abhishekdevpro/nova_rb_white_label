@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import { BASE_URL } from "../constant/constant";
+import { BASE_URL } from "../Constant/constant";
 export const createResume = async (selectedLang="en") => {
   try {
     const token = localStorage.getItem("token");

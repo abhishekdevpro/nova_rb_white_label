@@ -1,8 +1,7 @@
 
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-// import { BASE_URL } from "../../../components/Constant/constant";
-import { BASE_URL } from "../../../components/Constant/constant";
+
 import axios from "axios";
 import PDFViewer from "../../../components/ResumeComparison/PDFViewer";
 import VersionCard from "../../../components/ResumeComparison/VersionCard";
@@ -12,6 +11,7 @@ import ResumeComparisonModal from "../../../components/ResumeComparison/ResumeCo
 import Button from "../../../components/ui/Button";
 import { ArrowLeft, ArrowLeftIcon, Eye } from "lucide-react";
 import Navbar from "../../Navbar/Navbar";
+import { BASE_URL } from "../../../components/Constant/constant";
 
 
 const ResumeComparison = () => {
