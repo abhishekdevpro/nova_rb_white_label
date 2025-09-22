@@ -1,6 +1,6 @@
 // services/coverLetterService.js
 import axios from "axios";
-import { BASE_URL } from "../constant/constant";
+import { BASE_URL } from "../Constant/constant";
 
 // Fetch all cover letters
 export const fetchCoverLetters = async (token, lang) => {
