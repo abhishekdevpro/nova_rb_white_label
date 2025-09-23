@@ -143,7 +143,7 @@ export default function DashboardPage() {
     setScaning(true);
     try {
       const res = await axios.post(
-        `${BASE_URL}/api/user/resume-create`,
+        `https://apiwl.novajobs.us/api/user/resume-create`,
         {
           is_resume_analysis: true,
         },

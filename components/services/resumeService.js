@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import { BASE_URL } from "../Constant/constant";
+// import { BASE_URL } from "../Constant/constant";
 export const createResume = async (selectedLang="en") => {
   try {
     const token = localStorage.getItem("token");
@@ -67,20 +67,20 @@ export const CreateCV = async () => {
 const token = () => localStorage.getItem("token");
 
 export const getResumes = async (lang) => {
-  return axios.get(`${BASE_URL}/api/user/resume-list?lang=${lang}`, {
+  return axios.get(`https://apiwl.novajobs.us/api/user/resume-list?lang=${lang}`, {
     headers: { Authorization: token() },
   });
 };
 
 export const deleteResume = async (id, lang) => {
-  return axios.delete(`${BASE_URL}/api/user/resume-list/${id}?lang=${lang}`, {
+  return axios.delete(`https://apiwl.novajobs.us/api/user/resume-list/${id}?lang=${lang}`, {
     headers: { Authorization: token() },
   });
 };
 
 export const updateResumeTitle = async (id, newTitle) => {
   return axios.put(
-    `${BASE_URL}/api/user/resume-details/${id}`,
+    `https://apiwl.novajobs.us/api/user/resume-details/${id}`,
     { resume_title: newTitle },
     { headers: { Authorization: token() } }
   );
@@ -88,7 +88,7 @@ export const updateResumeTitle = async (id, newTitle) => {
 
 export const duplicateResume = async (id) => {
   return axios.post(
-    `${BASE_URL}/api/user/resumes/${id}/duplicate`,
+    `https://apiwl.novajobs.us/api/user/resumes/${id}/duplicate`,
     {},
     { headers: { Authorization: token() } }
   );

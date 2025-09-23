@@ -47,7 +47,7 @@ const Index = () => {
 
     try {
       const res = await axios.get(
-        `${BASE_URL}/api/user/resume-list/${id}?lang=en`,
+        `https://apiwl.novajobs.us/api/user/resume-list/${id}?lang=en`,
         {
           headers: { Authorization: token },
         }
@@ -98,7 +98,7 @@ const Index = () => {
 
     try {
       const response = await axios.put(
-        `${BASE_URL}/api/user/resume-jobdescription/${resumeId}`,
+        `https://apiwl.novajobs.us/api/user/resume-jobdescription/${resumeId}`,
         { job_description: editedJobDescription },
         {
           headers: { Authorization: token, "Content-Type": "application/json" },
@@ -133,7 +133,7 @@ const Index = () => {
 
     try {
       const res = await axios.post(
-        `${BASE_URL}/api/user/resumes/${id}/scan`,
+        `https://apiwl.novajobs.us/api/user/resumes/${id}/scan`,
         { job_description: editedJobDescription },
         { headers: { Authorization: token } }
       );
