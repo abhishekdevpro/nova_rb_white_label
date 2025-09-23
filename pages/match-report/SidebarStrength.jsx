@@ -7,6 +7,7 @@ import Button from "../../components/ui/Button";
 import { Sparkles } from "lucide-react";
 
 export default function SidebarStrength({ resumeId, strengths }) {
+  // console.log(resumeId,"resumeId in side bar")
   const router = useRouter();
 
   // Calculate issue counts and progress for each section

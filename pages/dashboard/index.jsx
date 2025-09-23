@@ -60,6 +60,7 @@ import Link from "next/link";
 import Button from "../../components/ui/Button";
 import { createResume } from "../../components/services/resumeService";
 import MyResume from "../../components/ProfileDasboard/MyResume";
+import { toast } from "react-toastify";
 // import MyJobs from "./myjobs";
 // import JobSearch from "./jobsearch";
 
@@ -124,13 +125,13 @@ export default function DashboardPage() {
     setCreating(true);
     setError("");
     try {
-      const res = await createResume(selectedLang);
+      const res = await createResume();
       if (res.code === 200 || res.status === "success") {
         router.push(`/dashboard/resume-builder/${res.data.id}`);
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.response.data.message || "Error while creating resume");
+      toast.error(error?.response?.data?.message || "Error while creating resume");
     } finally {
       setTimeout(() => {
         setCreating(false);

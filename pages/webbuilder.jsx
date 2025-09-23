@@ -368,17 +368,16 @@ export default function WebBuilder() {
       window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error("PDF generation error:", error);
-      console.log(error?.response?.status,"error?.response?.status");
-      if(error?.response?.status === 403){
+      console.log(error?.response?.status, "error?.response?.status");
+      if (error?.response?.status === 403) {
         setErrorPopup({
-        show: true,
-        message:
-          error.response?.data?.message ||
-          "Your API Limit is Exhausted. Please upgrade your plan.",
-      });
-      }
-      else{
-        toast.error(error.response?.data?.message || "server error ")
+          show: true,
+          message:
+            error.response?.data?.message ||
+            "Your API Limit is Exhausted. Please upgrade your plan.",
+        });
+      } else {
+        toast.error(error.response?.data?.message || "server error ");
       }
     } finally {
       setisDownloading(false);
@@ -387,7 +386,6 @@ export default function WebBuilder() {
   const downloadAsPDF = () => {
     handleFinish();
     downloadAsBackend();
-    
   };
   // Logic to save and update the Resume
   const handleFinish = async (showToast = true) => {
@@ -578,8 +576,6 @@ export default function WebBuilder() {
           <div className="min-h-screen bg-gray-50 flex flex-col">
             <div className="w-full bg-gray-200 p-4 shadow-sm ">
               <div className="hidden md:flex flex-col lg:flex-row items-center justify-between gap-4">
-                
-
                 <div className="hidden lg:flex items-center gap-4">
                   <FontSelector />
 

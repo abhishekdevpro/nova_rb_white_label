@@ -1,11 +1,11 @@
 
 import axios from "axios";
-export const createResume = async (selectedLang="en") => {
+export const createResume = async () => {
   try {
     const token = localStorage.getItem("token");
 
     const response = await axios.post(
-      `https://apiwl.novajobs.us/api/user/resume-create?lang=${selectedLang}`,
+      `https://apiwl.novajobs.us/api/user/resume-create`,
       {},
       {
         headers: {
