@@ -1,7 +1,6 @@
 "use client";
 import { X } from "lucide-react";
 import { useState } from "react";
-// import { BASE_URL } from "../Constant/constant";
 
 export default function ResumeComparisonModal({
   isOpen,
