@@ -53,8 +53,8 @@ const Index = () => {
 
       if (res.data.code === 200 || res.data.status === "success") {
         const data = res.data.data;
-
-        setResumeId(data.id);
+        // console.log(data, "Fetched resume strength data");
+        setResumeId(data.resume_id);
         setResumeStrength(data);
         setJobDescription(data.job_description);
 

@@ -115,7 +115,7 @@ export default function ResumeComparisonModal({
                     <div className="w-10 h-10 border-4 border-gray-300 border-t-green-600 rounded-full animate-spin"></div>
                   </div>
                 )}
-                {console.log(`${BASE_URL}${afterData?.imageUrl}`,"${BASE_URL}${afterData?.imageUrl}")}
+                {/* {console.log(`${BASE_URL}${afterData?.imageUrl}`,"${BASE_URL}${afterData?.imageUrl}")} */}
                 <img
                   src={`https://apiwl.novajobs.us${afterData?.imageUrl}`}
                   alt="After Resume"
