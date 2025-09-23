@@ -1,6 +1,6 @@
+"use client"
 import React from 'react';
 import { X } from 'lucide-react';
-import { BASE_URL } from '../Constant/constant';
 
 const PDFViewer = ({ isOpen, onClose, filePath, title = "PDF Viewer" }) => {
   if (!isOpen) return null;

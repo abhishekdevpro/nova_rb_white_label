@@ -57,7 +57,6 @@ import FullScreenLoader from "../../components/ResumeLoader/Loader";
 import { LayoutDashboard, Loader2, Plus } from "lucide-react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { BASE_URL } from "../../components/Constant/constant.js";
 import Button from "../../components/ui/Button";
 import { createResume } from "../../components/services/resumeService";
 import MyResume from "../../components/ProfileDasboard/MyResume";

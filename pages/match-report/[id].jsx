@@ -9,12 +9,10 @@ import { Edit } from "lucide-react";
 
 import SidebarStrength from "./SidebarStrength";
 import ResumeStrength from "./ResumeStrength";
-// import { BASE_URL } from "../components/Constant/constant";
 import Button from "../../components/ui/Button";
 import FullPageLoader from "../../components/ResumeLoader/Loader";
 import { useModal } from "../../hooks/useModal";
 import FormModal from "../../components/ui/FormModal";
-import { BASE_URL } from "../../components/Constant/constant.js";
 import Navbar from "../Navbar/Navbar";
 
 const Index = () => {
