@@ -56,9 +56,12 @@ export default function MobileBuilder() {
     message: "",
   });
 
-
   const [isDownloading, setisDownloading] = useState(false);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  const [showSampleModal, setShowSampleModal] = useState(false);
+  const [previewImage, setPreviewImage] = useState(null);
+  const [sampleResumeData, setSampleResumeData] = useState(null);
+  const [isLoadingSample, setIsLoadingSample] = useState(false);
   const {
     resumeData,
     setResumeData,
@@ -572,6 +575,59 @@ export default function MobileBuilder() {
 
     fetchData();
   }, []);
+  // Function to fetch sample resume data from API
+  const fetchSampleResumeData = async () => {
+    try {
+      setIsLoadingSample(true);
+      const { id } = router.query;
+      const token = localStorage.getItem("token");
+      const htmlContent = templateRef.current.innerHTML;
+
+      const resumeHtml = `
+      <style>
+        @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+      </style>
+      ${htmlContent}
+    `;
+      if (!id) {
+        toast.error("Resume ID not found");
+        return;
+      }
+
+      if (!token) {
+        toast.error("Authentication token not found");
+        return;
+      }
+
+      const response = await axios.post(
+        `https://apiwl.novajobs.us/api/jobseeker/resume/preview/${id}`,
+        { resume_html: resumeHtml }, // ✅ payload here
+        {
+          headers: {
+            Authorization: token,
+          },
+          responseType: "blob", // ✅ tells axios to expect binary data
+        }
+      );
+
+      console.log("API Response:", response.data); // Debug log
+
+      // Convert blob to image URL
+      if (response.data) {
+        const imageUrl = URL.createObjectURL(response.data);
+        setPreviewImage(imageUrl);
+        setShowSampleModal(true);
+        toast.success("Sample resume loaded successfully");
+      } else {
+        toast.error("Failed to fetch sample resume data");
+      }
+    } catch (error) {
+      console.error("Error fetching sample resume:", error);
+      toast.error("Error loading sample resume");
+    } finally {
+      setIsLoadingSample(false);
+    }
+  };
 
   return (
     <>
@@ -611,7 +667,12 @@ export default function MobileBuilder() {
             </div>
             <div className="">
               <Highlightmenubar />
-              <Preview ref={templateRef} selectedTemplate={selectedTemplate} />
+              {!showSampleModal && (
+                <Preview
+                  ref={templateRef}
+                  selectedTemplate={selectedTemplate}
+                />
+              )}
             </div>
 
             <div className="flex items-center justify-center gap-4 p-2 fixed bottom-0 left-0 right-0 bg-white shadow-lg">
@@ -625,6 +686,17 @@ export default function MobileBuilder() {
                 disabled={loading}
               >
                 {loading ? <SaveLoader /> : "Save"}
+              </button>
+              <button
+                onClick={fetchSampleResumeData}
+                disabled={isLoadingSample}
+                className="bg-green-500 text-white px-3 py-2 rounded-lg hover:bg-green-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed bottom-btns text-sm"
+              >
+                {isLoadingSample ? (
+                  <SaveLoader loadingText="Loading Sample" />
+                ) : (
+                  "Sample"
+                )}
               </button>
               {/* <PayAndDownload
                 resumeId={resumeId}
@@ -802,6 +874,93 @@ export default function MobileBuilder() {
               >
                 Upgrade Plan
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {showSampleModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2">
+          <div className="bg-white rounded-lg shadow-lg w-[500px] max-h-[80vh] overflow-hidden flex flex-col">
+            {/* Header */}
+            <div className="flex justify-between items-center p-3 border-b bg-white relative z-20">
+              <h2 className="text-lg font-semibold text-gray-800">
+                Sample Resume Preview
+              </h2>
+              <button
+                onClick={() => {
+                  setShowSampleModal(false);
+                  setSampleResumeData(null);
+                  // Clean up the image URL to free memory
+                  if (previewImage) {
+                    URL.revokeObjectURL(previewImage);
+                    setPreviewImage(null);
+                  }
+                }}
+                className="text-gray-600 hover:text-gray-800 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Preview Area */}
+            <div className="flex-1 flex justify-center p-2 relative overflow-hidden">
+              <div className="relative flex justify-center">
+                {/* Scale wrapper with larger scale */}
+                <div
+                  className="relative"
+                  style={{
+                    transform: "scale(0.6)",
+                    transformOrigin: "top center",
+                    width: "794px",
+                    height: "1123px", // A4 height
+                  }}
+                >
+                  {/* Watermark Background */}
+                  <div
+                    className="absolute inset-0 pointer-events-none z-10"
+                    // style={{
+                    //   backgroundImage: `repeating-linear-gradient(
+                    //     45deg,
+                    //     transparent,
+                    //     transparent 60px,
+                    //     rgba(255, 0, 0, 0.08) 60px,
+                    //     rgba(255, 0, 0, 0.08) 120px
+                    //   )`,
+                    // }}
+                  ></div>
+
+                  {/* Resume Preview */}
+                  <div className="relative z-0 ">
+                    {previewImage ? (
+                      <img
+                        src={previewImage}
+                        alt="Sample Resume Preview"
+                        className="max-w-full h-auto"
+                        style={{
+                          transform: "scale(0.6)",
+                          transformOrigin: "top center",
+                          width: "794px",
+                          height: "1123px",
+                        }}
+                      />
+                    ) : (
+                      <div className="flex items-center justify-center h-64">
+                        <div className="text-gray-500">
+                          Loading sample resume...
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="p-3 border-t bg-gray-50 relative z-20">
+              <p className="text-xs text-gray-600 text-center">
+                This is a sample preview with watermark. Download the full
+                version without watermark.
+              </p>
             </div>
           </div>
         </div>
