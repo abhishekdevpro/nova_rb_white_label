@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import logo from "../Navbar/logo.jpg";
+import logo from "../../public/logo.png";
 import Image from "next/image";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -151,12 +151,8 @@ const Navbar = () => {
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0 flex items-center">
-            <Link href="/">
-              <img
-                src="https://novajobs.us/static/media/NovaUS.649f79957e5090a75022.png"
-                alt="logo"
-                className="h-10 w-40"
-              />
+            <Link href="https://novajobs.us/user/jobs-profile">
+              <Image src={logo} alt="logo" width={120} height={40} priority />
             </Link>
           </div>
           <div className="hidden md:flex justify-center items-center space-x-4">
@@ -180,12 +176,12 @@ const Navbar = () => {
                 >
                   Cover Letters
                 </Link>
-                {/* <Link
-                  href="/dashboard/myjobs"
+                <Link
+                  href="/dashboard/scan-history"
                   className="text-black px-3 py-2 rounded-md text-lg font-semibold"
                 >
-                  My Jobs
-                </Link> */}
+                  Analysis History
+                </Link>
               </div>
             ) : (
               <></>

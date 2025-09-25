@@ -68,7 +68,7 @@ const Projects = () => {
     }
   };
   const router = useRouter();
-  const { improve } = router.query;
+  const { id,improve } = router.query;
 
   const handleProjects = (e, index) => {
     const newProjects = [...resumeData.projects];
@@ -224,7 +224,7 @@ console.log(resumeData.position,"kkksksk");
 
     try {
       const response = await axios.post(
-        "https://apiwl.novajobs.us/api/user/ai-resume-project-key-data",
+        `https://apiwl.novajobs.us/api/user/ai-resume-project-key-data/${id}`,
         {
           key: "professional_experience",
           keyword:
@@ -465,7 +465,7 @@ console.log(resumeData.position,"kkksksk");
 
     try {
       const response = await axios.post(
-        "https://apiwl.novajobs.us/api/user/ai-resume-project-summery-data",
+        `https://apiwl.novajobs.us/api/user/ai-resume-project-summery-data/${id}`,
         {
           key: "professional_experience",
           keyword:

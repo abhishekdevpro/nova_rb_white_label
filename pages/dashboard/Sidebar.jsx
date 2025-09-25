@@ -1,6 +1,15 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import {
+  ArrowLeft,
+  ArrowRight,
+  List,
+  LogOut,
+  Scan,
+  SparkleIcon,
+  Sparkles,
+} from "lucide-react";
 
 const Sidebar = ({ onClose }) => {
   const router = useRouter();
@@ -8,7 +17,7 @@ const Sidebar = ({ onClose }) => {
   const handleLogout = () => {
     localStorage.clear(); // Clear the storage where token is present
     // setIsLoggedIn(false); // Update login state
-    router.push('/');
+    router.push("/");
   };
 
   const getLinkClassName = (path) => {
@@ -27,7 +36,7 @@ const Sidebar = ({ onClose }) => {
             className="flex items-center p-2 bg-indigo-100 border-b-2 border-slate-900 font-semibold text-black"
             onClick={onClose} // Close sidebar on link click
           >
-            <span className="mr-10 ">🖥️</span>
+            <ArrowLeft className="mr-2" size={20} />
             <span>Back to Dashboard</span>
           </Link>
         </li>
@@ -38,7 +47,7 @@ const Sidebar = ({ onClose }) => {
             className={getLinkClassName("/dashboard/resume-builder")}
             onClick={onClose} // Close sidebar on link click
           >
-            <span className="mr-2">🤖</span>
+            <Sparkles className="mr-2" size={20} />
             <span>AI Resume Builder</span>
           </Link>
         </li>
@@ -49,8 +58,30 @@ const Sidebar = ({ onClose }) => {
             className={getLinkClassName("/dashboard/resumelist")}
             onClick={onClose} // Close sidebar on link click
           >
-            <span className="mr-2">📑</span>
+            <List className="mr-2" size={20} />
             <span>My Resumes</span>
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            href="/dashboard/cvletterlist"
+            className={getLinkClassName("/dashboard/cvletterlist")}
+            onClick={onClose} // Close sidebar on link click
+          >
+            <List className="mr-2" size={20} />
+            <span>My CoverLetters</span>
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            href="/dashboard/scan-history"
+            className={getLinkClassName("/dashboard/scan-history")}
+            onClick={onClose} // Close sidebar on link click
+          >
+            <Scan className="mr-2" size={20} />
+            <span>Analysis History</span>
           </Link>
         </li>
         <li>
@@ -61,7 +92,7 @@ const Sidebar = ({ onClose }) => {
               handleLogout();
             }}
           >
-            <span className="mr-2 ">🔓</span>
+            <LogOut className="mr-2" size={20} />
             <span>Log Out</span>
           </Link>
         </li>
